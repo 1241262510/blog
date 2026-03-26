@@ -1,0 +1,14 @@
+function down() {
+    local save_path="$HOME/Desktop/YouTube_Downloads"
+    mkdir -p "$save_path"
+    echo "🚀 正在下载到: $save_path ..."
+
+    # 加入了 --cookies-from-browser 参数
+    yt-dlp --cookies-from-browser chrome \
+           -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' \
+           --merge-output-format mp4 \
+           -o "$save_path/%(title)s.%(ext)s" \
+           "$1"
+
+    echo "✅ 下载完成！请在桌面 YouTube_Downloads 文件夹查看。"
+}
