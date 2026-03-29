@@ -125,6 +125,37 @@ git push origin main
 npm run deploy
 ```
 
+## 最少命令工作流
+
+如果你想用最少的命令完成写作和发布，可以按下面这套走。
+
+没有图片时：
+
+```bash
+npm run server
+git add .
+git commit -m "更新博客"
+git push origin main
+npm run deploy
+```
+
+有图片时：
+
+```bash
+npm run server
+npm run fix:assets
+git add .
+git commit -m "更新博客"
+git push origin main
+npm run deploy
+```
+
+说明：
+
+- `git` 负责同步源码到 `main`
+- `hexo` 负责本地预览和发布博客
+- `npm run build` 平时可以省略，因为 `npm run deploy` 会自动生成站点
+
 ## 最简工作流
 
 1. 写文章
