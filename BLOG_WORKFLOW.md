@@ -171,7 +171,7 @@ npm run deploy
 进入项目目录：
 
 ```bash
-cd /Users/songxiaofeng/lessons/codex/codex-blog
+cd /Users/sxf/lessons/codex/codex-blog
 ```
 
 新建文章：
@@ -221,7 +221,7 @@ hexo deploy
 整套流程汇总：
 
 ```bash
-cd /Users/songxiaofeng/lessons/codex/codex-blog
+cd /Users/sxf/lessons/codex/codex-blog
 hexo new post "文章标题"
 npm run fix:assets
 hexo server
