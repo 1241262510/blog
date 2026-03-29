@@ -6,6 +6,10 @@
 
 - `https://1241262510.github.io/blog/`
 
+工作流文档：
+
+- [`BLOG_WORKFLOW.md`](./BLOG_WORKFLOW.md)
+
 ## 目录约定
 
 - 文章：`source/_posts/`
