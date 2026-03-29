@@ -163,3 +163,70 @@ npm run deploy
 3. 本地预览
 4. 提交源码到 `main`
 5. 发布到 `gh-pages`
+
+## Hexo 命令版工作流
+
+如果你希望按 `hexo` 命令来走完整流程，可以使用下面这套。
+
+进入项目目录：
+
+```bash
+cd /Users/songxiaofeng/lessons/codex/codex-blog
+```
+
+新建文章：
+
+```bash
+hexo new post "文章标题"
+```
+
+这会生成：
+
+```text
+source/_posts/文章标题.md
+```
+
+写完文章后，如果使用了 `MarkText` 粘贴图片，执行：
+
+```bash
+npm run fix:assets
+```
+
+本地预览：
+
+```bash
+hexo server
+```
+
+生成静态页面：
+
+```bash
+hexo generate
+```
+
+同步源码到 GitHub：
+
+```bash
+git add .
+git commit -m "新增文章：文章标题"
+git push origin main
+```
+
+发布到 GitHub Pages：
+
+```bash
+hexo deploy
+```
+
+整套流程汇总：
+
+```bash
+cd /Users/songxiaofeng/lessons/codex/codex-blog
+hexo new post "文章标题"
+npm run fix:assets
+hexo server
+git add .
+git commit -m "新增文章：文章标题"
+git push origin main
+hexo deploy
+```
