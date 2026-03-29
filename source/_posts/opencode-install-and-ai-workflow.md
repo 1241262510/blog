@@ -1,5 +1,5 @@
 ---
-title: OpenCode 的安装，以及 AI 如何改变软件安装流程
+title: 装上 OpenCode 之后，我重新理解了“装软件”
 date: 2026-03-29 23:45:00
 tags:
   - opencode

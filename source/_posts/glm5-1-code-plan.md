@@ -1,5 +1,5 @@
 ---
-title: GLM 5.1 来了，Code Plan 用户终于跟上了
+title: GLM 5.1 开放之后，我先注意到的是成本
 date: 2026-03-29 23:20:00
 tags:
   - glm
