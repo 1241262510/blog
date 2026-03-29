@@ -26,18 +26,14 @@
 <meta property="og:site_name" content="凌晨两点的书桌">
 <meta property="og:description" content="记录 OpenCode 的安装方式，以及 AI 代理如何改变普通用户安装软件的流程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://files.mdnice.com/user/113193/7a05c2d9-2337-4dba-b1dd-7b460338faf0.png">
-<meta property="og:image" content="https://files.mdnice.com/user/113193/7be8677a-60b2-4a1e-a279-ca793e4d3f04.png">
-<meta property="og:image" content="https://files.mdnice.com/user/113193/46d3a72d-90b5-4bbd-9822-9a2baf1308d0.png">
 <meta property="article:published_time" content="2026-03-29T15:45:00.000Z">
-<meta property="article:modified_time" content="2026-03-29T04:56:47.940Z">
+<meta property="article:modified_time" content="2026-03-29T05:03:23.479Z">
 <meta property="article:author" content="Song Xiaofeng">
 <meta property="article:tag" content="agent">
 <meta property="article:tag" content="ai">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="opencode">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://files.mdnice.com/user/113193/7a05c2d9-2337-4dba-b1dd-7b460338faf0.png">
   
   
   
@@ -295,7 +291,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          960 字
+          1k 字
         
       </span>
     
@@ -350,18 +346,15 @@
             
               <div class="markdown-body">
                 
-                <p><img src="https://files.mdnice.com/user/113193/7a05c2d9-2337-4dba-b1dd-7b460338faf0.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>OpenCode</code> 是一个集成多种 AI 代理能力的协作平台，既有免费模型，也有付费模型。对普通用户来说，它的价值不只是“多一个工具”，而是让很多原本需要自己查教程、跑命令、反复试错的软件安装过程，开始变得更像自然语言协作。</p>
-<h2 id="OpenCode-的安装"><a href="#OpenCode-的安装" class="headerlink" title="OpenCode 的安装"></a>OpenCode 的安装</h2><p><code>OpenCode</code> 是一个协作软件平台，集成了多种 AI 代理。免费的、收费的，都可以在同一个工具链里找到。</p>
-<p>这里直接使用官网提供的安装命令进行安装。以我自己的使用场景为例，我是在 Linux 虚拟机里完成安装。</p>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>OpenCode</code> 是一个集成多种 AI 代理能力的协作平台，既有免费模型，也有付费模型。它真正有意思的地方，不只是把模型集中到一个入口，而是让原本依赖搜索、复制命令、反复试错的软件安装过程，开始变成一种更接近自然语言协作的体验。</p>
+<h2 id="OpenCode-的安装"><a href="#OpenCode-的安装" class="headerlink" title="OpenCode 的安装"></a>OpenCode 的安装</h2><p><code>OpenCode</code> 集成了多种 AI 代理能力，免费的、收费的模型都可以在同一个工具链里找到。</p>
+<p>这里直接使用官网提供的命令安装。以我自己的使用场景为例，我是在 Linux 虚拟机里完成这一步。</p>
 <p>安装命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://opencode.ai/install | bash<br></code></pre></td></tr></table></figure>
 
-<p>软件界面：</p>
-<p><img src="https://files.mdnice.com/user/113193/7be8677a-60b2-4a1e-a279-ca793e4d3f04.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>进入之后，输入指令 <code>/models</code>，就可以切换不同的 AI 模型。</p>
-<p><img src="https://files.mdnice.com/user/113193/46d3a72d-90b5-4bbd-9822-9a2baf1308d0.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>可以先试试几个免费的模型，感受一下实际效果。我这里已经配置好了 <code>GLM 4.7 Code Plan</code>，也可以直接在这里调用。</p>
+<p>软件界面和模型选择部分，这里先不放无关截图，后面统一替换成你实际要保留的图片。</p>
+<p>进入之后，输入 <code>/models</code>，就可以切换不同的 AI 模型。</p>
+<p>可以先试试几个免费的模型，感受一下整体体验。我这里已经配置好了 <code>GLM 4.7 Code Plan</code>，也可以直接在这里调用。</p>
 <h2 id="软件安装的变化"><a href="#软件安装的变化" class="headerlink" title="软件安装的变化"></a>软件安装的变化</h2><p>以前自己安装软件，大致是这样一个循环：</p>
 <ul>
 <li>搜索教程</li>
@@ -369,26 +362,26 @@
 <li>看实际输出结果</li>
 <li>如果不成功，就继续重复这个循环，直到成功</li>
 </ul>
-<p>有了 AI 之后，现在的安装流程已经变得很不一样。</p>
+<p>有了 AI 之后，现在的安装流程已经开始明显变化。</p>
 <ul>
 <li>先准备必要依赖，例如：</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install curl<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>安装 <code>OpenCode</code>，再选一个免费模型</li>
-<li>直接对 AI 提自然语言要求，让它协助完成安装</li>
+<li>安装 <code>OpenCode</code>，再选一个可用模型</li>
+<li>直接用自然语言告诉 AI 你要安装什么，让它协助完成安装</li>
 </ul>
-<p>通过这个简单对比就能看出来，现在的软件安装方式和过去已经有了明显差异。说是变革也许还可以再观察，但变化已经非常清楚了。</p>
-<h2 id="技术门槛正在下降"><a href="#技术门槛正在下降" class="headerlink" title="技术门槛正在下降"></a>技术门槛正在下降</h2><p>这类变化最直接的影响，就是技术门槛在快速下降。</p>
-<p>以前安装软件，至少要求你会一些基础工具，例如 <code>vim</code>、<code>nano</code>，或者最少也要能完成常见的编辑操作。增删改查、改配置、调整参数，这些几乎都是默认要求。</p>
+<p>通过这个简单对比就能看出来，现在的软件安装方式和过去已经有了明显差异。是不是“变革”可以继续观察，但变化本身已经非常清楚。</p>
+<h2 id="技术门槛正在下降"><a href="#技术门槛正在下降" class="headerlink" title="技术门槛正在下降"></a>技术门槛正在下降</h2><p>这种变化带来的直接结果，就是技术门槛正在下降。</p>
+<p>以前安装软件，至少要求你会一些基础工具，例如 <code>vim</code>、<code>nano</code>，或者最少也要能完成常见编辑操作。改配置、调参数、检查报错，这些几乎都是默认要求。</p>
 <p>现在需要的是什么？很多时候，会说自然语言就够了。</p>
 <p>比如安装 <code>Docker</code> 和 <code>Docker Compose</code>。</p>
 <p>过去通常是：先上搜索引擎查文章、查命令、自己测试。</p>
-<p>现在则更像这样：</p>
+<p>现在更像这样：</p>
 <p><code>请帮我安装 docker 和 docker compose。</code></p>
-<p>然后 AI 代理开始执行、检查、修正、补齐，最后把事情做完。这个变化本身就已经足够惊人。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回头再看，会发现 AI 不只是“帮你回答问题”，它正在默默改变人们使用电脑和操作软件的方式。</p>
+<p>然后 AI 代理开始执行、检查、修正、补齐，最后把事情做完。真正令人意外的，不是它会回答问题，而是它开始能把一整段安装过程接过去。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回头再看，会发现 AI 不只是“帮你回答问题”，它正在慢慢改变人们使用电脑、安装软件和解决问题的方式。</p>
 <p>如果用一句更直接的话来概括，就是：</p>
 <ul>
 <li>做得更多</li>
@@ -396,7 +389,7 @@
 <li>结果更整齐</li>
 <li>试错成本更低</li>
 </ul>
-<p>某种意义上，这已经很接近“数字员工”的工作方式了。</p>
+<p>某种意义上，这已经开始接近“数字员工”的工作方式。</p>
 <p>不是我们反应慢，而是这个世界确实变化得太快。</p>
 
                 
