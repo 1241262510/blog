@@ -2,6 +2,27 @@
 
 这份文档用于固定博客的日常工作流，方便直接照着执行。
 
+## 推荐固定流程
+
+这是目前最适合你的写作方式：
+
+1. 用 `MarkText` 写文章
+2. 文章直接保存到 `source/_posts/`
+3. 图片直接保存到 `source/assets/`
+4. 写完后告诉我“更新博客”或“发布博客”
+
+分工如下：
+
+- `MarkText` 负责写作、排版、插图
+- 我负责检查文章格式、修图片路径、校验发布时间、构建 Hexo、提交 Git、发布博客
+
+正式内容只认这两个目录：
+
+- 文章：`source/_posts/`
+- 图片：`source/assets/`
+
+不建议把正式文章放在 `posts/` 目录里，因为 Hexo 默认不会从那里发布文章。
+
 ## 博客地址
 
 - `https://1241262510.github.io/blog/`
@@ -42,7 +63,7 @@
 1. 在 `MarkText` 里把图片保存目录设置为：
 
 ```text
-/Users/sxf/lessons/codex/codex-blog/source/assets
+/Users/songxiaofeng/lessons/codex/codex-blog/source/assets
 ```
 
 2. 写文章时直接在 `MarkText` 里粘贴截图
@@ -75,7 +96,7 @@ npm run server
 所有命令都应该在 Hexo 项目根目录执行：
 
 ```bash
-cd /Users/sxf/lessons/codex/codex-blog
+cd /Users/songxiaofeng/lessons/codex/codex-blog
 ```
 
 启动本地服务：
