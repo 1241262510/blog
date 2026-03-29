@@ -6,15 +6,20 @@
 
 这是目前最适合你的写作方式：
 
-1. 用 `MarkText` 写文章
+1. 用任意支持 Markdown 的编辑器写文章
 2. 文章直接保存到 `source/_posts/`
 3. 图片直接保存到 `source/assets/`
 4. 写完后告诉我“更新博客”或“发布博客”
 
 分工如下：
 
-- `MarkText` 负责写作、排版、插图
+- 任意 Markdown 编辑器负责写作、排版、插图
 - 我负责检查文章格式、修图片路径、校验发布时间、构建 Hexo、提交 Git、发布博客
+
+说明：
+
+- `MarkText` 不是必需工具，只是一个写 Markdown 比较顺手的选择
+- 只要编辑器输出的是正常 Markdown，并且符合博客目录约定，就都可以替代 `MarkText`
 
 正式内容只认这两个目录：
 
@@ -36,7 +41,7 @@
 
 原因：
 
-- 图片已经能通过 `MarkText + Hexo` 流程直接发布
+- 图片已经能通过 `Markdown 编辑器 + Hexo` 流程直接发布
 - 本地图更稳定，不依赖外部图床
 - `mp4` 这类视频文件会让仓库变重，不适合长期直接放到 GitHub Pages 仓库里
 
@@ -55,7 +60,7 @@
 
 ## 写作流程
 
-1. 用 `MarkText` 写草稿
+1. 用任意 Markdown 编辑器写草稿
 2. 把文章保存到 `source/_posts/`
 3. 把图片复制到 `source/assets/`
 4. 在 Markdown 中使用统一图片路径
@@ -73,9 +78,9 @@
 ![](/Users/xxx/Desktop/图片名.png)
 ```
 
-## MarkText 半自动流程
+## MarkText 可选优化流程
 
-如果你想减少手动复制图片的动作，可以使用半自动方案：
+如果你使用 `MarkText`，可以启用半自动图片流程：
 
 1. 在 `MarkText` 里把图片保存目录设置为：
 
@@ -209,7 +214,7 @@ npm run deploy
 进入项目目录：
 
 ```bash
-cd /Users/sxf/lessons/codex/codex-blog
+cd /Users/songxiaofeng/lessons/codex/codex-blog
 ```
 
 新建文章：
