@@ -1,0 +1,274 @@
+.navbar-brand {
+  display: none !important;
+}
+
+#navbar .container {
+  justify-content: center;
+}
+
+#navbar .navbar-nav {
+  margin-left: 0 !important;
+}
+
+.banner {
+  background-position: center center !important;
+}
+
+.banner:after {
+  background: linear-gradient(
+    180deg,
+    rgba(20, 24, 31, 0.28) 0%,
+    rgba(20, 24, 31, 0.5) 52%,
+    rgba(20, 24, 31, 0.68) 100%
+  );
+}
+
+.banner .page-header .title {
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.banner .page-header .post-meta,
+.banner .page-header .subtitle {
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+}
+
+.banner .page-header .subtitle {
+  letter-spacing: 0.14em;
+  opacity: 0.94;
+}
+
+.banner-text .h2,
+.banner-text #subtitle {
+  color: #fff6ea;
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+  font-weight: 700;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
+}
+
+.index-card {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(252, 248, 241, 0.98)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(129, 100, 73, 0.018),
+      rgba(129, 100, 73, 0.018) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+  border: 1px solid rgba(96, 73, 53, 0.09);
+  border-radius: 4px;
+  box-shadow: 0 14px 30px rgba(32, 24, 20, 0.045);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
+}
+
+.index-card:hover {
+  box-shadow: 0 18px 36px rgba(32, 24, 20, 0.07);
+  transform: translateY(-2px);
+}
+
+.index-card .card-body {
+  padding: 2rem 2.1rem 1.85rem;
+}
+
+.index-card .index-header {
+  margin-bottom: 1rem;
+}
+
+.index-card .index-header a {
+  color: #1d2430;
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+  font-size: 1.62rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.42;
+}
+
+.index-card .index-header a:hover {
+  color: #8b5e34;
+  text-decoration: none;
+}
+
+.index-card .post-title {
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+  font-size: 1.62rem;
+  font-weight: 700;
+  line-height: 1.42;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.index-card .post-meta {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  opacity: 0.66;
+  text-transform: uppercase;
+}
+
+.index-card .post-excerpt {
+  color: #505967;
+  font-size: 1rem;
+  line-height: 2;
+  margin-top: 1.2rem;
+}
+
+.index-card .index-excerpt {
+  color: #505967;
+}
+
+.index-card .post-meta,
+.index-card .post-meta a,
+.index-card .category-chain-item {
+  color: #6b7280;
+}
+
+.list-group-item .list-group-item-title,
+.category-post-list .category-post,
+.category-item,
+.category-count,
+.archive .list-group-item,
+.archive .list-group-item time,
+.archive .list-group-item-title {
+  color: #2f3742;
+}
+
+.list-group-item:hover .list-group-item-title,
+.category-post-list .list-group-item:hover .category-post,
+.category-item:hover,
+.category-count:hover {
+  color: #8b5e34;
+}
+
+.index-card::before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(160, 118, 71, 0.85), rgba(214, 187, 142, 0.65) 48%, rgba(141, 99, 59, 0.7));
+  opacity: 0.78;
+}
+
+.index-card .btn {
+  border-radius: 999px;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .index-card {
+    border-radius: 8px;
+  }
+
+  .index-card .card-body {
+    padding: 1.45rem 1.2rem 1.35rem;
+  }
+
+  .index-card .index-header a {
+    font-size: 1.35rem;
+  }
+
+  .index-card .post-title {
+    font-size: 1.35rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-user-color-scheme]) .index-card .index-header a {
+    color: #f3ede2;
+  }
+
+  :root:not([data-user-color-scheme]) .index-card .index-header a:hover {
+    color: #f2c27b;
+  }
+
+  :root:not([data-user-color-scheme]) .index-card .index-excerpt,
+  :root:not([data-user-color-scheme]) .index-card .post-meta,
+  :root:not([data-user-color-scheme]) .index-card .post-meta a,
+  :root:not([data-user-color-scheme]) .index-card .category-chain-item {
+    color: #c7cbd3;
+  }
+}
+
+[data-user-color-scheme="dark"] .index-card {
+  background:
+    linear-gradient(180deg, rgba(39, 44, 54, 0.98), rgba(31, 35, 44, 0.98)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.014),
+      rgba(255, 255, 255, 0.014) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+  border-color: rgba(244, 227, 200, 0.08);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+}
+
+[data-user-color-scheme="dark"] .index-card::before {
+  background: linear-gradient(90deg, rgba(230, 184, 116, 0.92), rgba(245, 214, 160, 0.68) 48%, rgba(176, 133, 85, 0.74));
+}
+
+[data-user-color-scheme="dark"] .index-card .index-header a {
+  color: #f3ede2;
+}
+
+[data-user-color-scheme="dark"] .index-card .index-header a:hover {
+  color: #f2c27b;
+}
+
+[data-user-color-scheme="dark"] .index-card .index-excerpt,
+[data-user-color-scheme="dark"] .index-card .post-meta,
+[data-user-color-scheme="dark"] .index-card .post-meta a,
+[data-user-color-scheme="dark"] .index-card .category-chain-item {
+  color: #c7cbd3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-user-color-scheme]) .banner-text .h2,
+  :root:not([data-user-color-scheme]) .banner-text #subtitle {
+    color: #f7efe2;
+  }
+
+  :root:not([data-user-color-scheme]) .list-group-item .list-group-item-title,
+  :root:not([data-user-color-scheme]) .category-post-list .category-post,
+  :root:not([data-user-color-scheme]) .category-item,
+  :root:not([data-user-color-scheme]) .category-count,
+  :root:not([data-user-color-scheme]) .archive .list-group-item,
+  :root:not([data-user-color-scheme]) .archive .list-group-item time,
+  :root:not([data-user-color-scheme]) .archive .list-group-item-title {
+    color: #ece6da;
+  }
+
+  :root:not([data-user-color-scheme]) .list-group-item:hover .list-group-item-title,
+  :root:not([data-user-color-scheme]) .category-post-list .list-group-item:hover .category-post,
+  :root:not([data-user-color-scheme]) .category-item:hover,
+  :root:not([data-user-color-scheme]) .category-count:hover {
+    color: #f2c27b;
+  }
+}
+
+[data-user-color-scheme="dark"] .banner-text .h2,
+[data-user-color-scheme="dark"] .banner-text #subtitle {
+  color: #f7efe2;
+}
+
+[data-user-color-scheme="dark"] .list-group-item .list-group-item-title,
+[data-user-color-scheme="dark"] .category-post-list .category-post,
+[data-user-color-scheme="dark"] .category-item,
+[data-user-color-scheme="dark"] .category-count,
+[data-user-color-scheme="dark"] .archive .list-group-item,
+[data-user-color-scheme="dark"] .archive .list-group-item time,
+[data-user-color-scheme="dark"] .archive .list-group-item-title {
+  color: #ece6da;
+}
+
+[data-user-color-scheme="dark"] .list-group-item:hover .list-group-item-title,
+[data-user-color-scheme="dark"] .category-post-list .list-group-item:hover .category-post,
+[data-user-color-scheme="dark"] .category-item:hover,
+[data-user-color-scheme="dark"] .category-count:hover {
+  color: #f2c27b;
+}
