@@ -1,0 +1,82 @@
+navbar:
+  blog_title: ""
+  menu:
+    - { key: "首页", link: "/" }
+    - { key: "归档", link: "/archives/" }
+    - { key: "分类", link: "/categories/" }
+    - { key: "标签", link: "/tags/" }
+
+search:
+  enable: false
+
+fun_features:
+  typing:
+    enable: true
+    typeSpeed: 55
+    cursorChar: "_"
+    loop: false
+
+custom_css:
+  - /css/custom.css
+
+index:
+  banner_img: /img/banner-desk.svg
+  banner_img_height: 85
+  banner_mask_alpha: 0.48
+  slogan:
+    enable: true
+    text: "风翻书页，灯照长夜。"
+  auto_excerpt:
+    enable: true
+  post_url_target: _self
+  post_meta:
+    date: true
+    category: true
+    tag: true
+
+post:
+  banner_img: /img/banner-desk.svg
+  banner_img_height: 55
+  banner_mask_alpha: 0.52
+
+archive:
+  banner_img: /img/banner-desk.svg
+  banner_img_height: 45
+  banner_mask_alpha: 0.52
+
+color:
+  body_bg_color: "#f6f2ea"
+  body_bg_color_dark: "#1b1f27"
+  navbar_bg_color: "#2b3340"
+  navbar_bg_color_dark: "#151b24"
+  navbar_text_color: "#f4efe8"
+  navbar_text_color_dark: "#e5decf"
+  subtitle_color: "#f8f2e8"
+  subtitle_color_dark: "#ddd4c4"
+  text_color: "#2f3742"
+  text_color_dark: "#d4d7dd"
+  sec_text_color: "#6b7280"
+  sec_text_color_dark: "#9ea5b1"
+  board_color: "#fffdf8"
+  board_color_dark: "#232a35"
+  post_text_color: "#2f3742"
+  post_text_color_dark: "#d4d7dd"
+  post_heading_color: "#1d2430"
+  post_heading_color_dark: "#f0ede6"
+  post_link_color: "#a16207"
+  post_link_color_dark: "#f4c26b"
+  link_hover_color: "#c17c11"
+  link_hover_color_dark: "#ffc76b"
+  link_hover_bg_color: "#f6efe1"
+  link_hover_bg_color_dark: "#374151"
+  line_color: "#ece4d8"
+  line_color_dark: "#455062"
+  scrollbar_color: "#c8b8a6"
+  scrollbar_color_dark: "#687582"
+  scrollbar_hover_color: "#a58b75"
+  scrollbar_hover_color_dark: "#93a0b0"
+
+footer:
+  content: '
+    <span>Powered by Hexo & Fluid</span>
+  '
