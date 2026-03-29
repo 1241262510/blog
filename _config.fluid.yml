@@ -38,6 +38,7 @@ post:
   banner_img: /img/banner-desk.svg
   banner_img_height: 55
   banner_mask_alpha: 0.52
+  default_index_img: /img/banner-desk.svg
 
 archive:
   banner_img: /img/banner-desk.svg

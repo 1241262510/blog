@@ -8,6 +8,7 @@ tags:
 categories:
   - 工具教程
 description: 一篇完整的 Markdown 教程，同时介绍 MarkCopy 的排版能力和适合的写作工作流。
+index_img: https://picsum.photos/id/10/800/400
 ---
 
 # MarkCopy 使用指南 — 写出排版精美的公众号文章
