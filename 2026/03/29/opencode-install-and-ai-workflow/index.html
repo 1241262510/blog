@@ -19,32 +19,29 @@
   <meta name="author" content="Song Xiaofeng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录 GLM 5.1 面向 Code Plan 订阅者开放后的第一感受，以及对成本和使用场景的判断。">
+    <meta name="description" content="记录 OpenCode 的安装方式，以及 AI 代理如何改变普通用户安装软件的流程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GLM 5.1 来了，Code Plan 用户终于跟上了">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/03/29/glm5-1-code-plan/index.html">
+<meta property="og:title" content="OpenCode 的安装，以及 AI 如何改变软件安装流程">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/03/29/opencode-install-and-ai-workflow/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录 GLM 5.1 面向 Code Plan 订阅者开放后的第一感受，以及对成本和使用场景的判断。">
+<meta property="og:description" content="记录 OpenCode 的安装方式，以及 AI 代理如何改变普通用户安装软件的流程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/assets/glm5-1-01.png">
-<meta property="og:image" content="https://1241262510.github.io/assets/glm5-1-02.png">
-<meta property="og:image" content="https://1241262510.github.io/assets/glm5-1-03.png">
-<meta property="og:image" content="https://1241262510.github.io/assets/glm5-1-04.png">
-<meta property="og:image" content="https://1241262510.github.io/assets/glm5-1-05.png">
-<meta property="og:image" content="https://1241262510.github.io/assets/glm5-1-06.png">
-<meta property="article:published_time" content="2026-03-29T15:20:00.000Z">
-<meta property="article:modified_time" content="2026-03-29T04:33:39.402Z">
+<meta property="og:image" content="https://files.mdnice.com/user/113193/7a05c2d9-2337-4dba-b1dd-7b460338faf0.png">
+<meta property="og:image" content="https://files.mdnice.com/user/113193/7be8677a-60b2-4a1e-a279-ca793e4d3f04.png">
+<meta property="og:image" content="https://files.mdnice.com/user/113193/46d3a72d-90b5-4bbd-9822-9a2baf1308d0.png">
+<meta property="article:published_time" content="2026-03-29T15:45:00.000Z">
+<meta property="article:modified_time" content="2026-03-29T04:56:47.940Z">
 <meta property="article:author" content="Song Xiaofeng">
 <meta property="article:tag" content="agent">
-<meta property="article:tag" content="glm">
+<meta property="article:tag" content="ai">
+<meta property="article:tag" content="linux">
 <meta property="article:tag" content="opencode">
-<meta property="article:tag" content="大模型">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/assets/glm5-1-01.png">
+<meta name="twitter:image" content="https://files.mdnice.com/user/113193/7a05c2d9-2337-4dba-b1dd-7b460338faf0.png">
   
   
   
-  <title>GLM 5.1 来了，Code Plan 用户终于跟上了 - 凌晨两点的书桌</title>
+  <title>OpenCode 的安装，以及 AI 如何改变软件安装流程 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -275,7 +272,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GLM 5.1 来了，Code Plan 用户终于跟上了"></span>
+            <span id="subtitle" data-typed-text="OpenCode 的安装，以及 AI 如何改变软件安装流程"></span>
           
         </div>
 
@@ -286,7 +283,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-29 23:20" pubdate>
+        <time datetime="2026-03-29 23:45" pubdate>
           2026年3月29日 晚上
         </time>
       </span>
@@ -298,7 +295,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          960 字
         
       </span>
     
@@ -309,7 +306,7 @@
         
         
         
-          10 分钟
+          9 分钟
         
       </span>
     
@@ -348,51 +345,59 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GLM 5.1 来了，Code Plan 用户终于跟上了</h1>
+            <h1 id="seo-header">OpenCode 的安装，以及 AI 如何改变软件安装流程</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>GLM 5.1 终于向 <code>Code Plan</code> 订阅者开放了。对一直在等配套服务的人来说，这算是一个迟到但明确的补齐。用了一会之后，我最直接的感受不是“模型有多强”，而是它的 token 消耗确实很惊人。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="GLM-5-1-来了"><a href="#GLM-5-1-来了" class="headerlink" title="GLM 5.1 来了"></a>GLM 5.1 来了</h3><p>对 <code>Code Plan</code> 订阅者来说，这次更新算是一件实打实的好事。</p>
-<p>之前因为算力或者套餐策略的原因，<code>GLM 5.x</code> 的一些配套能力始终没有完整落到 <code>Code Plan</code> 这条线上。既然同样是付费用户，却总要比别人慢一拍，这种体验说不上公平，也很难让人满意。</p>
-<p>从用户角度看，花钱多少可以影响配额和速度，但如果长期连核心能力都无法及时覆盖，落差感会很明显。</p>
-<p>不过这次情况总算变了。官方终于把对应服务补上，<code>Code Plan</code> 的订阅者也能正式用上 <code>GLM 5.1</code>。</p>
-<p><img src="/assets/glm5-1-01.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>这张图对应的是官方侧能力开放后的实际界面信息，对 <code>Code Plan</code> 用户来说，关键点不是“模型发布了”，而是“终于能用了”。</p>
-<h3 id="对主流-Agent-App-的支持也跟上了"><a href="#对主流-Agent-App-的支持也跟上了" class="headerlink" title="对主流 Agent App 的支持也跟上了"></a>对主流 Agent App 的支持也跟上了</h3><p>从现有信息看，<code>GLM 5.1</code> 对主流的 Agent 类应用也已经有了比较完整的支持。</p>
-<p>这类支持的意义并不只是“能不能接入”，而是它决定了模型能不能真正进入日常工作流。只有接进你平时正在使用的工具链里，这类更新才算真正有价值。</p>
-<p>这次我用 <code>OpenCode</code> 做了简单体验。整体接入过程不复杂，至少从“能不能开始用”这个层面来说，门槛已经不高了。</p>
-<p><img src="/assets/glm5-1-02.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>先看接入入口，主流 Agent 工具链已经开始给出对应支持。</p>
-<p><img src="/assets/glm5-1-03.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>再往下是模型选择和接入配置，整体思路已经比较标准化。</p>
-<p><img src="/assets/glm5-1-04.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>这一步更接近日常使用场景：不是单纯“能不能配”，而是“能不能顺手接进现有工作流”。</p>
-<p><img src="/assets/glm5-1-05.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>从实际界面来看，官方这次对常见 Agent App 的兼容度已经不像早期那样零散了。</p>
-<p><img src="/assets/glm5-1-06.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>至少在演示层面，<code>OpenCode</code> 这类工具已经可以把 <code>GLM 5.1</code> 放进正常使用链路里。</p>
-<h3 id="第一感受：贵，真的贵"><a href="#第一感受：贵，真的贵" class="headerlink" title="第一感受：贵，真的贵"></a>第一感受：贵，真的贵</h3><p>我目前使用时间不长，所以还谈不上对模型能力有多深入的判断。</p>
-<p>但有一点感受非常直接：<code>token</code> 消耗确实让我吃了一惊。</p>
-<p>有些模型在宣传期看起来很强，真正放进 Agent 工作流里跑起来以后，才会意识到什么叫“花钱如流水”。尤其是当上下文变长、调用次数变多、任务开始反复试错时，成本会迅速堆起来。</p>
-<p>这也是为什么很多时候，模型能力不能只看“上限”，还要看它是否适合进入你的日常使用场景。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果只说结论，我现在的看法是：</p>
+                <p><img src="https://files.mdnice.com/user/113193/7a05c2d9-2337-4dba-b1dd-7b460338faf0.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>OpenCode</code> 是一个集成多种 AI 代理能力的协作平台，既有免费模型，也有付费模型。对普通用户来说，它的价值不只是“多一个工具”，而是让很多原本需要自己查教程、跑命令、反复试错的软件安装过程，开始变得更像自然语言协作。</p>
+<h2 id="OpenCode-的安装"><a href="#OpenCode-的安装" class="headerlink" title="OpenCode 的安装"></a>OpenCode 的安装</h2><p><code>OpenCode</code> 是一个协作软件平台，集成了多种 AI 代理。免费的、收费的，都可以在同一个工具链里找到。</p>
+<p>这里直接使用官网提供的安装命令进行安装。以我自己的使用场景为例，我是在 Linux 虚拟机里完成安装。</p>
+<p>安装命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://opencode.ai/install | bash<br></code></pre></td></tr></table></figure>
+
+<p>软件界面：</p>
+<p><img src="https://files.mdnice.com/user/113193/7be8677a-60b2-4a1e-a279-ca793e4d3f04.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>进入之后，输入指令 <code>/models</code>，就可以切换不同的 AI 模型。</p>
+<p><img src="https://files.mdnice.com/user/113193/46d3a72d-90b5-4bbd-9822-9a2baf1308d0.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>可以先试试几个免费的模型，感受一下实际效果。我这里已经配置好了 <code>GLM 4.7 Code Plan</code>，也可以直接在这里调用。</p>
+<h2 id="软件安装的变化"><a href="#软件安装的变化" class="headerlink" title="软件安装的变化"></a>软件安装的变化</h2><p>以前自己安装软件，大致是这样一个循环：</p>
 <ul>
-<li><code>GLM 5.1</code> 对 <code>Code Plan</code> 用户开放，本身是一个值得欢迎的补齐。</li>
-<li>真正跑起来之后，成本感知比我预期得更强。</li>
-<li>这类模型更适合用在复杂任务、长链路任务和真正需要它能力上限的场景里。</li>
+<li>搜索教程</li>
+<li>复制和粘贴安装代码</li>
+<li>看实际输出结果</li>
+<li>如果不成功，就继续重复这个循环，直到成功</li>
 </ul>
-<p>至于那些非常轻量的需求，比如：</p>
+<p>有了 AI 之后，现在的安装流程已经变得很不一样。</p>
 <ul>
-<li>查天气</li>
-<li>写一点简单脚本</li>
-<li>做基础问答</li>
-<li>处理低复杂度编程任务</li>
+<li>先准备必要依赖，例如：</li>
 </ul>
-<p>未必需要把最贵的模型顶上去。</p>
-<p>更现实的做法可能还是那句老话：<code>好钢用在刀刃上</code>。</p>
-<p>把高成本模型留给真正复杂、真正有价值的任务，其他场景让更便宜的大模型去接手，整体体验和成本控制都会更合理一些。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install curl<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>安装 <code>OpenCode</code>，再选一个免费模型</li>
+<li>直接对 AI 提自然语言要求，让它协助完成安装</li>
+</ul>
+<p>通过这个简单对比就能看出来，现在的软件安装方式和过去已经有了明显差异。说是变革也许还可以再观察，但变化已经非常清楚了。</p>
+<h2 id="技术门槛正在下降"><a href="#技术门槛正在下降" class="headerlink" title="技术门槛正在下降"></a>技术门槛正在下降</h2><p>这类变化最直接的影响，就是技术门槛在快速下降。</p>
+<p>以前安装软件，至少要求你会一些基础工具，例如 <code>vim</code>、<code>nano</code>，或者最少也要能完成常见的编辑操作。增删改查、改配置、调整参数，这些几乎都是默认要求。</p>
+<p>现在需要的是什么？很多时候，会说自然语言就够了。</p>
+<p>比如安装 <code>Docker</code> 和 <code>Docker Compose</code>。</p>
+<p>过去通常是：先上搜索引擎查文章、查命令、自己测试。</p>
+<p>现在则更像这样：</p>
+<p><code>请帮我安装 docker 和 docker compose。</code></p>
+<p>然后 AI 代理开始执行、检查、修正、补齐，最后把事情做完。这个变化本身就已经足够惊人。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回头再看，会发现 AI 不只是“帮你回答问题”，它正在默默改变人们使用电脑和操作软件的方式。</p>
+<p>如果用一句更直接的话来概括，就是：</p>
+<ul>
+<li>做得更多</li>
+<li>速度更快</li>
+<li>结果更整齐</li>
+<li>试错成本更低</li>
+</ul>
+<p>某种意义上，这已经很接近“数字员工”的工作方式了。</p>
+<p>不是我们反应慢，而是这个世界确实变化得太快。</p>
 
                 
               </div>
@@ -426,13 +431,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/glm/" class="print-no-link">#glm</a>
-      
         <a href="/blog/tags/agent/" class="print-no-link">#agent</a>
       
         <a href="/blog/tags/opencode/" class="print-no-link">#opencode</a>
       
-        <a href="/blog/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="print-no-link">#大模型</a>
+        <a href="/blog/tags/ai/" class="print-no-link">#ai</a>
+      
+        <a href="/blog/tags/linux/" class="print-no-link">#linux</a>
       
     </div>
   
@@ -444,8 +449,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GLM 5.1 来了，Code Plan 用户终于跟上了</div>
-      <div>https://1241262510.github.io/blog/2026/03/29/glm5-1-code-plan/</div>
+      <div>OpenCode 的安装，以及 AI 如何改变软件安装流程</div>
+      <div>https://1241262510.github.io/blog/2026/03/29/opencode-install-and-ai-workflow/</div>
     </div>
     <div class="license-meta">
       
@@ -489,15 +494,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/03/29/opencode-install-and-ai-workflow/" title="OpenCode 的安装，以及 AI 如何改变软件安装流程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OpenCode 的安装，以及 AI 如何改变软件安装流程</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/blog/2026/03/29/glm5-1-code-plan/" title="GLM 5.1 来了，Code Plan 用户终于跟上了">
+                        <span class="hidden-mobile">GLM 5.1 来了，Code Plan 用户终于跟上了</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
