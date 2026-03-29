@@ -9,6 +9,7 @@
 工作流文档：
 
 - [`BLOG_WORKFLOW.md`](./BLOG_WORKFLOW.md)
+- [`ARTICLE_TEMPLATE.md`](./ARTICLE_TEMPLATE.md)
 
 ## 目录约定
 
