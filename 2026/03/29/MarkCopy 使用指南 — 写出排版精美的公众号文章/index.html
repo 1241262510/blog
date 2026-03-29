@@ -19,27 +19,26 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录 OpenCode 的安装方式，以及 AI 代理如何改变普通用户安装软件的流程。">
+    <meta name="description" content="一篇完整的 Markdown 教程，同时介绍 MarkCopy 的排版能力和适合的写作工作流。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="装上 OpenCode 之后，我重新理解了“装软件”">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/03/29/opencode-install-and-ai-workflow/index.html">
+<meta property="og:title" content="MarkCopy 使用指南 — 写出排版精美的公众号文章">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/03/29/MarkCopy%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%20%E2%80%94%20%E5%86%99%E5%87%BA%E6%8E%92%E7%89%88%E7%B2%BE%E7%BE%8E%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录 OpenCode 的安装方式，以及 AI 代理如何改变普通用户安装软件的流程。">
+<meta property="og:description" content="一篇完整的 Markdown 教程，同时介绍 MarkCopy 的排版能力和适合的写作工作流。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/opencode-cover.png">
-<meta property="article:published_time" content="2026-03-29T15:45:00.000Z">
-<meta property="article:modified_time" content="2026-03-29T05:32:32.828Z">
+<meta property="og:image" content="https://picsum.photos/id/10/800/400">
+<meta property="article:published_time" content="2026-03-29T06:46:00.000Z">
+<meta property="article:modified_time" content="2026-03-29T06:53:40.887Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="agent">
-<meta property="article:tag" content="ai">
-<meta property="article:tag" content="linux">
-<meta property="article:tag" content="opencode">
+<meta property="article:tag" content="markcopy">
+<meta property="article:tag" content="markdown">
+<meta property="article:tag" content="写作工具">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/opencode-cover.png">
+<meta name="twitter:image" content="https://picsum.photos/id/10/800/400">
   
   
   
-  <title>装上 OpenCode 之后，我重新理解了“装软件” - 凌晨两点的书桌</title>
+  <title>MarkCopy 使用指南 — 写出排版精美的公众号文章 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -270,7 +269,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="装上 OpenCode 之后，我重新理解了“装软件”"></span>
+            <span id="subtitle" data-typed-text="MarkCopy 使用指南 — 写出排版精美的公众号文章"></span>
           
         </div>
 
@@ -281,8 +280,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-29 23:45" pubdate>
-          2026年3月29日 晚上
+        <time datetime="2026-03-29 14:46" pubdate>
+          2026年3月29日 下午
         </time>
       </span>
     
@@ -293,7 +292,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          2.4k 字
         
       </span>
     
@@ -304,7 +303,7 @@
         
         
         
-          9 分钟
+          21 分钟
         
       </span>
     
@@ -343,57 +342,210 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">装上 OpenCode 之后，我重新理解了“装软件”</h1>
+            <h1 id="seo-header">MarkCopy 使用指南 — 写出排版精美的公众号文章</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>OpenCode</code> 把多种 AI 代理能力集中到一个入口里，但它真正值得写的，不只是“模型变多了”，而是软件安装这件事本身正在发生变化：过去靠搜索、复制命令和反复试错，现在越来越像一次自然语言驱动的协作过程。</p>
-<h2 id="OpenCode-的安装"><a href="#OpenCode-的安装" class="headerlink" title="OpenCode 的安装"></a>OpenCode 的安装</h2><p><code>OpenCode</code> 集成了多种 AI 代理能力，免费的、收费的模型都可以在同一个工具链里找到。</p>
-<p>这里直接使用官网提供的命令安装。以我自己的使用场景为例，我是在 Linux 虚拟机里完成这一步。</p>
-<p>安装命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://opencode.ai/install | bash<br></code></pre></td></tr></table></figure>
+                <h1 id="MarkCopy-使用指南-—-写出排版精美的公众号文章"><a href="#MarkCopy-使用指南-—-写出排版精美的公众号文章" class="headerlink" title="MarkCopy 使用指南 — 写出排版精美的公众号文章"></a>MarkCopy 使用指南 — 写出排版精美的公众号文章</h1><p>这是一篇<strong>完整的 Markdown 教程</strong>，同时也是 MarkCopy 的使用说明。你可以直接编辑左侧内容，右侧实时预览效果，写完后点击「一键复制」粘贴到公众号、知乎、掘金等平台，<strong>格式完美保留</strong>。</p>
+<blockquote>
+<p>💡 <strong>小技巧</strong>：你正在看的这篇文章本身就是用 Markdown 写的，所有样式效果都可以直接参考。</p>
+</blockquote>
+<hr>
+<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>用 <code>#</code> 号表示标题，几个 <code>#</code> 就是几级标题：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 一级标题</span><br><span class="hljs-section">## 二级标题</span><br><span class="hljs-section">### 三级标题</span><br><span class="hljs-section">#### 四级标题</span><br></code></pre></td></tr></table></figure>
 
-<p>软件界面和模型选择部分，这里先不放无关截图，后面统一替换成你实际要保留的图片。</p>
-<p>进入之后，输入 <code>/models</code>，就可以切换不同的 AI 模型。</p>
-<p>可以先试试几个免费的模型，感受一下整体体验。我这里已经配置好了 <code>GLM 4.7 Code Plan</code>，也可以直接在这里调用。</p>
-<h2 id="软件安装的变化"><a href="#软件安装的变化" class="headerlink" title="软件安装的变化"></a>软件安装的变化</h2><p>以前自己安装软件，大致是这样一个循环：</p>
+<p>建议公众号文章用 <strong>二级标题</strong> 做主分隔，<strong>三级标题</strong> 做小节，层次清晰。</p>
+<h3 id="文字样式"><a href="#文字样式" class="headerlink" title="文字样式"></a>文字样式</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>效果</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>**加粗**</code></td>
+<td><strong>加粗</strong></td>
+<td>强调关键词</td>
+</tr>
+<tr>
+<td><code>*斜体*</code></td>
+<td><em>斜体</em></td>
+<td>英文术语、引用</td>
+</tr>
+<tr>
+<td><code>~~删除线~~</code></td>
+<td><del>删除线</del></td>
+<td>表示修改、对比</td>
+</tr>
+<tr>
+<td><code>\</code>行内代码&#96;&#96;</td>
+<td><code>行内代码</code></td>
+<td>技术名词、命令</td>
+</tr>
+<tr>
+<td><code>**_加粗斜体_**</code></td>
+<td><em><strong>加粗斜体</strong></em></td>
+<td>极度强调</td>
+</tr>
+</tbody></table>
+<p>示例：使用 ChatGPT 时，模型 <code>GPT-4o</code> 的推理能力比 <code>GPT-3.5</code> <strong>显著提升</strong>，尤其在<del>简单问答</del>复杂推理场景中表现突出。</p>
+<h3 id="链接与图片"><a href="#链接与图片" class="headerlink" title="链接与图片"></a>链接与图片</h3><p>链接语法：<code>[显示文字](URL)</code></p>
+<p>常用链接示例：</p>
 <ul>
-<li>搜索教程</li>
-<li>复制和粘贴安装代码</li>
-<li>看实际输出结果</li>
-<li>如果不成功，就继续重复这个循环，直到成功</li>
+<li><a target="_blank" rel="noopener" href="https://md.payforchat.com/">MarkCopy — Markdown 一键排版工具</a></li>
+<li><a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT 官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://payforchat.com/">PayForChat — ChatGPT Plus 便捷充值</a></li>
 </ul>
-<p>有了 AI 之后，现在的安装流程已经开始明显变化。</p>
-<ul>
-<li>先准备必要依赖，例如：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install curl<br></code></pre></td></tr></table></figure>
+<p>图片语法：<code>![描述](图片URL)</code></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">示例图片</span>](<span class="hljs-link">https://picsum.photos/600/300</span>)<br></code></pre></td></tr></table></figure>
 
+<p>下面是实际渲染效果：</p>
+<p><img src="https://picsum.photos/id/10/800/400" srcset="/blog/img/loading.gif" lazyload alt="风景示例"></p>
+<hr>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>用 <code>-</code> 或 <code>*</code> 开头：</p>
 <ul>
-<li>安装 <code>OpenCode</code>，再选一个可用模型</li>
-<li>直接用自然语言告诉 AI 你要安装什么，让它协助完成安装</li>
+<li>第一步：打开 <a target="_blank" rel="noopener" href="https://md.payforchat.com/">md.payforchat.com</a></li>
+<li>第二步：在左侧编辑器写 Markdown</li>
+<li>第三步：右上角选择目标平台风格</li>
+<li>第四步：点击「一键复制」</li>
+<li>第五步：粘贴到目标平台，完成！</li>
 </ul>
-<p>通过这个简单对比就能看出来，现在的软件安装方式和过去已经有了明显差异。是不是“变革”可以继续观察，但变化本身已经非常清楚。</p>
-<h2 id="技术门槛正在下降"><a href="#技术门槛正在下降" class="headerlink" title="技术门槛正在下降"></a>技术门槛正在下降</h2><p>这种变化带来的直接结果，就是技术门槛正在下降。</p>
-<p>以前安装软件，至少要求你会一些基础工具，例如 <code>vim</code>、<code>nano</code>，或者最少也要能完成常见编辑操作。改配置、调参数、检查报错，这些几乎都是默认要求。</p>
-<p>现在需要的是什么？很多时候，会说自然语言就够了。</p>
-<p>比如安装 <code>Docker</code> 和 <code>Docker Compose</code>。</p>
-<p>过去通常是：先上搜索引擎查文章、查命令、自己测试。</p>
-<p>现在更像这样：</p>
-<p><code>请帮我安装 docker 和 docker compose。</code></p>
-<p>然后 AI 代理开始执行、检查、修正、补齐，最后把事情做完。真正令人意外的，不是它会回答问题，而是它开始能把一整段安装过程接过去。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回头再看，会发现 AI 不只是“帮你回答问题”，它正在慢慢改变人们使用电脑、安装软件和解决问题的方式。</p>
-<p>如果用一句更直接的话来概括，就是：</p>
-<ul>
-<li>做得更多</li>
-<li>速度更快</li>
-<li>结果更整齐</li>
-<li>试错成本更低</li>
-</ul>
-<p>某种意义上，这已经开始接近“数字员工”的工作方式。</p>
-<p>不是我们反应慢，而是这个世界确实变化得太快。</p>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>用数字开头：</p>
+<ol>
+<li>注册 ChatGPT 账号</li>
+<li>获取 Access Token</li>
+<li>访问 <a target="_blank" rel="noopener" href="https://payforchat.com/">payforchat.com</a> 选择套餐</li>
+<li>完成支付，自动充值</li>
+</ol>
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [x] 已完成的任务<br><span class="hljs-bullet">-</span> [ ] 待完成的任务<br></code></pre></td></tr></table></figure>
 
+<p>效果：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 写好文章初稿</li>
+<li><input checked="" disabled="" type="checkbox"> 用 MarkCopy 排版</li>
+<li><input disabled="" type="checkbox"> 复制到公众号发布</li>
+<li><input disabled="" type="checkbox"> 分享到朋友圈</li>
+</ul>
+<hr>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>用 <code>&gt;</code> 开头创建引用块，适合放金句、提示、注意事项：</p>
+<blockquote>
+<p>工欲善其事，必先利其器。<br>好的排版工具能让你的文章阅读体验提升 80%。</p>
+</blockquote>
+<p>多层嵌套引用：</p>
+<blockquote>
+<p><strong>读者问</strong>：没有国外信用卡，怎么订阅 ChatGPT Plus？</p>
+<blockquote>
+<p><strong>回答</strong>：可以使用代充服务。<a target="_blank" rel="noopener" href="https://payforchat.com/">PayForChat</a> 支持支付宝&#x2F;微信付款，3 步完成 Plus 升级，无需信用卡。</p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h3><p>在终端输入 <code>npm install</code> 安装依赖，或用 <code>Ctrl + C</code> 复制内容。</p>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>支持语法高亮，指定语言即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Python 示例：调用 ChatGPT API</span><br><span class="hljs-keyword">import</span> openai<br><br>client = openai.OpenAI(api_key=<span class="hljs-string">&quot;your-api-key&quot;</span>)<br><br>response = client.chat.completions.create(<br>    model=<span class="hljs-string">&quot;gpt-4o&quot;</span>,<br>    messages=[<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你好，请介绍一下你自己&quot;</span>&#125;<br>    ]<br>)<br><br><span class="hljs-built_in">print</span>(response.choices[<span class="hljs-number">0</span>].message.content)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// JavaScript 示例：Markdown 转 HTML</span><br><span class="hljs-keyword">const</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;marked&#x27;</span>);<br><br><span class="hljs-keyword">const</span> markdown = <span class="hljs-string">&#x27;# Hello World&#x27;</span>;<br><span class="hljs-keyword">const</span> html = marked.<span class="hljs-title function_">parse</span>(markdown);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(html);<br><span class="hljs-comment">// 输出: &lt;h1&gt;Hello World&lt;/h1&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 常用命令</span><br>git <span class="hljs-built_in">clone</span> https://github.com/your-repo.git<br><span class="hljs-built_in">cd</span> your-repo<br>npm install &amp;&amp; npm run dev<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>用 <code>|</code> 和 <code>-</code> 创建表格，支持对齐：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>免费版 (GPT-3.5)</th>
+<th>Plus 版 (GPT-4o)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础对话</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>GPT-4o 模型</td>
+<td>有限次数</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>DALL-E 绘图</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>高级数据分析</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>自定义 GPTs</td>
+<td>有限制</td>
+<td>完整功能</td>
+</tr>
+<tr>
+<td><strong>价格</strong></td>
+<td>免费</td>
+<td>$20&#x2F;月</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💰 <strong>省钱攻略</strong>：通过 <a target="_blank" rel="noopener" href="https://payforchat.com/">PayForChat</a> 充值 ChatGPT Plus，支持支付宝&#x2F;微信，比官方直订更方便，<a target="_blank" rel="noopener" href="https://payforchat.com/plans">点击了解详情 →</a></p>
+</blockquote>
+<hr>
+<h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p>行内公式用 <code>$</code>：质能方程 $E &#x3D; mc^2$</p>
+<p>独立公式用 <code>$$</code>：</p>
+<p>$$<br>\sum_{i&#x3D;1}^{n} x_i &#x3D; x_1 + x_2 + \cdots + x_n<br>$$</p>
+<hr>
+<h2 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h2><p>三个及以上的 <code>-</code>、<code>*</code> 或 <code>_</code> 创建分隔线：</p>
+<hr>
+<h2 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h2><h3 id="Emoji"><a href="#Emoji" class="headerlink" title="Emoji"></a>Emoji</h3><p>直接输入 emoji 即可：🎉 🚀 💡 ✅ ❌ ⚠️ 📌 🔥</p>
+<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><p>Markdown 支持脚注<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="MarkCopy 由 [PayForChat](https://payforchat.com/) 团队开发，致力于提升创作者的写作效率。">[1]</span></a></sup>，适合添加参考来源。</p>
+<h3 id="HTML-混排"><a href="#HTML-混排" class="headerlink" title="HTML 混排"></a>HTML 混排</h3><p>Markdown 中可以直接使用 HTML：</p>
+<p><strong>MarkCopy</strong> — 让 Markdown 写作更简单</p>
+<p><a target="_blank" rel="noopener" href="https://md.payforchat.com/">开始使用</a> · <a target="_blank" rel="noopener" href="https://payforchat.com/">ChatGPT Plus 充值</a> · <a target="_blank" rel="noopener" href="https://payforchat.com/articles">使用教程</a></p>
+<hr>
+<h2 id="写作工作流推荐"><a href="#写作工作流推荐" class="headerlink" title="写作工作流推荐"></a>写作工作流推荐</h2><p>一套高效的公众号写作流程：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">构思大纲 → Markdown 写初稿 → MarkCopy 排版 → 一键复制到公众号 → 发布<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://picsum.photos/id/180/800/400" srcset="/blog/img/loading.gif" lazyload alt="工作流"></p>
+<p><strong>为什么选择 Markdown + MarkCopy？</strong></p>
+<ol>
+<li><strong>专注内容</strong>：Markdown 语法简洁，写作时不被排版分心</li>
+<li><strong>一次编写，多端发布</strong>：同一篇文章可以发公众号、知乎、掘金，格式自动适配</li>
+<li><strong>版本管理</strong>：纯文本格式，方便用 Git 管理文章版本</li>
+<li><strong>排版一致</strong>：告别公众号编辑器的格式错乱问题</li>
+</ol>
+<hr>
+<h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🎨 切换风格</td>
+<td>顶栏直接点选：微信风格、GitHub、掘金、极简，更多风格点「更多」</td>
+</tr>
+<tr>
+<td>📋 复制到公众号</td>
+<td>顶栏右侧黑色按钮，复制带格式的富文本，粘贴到公众号即可</td>
+</tr>
+<tr>
+<td>📤 上传&#x2F;导出</td>
+<td>顶栏「上传」导入 <code>.md</code> 文件，「导出」下载当前内容</td>
+</tr>
+<tr>
+<td>🖼 粘贴图片</td>
+<td>直接 Ctrl+V 粘贴截图，或拖拽图片到编辑器</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>本文由 <a target="_blank" rel="noopener" href="https://md.payforchat.com/">MarkCopy</a> 排版 | Powered by <a target="_blank" rel="noopener" href="https://payforchat.com/">PayForChat</a></em></p>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>MarkCopy 由 <a target="_blank" rel="noopener" href="https://payforchat.com/">PayForChat</a> 团队开发，致力于提升创作者的写作效率。
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
             
@@ -411,7 +563,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  <a href="/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
   
   
 
@@ -426,13 +578,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/agent/" class="print-no-link">#agent</a>
+        <a href="/blog/tags/markcopy/" class="print-no-link">#markcopy</a>
       
-        <a href="/blog/tags/opencode/" class="print-no-link">#opencode</a>
+        <a href="/blog/tags/markdown/" class="print-no-link">#markdown</a>
       
-        <a href="/blog/tags/ai/" class="print-no-link">#ai</a>
-      
-        <a href="/blog/tags/linux/" class="print-no-link">#linux</a>
+        <a href="/blog/tags/%E5%86%99%E4%BD%9C%E5%B7%A5%E5%85%B7/" class="print-no-link">#写作工具</a>
       
     </div>
   
@@ -444,8 +594,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>装上 OpenCode 之后，我重新理解了“装软件”</div>
-      <div>https://1241262510.github.io/blog/2026/03/29/opencode-install-and-ai-workflow/</div>
+      <div>MarkCopy 使用指南 — 写出排版精美的公众号文章</div>
+      <div>https://1241262510.github.io/blog/2026/03/29/MarkCopy 使用指南 — 写出排版精美的公众号文章/</div>
     </div>
     <div class="license-meta">
       
@@ -489,12 +639,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/blog/2026/03/29/opencode-install-and-ai-workflow/" title="装上 OpenCode 之后，我重新理解了“装软件”">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">装上 OpenCode 之后，我重新理解了“装软件”</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/03/29/MarkCopy%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%20%E2%80%94%20%E5%86%99%E5%87%BA%E6%8E%92%E7%89%88%E7%B2%BE%E7%BE%8E%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/" title="MarkCopy 使用指南 — 写出排版精美的公众号文章">
-                        <span class="hidden-mobile">MarkCopy 使用指南 — 写出排版精美的公众号文章</span>
+                      <a href="/blog/2026/03/29/glm5-1-code-plan/" title="GLM 5.1 开放之后，我先注意到的是成本">
+                        <span class="hidden-mobile">GLM 5.1 开放之后，我先注意到的是成本</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
