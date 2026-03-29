@@ -76,15 +76,20 @@
 
 .index-card .index-header {
   margin-bottom: 1rem;
+  min-height: 4.8rem;
 }
 
 .index-card .index-header a {
   color: #1d2430;
   font-family: "Noto Serif SC", "Source Han Serif SC", serif;
-  font-size: 1.62rem;
+  display: -webkit-box;
+  font-size: 1.54rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.42;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .index-card .index-header a:hover {
@@ -117,6 +122,10 @@
 
 .index-card .index-excerpt {
   color: #505967;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .index-card .post-meta,
@@ -169,7 +178,7 @@
   }
 
   .index-card .index-header a {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
 
   .index-card .post-title {
