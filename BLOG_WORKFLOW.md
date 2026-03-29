@@ -42,7 +42,7 @@
 1. 在 `MarkText` 里把图片保存目录设置为：
 
 ```text
-/Users/songxiaofeng/lessons/codex/codex-blog/source/assets
+/Users/sxf/lessons/codex/codex-blog/source/assets
 ```
 
 2. 写文章时直接在 `MarkText` 里粘贴截图
@@ -75,7 +75,7 @@ npm run server
 所有命令都应该在 Hexo 项目根目录执行：
 
 ```bash
-cd /Users/songxiaofeng/lessons/codex/codex-blog
+cd /Users/sxf/lessons/codex/codex-blog
 ```
 
 启动本地服务：
