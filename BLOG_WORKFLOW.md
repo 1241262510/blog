@@ -35,6 +35,41 @@
 ![](/Users/xxx/Desktop/图片名.png)
 ```
 
+## MarkText 半自动流程
+
+如果你想减少手动复制图片的动作，可以使用半自动方案：
+
+1. 在 `MarkText` 里把图片保存目录设置为：
+
+```text
+/Users/songxiaofeng/lessons/codex/codex-blog/source/assets
+```
+
+2. 写文章时直接在 `MarkText` 里粘贴截图
+3. `MarkText` 会自动把图片保存到 `source/assets/`
+4. 写完后执行：
+
+```bash
+npm run fix:assets
+```
+
+5. 再执行本地预览：
+
+```bash
+npm run server
+```
+
+这套流程的核心是：
+
+- `MarkText` 负责自动存图
+- `fix:assets` 负责统一修正图片路径
+
+最终仍然以博客要求的图片路径为准：
+
+```md
+![](/assets/图片名.png)
+```
+
 ## 本地预览
 
 启动本地服务：
