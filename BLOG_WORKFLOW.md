@@ -72,6 +72,12 @@ npm run server
 
 ## 本地预览
 
+所有命令都应该在 Hexo 项目根目录执行：
+
+```bash
+cd /Users/songxiaofeng/lessons/codex/codex-blog
+```
+
 启动本地服务：
 
 ```bash
