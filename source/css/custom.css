@@ -174,16 +174,15 @@
     font-family: "Noto Serif SC", "Source Han Serif SC", serif;
     font-size: 1rem;
     font-weight: 700;
-    left: 50%;
     letter-spacing: 0.03em;
-    max-width: calc(100vw - 7.5rem);
+    margin: 0 auto;
+    max-width: calc(100% - 5.5rem);
     overflow: hidden;
-    position: absolute;
+    padding-left: 0;
+    padding-right: 0;
     text-overflow: ellipsis;
-    top: 50%;
-    transform: translate(-50%, -50%);
     white-space: nowrap;
-    z-index: 1;
+    width: fit-content;
   }
 
   .navbar-brand strong {
@@ -194,13 +193,17 @@
   }
 
   #navbar .container {
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
   }
 
   #navbar .navbar-toggler {
-    margin-left: auto;
-    position: relative;
+    margin-left: 0;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 0;
     z-index: 2;
   }
 
