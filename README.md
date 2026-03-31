@@ -22,7 +22,7 @@
 
 ## 写作流程
 
-1. 用 `MarkText` 写草稿
+1. 用任意支持 Markdown 的编辑器写草稿
 2. 把文章放到 `source/_posts/`
 3. 把图片放到 `source/assets/`
 4. 在 Markdown 里统一这样引用图片：
@@ -52,11 +52,14 @@ npm run server
 npm run build
 ```
 
-如果 `MarkText` 自动写出了错误的相对路径，可以执行：
+如果编辑器自动写出了错误的相对路径，例如 `../../assets/test.png`，可以执行：
 
 ```bash
 npm run fix:assets
 ```
+
+站点部署在 GitHub Pages 项目路径 `/blog/` 下。
+仓库中的 Markdown 仍然统一写 `/assets/图片名.png`，渲染阶段会自动补成正确的 `/blog/assets/...` 访问路径。
 
 ## 发布流程
 
