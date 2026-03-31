@@ -173,6 +173,21 @@
     background-position: 18% center !important;
   }
 
+  .banner-text {
+    width: min(88vw, 24rem);
+  }
+
+  .banner-text .h2 {
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  .banner-text #subtitle,
+  .banner-text .typed-cursor {
+    font-size: 1.12rem;
+    letter-spacing: 0.04em;
+  }
+
   #navbar .container {
     justify-content: center;
     position: relative;
@@ -208,6 +223,16 @@
 @media (max-width: 420px) {
   .banner {
     background-position: 14% center !important;
+  }
+
+  .banner-text {
+    width: min(84vw, 18rem);
+  }
+
+  .banner-text #subtitle,
+  .banner-text .typed-cursor {
+    font-size: 0.98rem;
+    letter-spacing: 0.03em;
   }
 }
 
