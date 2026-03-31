@@ -169,6 +169,10 @@
 }
 
 @media (max-width: 768px) {
+  .banner {
+    background-position: 18% center !important;
+  }
+
   .navbar-brand {
     display: block !important;
     font-family: "Noto Serif SC", "Source Han Serif SC", serif;
@@ -221,6 +225,12 @@
 
   .index-card .post-title {
     font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .banner {
+    background-position: 14% center !important;
   }
 }
 
