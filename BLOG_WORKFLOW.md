@@ -229,7 +229,7 @@ hexo new post "文章标题"
 source/_posts/文章标题.md
 ```
 
-写完文章后，如果使用了 `MarkText` 粘贴图片，执行：
+写完文章后，如果编辑器插入了错误的相对图片路径，执行：
 
 ```bash
 npm run fix:assets
@@ -264,7 +264,7 @@ hexo deploy
 整套流程汇总：
 
 ```bash
-cd /Users/sxf/lessons/codex/codex-blog
+cd /Users/songxiaofeng/lessons/codex/codex-blog
 hexo new post "文章标题"
 npm run fix:assets
 hexo server

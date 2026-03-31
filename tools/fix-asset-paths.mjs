@@ -65,7 +65,7 @@ async function main() {
   }
 
   if (changedFiles === 0) {
-    console.log("No MarkText asset paths needed fixing.");
+    console.log("No asset paths needed fixing.");
     return;
   }
 
