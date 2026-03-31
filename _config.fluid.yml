@@ -25,7 +25,7 @@ index:
   banner_mask_alpha: 0.48
   slogan:
     enable: true
-    text: "风翻书页，灯照长夜。"
+    text: "清风不识字，何故乱翻书"
   auto_excerpt:
     enable: true
   post_url_target: _self
