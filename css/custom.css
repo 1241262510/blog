@@ -173,29 +173,6 @@
     background-position: 18% center !important;
   }
 
-  .navbar-brand {
-    display: block !important;
-    font-family: "Noto Serif SC", "Source Han Serif SC", serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    margin: 0 auto;
-    max-width: calc(100% - 5.5rem);
-    overflow: hidden;
-    padding-left: 0;
-    padding-right: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: fit-content;
-  }
-
-  .navbar-brand strong {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
   #navbar .container {
     justify-content: center;
     position: relative;
