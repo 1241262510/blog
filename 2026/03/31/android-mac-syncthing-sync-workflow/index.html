@@ -19,27 +19,27 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录 OpenCode 的安装方式，以及 AI 代理如何改变普通用户安装软件的流程。">
+    <meta name="description" content="记录安卓手机与 Mac 之间同步截图的几种办法，并重点整理 Syncthing 的配置流程与使用体验。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="装上 OpenCode 之后，我重新理解了“装软件”">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/03/29/opencode-install-and-ai-workflow/index.html">
+<meta property="og:title" content="安卓手机与 Mac 如何高效同步截图：Syncthing 实战">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/03/31/android-mac-syncthing-sync-workflow/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录 OpenCode 的安装方式，以及 AI 代理如何改变普通用户安装软件的流程。">
+<meta property="og:description" content="记录安卓手机与 Mac 之间同步截图的几种办法，并重点整理 Syncthing 的配置流程与使用体验。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/opencode-cover.png">
-<meta property="article:published_time" content="2026-03-29T15:45:00.000Z">
-<meta property="article:modified_time" content="2026-03-29T05:32:32.828Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png">
+<meta property="article:published_time" content="2026-03-31T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T04:20:11.510Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="agent">
-<meta property="article:tag" content="ai">
-<meta property="article:tag" content="linux">
-<meta property="article:tag" content="opencode">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="mac">
+<meta property="article:tag" content="syncthing">
+<meta property="article:tag" content="文件同步">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/opencode-cover.png">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png">
   
   
   
-  <title>装上 OpenCode 之后，我重新理解了“装软件” - 凌晨两点的书桌</title>
+  <title>安卓手机与 Mac 如何高效同步截图：Syncthing 实战 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -270,7 +270,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="装上 OpenCode 之后，我重新理解了“装软件”"></span>
+            <span id="subtitle" data-typed-text="安卓手机与 Mac 如何高效同步截图：Syncthing 实战"></span>
           
         </div>
 
@@ -281,8 +281,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-29 23:45" pubdate>
-          2026年3月29日 晚上
+        <time datetime="2026-03-31 10:00" pubdate>
+          2026年3月31日 上午
         </time>
       </span>
     
@@ -293,7 +293,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.5k 字
         
       </span>
     
@@ -304,7 +304,7 @@
         
         
         
-          9 分钟
+          13 分钟
         
       </span>
     
@@ -343,56 +343,94 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">装上 OpenCode 之后，我重新理解了“装软件”</h1>
+            <h1 id="seo-header">安卓手机与 Mac 如何高效同步截图：Syncthing 实战</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>OpenCode</code> 把多种 AI 代理能力集中到一个入口里，但它真正值得写的，不只是“模型变多了”，而是软件安装这件事本身正在发生变化：过去靠搜索、复制命令和反复试错，现在越来越像一次自然语言驱动的协作过程。</p>
-<h2 id="OpenCode-的安装"><a href="#OpenCode-的安装" class="headerlink" title="OpenCode 的安装"></a>OpenCode 的安装</h2><p><code>OpenCode</code> 集成了多种 AI 代理能力，免费的、收费的模型都可以在同一个工具链里找到。</p>
-<p>这里直接使用官网提供的命令安装。以我自己的使用场景为例，我是在 Linux 虚拟机里完成这一步。</p>
-<p>安装命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://opencode.ai/install | bash<br></code></pre></td></tr></table></figure>
+                <h2 id="手机端与-Mac-的同步与接收"><a href="#手机端与-Mac-的同步与接收" class="headerlink" title="手机端与 Mac 的同步与接收"></a>手机端与 Mac 的同步与接收</h2><p>手机和电脑之间传图、传截图，看起来是小事，真正高频使用的时候，效率差别会非常明显。</p>
+<p>常见办法大致有这几种：</p>
+<ul>
+<li>微信文件传输助手</li>
+<li>Edge <code>Drop</code></li>
+<li><code>Syncthing</code></li>
+<li>其他同步工具</li>
+</ul>
+<p>前两种都能用，但如果是长期高频同步，我最后最推荐的还是 <code>Syncthing</code>。</p>
+<h2 id="为什么重点推荐-Syncthing"><a href="#为什么重点推荐-Syncthing" class="headerlink" title="为什么重点推荐 Syncthing"></a>为什么重点推荐 Syncthing</h2><p>最开始我对 <code>Syncthing</code> 没什么深刻印象，甚至一度觉得不如 <code>Drop</code> 来得直接。上次折腾它，还是在 NAS 上同步手机文件，后来就没有继续深入使用。</p>
+<p>但这次重新实践下来，结论完全变了。</p>
+<p>如果只是偶尔传一两张图，<code>Drop</code> 确实够用；如果是手机截图、文档、图片需要经常同步到 Mac，<code>Syncthing</code> 的体验明显更高效。</p>
+<p>以截图为例，两种工作流对比很直观：</p>
+<ul>
+<li><code>Drop</code>：截图，复制或选中，发送到 Drop，Mac 端接收</li>
+<li><code>Syncthing</code>：截图，接收</li>
+</ul>
+<p>差别就在这里。前者依赖一次次手动操作，后者则更接近自动同步。</p>
+<h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><p>整个搭建过程并不复杂，主要就是四步：</p>
+<ul>
+<li>安装软件</li>
+<li>设置设备 ID</li>
+<li>设置同步目录</li>
+<li>开始同步</li>
+</ul>
+<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><h3 id="Mac-端"><a href="#Mac-端" class="headerlink" title="Mac 端"></a>Mac 端</h3><p>Mac 上可以直接通过 <code>brew</code> 安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install syncthing<br></code></pre></td></tr></table></figure>
 
-<p>软件界面和模型选择部分，这里先不放无关截图，后面统一替换成你实际要保留的图片。</p>
-<p>进入之后，输入 <code>/models</code>，就可以切换不同的 AI 模型。</p>
-<p>可以先试试几个免费的模型，感受一下整体体验。我这里已经配置好了 <code>GLM 4.7 Code Plan</code>，也可以直接在这里调用。</p>
-<h2 id="软件安装的变化"><a href="#软件安装的变化" class="headerlink" title="软件安装的变化"></a>软件安装的变化</h2><p>以前自己安装软件，大致是这样一个循环：</p>
-<ul>
-<li>搜索教程</li>
-<li>复制和粘贴安装代码</li>
-<li>看实际输出结果</li>
-<li>如果不成功，就继续重复这个循环，直到成功</li>
-</ul>
-<p>有了 AI 之后，现在的安装流程已经开始明显变化。</p>
-<ul>
-<li>先准备必要依赖，例如：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install curl<br></code></pre></td></tr></table></figure>
+<p>安装完成后运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">syncthing<br></code></pre></td></tr></table></figure>
 
+<p>软件启动后，会提供一个本地 GUI 管理页面：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://127.0.0.1:8384<br></code></pre></td></tr></table></figure>
+
+<p>下面这张图就是 <code>Syncthing</code> 在 Mac 端的管理界面：</p>
+<p><img src="/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>在 Mac 端的 GUI 页面里，进入“操作”“设置”，可以继续做默认值调整。</p>
+<p><img src="/blog/assets/f16b25907b773410d3ba00ddd4a7aeea1d38b4fe.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>“编辑文件夹默认值”里，建议把 Mac 端的文件夹类型设成“只接收”。这样同步方向就是从手机到 Mac，属于比较清晰的单向流动。</p>
+<p><img src="/blog/assets/4977b82a64439c32e5264bc04ae551d55cdf82e5.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>常规选项大多保持默认就可以。</p>
+<p><img src="/blog/assets/ffb7c09528e61c49a129be39460e00c94827d1e6.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>这里比较重要的是“文件夹路径”，也就是以后 Mac 用来接收手机截图或文件的目录。</p>
+<p><img src="/blog/assets/bfce0d71b611e59a5c6c544a163ceb8931595b04.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>比如手机上有一次截图动作，理论上同步完成后，这张图就应该立刻出现在 Mac 指定的同步目录里。</p>
+<p><img src="/blog/assets/7c3302eade017e781931ab2916d7fc92a812dafb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>设备默认值也可以改一下名字，比如改成 <code>mac mini</code> 或者自己更容易识别的设备名，后面手机和 Mac 配对时会直观很多。</p>
+<p><img src="/blog/assets/bbe75b14fcbcaf5efc5c377cebe676b8495aa1bb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>在主界面中，还可以继续添加更多同步文件夹。</p>
+<h2 id="手机端设置"><a href="#手机端设置" class="headerlink" title="手机端设置"></a>手机端设置</h2><h3 id="安装-Syncthing"><a href="#安装-Syncthing" class="headerlink" title="安装 Syncthing"></a>安装 Syncthing</h3><p>安卓端应用商店里就能搜到 <code>Syncthing</code> 或 <code>Syncthing-Fork</code>。</p>
+<p><img src="/blog/assets/71be92d66b7f341994eb8fc4deb49039b5a612bf.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>如果是新配置，可以直接点“+”创建同步文件夹。</p>
+<p><img src="/blog/assets/d2f433f417276cec8aab8e2fdde6b3f0cb06523a.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>和 Mac 端类似，手机端也需要设置同步目录位置。同步模式建议设成“只发送”，其他选项一般保持默认即可。</p>
+<p><img src="/blog/assets/33081c11cc2ed22c49addabcf6e4c21ce4f96765.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>我手机上的截图目录就是这里。大多数安卓手机的截图目录一般在下面两个位置之一：</p>
 <ul>
-<li>安装 <code>OpenCode</code>，再选一个可用模型</li>
-<li>直接用自然语言告诉 AI 你要安装什么，让它协助完成安装</li>
+<li><code>Pictures/Screenshots</code></li>
+<li><code>DCIM/Screenshots</code></li>
 </ul>
-<p>通过这个简单对比就能看出来，现在的软件安装方式和过去已经有了明显差异。是不是“变革”可以继续观察，但变化本身已经非常清楚。</p>
-<h2 id="技术门槛正在下降"><a href="#技术门槛正在下降" class="headerlink" title="技术门槛正在下降"></a>技术门槛正在下降</h2><p>这种变化带来的直接结果，就是技术门槛正在下降。</p>
-<p>以前安装软件，至少要求你会一些基础工具，例如 <code>vim</code>、<code>nano</code>，或者最少也要能完成常见编辑操作。改配置、调参数、检查报错，这些几乎都是默认要求。</p>
-<p>现在需要的是什么？很多时候，会说自然语言就够了。</p>
-<p>比如安装 <code>Docker</code> 和 <code>Docker Compose</code>。</p>
-<p>过去通常是：先上搜索引擎查文章、查命令、自己测试。</p>
-<p>现在更像这样：</p>
-<p><code>请帮我安装 docker 和 docker compose。</code></p>
-<p>然后 AI 代理开始执行、检查、修正、补齐，最后把事情做完。真正令人意外的，不是它会回答问题，而是它开始能把一整段安装过程接过去。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回头再看，会发现 AI 不只是“帮你回答问题”，它正在慢慢改变人们使用电脑、安装软件和解决问题的方式。</p>
-<p>如果用一句更直接的话来概括，就是：</p>
+<p>具体路径还是要以自己手机的实际情况为准。目录确定之后，后面的同步就会轻松很多。</p>
+<h2 id="设备配对"><a href="#设备配对" class="headerlink" title="设备配对"></a>设备配对</h2><p>同步目录设置好之后，还需要把手机和 Mac 配对起来。</p>
+<p>在手机端，从左侧菜单进入“显示设备 ID”，这里会显示二维码和设备信息。</p>
+<p><img src="/blog/assets/726c744b1e3a3ac37821ef387c5656dcae5d67e9.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>更顺手的方式是：手机扫码，Mac 显示二维码。</p>
+<h3 id="Mac-端操作"><a href="#Mac-端操作" class="headerlink" title="Mac 端操作"></a>Mac 端操作</h3><p>Mac 主界面进入“操作”“显示 ID”。</p>
+<p><img src="/blog/assets/8266fa0f2edd4d91e004394cc5992dec40e74c7e.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/03fb1c61b7efbe71c627758fb3354b844a127973.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>这就是 Mac 端的二维码，直接用手机扫码就可以进行配对。</p>
+<h3 id="手机端操作"><a href="#手机端操作" class="headerlink" title="手机端操作"></a>手机端操作</h3><p>手机端进入“设备”，进行硬件链接。</p>
+<p><img src="/blog/assets/50379fd7e733751970efb43c0db078bfb74677be.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>随后扫码完成设备连接。</p>
+<p>做完这一步之后，手机和 Mac 就可以开始单向同步了，手机端的数据会自动进入 Mac 的接收目录。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看起来配置步骤稍微有一点多，但真正核心的工作就三件事：</p>
 <ul>
-<li>做得更多</li>
-<li>速度更快</li>
-<li>结果更整齐</li>
-<li>试错成本更低</li>
+<li>设置同步目录</li>
+<li>设置设备连接</li>
+<li>把同步方向配置清楚</li>
 </ul>
-<p>某种意义上，这已经开始接近“数字员工”的工作方式。</p>
-<p>不是我们反应慢，而是这个世界确实变化得太快。</p>
+<p>其余选项大多可以保持默认。</p>
+<p>如果你用的是苹果手机，系统本身的同步能力已经比较强；但如果是安卓和 Mac 的组合，<code>Syncthing</code> 的灵活性会更明显。</p>
+<p>它的优势不只是“能同步”，而是同步动作快、自动化程度高，而且适配范围非常广。</p>
+<p>尤其是截图、文档、图片这种高频小文件，体验提升非常明显。真正常用起来之后，会发现同步几乎是按秒发生的。</p>
 
                 
               </div>
@@ -411,7 +449,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  <a href="/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
   
   
 
@@ -426,13 +464,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/agent/" class="print-no-link">#agent</a>
+        <a href="/blog/tags/syncthing/" class="print-no-link">#syncthing</a>
       
-        <a href="/blog/tags/opencode/" class="print-no-link">#opencode</a>
+        <a href="/blog/tags/android/" class="print-no-link">#android</a>
       
-        <a href="/blog/tags/ai/" class="print-no-link">#ai</a>
+        <a href="/blog/tags/mac/" class="print-no-link">#mac</a>
       
-        <a href="/blog/tags/linux/" class="print-no-link">#linux</a>
+        <a href="/blog/tags/%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/" class="print-no-link">#文件同步</a>
       
     </div>
   
@@ -444,8 +482,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>装上 OpenCode 之后，我重新理解了“装软件”</div>
-      <div>https://1241262510.github.io/blog/2026/03/29/opencode-install-and-ai-workflow/</div>
+      <div>安卓手机与 Mac 如何高效同步截图：Syncthing 实战</div>
+      <div>https://1241262510.github.io/blog/2026/03/31/android-mac-syncthing-sync-workflow/</div>
     </div>
     <div class="license-meta">
       
@@ -457,7 +495,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年3月29日</div>
+          <div>2026年3月31日</div>
         </div>
       
       
@@ -489,18 +527,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/03/31/android-mac-syncthing-sync-workflow/" title="安卓手机与 Mac 如何高效同步截图：Syncthing 实战">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">安卓手机与 Mac 如何高效同步截图：Syncthing 实战</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/03/29/MarkCopy%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%20%E2%80%94%20%E5%86%99%E5%87%BA%E6%8E%92%E7%89%88%E7%B2%BE%E7%BE%8E%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/" title="MarkCopy 使用指南 — 写出排版精美的公众号文章">
-                        <span class="hidden-mobile">MarkCopy 使用指南 — 写出排版精美的公众号文章</span>
+                      <a href="/blog/2026/03/29/opencode-install-and-ai-workflow/" title="装上 OpenCode 之后，我重新理解了“装软件”">
+                        <span class="hidden-mobile">装上 OpenCode 之后，我重新理解了“装软件”</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
