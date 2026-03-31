@@ -19,16 +19,16 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录安卓手机与 Mac 之间同步截图的几种办法，并重点整理 Syncthing 的配置流程与使用体验。">
+    <meta name="description" content="记录安卓手机与 Mac 之间同步截图的几种办法，并重点整理 Syncthing 的配置流程、目录设置和实际体验。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安卓手机与 Mac 如何高效同步截图：Syncthing 实战">
+<meta property="og:title" content="安卓手机与 Mac 高效同步截图：Syncthing 配置实战">
 <meta property="og:url" content="https://1241262510.github.io/blog/2026/03/31/android-mac-syncthing-sync-workflow/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录安卓手机与 Mac 之间同步截图的几种办法，并重点整理 Syncthing 的配置流程与使用体验。">
+<meta property="og:description" content="记录安卓手机与 Mac 之间同步截图的几种办法，并重点整理 Syncthing 的配置流程、目录设置和实际体验。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://1241262510.github.io/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png">
 <meta property="article:published_time" content="2026-03-31T02:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-31T04:20:11.510Z">
+<meta property="article:modified_time" content="2026-03-31T04:22:44.466Z">
 <meta property="article:author" content="凌晨两点的书桌">
 <meta property="article:tag" content="android">
 <meta property="article:tag" content="mac">
@@ -39,7 +39,7 @@
   
   
   
-  <title>安卓手机与 Mac 如何高效同步截图：Syncthing 实战 - 凌晨两点的书桌</title>
+  <title>安卓手机与 Mac 高效同步截图：Syncthing 配置实战 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -270,7 +270,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="安卓手机与 Mac 如何高效同步截图：Syncthing 实战"></span>
+            <span id="subtitle" data-typed-text="安卓手机与 Mac 高效同步截图：Syncthing 配置实战"></span>
           
         </div>
 
@@ -343,12 +343,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">安卓手机与 Mac 如何高效同步截图：Syncthing 实战</h1>
+            <h1 id="seo-header">安卓手机与 Mac 高效同步截图：Syncthing 配置实战</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="手机端与-Mac-的同步与接收"><a href="#手机端与-Mac-的同步与接收" class="headerlink" title="手机端与 Mac 的同步与接收"></a>手机端与 Mac 的同步与接收</h2><p>手机和电脑之间传图、传截图，看起来是小事，真正高频使用的时候，效率差别会非常明显。</p>
+                <h2 id="手机与-Mac-之间，截图怎么传更高效"><a href="#手机与-Mac-之间，截图怎么传更高效" class="headerlink" title="手机与 Mac 之间，截图怎么传更高效"></a>手机与 Mac 之间，截图怎么传更高效</h2><p>手机和电脑之间传图、传截图，看起来是小事，但一旦变成高频动作，效率差别会很明显。</p>
 <p>常见办法大致有这几种：</p>
 <ul>
 <li>微信文件传输助手</li>
@@ -359,21 +359,21 @@
 <p>前两种都能用，但如果是长期高频同步，我最后最推荐的还是 <code>Syncthing</code>。</p>
 <h2 id="为什么重点推荐-Syncthing"><a href="#为什么重点推荐-Syncthing" class="headerlink" title="为什么重点推荐 Syncthing"></a>为什么重点推荐 Syncthing</h2><p>最开始我对 <code>Syncthing</code> 没什么深刻印象，甚至一度觉得不如 <code>Drop</code> 来得直接。上次折腾它，还是在 NAS 上同步手机文件，后来就没有继续深入使用。</p>
 <p>但这次重新实践下来，结论完全变了。</p>
-<p>如果只是偶尔传一两张图，<code>Drop</code> 确实够用；如果是手机截图、文档、图片需要经常同步到 Mac，<code>Syncthing</code> 的体验明显更高效。</p>
+<p>如果只是偶尔传一两张图，<code>Drop</code> 确实够用；但如果是截图、文档、图片需要频繁同步到 Mac，<code>Syncthing</code> 的体验会明显更高效。</p>
 <p>以截图为例，两种工作流对比很直观：</p>
 <ul>
 <li><code>Drop</code>：截图，复制或选中，发送到 Drop，Mac 端接收</li>
 <li><code>Syncthing</code>：截图，接收</li>
 </ul>
 <p>差别就在这里。前者依赖一次次手动操作，后者则更接近自动同步。</p>
-<h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><p>整个搭建过程并不复杂，主要就是四步：</p>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>整个搭建过程并不复杂，主要就是四步：</p>
 <ul>
 <li>安装软件</li>
 <li>设置设备 ID</li>
 <li>设置同步目录</li>
 <li>开始同步</li>
 </ul>
-<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><h3 id="Mac-端"><a href="#Mac-端" class="headerlink" title="Mac 端"></a>Mac 端</h3><p>Mac 上可以直接通过 <code>brew</code> 安装：</p>
+<h2 id="软件安装与基本设置"><a href="#软件安装与基本设置" class="headerlink" title="软件安装与基本设置"></a>软件安装与基本设置</h2><h3 id="Mac-端"><a href="#Mac-端" class="headerlink" title="Mac 端"></a>Mac 端</h3><p>Mac 上可以直接通过 <code>brew</code> 安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install syncthing<br></code></pre></td></tr></table></figure>
 
 <p>安装完成后运行：</p>
@@ -384,17 +384,17 @@
 
 <p>下面这张图就是 <code>Syncthing</code> 在 Mac 端的管理界面：</p>
 <p><img src="/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>在 Mac 端的 GUI 页面里，进入“操作”“设置”，可以继续做默认值调整。</p>
+<p>在 Mac 端的 GUI 页面里，进入“操作”“设置”，可以继续调整默认值。</p>
 <p><img src="/blog/assets/f16b25907b773410d3ba00ddd4a7aeea1d38b4fe.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>“编辑文件夹默认值”里，建议把 Mac 端的文件夹类型设成“只接收”。这样同步方向就是从手机到 Mac，属于比较清晰的单向流动。</p>
+<p>“编辑文件夹默认值”里，建议把 Mac 端的文件夹类型设成“只接收”。这样同步方向就是从手机到 Mac，属于更清晰的单向流动。</p>
 <p><img src="/blog/assets/4977b82a64439c32e5264bc04ae551d55cdf82e5.png" srcset="/blog/img/loading.gif" lazyload></p>
 <p>常规选项大多保持默认就可以。</p>
 <p><img src="/blog/assets/ffb7c09528e61c49a129be39460e00c94827d1e6.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>这里比较重要的是“文件夹路径”，也就是以后 Mac 用来接收手机截图或文件的目录。</p>
+<p>这里最重要的是“文件夹路径”，也就是以后 Mac 用来接收手机截图或文件的目录。</p>
 <p><img src="/blog/assets/bfce0d71b611e59a5c6c544a163ceb8931595b04.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>比如手机上有一次截图动作，理论上同步完成后，这张图就应该立刻出现在 Mac 指定的同步目录里。</p>
+<p>比如手机上刚截了一张图，同步完成后，这张图就应该立刻出现在 Mac 指定的目录里。</p>
 <p><img src="/blog/assets/7c3302eade017e781931ab2916d7fc92a812dafb.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>设备默认值也可以改一下名字，比如改成 <code>mac mini</code> 或者自己更容易识别的设备名，后面手机和 Mac 配对时会直观很多。</p>
+<p>设备默认值也可以顺手改一下名字，比如改成 <code>mac mini</code> 或者自己更容易识别的设备名，后面手机和 Mac 配对时会直观很多。</p>
 <p><img src="/blog/assets/bbe75b14fcbcaf5efc5c377cebe676b8495aa1bb.png" srcset="/blog/img/loading.gif" lazyload></p>
 <p>在主界面中，还可以继续添加更多同步文件夹。</p>
 <h2 id="手机端设置"><a href="#手机端设置" class="headerlink" title="手机端设置"></a>手机端设置</h2><h3 id="安装-Syncthing"><a href="#安装-Syncthing" class="headerlink" title="安装 Syncthing"></a>安装 Syncthing</h3><p>安卓端应用商店里就能搜到 <code>Syncthing</code> 或 <code>Syncthing-Fork</code>。</p>
@@ -403,7 +403,7 @@
 <p><img src="/blog/assets/d2f433f417276cec8aab8e2fdde6b3f0cb06523a.png" srcset="/blog/img/loading.gif" lazyload></p>
 <p>和 Mac 端类似，手机端也需要设置同步目录位置。同步模式建议设成“只发送”，其他选项一般保持默认即可。</p>
 <p><img src="/blog/assets/33081c11cc2ed22c49addabcf6e4c21ce4f96765.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>我手机上的截图目录就是这里。大多数安卓手机的截图目录一般在下面两个位置之一：</p>
+<p>我手机上的截图目录就在这里。大多数安卓手机的截图目录一般在下面两个位置之一：</p>
 <ul>
 <li><code>Pictures/Screenshots</code></li>
 <li><code>DCIM/Screenshots</code></li>
@@ -412,12 +412,12 @@
 <h2 id="设备配对"><a href="#设备配对" class="headerlink" title="设备配对"></a>设备配对</h2><p>同步目录设置好之后，还需要把手机和 Mac 配对起来。</p>
 <p>在手机端，从左侧菜单进入“显示设备 ID”，这里会显示二维码和设备信息。</p>
 <p><img src="/blog/assets/726c744b1e3a3ac37821ef387c5656dcae5d67e9.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>更顺手的方式是：手机扫码，Mac 显示二维码。</p>
+<p>更顺手的方式是：Mac 显示二维码，手机直接扫码。</p>
 <h3 id="Mac-端操作"><a href="#Mac-端操作" class="headerlink" title="Mac 端操作"></a>Mac 端操作</h3><p>Mac 主界面进入“操作”“显示 ID”。</p>
 <p><img src="/blog/assets/8266fa0f2edd4d91e004394cc5992dec40e74c7e.png" srcset="/blog/img/loading.gif" lazyload></p>
 <p><img src="/blog/assets/03fb1c61b7efbe71c627758fb3354b844a127973.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>这就是 Mac 端的二维码，直接用手机扫码就可以进行配对。</p>
-<h3 id="手机端操作"><a href="#手机端操作" class="headerlink" title="手机端操作"></a>手机端操作</h3><p>手机端进入“设备”，进行硬件链接。</p>
+<p>这就是 Mac 端的二维码，直接用手机扫码就可以完成配对。</p>
+<h3 id="手机端操作"><a href="#手机端操作" class="headerlink" title="手机端操作"></a>手机端操作</h3><p>手机端进入“设备”，开始进行硬件链接。</p>
 <p><img src="/blog/assets/50379fd7e733751970efb43c0db078bfb74677be.png" srcset="/blog/img/loading.gif" lazyload></p>
 <p>随后扫码完成设备连接。</p>
 <p>做完这一步之后，手机和 Mac 就可以开始单向同步了，手机端的数据会自动进入 Mac 的接收目录。</p>
@@ -430,7 +430,7 @@
 <p>其余选项大多可以保持默认。</p>
 <p>如果你用的是苹果手机，系统本身的同步能力已经比较强；但如果是安卓和 Mac 的组合，<code>Syncthing</code> 的灵活性会更明显。</p>
 <p>它的优势不只是“能同步”，而是同步动作快、自动化程度高，而且适配范围非常广。</p>
-<p>尤其是截图、文档、图片这种高频小文件，体验提升非常明显。真正常用起来之后，会发现同步几乎是按秒发生的。</p>
+<p>尤其是截图、文档、图片这种高频小文件，体验提升会非常明显。真正常用起来之后，会发现同步几乎是按秒发生的。</p>
 
                 
               </div>
@@ -482,7 +482,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>安卓手机与 Mac 如何高效同步截图：Syncthing 实战</div>
+      <div>安卓手机与 Mac 高效同步截图：Syncthing 配置实战</div>
       <div>https://1241262510.github.io/blog/2026/03/31/android-mac-syncthing-sync-workflow/</div>
     </div>
     <div class="license-meta">
