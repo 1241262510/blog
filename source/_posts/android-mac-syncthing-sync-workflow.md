@@ -1,5 +1,5 @@
 ---
-title: 安卓手机与 Mac 同步截图，Syncthing 可能是更省事的方案
+title: 安卓手机与 Mac 传截图，Syncthing 是我用过更省事的方案
 date: 2026-03-31 10:00:00
 tags:
   - syncthing
@@ -8,7 +8,7 @@ tags:
   - 文件同步
 categories:
   - 工具教程
-description: 记录安卓手机与 Mac 之间同步截图的几种常见办法，并重点整理 Syncthing 的配置流程、目录设置和实际体验。
+description: 如果你经常要把安卓手机截图同步到 Mac，Syncthing 这套方案比手动传图更省事，我把安装、配对和目录设置流程整理成了一篇。
 index_img: /assets/1e6629380d08cecb5b971edffc995384ab19de5a.png
 ---
 
