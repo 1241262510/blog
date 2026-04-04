@@ -108,6 +108,3 @@ curl -i https://ip.gs
 
 **如果你在配置过程中遇到 JSON 报错或 IP 泄露问题，欢迎在评论区留言交流！**
 
----
-
-*本文由 @SongXiaofeng 实测分享*
