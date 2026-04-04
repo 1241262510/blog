@@ -7,7 +7,7 @@ navbar:
     - { key: "标签", link: "/tags/" }
 
 search:
-  enable: false
+  enable: true
 
 fun_features:
   typing:
