@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>别让 20 刀秒封！手把手教你搭建 Claude Code 顶级支付与开发环境</title>
+      <link href="/blog/2026/04/04/claude-code-payment-setup-guide/"/>
+      <url>/blog/2026/04/04/claude-code-payment-setup-guide/</url>
+      
+        <content type="html"><![CDATA[<h1 id="别让-20-刀秒封！手把手教你搭建-Claude-Code-顶级支付与开发环境"><a href="#别让-20-刀秒封！手把手教你搭建-Claude-Code-顶级支付与开发环境" class="headerlink" title="别让 20 刀秒封！手把手教你搭建 Claude Code 顶级支付与开发环境"></a>别让 20 刀秒封！手把手教你搭建 Claude Code 顶级支付与开发环境</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>如果你也是 <strong>Claude Code</strong> 或 <strong>ChatGPT</strong> 的重度用户，一定经历过这种恐惧：好不容易注册了账号，20 美金刚扣款，还没用两天就被”秒封”。</p><p>在大模型风控极其严格的 2026 年，网络环境的质量直接决定了你的账号寿命。普通节点（数据中心 IP）就像是”万人骑”的公共大巴，一旦同 IP 有人违规，你也会被连坐。</p><p>今天分享一套兼顾 <strong>“访问速度”</strong> 与 <strong>“住宅纯净度”</strong> 的技术方案：<strong>链式代理（住宅 IP + 高速中转）</strong>。</p><hr><h3 id="一、-核心痛点：为什么普通节点”必死”？"><a href="#一、-核心痛点：为什么普通节点”必死”？" class="headerlink" title="一、 核心痛点：为什么普通节点”必死”？"></a>一、 核心痛点：为什么普通节点”必死”？</h3><p><strong>普通机房 IP vs. 住宅 IP 的天差地别</strong></p><ul><li><strong>普通节点（机房 IP）</strong>：价格便宜、视频速度快，但属于数据中心部署。对于支付、订阅 Claude Pro 等高风控场景，使用这种 IP 极易被系统判定为”非真实用户”，导致秒封且资金难找回。</li><li><strong>住宅 IP（家庭带宽）</strong>：模拟真实海外住户环境，质量极高，是订阅大模型的”刚需”。但缺点是直连非常慢，甚至会卡顿失联。</li></ul><p><strong>有没有两全其美的方案？</strong> 既要有普通节点的访问速度，又要具备住宅 IP 的身份特征？答案就是：<strong>链式代理</strong>。</p><hr><h3 id="二、-技术方案：什么是链式代理？"><a href="#二、-技术方案：什么是链式代理？" class="headerlink" title="二、 技术方案：什么是链式代理？"></a>二、 技术方案：什么是链式代理？</h3><p>链式代理的核心思想是：<strong>由普通高速节点负责提速（中转），由纯净住宅 IP 负责落地（身份）</strong>。</p><p>在大模型官方的监测眼中，你是一个来自美国的普通住户；而在你自己的体感中，由于有前置节点的加速，操作依然流畅。</p><hr><h3 id="三、-实操教程：小白也能搞定的”小火箭”配置法"><a href="#三、-实操教程：小白也能搞定的”小火箭”配置法" class="headerlink" title="三、 实操教程：小白也能搞定的”小火箭”配置法"></a>三、 实操教程：小白也能搞定的”小火箭”配置法</h3><p>很多大佬习惯修改 Clash 配置文件，但如果你追求简单高效，可以使用 <strong>Shadowrocket（小火箭）</strong> 进行图形化操作。</p><h4 id="1-添加住宅落地节点"><a href="#1-添加住宅落地节点" class="headerlink" title="1. 添加住宅落地节点"></a>1. 添加住宅落地节点</h4><ol><li>点击主界面的 <strong>“+”</strong> 号，添加你的 <strong>Socks5 住宅 IP</strong> 参数。</li><li>这里填写的是直接与支付&#x2F;订阅环境打交道的”落地地址”。</li></ol><h4 id="2-设置”代理通过”（核心步骤）"><a href="#2-设置”代理通过”（核心步骤）" class="headerlink" title="2. 设置”代理通过”（核心步骤）"></a>2. 设置”代理通过”（核心步骤）</h4><p>这是实现”套娃”的关键：</p><ol><li>在主界面找到刚才添加的 <strong>住宅节点</strong>，点击右边的 <strong>“i”</strong> 图标或长按选择 <strong>“编辑”</strong>。</li><li>找到 <strong>“代理通过 (Proxy Through)”</strong> 选项。</li><li>选择一个你平时使用的 <strong>快速普通节点</strong> 作为前置中转。</li></ol><p><strong>配置完成后</strong>：你的流量会先经过高速节点，再通过住宅节点落地。</p><hr><h3 id="四、-避坑指南：环境安全大检查"><a href="#四、-避坑指南：环境安全大检查" class="headerlink" title="四、 避坑指南：环境安全大检查"></a>四、 避坑指南：环境安全大检查</h3><p>搭建成功后，千万别直接去支付！必须通过以下”检测三部曲”：</p><h4 id="1-终端真实-IP-校验"><a href="#1-终端真实-IP-校验" class="headerlink" title="1. 终端真实 IP 校验"></a>1. 终端真实 IP 校验</h4><p>在 Mac 终端执行命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -i https://ip.gs<br></code></pre></td></tr></table></figure><p>确认返回的地址是你订阅的 <strong>住宅 IP</strong>，而非中转节点的 IP。</p><h4 id="2-隐私泄露深度检测"><a href="#2-隐私泄露深度检测" class="headerlink" title="2. 隐私泄露深度检测"></a>2. 隐私泄露深度检测</h4><p>访问 <code>ipleak.net</code>，重点确认：</p><ul><li><strong>WebRTC Detection</strong>：必须不显示你的真实局域网 IP。</li><li><strong>DNS Address</strong>：必须显示为海外地址，不能出现国内运营商信息。</li></ul><h4 id="3-欺诈分检测-Scamalytics"><a href="#3-欺诈分检测-Scamalytics" class="headerlink" title="3. 欺诈分检测 (Scamalytics)"></a>3. 欺诈分检测 (Scamalytics)</h4><p>访问 <code>scamalytics.com</code> 检查 IP 风险分：</p><ul><li><strong>0-20 分</strong>：顶级环境，放心支付。</li><li><strong>70 分以上</strong>：高风险，建议更换住宅节点，否则极易触发风控。</li></ul><hr><h3 id="五、-进阶：Claude-Code-终端的日常防范"><a href="#五、-进阶：Claude-Code-终端的日常防范" class="headerlink" title="五、 进阶：Claude Code 终端的日常防范"></a>五、 进阶：Claude Code 终端的日常防范</h3><p>对于开发者来说，Claude Code 的监测是变态级的。除了网络环境，建议在本地做好以下工作：</p><ul><li><strong>权限限制</strong>：修改 <code>~/.claude/settings.json</code>，禁止 Claude 执行敏感联网命令（如 <code>curl</code>, <code>wget</code> 等）。</li><li><strong>隐私屏蔽</strong>：配置 <code>.claudeignore</code> 文件，防止 AI 读取你的本地秘钥或个人隐私文件。</li></ul><hr><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>20 美金虽小，但申诉的繁琐和失去 AI 助力的损失巨大。磨刀不误砍柴工，配好这套 <strong>“链式代理”</strong>，让你的 Mac 真正成为开发利器。</p><p><strong>如果你在配置过程中遇到 JSON 报错或 IP 泄露问题，欢迎在评论区留言交流！</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Claude Code </tag>
+            
+            <tag> 支付安全 </tag>
+            
+            <tag> 代理 </tag>
+            
+            <tag> VPN </tag>
+            
+            <tag> 开发环境 </tag>
+            
+            <tag> 链式代理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>风物长宜放眼量：编程黄金时代的追忆与启示</title>
+      <link href="/blog/2026/04/03/programming-golden-age-reflection/"/>
+      <url>/blog/2026/04/03/programming-golden-age-reflection/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p><strong>座右铭：</strong> 牢骚太盛防肠断，风物长宜放眼量。</p></blockquote><hr><h2 id="一、编程的”战国时代”：单纯与峥嵘"><a href="#一、编程的”战国时代”：单纯与峥嵘" class="headerlink" title="一、编程的”战国时代”：单纯与峥嵘"></a>一、编程的”战国时代”：单纯与峥嵘</h2><p>回望几十年前，那是编程语言的”战国时代”，百家争鸣，百花齐放。那时的技术环境远没有现在的繁杂浮躁，一切都显得那么单纯而硬核：</p><ul><li><strong>核心利剑：</strong> MASM, C, C++, Pascal… </li><li><strong>时代背景：</strong> 微软的 DOS 与 Windows 正在重塑世界，展现出新一代软件霸主的雄姿；Office 办公软件与 Lotus（莲花）正打得有来有回。</li><li><strong>技术偶像：</strong> 那时代的技术专家，地位如同今日的网红，受到无数粉丝的追捧与信赖。</li></ul><hr><h2 id="二、传道者的背影：李维与侯捷"><a href="#二、传道者的背影：李维与侯捷" class="headerlink" title="二、传道者的背影：李维与侯捷"></a>二、传道者的背影：李维与侯捷</h2><p>在中文编程史上，这两位大师无疑是技术领域的佼佼者，深深影响了一代开发者。</p><h3 id="1-李维-Ray-Konopka-——-Delphi-的传道者"><a href="#1-李维-Ray-Konopka-——-Delphi-的传道者" class="headerlink" title="1. 李维 (Ray Konopka) —— Delphi 的传道者"></a>1. 李维 (Ray Konopka) —— Delphi 的传道者</h3><ul><li><strong>贡献：</strong> 曾以一己之力推广 Delphi，笔下的技术解析让开发者领略了组件化编程的巅峰。</li><li><strong>现状：</strong> 近些年逐渐销声匿迹，这或许与 Delphi 的没落有很大关联。他当年对微软打法的冷嘲热讽，如今看来也成了时代交替的注脚。</li></ul><h3 id="2-侯捷-——-C-的布道师"><a href="#2-侯捷-——-C-的布道师" class="headerlink" title="2. 侯捷 —— C++ 的布道师"></a>2. 侯捷 —— C++ 的布道师</h3><ul><li><strong>精神：</strong> 即使在当下，观看侯捷老师的编程视频，依然能感受到他对技术耕耘的深度和学习的热情。</li><li><strong>密钥：</strong> 他的成功从未是偶然，而是源于对某个领域<strong>长期的学习与极致的热情</strong>。</li></ul><hr><h2 id="三、价值与价格：一份跨越时代的启示"><a href="#三、价值与价格：一份跨越时代的启示" class="headerlink" title="三、价值与价格：一份跨越时代的启示"></a>三、价值与价格：一份跨越时代的启示</h2><p>侯捷老师曾遭遇过一段令人深思的”往事”：他因翻译出版的书籍价格较高，曾受到网络暴力的攻击与骚扰。</p><blockquote><p><strong>当时的理由：</strong> 书籍卖得太贵了。<br><strong>大师的回应：</strong> “风物长宜放眼量”。</p></blockquote><h3 id="核心感悟："><a href="#核心感悟：" class="headerlink" title="核心感悟："></a>核心感悟：</h3><ul><li><strong>眼光决定高度：</strong> 无论是学习还是人生，眼光都要放长远。</li><li><strong>价值超越价格：</strong> 与光明的职业未来相比，一本优秀书籍的价值远超其标价。</li><li><strong>人生的座右铭：</strong> 这句话不仅适用于编程学习，更是指引人生方向的巨大力量。</li></ul><hr><h2 id="四、结语：大师给我们的启示"><a href="#四、结语：大师给我们的启示" class="headerlink" title="四、结语：大师给我们的启示"></a>四、结语：大师给我们的启示</h2><p>看看侯捷大师今天的工作环境、学术水平与生活层次，我们应当反思：<strong>是什么造就了这种差距？</strong></p><p>不是投机取巧，而是<strong>对技术领域长期的耕耘</strong>。在这个 AI 喧嚣、工具更迭极快的 2026 年，重温大师的这句”风物长宜放眼量”，依然具有不可估量的巨大作用。</p><hr><p><em>整理于 2026年4月3日</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程随想 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> C++ </tag>
+            
+            <tag> Delphi </tag>
+            
+            <tag> 侯捷 </tag>
+            
+            <tag> 技术成长 </tag>
+            
+            <tag> 长期主义 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>安卓手机与 Mac 传截图，Syncthing 是我用过更省事的方案</title>
+      <link href="/blog/2026/03/30/android-mac-syncthing-sync-workflow/"/>
+      <url>/blog/2026/03/30/android-mac-syncthing-sync-workflow/</url>
+      
+        <content type="html"><![CDATA[<h2 id="手机与-Mac-之间，截图怎么传更高效"><a href="#手机与-Mac-之间，截图怎么传更高效" class="headerlink" title="手机与 Mac 之间，截图怎么传更高效"></a>手机与 Mac 之间，截图怎么传更高效</h2><p>手机和电脑之间传图、传截图，看起来是小事，但一旦变成高频动作，效率差别就会非常明显。</p><p>常见办法大致有这几种：</p><ul><li>微信文件传输助手</li><li>Edge <code>Drop</code></li><li><code>Syncthing</code></li><li>其他同步工具</li></ul><p>前两种都能用，但如果是长期高频同步，我最后最推荐的还是 <code>Syncthing</code>。</p><h2 id="为什么重点推荐-Syncthing"><a href="#为什么重点推荐-Syncthing" class="headerlink" title="为什么重点推荐 Syncthing"></a>为什么重点推荐 Syncthing</h2><p>最开始我对 <code>Syncthing</code> 没什么深刻印象，甚至一度觉得不如 <code>Drop</code> 来得直接。上次折腾它，还是在 NAS 上同步手机文件，后来就没有继续深入使用。</p><p>但这次重新实践下来，结论完全变了。</p><p>如果只是偶尔传一两张图，<code>Drop</code> 确实够用；但如果截图、文档、图片需要频繁同步到 Mac，<code>Syncthing</code> 的体验会明显更高效。</p><p>以截图为例，两种工作流对比很直观：</p><ul><li><code>Drop</code>：截图，复制或选中，发送到 Drop，Mac 端接收</li><li><code>Syncthing</code>：截图，接收</li></ul><p>差别就在这里。前者依赖一次次手动操作，后者更接近自动同步。</p><h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>整个搭建过程并不复杂，主要就是四步：</p><ul><li>安装软件</li><li>设置设备 ID</li><li>设置同步目录</li><li>开始同步</li></ul><h2 id="软件安装与基本设置"><a href="#软件安装与基本设置" class="headerlink" title="软件安装与基本设置"></a>软件安装与基本设置</h2><h3 id="Mac-端"><a href="#Mac-端" class="headerlink" title="Mac 端"></a>Mac 端</h3><p>Mac 上可以直接通过 <code>brew</code> 安装：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install syncthing<br></code></pre></td></tr></table></figure><p>安装完成后运行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">syncthing<br></code></pre></td></tr></table></figure><p>软件启动后，会提供一个本地 GUI 管理页面：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://127.0.0.1:8384<br></code></pre></td></tr></table></figure><p>下面这张图就是 <code>Syncthing</code> 在 Mac 端的管理界面：</p><p><img src="/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png"></p><p>在 Mac 端 GUI 页面里，进入“操作”“设置”，可以继续调整默认值。</p><p><img src="/blog/assets/f16b25907b773410d3ba00ddd4a7aeea1d38b4fe.png"></p><p>“编辑文件夹默认值”里，建议把 Mac 端的文件夹类型设成“只接收”。这样同步方向就是从手机到 Mac，逻辑会更清晰。</p><p><img src="/blog/assets/4977b82a64439c32e5264bc04ae551d55cdf82e5.png"></p><p>常规选项大多保持默认即可。</p><p><img src="/blog/assets/ffb7c09528e61c49a129be39460e00c94827d1e6.png"></p><p>这里最重要的是“文件夹路径”，也就是以后 Mac 用来接收手机截图或文件的目录。</p><p><img src="/blog/assets/bfce0d71b611e59a5c6c544a163ceb8931595b04.png"></p><p>比如手机上刚截了一张图，同步完成后，这张图就应该立刻出现在 Mac 指定的目录里。</p><p><img src="/blog/assets/7c3302eade017e781931ab2916d7fc92a812dafb.png"></p><p>设备默认值也可以顺手改一下名字，比如改成 <code>mac mini</code> 或者自己更容易识别的设备名，后面手机和 Mac 配对时会直观很多。</p><p><img src="/blog/assets/bbe75b14fcbcaf5efc5c377cebe676b8495aa1bb.png"></p><p>在主界面中，还可以继续添加更多同步文件夹。</p><h2 id="手机端设置"><a href="#手机端设置" class="headerlink" title="手机端设置"></a>手机端设置</h2><h3 id="安装-Syncthing"><a href="#安装-Syncthing" class="headerlink" title="安装 Syncthing"></a>安装 Syncthing</h3><p>安卓端应用商店里就能搜到 <code>Syncthing</code> 或 <code>Syncthing-Fork</code>。</p><p><img src="/blog/assets/71be92d66b7f341994eb8fc4deb49039b5a612bf.png"></p><p>如果是新配置，可以直接点“+”创建同步文件夹。</p><p><img src="/blog/assets/d2f433f417276cec8aab8e2fdde6b3f0cb06523a.png"></p><p>和 Mac 端类似，手机端也需要设置同步目录位置。同步模式建议设成“只发送”，其他选项一般保持默认即可。</p><p><img src="/blog/assets/33081c11cc2ed22c49addabcf6e4c21ce4f96765.png"></p><p>我手机上的截图目录就在这里。大多数安卓手机的截图目录一般在下面两个位置之一：</p><ul><li><code>Pictures/Screenshots</code></li><li><code>DCIM/Screenshots</code></li></ul><p>具体路径还是要以自己手机的实际情况为准。目录确定之后，后面的同步就会轻松很多。</p><h2 id="设备配对"><a href="#设备配对" class="headerlink" title="设备配对"></a>设备配对</h2><p>同步目录设置好之后，还需要把手机和 Mac 配对起来。</p><p>在手机端，从左侧菜单进入“显示设备 ID”，这里会显示二维码和设备信息。</p><p><img src="/blog/assets/726c744b1e3a3ac37821ef387c5656dcae5d67e9.png"></p><p>更顺手的方式是：Mac 显示二维码，手机直接扫码。</p><h3 id="Mac-端操作"><a href="#Mac-端操作" class="headerlink" title="Mac 端操作"></a>Mac 端操作</h3><p>Mac 主界面进入“操作”“显示 ID”。</p><p><img src="/blog/assets/8266fa0f2edd4d91e004394cc5992dec40e74c7e.png"></p><p><img src="/blog/assets/03fb1c61b7efbe71c627758fb3354b844a127973.png"></p><p>这就是 Mac 端的二维码，直接用手机扫码就可以完成配对。</p><h3 id="手机端操作"><a href="#手机端操作" class="headerlink" title="手机端操作"></a>手机端操作</h3><p>手机端进入“设备”，开始进行硬件链接。</p><p><img src="/blog/assets/50379fd7e733751970efb43c0db078bfb74677be.png"></p><p>随后扫码完成设备连接。</p><p>做完这一步之后，手机和 Mac 就可以开始单向同步了，手机端的数据会自动进入 Mac 的接收目录。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看起来配置步骤稍微有一点多，但真正核心的工作其实只有三件事：</p><ul><li>设置同步目录</li><li>设置设备连接</li><li>把同步方向配置清楚</li></ul><p>其余选项大多可以保持默认。</p><p>如果你用的是苹果手机，系统本身的同步能力已经比较强；但如果是安卓和 Mac 的组合，<code>Syncthing</code> 的灵活性会更明显。</p><p>它的优势不只是“能同步”，而是同步动作快、自动化程度高，而且适配范围非常广。</p><p>尤其是截图、文档、图片这种高频小文件，体验提升会非常明显。真正常用起来之后，会发现同步几乎是按秒发生的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> syncthing </tag>
+            
+            <tag> android </tag>
+            
+            <tag> mac </tag>
+            
+            <tag> 文件同步 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>装上 OpenCode 之后，我重新理解了“装软件”</title>
+      <link href="/blog/2026/03/29/opencode-install-and-ai-workflow/"/>
+      <url>/blog/2026/03/29/opencode-install-and-ai-workflow/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>OpenCode</code> 把多种 AI 代理能力集中到一个入口里，但它真正值得写的，不只是“模型变多了”，而是软件安装这件事本身正在发生变化：过去靠搜索、复制命令和反复试错，现在越来越像一次自然语言驱动的协作过程。</p><h2 id="OpenCode-的安装"><a href="#OpenCode-的安装" class="headerlink" title="OpenCode 的安装"></a>OpenCode 的安装</h2><p><code>OpenCode</code> 集成了多种 AI 代理能力，免费的、收费的模型都可以在同一个工具链里找到。</p><p>这里直接使用官网提供的命令安装。以我自己的使用场景为例，我是在 Linux 虚拟机里完成这一步。</p><p>安装命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://opencode.ai/install | bash<br></code></pre></td></tr></table></figure><p>软件界面和模型选择部分，这里先不放无关截图，后面统一替换成你实际要保留的图片。</p><p>进入之后，输入 <code>/models</code>，就可以切换不同的 AI 模型。</p><p>可以先试试几个免费的模型，感受一下整体体验。我这里已经配置好了 <code>GLM 4.7 Code Plan</code>，也可以直接在这里调用。</p><h2 id="软件安装的变化"><a href="#软件安装的变化" class="headerlink" title="软件安装的变化"></a>软件安装的变化</h2><p>以前自己安装软件，大致是这样一个循环：</p><ul><li>搜索教程</li><li>复制和粘贴安装代码</li><li>看实际输出结果</li><li>如果不成功，就继续重复这个循环，直到成功</li></ul><p>有了 AI 之后，现在的安装流程已经开始明显变化。</p><ul><li>先准备必要依赖，例如：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install curl<br></code></pre></td></tr></table></figure><ul><li>安装 <code>OpenCode</code>，再选一个可用模型</li><li>直接用自然语言告诉 AI 你要安装什么，让它协助完成安装</li></ul><p>通过这个简单对比就能看出来，现在的软件安装方式和过去已经有了明显差异。是不是“变革”可以继续观察，但变化本身已经非常清楚。</p><h2 id="技术门槛正在下降"><a href="#技术门槛正在下降" class="headerlink" title="技术门槛正在下降"></a>技术门槛正在下降</h2><p>这种变化带来的直接结果，就是技术门槛正在下降。</p><p>以前安装软件，至少要求你会一些基础工具，例如 <code>vim</code>、<code>nano</code>，或者最少也要能完成常见编辑操作。改配置、调参数、检查报错，这些几乎都是默认要求。</p><p>现在需要的是什么？很多时候，会说自然语言就够了。</p><p>比如安装 <code>Docker</code> 和 <code>Docker Compose</code>。</p><p>过去通常是：先上搜索引擎查文章、查命令、自己测试。</p><p>现在更像这样：</p><p><code>请帮我安装 docker 和 docker compose。</code></p><p>然后 AI 代理开始执行、检查、修正、补齐，最后把事情做完。真正令人意外的，不是它会回答问题，而是它开始能把一整段安装过程接过去。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回头再看，会发现 AI 不只是“帮你回答问题”，它正在慢慢改变人们使用电脑、安装软件和解决问题的方式。</p><p>如果用一句更直接的话来概括，就是：</p><ul><li>做得更多</li><li>速度更快</li><li>结果更整齐</li><li>试错成本更低</li></ul><p>某种意义上，这已经开始接近“数字员工”的工作方式。</p><p>不是我们反应慢，而是这个世界确实变化得太快。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> agent </tag>
+            
+            <tag> opencode </tag>
+            
+            <tag> ai </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MarkCopy 使用指南 — 写出排版精美的公众号文章</title>
+      <link href="/blog/2026/03/29/MarkCopy%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%20%E2%80%94%20%E5%86%99%E5%87%BA%E6%8E%92%E7%89%88%E7%B2%BE%E7%BE%8E%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/"/>
+      <url>/blog/2026/03/29/MarkCopy%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%20%E2%80%94%20%E5%86%99%E5%87%BA%E6%8E%92%E7%89%88%E7%B2%BE%E7%BE%8E%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="MarkCopy-使用指南-—-写出排版精美的公众号文章"><a href="#MarkCopy-使用指南-—-写出排版精美的公众号文章" class="headerlink" title="MarkCopy 使用指南 — 写出排版精美的公众号文章"></a>MarkCopy 使用指南 — 写出排版精美的公众号文章</h1><p>这是一篇<strong>完整的 Markdown 教程</strong>，同时也是 MarkCopy 的使用说明。你可以直接编辑左侧内容，右侧实时预览效果，写完后点击「一键复制」粘贴到公众号、知乎、掘金等平台，<strong>格式完美保留</strong>。</p><blockquote><p>💡 <strong>小技巧</strong>：你正在看的这篇文章本身就是用 Markdown 写的，所有样式效果都可以直接参考。</p></blockquote><hr><h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>用 <code>#</code> 号表示标题，几个 <code>#</code> 就是几级标题：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 一级标题</span><br><span class="hljs-section">## 二级标题</span><br><span class="hljs-section">### 三级标题</span><br><span class="hljs-section">#### 四级标题</span><br></code></pre></td></tr></table></figure><p>建议公众号文章用 <strong>二级标题</strong> 做主分隔，<strong>三级标题</strong> 做小节，层次清晰。</p><h3 id="文字样式"><a href="#文字样式" class="headerlink" title="文字样式"></a>文字样式</h3><table><thead><tr><th>语法</th><th>效果</th><th>适用场景</th></tr></thead><tbody><tr><td><code>**加粗**</code></td><td><strong>加粗</strong></td><td>强调关键词</td></tr><tr><td><code>*斜体*</code></td><td><em>斜体</em></td><td>英文术语、引用</td></tr><tr><td><code>~~删除线~~</code></td><td><del>删除线</del></td><td>表示修改、对比</td></tr><tr><td><code>\</code>行内代码&#96;&#96;</td><td><code>行内代码</code></td><td>技术名词、命令</td></tr><tr><td><code>**_加粗斜体_**</code></td><td><em><strong>加粗斜体</strong></em></td><td>极度强调</td></tr></tbody></table><p>示例：使用 ChatGPT 时，模型 <code>GPT-4o</code> 的推理能力比 <code>GPT-3.5</code> <strong>显著提升</strong>，尤其在<del>简单问答</del>复杂推理场景中表现突出。</p><h3 id="链接与图片"><a href="#链接与图片" class="headerlink" title="链接与图片"></a>链接与图片</h3><p>链接语法：<code>[显示文字](URL)</code></p><p>常用链接示例：</p><ul><li><a href="https://md.payforchat.com/">MarkCopy — Markdown 一键排版工具</a></li><li><a href="https://chatgpt.com/">ChatGPT 官网</a></li><li><a href="https://payforchat.com/">PayForChat — ChatGPT Plus 便捷充值</a></li></ul><p>图片语法：<code>![描述](图片URL)</code></p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">示例图片</span>](<span class="hljs-link">https://picsum.photos/600/300</span>)<br></code></pre></td></tr></table></figure><p>下面是实际渲染效果：</p><p><img src="https://picsum.photos/id/10/800/400" alt="风景示例"></p><hr><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>用 <code>-</code> 或 <code>*</code> 开头：</p><ul><li>第一步：打开 <a href="https://md.payforchat.com/">md.payforchat.com</a></li><li>第二步：在左侧编辑器写 Markdown</li><li>第三步：右上角选择目标平台风格</li><li>第四步：点击「一键复制」</li><li>第五步：粘贴到目标平台，完成！</li></ul><h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>用数字开头：</p><ol><li>注册 ChatGPT 账号</li><li>获取 Access Token</li><li>访问 <a href="https://payforchat.com/">payforchat.com</a> 选择套餐</li><li>完成支付，自动充值</li></ol><h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [x] 已完成的任务<br><span class="hljs-bullet">-</span> [ ] 待完成的任务<br></code></pre></td></tr></table></figure><p>效果：</p><ul><li><input checked="" disabled="" type="checkbox"> 写好文章初稿</li><li><input checked="" disabled="" type="checkbox"> 用 MarkCopy 排版</li><li><input disabled="" type="checkbox"> 复制到公众号发布</li><li><input disabled="" type="checkbox"> 分享到朋友圈</li></ul><hr><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>用 <code>&gt;</code> 开头创建引用块，适合放金句、提示、注意事项：</p><blockquote><p>工欲善其事，必先利其器。<br>好的排版工具能让你的文章阅读体验提升 80%。</p></blockquote><p>多层嵌套引用：</p><blockquote><p><strong>读者问</strong>：没有国外信用卡，怎么订阅 ChatGPT Plus？</p><blockquote><p><strong>回答</strong>：可以使用代充服务。<a href="https://payforchat.com/">PayForChat</a> 支持支付宝&#x2F;微信付款，3 步完成 Plus 升级，无需信用卡。</p></blockquote></blockquote><hr><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h3><p>在终端输入 <code>npm install</code> 安装依赖，或用 <code>Ctrl + C</code> 复制内容。</p><h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>支持语法高亮，指定语言即可：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Python 示例：调用 ChatGPT API</span><br><span class="hljs-keyword">import</span> openai<br><br>client = openai.OpenAI(api_key=<span class="hljs-string">&quot;your-api-key&quot;</span>)<br><br>response = client.chat.completions.create(<br>    model=<span class="hljs-string">&quot;gpt-4o&quot;</span>,<br>    messages=[<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你好，请介绍一下你自己&quot;</span>&#125;<br>    ]<br>)<br><br><span class="hljs-built_in">print</span>(response.choices[<span class="hljs-number">0</span>].message.content)<br></code></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// JavaScript 示例：Markdown 转 HTML</span><br><span class="hljs-keyword">const</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;marked&#x27;</span>);<br><br><span class="hljs-keyword">const</span> markdown = <span class="hljs-string">&#x27;# Hello World&#x27;</span>;<br><span class="hljs-keyword">const</span> html = marked.<span class="hljs-title function_">parse</span>(markdown);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(html);<br><span class="hljs-comment">// 输出: &lt;h1&gt;Hello World&lt;/h1&gt;</span><br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 常用命令</span><br>git <span class="hljs-built_in">clone</span> https://github.com/your-repo.git<br><span class="hljs-built_in">cd</span> your-repo<br>npm install &amp;&amp; npm run dev<br></code></pre></td></tr></table></figure><hr><h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>用 <code>|</code> 和 <code>-</code> 创建表格，支持对齐：</p><table><thead><tr><th>功能</th><th>免费版 (GPT-3.5)</th><th>Plus 版 (GPT-4o)</th></tr></thead><tbody><tr><td>基础对话</td><td>✅</td><td>✅</td></tr><tr><td>GPT-4o 模型</td><td>有限次数</td><td>无限制</td></tr><tr><td>DALL-E 绘图</td><td>❌</td><td>✅</td></tr><tr><td>高级数据分析</td><td>❌</td><td>✅</td></tr><tr><td>自定义 GPTs</td><td>有限制</td><td>完整功能</td></tr><tr><td><strong>价格</strong></td><td>免费</td><td>$20&#x2F;月</td></tr></tbody></table><blockquote><p>💰 <strong>省钱攻略</strong>：通过 <a href="https://payforchat.com/">PayForChat</a> 充值 ChatGPT Plus，支持支付宝&#x2F;微信，比官方直订更方便，<a href="https://payforchat.com/plans">点击了解详情 →</a></p></blockquote><hr><h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p>行内公式用 <code>$</code>：质能方程 $E &#x3D; mc^2$</p><p>独立公式用 <code>$$</code>：</p><p>$$<br>\sum_{i&#x3D;1}^{n} x_i &#x3D; x_1 + x_2 + \cdots + x_n<br>$$</p><hr><h2 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h2><p>三个及以上的 <code>-</code>、<code>*</code> 或 <code>_</code> 创建分隔线：</p><hr><h2 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h2><h3 id="Emoji"><a href="#Emoji" class="headerlink" title="Emoji"></a>Emoji</h3><p>直接输入 emoji 即可：🎉 🚀 💡 ✅ ❌ ⚠️ 📌 🔥</p><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><p>Markdown 支持脚注<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="MarkCopy 由 [PayForChat](https://payforchat.com/) 团队开发，致力于提升创作者的写作效率。">[1]</span></a></sup>，适合添加参考来源。</p><h3 id="HTML-混排"><a href="#HTML-混排" class="headerlink" title="HTML 混排"></a>HTML 混排</h3><p>Markdown 中可以直接使用 HTML：</p><p><strong>MarkCopy</strong> — 让 Markdown 写作更简单</p><p><a href="https://md.payforchat.com/">开始使用</a> · <a href="https://payforchat.com/">ChatGPT Plus 充值</a> · <a href="https://payforchat.com/articles">使用教程</a></p><hr><h2 id="写作工作流推荐"><a href="#写作工作流推荐" class="headerlink" title="写作工作流推荐"></a>写作工作流推荐</h2><p>一套高效的公众号写作流程：</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">构思大纲 → Markdown 写初稿 → MarkCopy 排版 → 一键复制到公众号 → 发布<br></code></pre></td></tr></table></figure><p><img src="https://picsum.photos/id/180/800/400" alt="工作流"></p><p><strong>为什么选择 Markdown + MarkCopy？</strong></p><ol><li><strong>专注内容</strong>：Markdown 语法简洁，写作时不被排版分心</li><li><strong>一次编写，多端发布</strong>：同一篇文章可以发公众号、知乎、掘金，格式自动适配</li><li><strong>版本管理</strong>：纯文本格式，方便用 Git 管理文章版本</li><li><strong>排版一致</strong>：告别公众号编辑器的格式错乱问题</li></ol><hr><h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table><thead><tr><th>操作</th><th>说明</th></tr></thead><tbody><tr><td>🎨 切换风格</td><td>顶栏直接点选：微信风格、GitHub、掘金、极简，更多风格点「更多」</td></tr><tr><td>📋 复制到公众号</td><td>顶栏右侧黑色按钮，复制带格式的富文本，粘贴到公众号即可</td></tr><tr><td>📤 上传&#x2F;导出</td><td>顶栏「上传」导入 <code>.md</code> 文件，「导出」下载当前内容</td></tr><tr><td>🖼 粘贴图片</td><td>直接 Ctrl+V 粘贴截图，或拖拽图片到编辑器</td></tr></tbody></table><hr><p><em>本文由 <a href="https://md.payforchat.com/">MarkCopy</a> 排版 | Powered by <a href="https://payforchat.com/">PayForChat</a></em></p><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>MarkCopy 由 <a href="https://payforchat.com/">PayForChat</a> 团队开发，致力于提升创作者的写作效率。<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> markcopy </tag>
+            
+            <tag> markdown </tag>
+            
+            <tag> 写作工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GLM 5.1 开放之后，我先注意到的是成本</title>
+      <link href="/blog/2026/03/29/glm5-1-code-plan/"/>
+      <url>/blog/2026/03/29/glm5-1-code-plan/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>GLM 5.1</code> 终于向 <code>Code Plan</code> 订阅者开放了。对一直在等配套服务的人来说，这次补齐本身就值得关注；但真正让我快速建立印象的，不是能力宣传，而是实际使用中非常直接的成本感知。</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="GLM-5-1-来了"><a href="#GLM-5-1-来了" class="headerlink" title="GLM 5.1 来了"></a>GLM 5.1 来了</h3><p>对 <code>Code Plan</code> 订阅者来说，这次更新算是一件实打实的好事。</p><p>之前因为算力或者套餐策略的原因，<code>GLM 5.x</code> 的一些配套能力始终没有完整落到 <code>Code Plan</code> 这条线上。既然同样是付费用户，却总要比别人慢一拍，这种体验说不上公平，也很难让人满意。</p><p>从用户角度看，花钱多少可以影响配额和速度，但如果长期连核心能力都无法及时覆盖，落差感会很明显。</p><p>不过这次情况总算变了。官方终于把对应服务补上，<code>Code Plan</code> 的订阅者也能正式用上 <code>GLM 5.1</code>。</p><p><img src="/blog/assets/glm5-1-01.png"></p><p>这张图对应的是官方侧能力开放后的实际界面信息，对 <code>Code Plan</code> 用户来说，关键点不是“模型发布了”，而是“终于能用了”。</p><h3 id="对主流-Agent-App-的支持也跟上了"><a href="#对主流-Agent-App-的支持也跟上了" class="headerlink" title="对主流 Agent App 的支持也跟上了"></a>对主流 Agent App 的支持也跟上了</h3><p>从现有信息看，<code>GLM 5.1</code> 对主流的 Agent 类应用也已经有了比较完整的支持。</p><p>这类支持的意义并不只是“能不能接入”，而是它决定了模型能不能真正进入日常工作流。只有接进你平时正在使用的工具链里，这类更新才算真正有价值。</p><p>这次我用 <code>OpenCode</code> 做了简单体验。整体接入过程不复杂，至少从“能不能开始用”这个层面来说，门槛已经不高了。</p><p><img src="/blog/assets/glm5-1-02.png"></p><p>先看接入入口，主流 Agent 工具链已经开始给出对应支持。</p><p><img src="/blog/assets/glm5-1-03.png"></p><p>再往下是模型选择和接入配置，整体思路已经比较标准化。</p><p><img src="/blog/assets/glm5-1-04.png"></p><p>这一步更接近日常使用场景：不是单纯“能不能配”，而是“能不能顺手接进现有工作流”。</p><p><img src="/blog/assets/glm5-1-05.png"></p><p>从实际界面来看，官方这次对常见 Agent App 的兼容度已经不像早期那样零散了。</p><p><img src="/blog/assets/glm5-1-06.png"></p><p>至少在演示层面，<code>OpenCode</code> 这类工具已经可以把 <code>GLM 5.1</code> 放进正常使用链路里。</p><h3 id="第一感受：贵，真的贵"><a href="#第一感受：贵，真的贵" class="headerlink" title="第一感受：贵，真的贵"></a>第一感受：贵，真的贵</h3><p>我目前使用时间不长，所以还谈不上对模型能力有多深入的判断。</p><p>但有一点感受非常直接：<code>token</code> 消耗确实让我吃了一惊。</p><p>有些模型在宣传期看起来很强，真正放进 Agent 工作流里跑起来以后，才会意识到什么叫“花钱如流水”。尤其是当上下文变长、调用次数变多、任务开始反复试错时，成本会迅速堆起来。</p><p>这也是为什么很多时候，模型能力不能只看“上限”，还要看它是否适合进入你的日常使用场景。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果只说结论，我现在的看法是：</p><ul><li><code>GLM 5.1</code> 对 <code>Code Plan</code> 用户开放，本身是一个值得欢迎的补齐。</li><li>真正跑起来之后，成本感知比我预期得更强。</li><li>这类模型更适合用在复杂任务、长链路任务和真正需要它能力上限的场景里。</li></ul><p>至于那些非常轻量的需求，比如：</p><ul><li>查天气</li><li>写一点简单脚本</li><li>做基础问答</li><li>处理低复杂度编程任务</li></ul><p>未必需要把最贵的模型顶上去。</p><p>更现实的做法可能还是那句老话：<code>好钢用在刀刃上</code>。</p><p>把高成本模型留给真正复杂、真正有价值的任务，其他场景让更便宜的大模型去接手，整体体验和成本控制都会更合理一些。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> glm </tag>
+            
+            <tag> agent </tag>
+            
+            <tag> opencode </tag>
+            
+            <tag> 大模型 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
