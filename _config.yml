@@ -105,3 +105,14 @@ deploy:
   type: git
   repo: git@github.com:1241262510/blog.git
   branch: gh-pages
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  rel: false
+
+# RSS Feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20

@@ -5,6 +5,7 @@ navbar:
     - { key: "归档", link: "/archives/" }
     - { key: "分类", link: "/categories/" }
     - { key: "标签", link: "/tags/" }
+    - { key: "RSS", link: "/atom.xml", icon: "iconfont icon-rss" }
 
 search:
   enable: true
