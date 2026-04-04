@@ -19,6 +19,9 @@ fun_features:
 custom_css:
   - /css/custom.css
 
+custom_js:
+  - /js/busuanzi.js
+
 index:
   banner_img: /img/banner-desk.svg
   banner_img_height: 85
@@ -41,12 +44,21 @@ index:
     date: true
     category: true
     tag: true
+    views: true
 
 post:
   banner_img: /img/banner-desk.svg
   banner_img_height: 55
   banner_mask_alpha: 0.52
   default_index_img: /img/banner-desk.svg
+  meta:
+    views: true
+
+statistics:
+  enable: true
+  post_views:
+    enable: true
+    service: busuanzi
 
 archive:
   banner_img: /img/banner-desk.svg
