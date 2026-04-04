@@ -19,9 +19,6 @@ fun_features:
 custom_css:
   - /css/custom.css
 
-custom_js:
-  - /js/busuanzi.js
-
 index:
   banner_img: /img/banner-desk.svg
   banner_img_height: 85
@@ -51,14 +48,9 @@ post:
   banner_img_height: 55
   banner_mask_alpha: 0.52
   default_index_img: /img/banner-desk.svg
-  meta:
-    views: true
-
-statistics:
-  enable: true
-  post_views:
+  views:
     enable: true
-    service: busuanzi
+    source: "busuanzi"
 
 archive:
   banner_img: /img/banner-desk.svg
@@ -98,6 +90,9 @@ color:
   scrollbar_hover_color_dark: "#93a0b0"
 
 footer:
+  statistics:
+    enable: true
+    source: "busuanzi"
   content: '
     <span>Powered by Hexo & Fluid</span>
   '
