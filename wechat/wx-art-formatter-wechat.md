@@ -1,16 +1,3 @@
----
-title: 我试了一个开源公众号排版工具：wx-art-formatter
-date: 2026-04-05 22:10:00
-tags:
-  - 微信公众号
-  - 排版
-  - 开源工具
-  - markdown
-categories:
-  - AI 工具
-description: 一次真实体验：wx-art-formatter 如何把 Markdown 和富文本快速转成可直接粘贴到公众号后台的排版内容。
----
-
 ## 先说结论
 
 如果你经常写公众号，`wx-art-formatter` 值得试一次。  
