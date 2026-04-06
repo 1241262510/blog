@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://1241262510.github.io/blog/2026/04/05/wx-art-formatter-github-version/</loc>
+    
+    <lastmod>2026-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/2026/04/05/wx-art-formatter-wechat-version/</loc>
+    
+    <lastmod>2026-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://1241262510.github.io/blog/2026/04/04/claude-code-payment-setup-guide/</loc>
     
     <lastmod>2026-04-04</lastmod>
@@ -20,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://1241262510.github.io/blog/2026/03/30/android-mac-syncthing-sync-workflow/</loc>
+    <loc>https://1241262510.github.io/blog/2026/03/31/android-mac-syncthing-sync-workflow/</loc>
     
     <lastmod>2026-03-31</lastmod>
     
@@ -58,7 +76,7 @@
 
   <url>
     <loc>https://1241262510.github.io/blog</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -66,175 +84,224 @@
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/markcopy/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/markdown/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/%E5%86%99%E4%BD%9C%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/glm/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/agent/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/opencode/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/ai/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/linux/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/syncthing/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/android/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/mac/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/C/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/Delphi/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/%E4%BE%AF%E6%8D%B7/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/%E6%8A%80%E6%9C%AF%E6%88%90%E9%95%BF/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/%E9%95%BF%E6%9C%9F%E4%B8%BB%E4%B9%89/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/Claude-Code/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/%E6%94%AF%E4%BB%98%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/%E4%BB%A3%E7%90%86/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/VPN/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/%E9%93%BE%E5%BC%8F%E4%BB%A3%E7%90%86/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/glm/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/agent/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/opencode/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/ai/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/linux/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/C/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/Delphi/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E4%BE%AF%E6%8D%B7/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E6%8A%80%E6%9C%AF%E6%88%90%E9%95%BF/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E9%95%BF%E6%9C%9F%E4%B8%BB%E4%B9%89/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/wechat/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/formatter/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/vue/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/typescript/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E6%8E%92%E7%89%88/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -243,28 +310,35 @@
   
   <url>
     <loc>https://1241262510.github.io/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/categories/AI-%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/categories/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://1241262510.github.io/blog/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/categories/AI-%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/categories/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/categories/%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

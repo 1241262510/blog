@@ -1,0 +1,968 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
+  <link rel="icon" href="/blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2b3340">
+  <meta name="author" content="凌晨两点的书桌">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="如果你经常要把安卓手机截图同步到 Mac，Syncthing 这套方案比手动传图更省事，我把安装、配对和目录设置流程整理成了一篇。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安卓手机与 Mac 传截图，Syncthing 是我用过更省事的方案">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/03/31/android-mac-syncthing-sync-workflow/index.html">
+<meta property="og:site_name" content="凌晨两点的书桌">
+<meta property="og:description" content="如果你经常要把安卓手机截图同步到 Mac，Syncthing 这套方案比手动传图更省事，我把安装、配对和目录设置流程整理成了一篇。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png">
+<meta property="article:published_time" content="2026-03-31T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T04:26:09.579Z">
+<meta property="article:author" content="凌晨两点的书桌">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="mac">
+<meta property="article:tag" content="syncthing">
+<meta property="article:tag" content="文件同步">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png">
+  
+  
+  
+  <title>安卓手机与 Mac 传截图，Syncthing 是我用过更省事的方案 - 凌晨两点的书桌</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1241262510.github.io","root":"/blog/","version":"1.9.9","typing":{"enable":true,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/blog/atom.xml" title="凌晨两点的书桌" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 55vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>凌晨两点的书桌</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/atom.xml" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-rss"></i>
+                  <span>RSS</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/banner-desk.svg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.52)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="安卓手机与 Mac 传截图，Syncthing 是我用过更省事的方案"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-31 10:00" pubdate>
+          2026年3月31日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="openkounter-page-views-container" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          阅读 <span id="openkounter-page-views"></span>
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">安卓手机与 Mac 传截图，Syncthing 是我用过更省事的方案</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="手机与-Mac-之间，截图怎么传更高效"><a href="#手机与-Mac-之间，截图怎么传更高效" class="headerlink" title="手机与 Mac 之间，截图怎么传更高效"></a>手机与 Mac 之间，截图怎么传更高效</h2><p>手机和电脑之间传图、传截图，看起来是小事，但一旦变成高频动作，效率差别就会非常明显。</p>
+<p>常见办法大致有这几种：</p>
+<ul>
+<li>微信文件传输助手</li>
+<li>Edge <code>Drop</code></li>
+<li><code>Syncthing</code></li>
+<li>其他同步工具</li>
+</ul>
+<p>前两种都能用，但如果是长期高频同步，我最后最推荐的还是 <code>Syncthing</code>。</p>
+<h2 id="为什么重点推荐-Syncthing"><a href="#为什么重点推荐-Syncthing" class="headerlink" title="为什么重点推荐 Syncthing"></a>为什么重点推荐 Syncthing</h2><p>最开始我对 <code>Syncthing</code> 没什么深刻印象，甚至一度觉得不如 <code>Drop</code> 来得直接。上次折腾它，还是在 NAS 上同步手机文件，后来就没有继续深入使用。</p>
+<p>但这次重新实践下来，结论完全变了。</p>
+<p>如果只是偶尔传一两张图，<code>Drop</code> 确实够用；但如果截图、文档、图片需要频繁同步到 Mac，<code>Syncthing</code> 的体验会明显更高效。</p>
+<p>以截图为例，两种工作流对比很直观：</p>
+<ul>
+<li><code>Drop</code>：截图，复制或选中，发送到 Drop，Mac 端接收</li>
+<li><code>Syncthing</code>：截图，接收</li>
+</ul>
+<p>差别就在这里。前者依赖一次次手动操作，后者更接近自动同步。</p>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>整个搭建过程并不复杂，主要就是四步：</p>
+<ul>
+<li>安装软件</li>
+<li>设置设备 ID</li>
+<li>设置同步目录</li>
+<li>开始同步</li>
+</ul>
+<h2 id="软件安装与基本设置"><a href="#软件安装与基本设置" class="headerlink" title="软件安装与基本设置"></a>软件安装与基本设置</h2><h3 id="Mac-端"><a href="#Mac-端" class="headerlink" title="Mac 端"></a>Mac 端</h3><p>Mac 上可以直接通过 <code>brew</code> 安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install syncthing<br></code></pre></td></tr></table></figure>
+
+<p>安装完成后运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">syncthing<br></code></pre></td></tr></table></figure>
+
+<p>软件启动后，会提供一个本地 GUI 管理页面：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://127.0.0.1:8384<br></code></pre></td></tr></table></figure>
+
+<p>下面这张图就是 <code>Syncthing</code> 在 Mac 端的管理界面：</p>
+<p><img src="/blog/assets/1e6629380d08cecb5b971edffc995384ab19de5a.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>在 Mac 端 GUI 页面里，进入“操作”“设置”，可以继续调整默认值。</p>
+<p><img src="/blog/assets/f16b25907b773410d3ba00ddd4a7aeea1d38b4fe.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>“编辑文件夹默认值”里，建议把 Mac 端的文件夹类型设成“只接收”。这样同步方向就是从手机到 Mac，逻辑会更清晰。</p>
+<p><img src="/blog/assets/4977b82a64439c32e5264bc04ae551d55cdf82e5.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>常规选项大多保持默认即可。</p>
+<p><img src="/blog/assets/ffb7c09528e61c49a129be39460e00c94827d1e6.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>这里最重要的是“文件夹路径”，也就是以后 Mac 用来接收手机截图或文件的目录。</p>
+<p><img src="/blog/assets/bfce0d71b611e59a5c6c544a163ceb8931595b04.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>比如手机上刚截了一张图，同步完成后，这张图就应该立刻出现在 Mac 指定的目录里。</p>
+<p><img src="/blog/assets/7c3302eade017e781931ab2916d7fc92a812dafb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>设备默认值也可以顺手改一下名字，比如改成 <code>mac mini</code> 或者自己更容易识别的设备名，后面手机和 Mac 配对时会直观很多。</p>
+<p><img src="/blog/assets/bbe75b14fcbcaf5efc5c377cebe676b8495aa1bb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>在主界面中，还可以继续添加更多同步文件夹。</p>
+<h2 id="手机端设置"><a href="#手机端设置" class="headerlink" title="手机端设置"></a>手机端设置</h2><h3 id="安装-Syncthing"><a href="#安装-Syncthing" class="headerlink" title="安装 Syncthing"></a>安装 Syncthing</h3><p>安卓端应用商店里就能搜到 <code>Syncthing</code> 或 <code>Syncthing-Fork</code>。</p>
+<p><img src="/blog/assets/71be92d66b7f341994eb8fc4deb49039b5a612bf.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>如果是新配置，可以直接点“+”创建同步文件夹。</p>
+<p><img src="/blog/assets/d2f433f417276cec8aab8e2fdde6b3f0cb06523a.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>和 Mac 端类似，手机端也需要设置同步目录位置。同步模式建议设成“只发送”，其他选项一般保持默认即可。</p>
+<p><img src="/blog/assets/33081c11cc2ed22c49addabcf6e4c21ce4f96765.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>我手机上的截图目录就在这里。大多数安卓手机的截图目录一般在下面两个位置之一：</p>
+<ul>
+<li><code>Pictures/Screenshots</code></li>
+<li><code>DCIM/Screenshots</code></li>
+</ul>
+<p>具体路径还是要以自己手机的实际情况为准。目录确定之后，后面的同步就会轻松很多。</p>
+<h2 id="设备配对"><a href="#设备配对" class="headerlink" title="设备配对"></a>设备配对</h2><p>同步目录设置好之后，还需要把手机和 Mac 配对起来。</p>
+<p>在手机端，从左侧菜单进入“显示设备 ID”，这里会显示二维码和设备信息。</p>
+<p><img src="/blog/assets/726c744b1e3a3ac37821ef387c5656dcae5d67e9.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>更顺手的方式是：Mac 显示二维码，手机直接扫码。</p>
+<h3 id="Mac-端操作"><a href="#Mac-端操作" class="headerlink" title="Mac 端操作"></a>Mac 端操作</h3><p>Mac 主界面进入“操作”“显示 ID”。</p>
+<p><img src="/blog/assets/8266fa0f2edd4d91e004394cc5992dec40e74c7e.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/03fb1c61b7efbe71c627758fb3354b844a127973.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>这就是 Mac 端的二维码，直接用手机扫码就可以完成配对。</p>
+<h3 id="手机端操作"><a href="#手机端操作" class="headerlink" title="手机端操作"></a>手机端操作</h3><p>手机端进入“设备”，开始进行硬件链接。</p>
+<p><img src="/blog/assets/50379fd7e733751970efb43c0db078bfb74677be.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>随后扫码完成设备连接。</p>
+<p>做完这一步之后，手机和 Mac 就可以开始单向同步了，手机端的数据会自动进入 Mac 的接收目录。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看起来配置步骤稍微有一点多，但真正核心的工作其实只有三件事：</p>
+<ul>
+<li>设置同步目录</li>
+<li>设置设备连接</li>
+<li>把同步方向配置清楚</li>
+</ul>
+<p>其余选项大多可以保持默认。</p>
+<p>如果你用的是苹果手机，系统本身的同步能力已经比较强；但如果是安卓和 Mac 的组合，<code>Syncthing</code> 的灵活性会更明显。</p>
+<p>它的优势不只是“能同步”，而是同步动作快、自动化程度高，而且适配范围非常广。</p>
+<p>尤其是截图、文档、图片这种高频小文件，体验提升会非常明显。真正常用起来之后，会发现同步几乎是按秒发生的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/syncthing/" class="print-no-link">#syncthing</a>
+      
+        <a href="/blog/tags/android/" class="print-no-link">#android</a>
+      
+        <a href="/blog/tags/mac/" class="print-no-link">#mac</a>
+      
+        <a href="/blog/tags/%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/" class="print-no-link">#文件同步</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>安卓手机与 Mac 传截图，Syncthing 是我用过更省事的方案</div>
+      <div>https://1241262510.github.io/blog/2026/03/31/android-mac-syncthing-sync-workflow/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>凌晨两点的书桌</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/blog/2026/04/03/programming-golden-age-reflection/" title="风物长宜放眼量：编程黄金时代的追忆与启示">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">风物长宜放眼量：编程黄金时代的追忆与启示</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2026/03/29/opencode-install-and-ai-workflow/" title="装上 OpenCode 之后，我重新理解了“装软件”">
+                        <span class="hidden-mobile">装上 OpenCode 之后，我重新理解了“装软件”</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>Powered by Hexo & Fluid</span> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="openkounter-site-pv-container" style="display: none">
+        总访问 
+        <span id="openkounter-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="openkounter-site-uv-container" style="display: none">
+        总访客 
+        <span id="openkounter-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/blog/js/openkounter.js" ></script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

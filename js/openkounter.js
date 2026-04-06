@@ -99,6 +99,30 @@
     return true;
   }
 
+  function normalizePageTarget(path) {
+    const rawPath = String(path || '/');
+    const withoutHash = rawPath.split('#')[0];
+    const withoutQuery = withoutHash.split('?')[0];
+    const normalized = decodeURI(withoutQuery).replace(/\/*(index\.html)?$/, '/');
+    return normalized || '/';
+  }
+
+  // 校验是否为有效的页面阅读（同一页面同一会话内只计一次）
+  function validPagePV(path) {
+    const key = `OpenKounter_PV_Flag_${encodeURIComponent(normalizePageTarget(path))}`;
+
+    try {
+      if (sessionStorage.getItem(key) === '1') {
+        return false;
+      }
+      sessionStorage.setItem(key, '1');
+    } catch (e) {
+      // sessionStorage 不可用时默认计为 PV
+      console.warn('OpenKounter: sessionStorage is not available');
+    }
+    return true;
+  }
+
   function addCount() {
     const enableIncr = CONFIG.web_analytics.enable && (!window.Fluid || !Fluid.ctx.dnt) && validHost();
     const getterArr = [];
@@ -142,15 +166,16 @@
     if (viewCtn) {
       const pathConfig = CONFIG.web_analytics.openkounter.path || 'window.location.pathname';
       const path = eval(pathConfig);
-      const target = decodeURI(path.replace(/\/*(index.html)?$/, '/'));
+      const target = normalizePageTarget(path);
 
       const viewGetter = getRecord(target).then((record) => {
-        if (enableIncr) {
+        const incrPV = validPagePV(target) && enableIncr;
+        if (incrPV) {
           incrArr.push(buildIncrement(record.objectId));
         }
         const ele = document.querySelector('#openkounter-page-views');
         if (ele) {
-          ele.innerText = (record.time || 0) + (enableIncr ? 1 : 0);
+          ele.innerText = (record.time || 0) + (incrPV ? 1 : 0);
           viewCtn.style.display = 'inline';
         }
       });
@@ -170,4 +195,3 @@
   addCount();
 
 })(window, document);
-
