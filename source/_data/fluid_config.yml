@@ -24,9 +24,7 @@ web_analytics:
   enable: true
   follow_dnt: true
   openkounter:
-    server_url: https://open-kounter.mintimate.cn
-    path: window.location.pathname
-    ignore_local: true
+    server_url: ""
 
 index:
   banner_img: /img/banner-desk.svg
@@ -50,7 +48,7 @@ index:
     date: true
     category: true
     tag: true
-    views: true
+    views: false
 
 post:
   banner_img: /img/banner-desk.svg
@@ -59,9 +57,7 @@ post:
   default_index_img: /img/banner-desk.svg
   meta:
     views:
-      enable: true
-      source: "openkounter"
-      format: "阅读 {}"
+      enable: false
 
 archive:
   banner_img: /img/banner-desk.svg
@@ -102,10 +98,5 @@ color:
 
 footer:
   statistics:
-    enable: true
-    source: "openkounter"
-    pv_format: "总访问 {}"
-    uv_format: "总访客 {}"
-  content: '
-    <span>Powered by Hexo & Fluid</span>
-  '
+    enable: false
+  content: '<span>Powered by Hexo & Fluid</span>'
