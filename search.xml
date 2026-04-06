@@ -37,37 +37,6 @@
     
     
     <entry>
-      <title>我试了一个开源公众号排版工具：wx-art-formatter</title>
-      <link href="/blog/2026/04/05/wx-art-formatter-wechat-version/"/>
-      <url>/blog/2026/04/05/wx-art-formatter-wechat-version/</url>
-      
-        <content type="html"><![CDATA[<h2 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h2><p>如果你经常写公众号，<code>wx-art-formatter</code> 值得试一次。<br>它不是“又一个编辑器”，而是把你已经写好的内容，快速变成能在公众号后台稳定展示的版式。</p><p>项目地址：<code>https://github.com/bingo906/wx-art-formatter</code></p><h2 id="我为什么会关注它"><a href="#我为什么会关注它" class="headerlink" title="我为什么会关注它"></a>我为什么会关注它</h2><p>很多时候，写作本身不难，难的是“发出去之前那 30 分钟”。</p><ul><li>标题样式、段落间距、引用块要手动调</li><li>代码块一粘贴就变形</li><li>预览看着不错，粘到公众号后台又变样</li></ul><p><code>wx-art-formatter</code> 解决的是这个发布环节的低效问题：<br>输入内容 -&gt; 选择模板 -&gt; 一键复制 -&gt; 贴进公众号后台。</p><h2 id="实际用了之后，我觉得有价值的点"><a href="#实际用了之后，我觉得有价值的点" class="headerlink" title="实际用了之后，我觉得有价值的点"></a>实际用了之后，我觉得有价值的点</h2><h3 id="1-输入方式足够灵活"><a href="#1-输入方式足够灵活" class="headerlink" title="1) 输入方式足够灵活"></a>1) 输入方式足够灵活</h3><ul><li>支持 Markdown 编辑</li><li>支持直接粘贴富文本</li></ul><p>你可以继续用自己熟悉的写作方式，不需要为了工具改变流程。</p><h3 id="2-模板和主题色可快速切换"><a href="#2-模板和主题色可快速切换" class="headerlink" title="2) 模板和主题色可快速切换"></a>2) 模板和主题色可快速切换</h3><ul><li>内置 17 套模板</li><li>支持主题色预设 + 自定义</li></ul><p>对运营同学来说，这一点很关键：能快速做出“有账号风格”的文章，而不是每次从零调样式。</p><h3 id="3-预览和导出链路完整"><a href="#3-预览和导出链路完整" class="headerlink" title="3) 预览和导出链路完整"></a>3) 预览和导出链路完整</h3><ul><li>实时预览</li><li>宽屏 &#x2F; 全屏查看</li><li>一键复制 <code>text/html</code></li><li>支持导出长图、导出 PDF</li></ul><p>如果你既发公众号，也要发知识库或对外汇报材料，这套链路会很顺手。</p><h2 id="它为什么能在公众号里保留样式"><a href="#它为什么能在公众号里保留样式" class="headerlink" title="它为什么能在公众号里保留样式"></a>它为什么能在公众号里保留样式</h2><p>公众号编辑器会过滤很多样式写法，尤其是 <code>&lt;style&gt;</code> 和 class。<br>这个项目的思路是把样式内联到每个元素上，用更“微信友好”的方式输出 HTML。</p><p>这也是它和普通网页编辑器最大的区别：<br>目标不是网页渲染，而是“复制到公众号后台后依然稳定”。</p><h2 id="我的建议用法"><a href="#我的建议用法" class="headerlink" title="我的建议用法"></a>我的建议用法</h2><p>你可以先按这个最小流程跑一遍：</p><ol><li>写好 Markdown（或直接贴已有内容）</li><li>选一个模板 + 调主题色</li><li>点一键复制，粘贴到公众号后台</li><li>最后只做少量微调再发布</li></ol><h2 id="适合什么人"><a href="#适合什么人" class="headerlink" title="适合什么人"></a>适合什么人</h2><ul><li>个人号作者：想把排版时间压到最低</li><li>团队内容运营：需要更统一的视觉风格</li><li>技术写作者：经常要发带代码块的内容</li></ul><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>如果你正在维护公众号，建议先拿一篇旧文试试。<br>对比一下“手工排版”与“工具排版”的耗时差，差异会非常直观。</p><p>如果你愿意，我下一篇可以继续写：<br>“我最常用的 3 套模板 + 分别适合什么类型内容”。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> AI 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> markdown </tag>
-            
-            <tag> 微信公众号 </tag>
-            
-            <tag> 排版 </tag>
-            
-            <tag> 开源工具 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>别让 20 刀秒封！手把手教你搭建 Claude Code 顶级支付与开发环境</title>
       <link href="/blog/2026/04/04/claude-code-payment-setup-guide/"/>
       <url>/blog/2026/04/04/claude-code-payment-setup-guide/</url>
