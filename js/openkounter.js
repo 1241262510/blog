@@ -57,11 +57,21 @@
       })
       .catch(error => {
         console.error('OpenKounter increment error:', error);
+        return null;
       });
   }
 
   function buildIncrement(objectId) {
     return { target: objectId };
+  }
+
+  function incrementDisplay(selector) {
+    const el = document.querySelector(selector);
+    if (!el) {
+      return;
+    }
+    const current = parseInt(el.innerText, 10) || 0;
+    el.innerText = current + 1;
   }
 
   function validHost() {
@@ -120,12 +130,14 @@
     const enableIncr = CONFIG.web_analytics.enable && (!window.Fluid || !Fluid.ctx.dnt) && validHost();
     const getterArr = [];
     const incrArr = [];
+    const displayUpdates = [];
 
     const pvCtn = document.querySelector('#openkounter-site-pv-container');
     if (pvCtn) {
       const pvGetter = getRecord('site-pv').then((record) => {
         if (enableIncr) {
           incrArr.push(buildIncrement(record.objectId));
+          displayUpdates.push('#openkounter-site-pv');
         }
         const ele = document.querySelector('#openkounter-site-pv');
         if (ele) {
@@ -142,6 +154,7 @@
         const incrUV = validUV() && enableIncr;
         if (incrUV) {
           incrArr.push(buildIncrement(record.objectId));
+          displayUpdates.push('#openkounter-site-uv');
         }
         const ele = document.querySelector('#openkounter-site-uv');
         if (ele) {
@@ -169,6 +182,7 @@
       const viewGetter = getRecord(target).then((record) => {
         if (incrPV) {
           incrArr.push(buildIncrement(record.objectId));
+          displayUpdates.push('#openkounter-page-views');
         }
         const ele = document.querySelector('#openkounter-page-views');
         if (ele) {
@@ -181,11 +195,11 @@
 
     Promise.all(getterArr).then(() => {
       if (enableIncr && incrArr.length > 0) {
-        increment(incrArr).then(() => {
-          document.querySelectorAll('#openkounter-site-pv, #openkounter-site-uv, #openkounter-page-views').forEach(el => {
-            const current = parseInt(el.innerText, 10) || 0;
-            el.innerText = current + 1;
-          });
+        increment(incrArr).then(result => {
+          if (!result) {
+            return;
+          }
+          displayUpdates.forEach(incrementDisplay);
         });
       }
     }).catch(error => {
