@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * Patch script for openkounter.js
  * Adds 24-hour PV limit per page (same as UV)

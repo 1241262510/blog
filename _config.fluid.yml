@@ -20,6 +20,14 @@ fun_features:
 custom_css:
   - /css/custom.css
 
+web_analytics:
+  enable: true
+  follow_dnt: true
+  openkounter:
+    server_url: https://open-kounter.mintimate.cn
+    path: window.location.pathname
+    ignore_local: true
+
 index:
   banner_img: /img/banner-desk.svg
   banner_img_height: 85
@@ -52,7 +60,8 @@ post:
   meta:
     views:
       enable: true
-      source: "busuanzi"
+      source: "openkounter"
+      format: "阅读 {}"
 
 archive:
   banner_img: /img/banner-desk.svg
@@ -94,7 +103,9 @@ color:
 footer:
   statistics:
     enable: true
-    source: "busuanzi"
+    source: "openkounter"
+    pv_format: "总访问 {}"
+    uv_format: "总访客 {}"
   content: '
     <span>Powered by Hexo & Fluid</span>
   '
