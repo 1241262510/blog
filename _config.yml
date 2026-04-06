@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://1241262510.github.io/blog
+url: https://1241262510.github.io/blog/
 root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -111,6 +111,8 @@ deploy:
 sitemap:
   path: sitemap.xml
   rel: false
+  tags: false
+  categories: false
 
 # RSS Feed
 feed:

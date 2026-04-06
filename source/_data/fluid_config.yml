@@ -26,6 +26,9 @@ web_analytics:
   openkounter:
     server_url: ""
 
+canonical:
+  enable: true
+
 index:
   banner_img: /img/banner-desk.svg
   banner_img_height: 85
