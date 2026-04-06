@@ -193,20 +193,6 @@
   </url>
   
   <url>
-    <loc>https://1241262510.github.io/blog/tags/ai/</loc>
-    <lastmod>2026-04-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/tags/linux/</loc>
-    <lastmod>2026-04-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://1241262510.github.io/blog/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -243,6 +229,20 @@
   
   <url>
     <loc>https://1241262510.github.io/blog/tags/%E9%95%BF%E6%9C%9F%E4%B8%BB%E4%B9%89/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/ai/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/tags/linux/</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
