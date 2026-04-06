@@ -56,6 +56,12 @@ post:
   banner_mask_alpha: 0.52
   default_index_img: /img/banner-desk.svg
   meta:
+    wordcount:
+      enable: true
+    min2read:
+      enable: true
+      awl: 2
+      wpm: 60
     views:
       enable: false
 
