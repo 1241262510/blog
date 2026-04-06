@@ -4,14 +4,25 @@
   'use strict';
 
   const API_SERVER = (CONFIG.web_analytics.openkounter && CONFIG.web_analytics.openkounter.server_url) || '';
+  const REQUEST_TIMEOUT = 4000;
 
   if (!API_SERVER) {
     console.warn('OpenKounter: server_url is not configured');
     return;
   }
 
+  function fetchWithTimeout(url, options) {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+
+    return fetch(url, Object.assign({}, options, { signal: controller.signal }))
+      .finally(() => {
+        window.clearTimeout(timer);
+      });
+  }
+
   function getRecord(target) {
-    return fetch(`${API_SERVER}/api/counter?target=${encodeURIComponent(target)}`)
+    return fetchWithTimeout(`${API_SERVER}/api/counter?target=${encodeURIComponent(target)}`)
       .then(resp => {
         if (!resp.ok) {
           throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
@@ -35,7 +46,7 @@
       return Promise.resolve([]);
     }
 
-    return fetch(`${API_SERVER}/api/counter`, {
+    return fetchWithTimeout(`${API_SERVER}/api/counter`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -72,6 +83,18 @@
     }
     const current = parseInt(el.innerText, 10) || 0;
     el.innerText = current + 1;
+  }
+
+  function revealCounter(containerSelector, valueSelector) {
+    const container = document.querySelector(containerSelector);
+    if (container) {
+      container.style.display = 'inline';
+    }
+
+    const value = document.querySelector(valueSelector);
+    if (value && !value.innerText.trim()) {
+      value.innerText = '0';
+    }
   }
 
   function validHost() {
@@ -134,6 +157,7 @@
 
     const pvCtn = document.querySelector('#openkounter-site-pv-container');
     if (pvCtn) {
+      revealCounter('#openkounter-site-pv-container', '#openkounter-site-pv');
       const pvGetter = getRecord('site-pv').then((record) => {
         if (enableIncr) {
           incrArr.push(buildIncrement(record.objectId));
@@ -142,7 +166,6 @@
         const ele = document.querySelector('#openkounter-site-pv');
         if (ele) {
           ele.innerText = (record.time || 0);
-          pvCtn.style.display = 'inline';
         }
       });
       getterArr.push(pvGetter);
@@ -150,6 +173,7 @@
 
     const uvCtn = document.querySelector('#openkounter-site-uv-container');
     if (uvCtn) {
+      revealCounter('#openkounter-site-uv-container', '#openkounter-site-uv');
       const uvGetter = getRecord('site-uv').then((record) => {
         const incrUV = validUV() && enableIncr;
         if (incrUV) {
@@ -159,7 +183,6 @@
         const ele = document.querySelector('#openkounter-site-uv');
         if (ele) {
           ele.innerText = (record.time || 0);
-          uvCtn.style.display = 'inline';
         }
       });
       getterArr.push(uvGetter);
@@ -167,6 +190,7 @@
 
     const viewCtn = document.querySelector('#openkounter-page-views-container');
     if (viewCtn) {
+      revealCounter('#openkounter-page-views-container', '#openkounter-page-views');
       let path;
       try {
         const pathConfig = CONFIG.web_analytics.openkounter.path || 'window.location.pathname';
@@ -187,7 +211,6 @@
         const ele = document.querySelector('#openkounter-page-views');
         if (ele) {
           ele.innerText = (record.time || 0);
-          viewCtn.style.display = 'inline';
         }
       });
       getterArr.push(viewGetter);
