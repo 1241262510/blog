@@ -48,6 +48,30 @@
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
 }
 
+#board .col-12.col-md-10.m-auto > h1[style] {
+  color: #1d2430;
+  display: block !important;
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 1.2rem 0 0.75rem;
+  text-align: center;
+}
+
+#board .col-12.col-md-10.m-auto > h1[style]::after {
+  color: #5d6674;
+  content: "凌晨两点的书桌，记录编程、工具使用与学习笔记。";
+  display: block;
+  font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+  margin: 0.85rem auto 1.6rem;
+  max-width: 42rem;
+}
+
 .index-card {
   background:
     linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(252, 248, 241, 0.98)),
@@ -186,6 +210,16 @@
   .banner-text .typed-cursor {
     font-size: 1.12rem;
     letter-spacing: 0.04em;
+  }
+
+  #board .col-12.col-md-10.m-auto > h1[style] {
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    margin-top: 0.4rem;
+  }
+
+  #board .col-12.col-md-10.m-auto > h1[style]::after {
+    font-size: 0.95rem;
   }
 
   #navbar .container {
