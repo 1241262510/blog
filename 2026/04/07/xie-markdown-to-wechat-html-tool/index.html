@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/05/wx-art-formatter-github-version/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/07/xie-markdown-to-wechat-html-tool/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,28 +21,27 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="从工程视角拆解 wx-art-formatter 的核心思路：为什么内联样式是公众号排版稳定性的关键。">
+    <meta name="description" content="记录 xie 这个 Markdown 转公众号 HTML 工具的安装与使用，包括 pipx 安装、依赖注入和本地 Web 方式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wx-art-formatter：一个面向微信公众号场景的排版工程实践">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/05/wx-art-formatter-github-version/index.html">
+<meta property="og:title" content="xie：一个 Markdown 转公众号 HTML 的小工具实践">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/07/xie-markdown-to-wechat-html-tool/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="从工程视角拆解 wx-art-formatter 的核心思路：为什么内联样式是公众号排版稳定性的关键。">
+<meta property="og:description" content="记录 xie 这个 Markdown 转公众号 HTML 工具的安装与使用，包括 pipx 安装、依赖注入和本地 Web 方式。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/ad6b632ec9ec3969733bcd1ba33511b90960d1d6.png">
-<meta property="article:published_time" content="2026-04-06T02:15:00.000Z">
-<meta property="article:modified_time" content="2026-04-07T14:21:40.095Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/SCR-20260406-uaam.png">
+<meta property="article:published_time" content="2026-04-07T14:11:00.000Z">
+<meta property="article:modified_time" content="2026-04-07T14:14:21.349Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="formatter">
 <meta property="article:tag" content="markdown">
-<meta property="article:tag" content="typescript">
-<meta property="article:tag" content="vue">
-<meta property="article:tag" content="wechat">
+<meta property="article:tag" content="pipx">
+<meta property="article:tag" content="xie">
+<meta property="article:tag" content="微信公众号">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/ad6b632ec9ec3969733bcd1ba33511b90960d1d6.png">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/SCR-20260406-uaam.png">
   
   
   
-  <title>wx-art-formatter：一个面向微信公众号场景的排版工程实践 - 凌晨两点的书桌</title>
+  <title>xie：一个 Markdown 转公众号 HTML 的小工具实践 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -330,7 +329,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="wx-art-formatter：一个面向微信公众号场景的排版工程实践"></span>
+            <span id="subtitle" data-typed-text="xie：一个 Markdown 转公众号 HTML 的小工具实践"></span>
           
         </div>
 
@@ -341,8 +340,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-05 22:15" pubdate>
-          2026年4月5日 晚上
+        <time datetime="2026-04-07 10:11" pubdate>
+          2026年4月7日 上午
         </time>
       </span>
     
@@ -353,7 +352,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          894 字
         
       </span>
     
@@ -364,7 +363,7 @@
         
         
         
-          10 分钟
+          8 分钟
         
       </span>
     
@@ -403,58 +402,51 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">wx-art-formatter：一个面向微信公众号场景的排版工程实践</h1>
+            <h1 id="seo-header">xie：一个 Markdown 转公众号 HTML 的小工具实践</h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/blog/assets/ad6b632ec9ec3969733bcd1ba33511b90960d1d6.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>微信公众号编辑器对 HTML&#x2F;CSS 有明确限制：<br><code>&lt;style&gt;</code> 与 class 往往会被过滤，导致“编辑器里很好看，粘贴后失真”。</p>
-<p><code>wx-art-formatter</code> 的目标很明确：<br>在复制到公众号后台后，尽可能保留排版效果。</p>
-<p>Repository: <code>https://github.com/bingo906/wx-art-formatter</code></p>
-<h2 id="Key-Features"><a href="#Key-Features" class="headerlink" title="Key Features"></a>Key Features</h2><ul>
-<li>Dual input: Markdown + Rich Text</li>
-<li>17 built-in templates with categorized styles</li>
-<li>Theme color presets + custom picker</li>
-<li>Real-time preview with wide&#x2F;fullscreen modes</li>
-<li>Copy as <code>text/html</code> for WeChat editor</li>
-<li>Export to PNG long image and PDF</li>
-<li>Auto TOC generation and code highlighting</li>
-</ul>
-<h2 id="Core-Technical-Idea"><a href="#Core-Technical-Idea" class="headerlink" title="Core Technical Idea"></a>Core Technical Idea</h2><p>核心思路不是“做一个 Markdown 编辑器”，而是“针对微信规则生成可落地输出”。</p>
-<p>处理链路可以概括为：</p>
-<ol>
-<li>Parse user input (Markdown or rich text)</li>
-<li>Render semantic HTML</li>
-<li>Inject presentation styles as inline styles</li>
-<li>Copy rendered HTML to clipboard (<code>text/html</code>)</li>
-<li>Paste into WeChat editor with higher style retention</li>
-</ol>
-<p>这条链路的关键点在第 3 步：<br>把模板样式内联，规避微信对 <code>&lt;style&gt;</code>&#x2F;class 的过滤影响。</p>
-<h2 id="Stack-Snapshot"><a href="#Stack-Snapshot" class="headerlink" title="Stack Snapshot"></a>Stack Snapshot</h2><ul>
-<li>Vue 3 + TypeScript</li>
-<li>Vite</li>
-<li>Pinia</li>
-<li>CodeMirror 6</li>
-<li>markdown-it</li>
-<li>highlight.js</li>
-<li>html2canvas-pro</li>
-<li>jsPDF</li>
-<li>juice</li>
-</ul>
-<h2 id="Why-This-Project-Is-Practical"><a href="#Why-This-Project-Is-Practical" class="headerlink" title="Why This Project Is Practical"></a>Why This Project Is Practical</h2><ul>
-<li>它不要求用户改变写作习惯，只改变“发布前处理”环节</li>
-<li>关注的是内容分发成功率，不是单纯视觉炫技</li>
-<li>对运营和技术写作者都可直接落地</li>
-</ul>
-<h2 id="Local-Run"><a href="#Local-Run" class="headerlink" title="Local Run"></a>Local Run</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/bingo906/wx-art-formatter.git<br><span class="hljs-built_in">cd</span> wx-art-formatter<br>npm install<br>npm run dev<br></code></pre></td></tr></table></figure>
+                <p><code>Markdown</code> 文档转微信格式，通常需要额外转换。因为微信公众号编辑器不能直接完整渲染 Markdown，直接复制粘贴往往会出现排版错乱。</p>
+<p>像 <code>mdnice</code> 的「一键复制」和 <code>MarkCopy</code> 的「复制到公众号」，本质上都在解决这个问题。</p>
+<p>通过一个点击动作，把格式转换这件麻烦事做掉，核心通常是 <code>JS/TS</code> 等脚本和相应的转换算法。</p>
+<p><img src="/blog/assets/SCR-20260406-uaam.png" srcset="/blog/img/loading.gif" lazyload alt="SCR-20260406-uaam"></p>
+<p><img src="/blog/assets/SCR-20260406-uamp.png" srcset="/blog/img/loading.gif" lazyload alt="SCR-20260406-uamp"></p>
+<p>有些方案是网站形式，能用，但流程偏长。要是有本地工具能解决这个痛点，操作路径会更短。</p>
+<p>最近看到一个把功能工具化、并提供命令行使用方式的小工具：<code>xie</code>（写）。</p>
+<h3 id="xie（写）"><a href="#xie（写）" class="headerlink" title="xie（写）"></a>xie（写）</h3><h3 id="一个-Markdown-to-WX-HTML-小工具"><a href="#一个-Markdown-to-WX-HTML-小工具" class="headerlink" title="一个 Markdown to WX HTML 小工具"></a>一个 Markdown to WX HTML 小工具</h3><p>安装命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install xie<br></code></pre></td></tr></table></figure>
 
-<h2 id="Potential-Extensions"><a href="#Potential-Extensions" class="headerlink" title="Potential Extensions"></a>Potential Extensions</h2><ul>
-<li>团队模板规范化（统一品牌语义）</li>
-<li>可配置主题 token（颜色、字号、间距）</li>
-<li>内容生产流水线集成（写作 -&gt; 排版 -&gt; 多端分发）</li>
-</ul>
-<h2 id="Closing"><a href="#Closing" class="headerlink" title="Closing"></a>Closing</h2><p>如果你在做微信公众号内容工程化，这个项目是一个很好的切入点。<br>它把平台限制转成了清晰的工程策略，思路直接、实现路径也足够务实。</p>
+<p>使用方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">xie convert file.md to file.html<br></code></pre></td></tr></table></figure>
+
+<p>这是作者提供的安装方案。实测后，我更推荐下面这种安装方式（我在 macOS 和 Linux 虚拟机都试过）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pipx install xie<br></code></pre></td></tr></table></figure>
+
+<p><code>pipx</code> 会为每个应用创建独立环境，隔离更好。相比全局安装，应用多起来后更不容易互相“打架”。</p>
+<p>安装完成后，命令行用法不变。</p>
+<p>为了照顾不习惯命令行的用户，作者也提供了 Web 方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">xie web --port 5000<br></code></pre></td></tr></table></figure>
+
+<p>实测直接运行可能会报依赖缺失：</p>
+<p><img src="/blog/assets/SCR-20260406-ujth.png" srcset="/blog/img/loading.gif" lazyload alt="SCR-20260406-ujth"></p>
+<p>当时我用大模型给了一个依赖注入方案，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pipx inject xie flask flask-cors requests flask-socketio<br></code></pre></td></tr></table></figure>
+
+<p>也可以分段注入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 注入核心 Web 框架</span><br>pipx inject xie flask<br><br><span class="hljs-comment"># 2. 注入跨域支持</span><br>pipx inject xie flask-cors<br><br><span class="hljs-comment"># 3. 注入网络请求支持</span><br>pipx inject xie requests<br></code></pre></td></tr></table></figure>
+
+<p>两种方式都可以。之后重新启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">xie web --port 5000<br></code></pre></td></tr></table></figure>
+
+<p>然后访问本机 <code>5000</code> 端口即可使用 Web 转换服务。</p>
+<p><img src="/blog/assets/xie-web-5000-home.png" srcset="/blog/img/loading.gif" lazyload alt="xie web 5000 home"></p>
+<p>做个简单测试，功能正常：</p>
+<p><img src="/blog/assets/xie-web-5000-test.png" srcset="/blog/img/loading.gif" lazyload alt="xie web 5000 test"></p>
+<p>不习惯命令行的朋友可以试试这个 Web 页面，功能和命令行一致。</p>
+<p>目前这是单机 Web 页面。如果要部署到局域网使用，也可以借助大模型对源文件做一点修改。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个 app 虽小，但解决了一个很实际的痛点。对经常用 Markdown 写作的人来说，帮助很直接。</p>
+<p>如果后续能把依赖和运行环境一起打包，体验会更完整。</p>
 
                 
               </div>
@@ -473,7 +465,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/" class="category-chain-item">技术实践</a>
+  <a href="/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
   
   
 
@@ -490,13 +482,11 @@
       
         <a href="/blog/tags/markdown/" class="print-no-link">#markdown</a>
       
-        <a href="/blog/tags/wechat/" class="print-no-link">#wechat</a>
+        <a href="/blog/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" class="print-no-link">#微信公众号</a>
       
-        <a href="/blog/tags/formatter/" class="print-no-link">#formatter</a>
+        <a href="/blog/tags/xie/" class="print-no-link">#xie</a>
       
-        <a href="/blog/tags/vue/" class="print-no-link">#vue</a>
-      
-        <a href="/blog/tags/typescript/" class="print-no-link">#typescript</a>
+        <a href="/blog/tags/pipx/" class="print-no-link">#pipx</a>
       
     </div>
   
@@ -508,8 +498,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>wx-art-formatter：一个面向微信公众号场景的排版工程实践</div>
-      <div>https://1241262510.github.io/blog/2026/04/05/wx-art-formatter-github-version/</div>
+      <div>xie：一个 Markdown 转公众号 HTML 的小工具实践</div>
+      <div>https://1241262510.github.io/blog/2026/04/07/xie-markdown-to-wechat-html-tool/</div>
     </div>
     <div class="license-meta">
       
@@ -521,7 +511,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月5日</div>
+          <div>2026年4月7日</div>
         </div>
       
       
@@ -553,18 +543,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/04/07/xie-markdown-to-wechat-html-tool/" title="xie：一个 Markdown 转公众号 HTML 的小工具实践">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">xie：一个 Markdown 转公众号 HTML 的小工具实践</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/04/04/claude-code-payment-setup-guide/" title="别让 20 刀秒封！手把手教你搭建 Claude Code 顶级支付与开发环境">
-                        <span class="hidden-mobile">别让 20 刀秒封！手把手教你搭建 Claude Code 顶级支付与开发环境</span>
+                      <a href="/blog/2026/04/05/wx-art-formatter-github-version/" title="wx-art-formatter：一个面向微信公众号场景的排版工程实践">
+                        <span class="hidden-mobile">wx-art-formatter：一个面向微信公众号场景的排版工程实践</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
