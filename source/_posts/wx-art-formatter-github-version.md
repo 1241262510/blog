@@ -10,7 +10,10 @@ tags:
 categories:
   - 技术实践
 description: 从工程视角拆解 wx-art-formatter 的核心思路：为什么内联样式是公众号排版稳定性的关键。
+index_img: /assets/ad6b632ec9ec3969733bcd1ba33511b90960d1d6.png
 ---
+
+![](/assets/ad6b632ec9ec3969733bcd1ba33511b90960d1d6.png)
 
 ## Problem
 
