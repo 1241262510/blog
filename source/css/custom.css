@@ -365,3 +365,12 @@
 [data-user-color-scheme="dark"] .category-count:hover {
   color: #f2c27b;
 }
+
+article video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  margin: 1rem auto;
+  display: block;
+  background: #000;
+}

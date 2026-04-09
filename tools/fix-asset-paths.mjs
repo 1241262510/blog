@@ -27,6 +27,7 @@ function normalizeContent(content) {
 
   const markdownImagePattern = /(!\[[^\]]*\]\()((?:\.\.\/)+assets\/[^)\s]+)(\))/g;
   const htmlImagePattern = /(<img\b[^>]*\bsrc=["'])((?:\.\.\/)+assets\/[^"']+)(["'][^>]*>)/g;
+  const htmlVideoPattern = /(<(?:video|source)\b[^>]*\bsrc=["'])((?:\.\.\/)+assets\/[^"']+)(["'][^>]*>)/g;
 
   const next = content
     .replace(markdownImagePattern, (_, prefix, assetPath, suffix) => {
@@ -34,6 +35,10 @@ function normalizeContent(content) {
       return `${prefix}/${assetPath.replace(/^(?:\.\.\/)+/, "")}${suffix}`;
     })
     .replace(htmlImagePattern, (_, prefix, assetPath, suffix) => {
+      changed = true;
+      return `${prefix}/${assetPath.replace(/^(?:\.\.\/)+/, "")}${suffix}`;
+    })
+    .replace(htmlVideoPattern, (_, prefix, assetPath, suffix) => {
       changed = true;
       return `${prefix}/${assetPath.replace(/^(?:\.\.\/)+/, "")}${suffix}`;
     });

@@ -1,6 +1,6 @@
 ---
 title: Gemma4在Mac中的完整安装与体验指南
-date: 2026-04-08 23:00:00
+date: 2026-04-08 22:55:00
 tags:
   - AI
   - 大模型
@@ -129,7 +129,9 @@ open-webUI的安装流程相对复杂，主要包括以下步骤：
 - 过高或过低的版本都会导致安装失败
 - 虚拟环境确保了依赖的稳定性
 
-![安装过程](/assets/Kapture 2026-04-08 at 03.57.36.mp4)
+<video controls preload="metadata" src="/assets/gemma4-openweb-installation.mp4" style="width:100%;max-width:800px;border-radius:8px;">
+  您的浏览器不支持视频播放，请<a href="/assets/gemma4-openweb-installation.mp4">下载视频</a>。
+</video>
 
 ### 初次使用配置
 

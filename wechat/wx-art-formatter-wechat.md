@@ -1,3 +1,7 @@
+## 
+
+![](assets/ad6b632ec9ec3969733bcd1ba33511b90960d1d6.png)
+
 ## 先说结论
 
 如果你经常写公众号，`wx-art-formatter` 值得试一次。  
