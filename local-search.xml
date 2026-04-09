@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>Gemma4在Mac中的完整安装与体验指南</title>
+    <link href="/blog/2026/04/08/gemma4-mac-installation-guide/"/>
+    <url>/blog/2026/04/08/gemma4-mac-installation-guide/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言：为什么重装Gemma4？"><a href="#前言：为什么重装Gemma4？" class="headerlink" title="前言：为什么重装Gemma4？"></a>前言：为什么重装Gemma4？</h2><p>在手机端使用Gemma4的过程中，我发现了一些令人困扰的问题：</p><ul><li><strong>经常性断片</strong>：在长对话中容易出现连接中断</li><li><strong>响应不稳定</strong>：有时需要等待较长时间  </li><li><strong>内存限制</strong>：手机硬件资源有限，影响模型性能</li></ul><p>为了验证这个开源大模型是否真如宣传中所述的强大，我决定在Mac操作系统上重新安装Gemma4，期望在更强大的硬件支持下获得更好的使用体验。</p><h2 id="第一部分：使用Ollama安装（终端界面）"><a href="#第一部分：使用Ollama安装（终端界面）" class="headerlink" title="第一部分：使用Ollama安装（终端界面）"></a>第一部分：使用Ollama安装（终端界面）</h2><h3 id="安装Ollama"><a href="#安装Ollama" class="headerlink" title="安装Ollama"></a>安装Ollama</h3><p>Ollama是一个轻量级的本地大模型运行工具，支持多种模型。在Mac上安装非常简单：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install ollama<br></code></pre></td></tr></table></figure><p>你也可以直接访问<a href="https://ollama.com/">Ollama官网</a>下载安装包，效果相同。</p><h3 id="选择合适的模型版本"><a href="#选择合适的模型版本" class="headerlink" title="选择合适的模型版本"></a>选择合适的模型版本</h3><p>安装完成后，我们可以看到多个可选的模型版本：</p><p><img src="/blog/assets/gemma4-model-selection.png" alt="模型选择界面"></p><p><strong>模型对比说明：</strong></p><table><thead><tr><th>模型版本</th><th>推荐场景</th><th>优势</th><th>注意事项</th></tr></thead><tbody><tr><td>Gemma4:2b</td><td>低端设备</td><td>极轻量级，启动快</td><td>能力相对有限</td></tr><tr><td><strong>Gemma4:4b</strong></td><td><strong>日常使用</strong></td><td><strong>性能与内存平衡</strong></td><td><strong>推荐首选</strong></td></tr><tr><td>Gemma4:9b</td><td>专业应用</td><td>能力最强</td><td>内存占用较大</td></tr></tbody></table><p><strong>推荐使用Gemma4:4b版本</strong>，在性能和内存占用之间达到了很好的平衡，适合日常使用。</p><h3 id="启动模型并开始对话"><a href="#启动模型并开始对话" class="headerlink" title="启动模型并开始对话"></a>启动模型并开始对话</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ollama run gemma4:4b<br></code></pre></td></tr></table></figure><p>首次运行时，Ollama会自动下载模型文件。</p><p><strong>模型大小对比：</strong></p><ul><li>Mac端Gemma4:4b模型：约9GB</li><li>手机端Gemma4:4b模型：约3GB</li></ul><p>尽管模型大小不同，但Mac版本通常包含了更完整的参数和优化。</p><h3 id="终端对话体验"><a href="#终端对话体验" class="headerlink" title="终端对话体验"></a>终端对话体验</h3><p>模型下载完成后，会直接进入终端对话界面。你可以像使用命令行工具一样与AI进行交互：</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">唐诗一首，李白<br></code></pre></td></tr></table></figure><p><img src="/blog/assets/gemma4-terminal-chat.png" alt="终端对话示例"></p><p>经过短暂的思考，Gemma4会以Markdown格式给出答案。</p><p><strong>终端方式的特点：</strong></p><ul><li><p>✅ <strong>优势</strong>：</p><ul><li>资源占用相对较低</li><li>输出速度快</li><li>适合编程和技术场景</li><li>可以清晰地看到思考过程</li></ul></li><li><p>⚠️ <strong>注意</strong>：</p><ul><li>界面相对简单</li><li>不支持富文本显示</li><li>对非技术用户可能不够友好</li></ul></li></ul><p><strong>个人体验：</strong> 相比我的夏普R7手机，Mac端的输出速度稍慢，但稳定性显著提升，长时间的连续对话不会突然中断，这是很好的改进。</p><h2 id="第二部分：使用open-webUI安装（网页界面）"><a href="#第二部分：使用open-webUI安装（网页界面）" class="headerlink" title="第二部分：使用open-webUI安装（网页界面）"></a>第二部分：使用open-webUI安装（网页界面）</h2><p>如果你习惯了ChatGPT、Claude等现代AI助手的网页界面，那么open-webUI会是更好的选择。</p><h3 id="获取open-webUI"><a href="#获取open-webUI" class="headerlink" title="获取open-webUI"></a>获取open-webUI</h3><p>open-webUI是一个开源的AI模型Web界面项目，支持多种大模型。</p><p><strong>项目地址：</strong> <a href="https://github.com/open-webui/desktop">https://github.com/open-webui/desktop</a></p><p>项目提供了网页版和桌面版，我们选择桌面版以获得更好的体验。</p><h3 id="安装桌面版应用"><a href="#安装桌面版应用" class="headerlink" title="安装桌面版应用"></a>安装桌面版应用</h3><p>选择Mac系统对应的版本进行下载和安装：</p><p><img src="/blog/assets/SCR-20260408-kinu.png" alt="下载页面"></p><h3 id="安装过程详解"><a href="#安装过程详解" class="headerlink" title="安装过程详解"></a>安装过程详解</h3><p>open-webUI的安装流程相对复杂，主要包括以下步骤：</p><ol><li><strong>下载Python 3.12</strong>：项目锁定了特定Python版本</li><li><strong>创建虚拟环境</strong>：隔离Python依赖，避免版本冲突</li><li><strong>安装依赖组件</strong>：下载和配置必要的库文件</li></ol><p>从安装日志中可以看出，安装程序会：</p><ul><li>检查系统Python版本</li><li>创建独立的Python虚拟环境</li><li>下载并安装所需依赖包</li><li>配置启动脚本</li></ul><p><strong>环境要求说明：</strong></p><ul><li>Python版本必须是3.12</li><li>过高或过低的版本都会导致安装失败</li><li>虚拟环境确保了依赖的稳定性</li></ul><p>![安装过程](&#x2F;assets&#x2F;Kapture 2026-04-08 at 03.57.36.mp4)</p><h3 id="初次使用配置"><a href="#初次使用配置" class="headerlink" title="初次使用配置"></a>初次使用配置</h3><p>安装完成后，首次启动会看到注册&#x2F;登录页面：</p><p><img src="/blog/assets/gemma4-registration.png" alt="注册页面"></p><p><strong>配置步骤：</strong></p><ol><li>填写注册信息（用户名、邮箱等）</li><li>设置密码</li><li>进入管理界面</li></ol><p>由于我的Mac系统只安装了一个模型，所以界面只显示了一个可用的模型：</p><p><img src="/blog/assets/gemma4-openweb-models.png" alt="管理页面"></p><h3 id="网页端对话体验"><a href="#网页端对话体验" class="headerlink" title="网页端对话体验"></a>网页端对话体验</h3><p>在Web界面中，你可以像使用ChatGPT一样与AI对话：</p><p><img src="/blog/assets/gemma4-openweb-chat.png" alt="对话界面"></p><p><strong>网页方式的特点：</strong></p><ul><li><p>✅ <strong>优势</strong>：</p><ul><li>界面友好，操作直观</li><li>支持丰富的格式显示</li><li>可以保存对话历史</li><li>支持多标签对话</li><li>视觉体验更佳</li></ul></li><li><p>⚠️ <strong>注意</strong>：</p><ul><li>资源占用相对较高</li><li>思考时间可能比终端方式更长</li><li>需要额外的Web服务</li></ul></li></ul><p><strong>个人体验：</strong> 虽然感觉响应时间比终端方式稍长（可能是因为需要经过Web服务），但整体体验更加流畅和友好。</p><h2 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h2><h3 id="两种安装方式的对比"><a href="#两种安装方式的对比" class="headerlink" title="两种安装方式的对比"></a>两种安装方式的对比</h3><table><thead><tr><th>对比维度</th><th>Ollama终端方式</th><th>open-webUI网页方式</th></tr></thead><tbody><tr><td><strong>安装难度</strong></td><td>⭐ 简单</td><td>⭐⭐⭐ 复杂</td></tr><tr><td><strong>资源占用</strong></td><td>⭐⭐ 较低</td><td>⭐⭐⭐ 较高</td></tr><tr><td><strong>界面友好度</strong></td><td>⭐⭐ 技术化</td><td>⭐⭐⭐⭐ 现代化</td></tr><tr><td><strong>响应速度</strong></td><td>⭐⭐⭐ 较快</td><td>⭐⭐⭐ 中等</td></tr><tr><td><strong>适合场景</strong></td><td>编程、技术工作</td><td>日常使用、内容创作</td></tr><tr><td><strong>学习成本</strong></td><td>⭐⭐ 需要基础</td><td>⭐⭐⭐ 易上手</td></tr></tbody></table><h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p><strong>选择终端方式（Ollama）如果：</strong></p><ul><li>你是开发者或技术用户</li><li>希望最大化性能和最小化资源占用</li><li>主要用于编程辅助和代码生成</li><li>喜爱命令行界面</li></ul><p><strong>选择网页方式（open-webUI）如果：</strong></p><ul><li>你是日常用户或内容创作者</li><li>希望获得更好的视觉体验</li><li>需要保存和管理对话历史</li><li>喜爱现代化的Web界面</li></ul><h3 id="性能体验总结"><a href="#性能体验总结" class="headerlink" title="性能体验总结"></a>性能体验总结</h3><p>经过实际使用，<strong>Gemma4在Mac上的表现确实优于手机端</strong>：</p><ol><li><strong>稳定性大幅提升</strong>：长时间对话不会出现断片问题</li><li><strong>上下文处理能力增强</strong>：能够处理更长的对话历史</li><li><strong>响应质量更优</strong>：得益于更强的计算资源，回答更加准确和连贯</li></ol><p><strong>个人推荐配置：</strong></p><ul><li><strong>开发环境</strong>：Ollama + 终端方式，快速高效</li><li><strong>日常使用</strong>：open-webUI + 网页方式，体验最佳</li><li><strong>两者结合</strong>：根据不同场景灵活选择</li></ul><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>通过这次在Mac上的重新安装，我验证了Gemma4确实是一个值得期待的开源大模型。虽然在某些方面还不如GPT-4或Claude那样强大，但作为一个完全免费、本地的解决方案，它已经能够满足大部分日常需求。</p><p>如果你也对开源大模型感兴趣，不妨试试这个安装指南，相信你会有一个不错的使用体验。</p><p><strong>相关资源：</strong></p><ul><li><a href="https://ai.google.dev/gemma">Gemma4官方介绍</a></li><li><a href="https://github.com/ollama/ollama">Ollama项目地址</a></li><li><a href="https://github.com/open-webui/open-webui">open-webUI项目地址</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>大模型</tag>
+      
+      <tag>AI</tag>
+      
+      <tag>Gemma4</tag>
+      
+      <tag>Mac安装</tag>
+      
+      <tag>本地AI</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>xie：一个 Markdown 转公众号 HTML 的小工具实践</title>
     <link href="/blog/2026/04/07/xie-markdown-to-wechat-html-tool/"/>
     <url>/blog/2026/04/07/xie-markdown-to-wechat-html-tool/</url>
