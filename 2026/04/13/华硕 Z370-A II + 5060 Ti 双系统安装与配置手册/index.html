@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/11/obsidian-wechat-workflow/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/13/华硕 Z370-A II + 5060 Ti 双系统安装与配置手册/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,27 +21,27 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍如何使用 Obsidian 搭建公众号创作和发布的可视化工作流，无需终端操作，普通用户也能轻松上手。">
+    <meta name="description" content="记录华硕 Z370-A II 搭配 RTX 5060 Ti 在双系统安装中遇到的 BIOS、显卡资源映射与驱动配置问题，整理成一份可直接照着操作的装机手册。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用 Obsidian 打通公众号创作工作流">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/11/obsidian-wechat-workflow/index.html">
+<meta property="og:title" content="华硕 Z370-A II + RTX 5060 Ti 双系统安装与配置手册">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/13/%E5%8D%8E%E7%A1%95%20Z370-A%20II%20+%205060%20Ti%20%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="介绍如何使用 Obsidian 搭建公众号创作和发布的可视化工作流，无需终端操作，普通用户也能轻松上手。">
+<meta property="og:description" content="记录华硕 Z370-A II 搭配 RTX 5060 Ti 在双系统安装中遇到的 BIOS、显卡资源映射与驱动配置问题，整理成一份可直接照着操作的装机手册。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/SCR-20260411-bnow.png">
-<meta property="article:published_time" content="2026-04-11T14:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-12T03:21:39.974Z">
+<meta property="article:published_time" content="2026-04-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-13T06:28:30.264Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="obsidian">
-<meta property="article:tag" content="wechat">
-<meta property="article:tag" content="workflow">
-<meta property="article:tag" content="效率">
+<meta property="article:tag" content="5060 Ti">
+<meta property="article:tag" content="BIOS">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="Windows 11">
+<meta property="article:tag" content="Z370">
+<meta property="article:tag" content="华硕">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/SCR-20260411-bnow.png">
   
   
   
-  <title>用 Obsidian 打通公众号创作工作流 - 凌晨两点的书桌</title>
+  <title>华硕 Z370-A II + RTX 5060 Ti 双系统安装与配置手册 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +329,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="用 Obsidian 打通公众号创作工作流"></span>
+            <span id="subtitle" data-typed-text="华硕 Z370-A II + RTX 5060 Ti 双系统安装与配置手册"></span>
           
         </div>
 
@@ -340,8 +340,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-11 10:00" pubdate>
-          2026年4月11日 上午
+        <time datetime="2026-04-13 12:00" pubdate>
+          2026年4月13日 中午
         </time>
       </span>
     
@@ -352,7 +352,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          2.3k 字
         
       </span>
     
@@ -363,7 +363,7 @@
         
         
         
-          15 分钟
+          19 分钟
         
       </span>
     
@@ -402,77 +402,101 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">用 Obsidian 打通公众号创作工作流</h1>
+            <h1 id="seo-header">华硕 Z370-A II + RTX 5060 Ti 双系统安装与配置手册</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="为何选择-Obsidian"><a href="#为何选择-Obsidian" class="headerlink" title="为何选择 Obsidian"></a>为何选择 Obsidian</h2><p>选择这款应用来打通公众号创作工作流，主要有以下原因：</p>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这篇文章记录一套典型、也很容易踩坑的装机组合：华硕 Z370-A II 主板、Intel Xeon E-2136 处理器、16GB 内存、RTX 5060 Ti 显卡和 1TB NVMe SSD。</p>
+<p>看起来只是一次普通的双系统安装，但真正麻烦的地方并不在安装包本身，而在于老平台 BIOS 习惯、UEFI 启动方式、显卡资源映射和新显卡之间的兼容关系。</p>
+<p>如果 BIOS 仍然保持默认状态，Ubuntu 安装器在配置引导阶段报“脚本错误”，Ventoy 下的 Win11 安装也可能不稳定。这类问题很多时候不是系统本身坏了，而是底层启动和资源分配条件没准备好。</p>
+<h2 id="一、硬件环境回顾"><a href="#一、硬件环境回顾" class="headerlink" title="一、硬件环境回顾"></a>一、硬件环境回顾</h2><p>先把这台机器的基础配置列清楚：</p>
 <ul>
-<li><p><strong>原生 Markdown 支持</strong>：Obsidian 提供了完善的 Markdown 写作功能，数据可以在不同平台间自由流转。虽然 mdnice、MarkCopy、MarkText 等工具也支持 Markdown，但它们的数据是孤立的，缺乏扩展能力。</p>
+<li>主板：华硕 Z370-A II，LGA1151 平台，Z370 芯片组</li>
+<li>CPU：Intel Xeon E-2136，6 核 12 线程，没有核显</li>
+<li>内存：16GB DDR4</li>
+<li>显卡：NVIDIA RTX 5060 Ti，支持 AV1、DLSS 4.0+，对显存地址空间要求更高</li>
+<li>存储：1TB NVMe SSD</li>
+</ul>
+<p>这套配置的核心特点是“老平台 + 新显卡”。CPU 和主板属于较早一代的桌面平台，但显卡已经是更新一代的产品，二者之间并不总是天然兼容。</p>
+<h2 id="二、核心问题：新显卡和老主板的“脚本错误”"><a href="#二、核心问题：新显卡和老主板的“脚本错误”" class="headerlink" title="二、核心问题：新显卡和老主板的“脚本错误”"></a>二、核心问题：新显卡和老主板的“脚本错误”</h2><p>安装 Ubuntu 时，程序可能在配置引导或者检测显卡阶段抛出“脚本错误”；用 Ventoy 安装 Win11 时，也可能出现不稳定、卡死或者反复回退。</p>
+<p>表面上看，这是安装器的问题；实际上，根因往往是 BIOS 没有切到适合新显卡和 UEFI 启动的模式。</p>
+<p>5060 Ti 这一类新显卡，对以下两个条件更敏感：</p>
+<ul>
+<li>UEFI 启动链路是否完整</li>
+<li>显存映射和 PCIe 资源分配是否足够</li>
+</ul>
+<p>如果 BIOS 仍然保留 CSM 兼容模式，或者没有开启 <code>Above 4G Decoding</code>、<code>Re-Size BAR</code> 这类选项，安装阶段就可能因为资源冲突而出错。</p>
+<h2 id="三、终极破解：BIOS-深度优化清单"><a href="#三、终极破解：BIOS-深度优化清单" class="headerlink" title="三、终极破解：BIOS 深度优化清单"></a>三、终极破解：BIOS 深度优化清单</h2><p>进入华硕 BIOS 的 <code>Advanced Mode (F7)</code> 后，建议逐项确认下面这些设置。</p>
+<h3 id="A-解决“脚本错误”的关键：Boot-设置"><a href="#A-解决“脚本错误”的关键：Boot-设置" class="headerlink" title="A. 解决“脚本错误”的关键：Boot 设置"></a>A. 解决“脚本错误”的关键：Boot 设置</h3><ul>
+<li><p><code>Launch CSM</code> 设为 <code>Disabled</code></p>
 </li>
-<li><p><strong>插件生态丰富</strong>：Obsidian 拥有开放的插件市场，这为应用插上了扩展的翅膀，让功能无限可能。</p>
+<li><p>说明：必须关闭。对这类新显卡来说，CSM 往往只会带来额外的兼容冲突。</p>
 </li>
-<li><p><strong>AI Agent 全面支持</strong>：目前全面拥抱 Agent 的软件并不多，国内的飞书算一个。其他软件由于系统封闭或其他原因，对 Agent 的支持有限。Obsidian 天生的架构设计使其对 Agent 的支持水到渠成，几乎第一时间就能支持 OpenClaw 等工具。这为喜欢终端操作环境的用户提供了极大便利。</p>
+<li><p><code>Secure Boot</code> 中的 <code>OS Type</code> 设为 <code>Other OS</code></p>
+</li>
+<li><p>说明：这样可以减少安全启动策略在安装 Linux 或第三方启动介质时带来的限制。</p>
 </li>
 </ul>
-<h2 id="终端工作流与-Obsidian-的差异"><a href="#终端工作流与-Obsidian-的差异" class="headerlink" title="终端工作流与 Obsidian 的差异"></a>终端工作流与 Obsidian 的差异</h2><p>目前我已经实现了在终端使用大模型进行公众号和 GitHub 的同步，基本达成了在公众号和 GitHub 发布博文的目标。</p>
-<p>借助大模型，我已经打通了博文写作和发布的工作流。</p>
-<p>实操起来，难度不高。主要问题是获取公众号的 AppID 和密钥，并在配置环境中部署这些参数，然后借助终端进行同步和发布。</p>
-<p>对我个人而言，比较喜欢对话式的更新和发布方式。但对于不习惯终端操作的用户，可能需要时间去适应。</p>
-<p>Obsidian 则可以搭建一个可视化操作环境，用于博文的发布和更新。</p>
-<p>写作、发布全程无需使用终端，对普通用户来说，体验会更好。</p>
-<p>普通用户可能更喜欢这样的发布模式。</p>
-<p>今天，就为大家介绍这个工作流的使用流程和操作步骤。</p>
-<h2 id="部署前提"><a href="#部署前提" class="headerlink" title="部署前提"></a>部署前提</h2><ul>
-<li><p><strong>获取微信公众号的 AppID 和 Key</strong><br>无论是使用终端还是 Obsidian，获取 AppID 和 Key 都是必要条件。没有这些参数，无法实现公众号的自动化工作流。</p>
+<h3 id="B-解决“显卡资源冲突”：Advanced-设置"><a href="#B-解决“显卡资源冲突”：Advanced-设置" class="headerlink" title="B. 解决“显卡资源冲突”：Advanced 设置"></a>B. 解决“显卡资源冲突”：Advanced 设置</h3><ul>
+<li><p><code>Above 4G Decoding</code> 设为 <code>Enabled</code></p>
 </li>
-<li><p><strong>插件安装</strong><br>微信公众号的发布有几种插件可以选择，今天使用其中一个插件进行工作流的测试安装。</p>
+<li><p>说明：这是关键项。新显卡对 PCIe 资源和内存映射空间要求更高，不开启时，安装过程可能直接卡死或报错。</p>
 </li>
-<li><p><strong>Obsidian 基础使用</strong><br>由于是在 Obsidian 应用内使用，下载和基础操作都在这个平台上进行。因为本文的重点是介绍工作流，所以 App 的下载和基础安装就不赘述了，大家可以参考网上的其他教程。</p>
+<li><p><code>Re-Size BAR Support</code> 设为 <code>Enabled</code></p>
+</li>
+<li><p>说明：让 CPU 更直接地访问显存，不只是游戏性能会受益，后续开发和计算场景也会更稳。</p>
 </li>
 </ul>
-<h3 id="AppID-和-Key-的获取"><a href="#AppID-和-Key-的获取" class="headerlink" title="AppID 和 Key 的获取"></a>AppID 和 Key 的获取</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//developers.weixin.qq.com/console</span><br></code></pre></td></tr></table></figure>
+<h3 id="C-解决-Win11-和硬盘检测问题：System-设置"><a href="#C-解决-Win11-和硬盘检测问题：System-设置" class="headerlink" title="C. 解决 Win11 和硬盘检测问题：System 设置"></a>C. 解决 Win11 和硬盘检测问题：System 设置</h3><ul>
+<li><p><code>PTT</code>（Firmware TPM）设为 <code>Enable</code></p>
+</li>
+<li><p>说明：用于满足 Win11 的 TPM 检测要求。</p>
+</li>
+<li><p><code>SATA Mode</code> 设为 <code>AHCI</code></p>
+</li>
+<li><p>说明：不要用 RAID。对 Linux 来说，AHCI 更稳定，也更不容易出现找不到盘的情况。</p>
+</li>
+</ul>
+<h2 id="四、Ubuntu-22-04-生产力配置"><a href="#四、Ubuntu-22-04-生产力配置" class="headerlink" title="四、Ubuntu 22.04 生产力配置"></a>四、Ubuntu 22.04 生产力配置</h2><p>系统装好以后，先不要急着长期依赖默认驱动。对于 5060 Ti 这种新显卡，建议安装更新一些的 NVIDIA 驱动。</p>
+<h3 id="A-显卡驱动安装"><a href="#A-显卡驱动安装" class="headerlink" title="A. 显卡驱动安装"></a>A. 显卡驱动安装</h3><p>可以先添加官方 PPA，再安装驱动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> add-apt-repository ppa:graphics-drivers/ppa<br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install nvidia-driver-555<br></code></pre></td></tr></table></figure>
 
-<p>这是腾讯公众号参数的获取路径。</p>
-<p>自动化发布流程需要的参数可以从这个网址获取。如果没有注册个人小程序，需要先注册，才有权限获取这些参数。</p>
-<p><img src="/blog/assets/SCR-20260411-bnow.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>进入微信开发者平台，点击 <strong>账号管理</strong>，然后 <strong>前往公众号详情页</strong></p>
-<p><img src="/blog/assets/obsidian-wechat-ss1.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/obsidian-wechat-ss2.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>在 <strong>开发密钥</strong> 处进行设置</p>
-<p><img src="/blog/assets/SCR-20260411-buqt.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><strong>IP 白名单</strong> 也需要设置</p>
-<p>可以通过 <strong>what is my ip</strong> 等网站获取你的 IP 地址。</p>
-<p>取得这些参数后，就可以在对应的 Obsidian 插件中进行设置。</p>
-<h2 id="Obsidian-插件设置"><a href="#Obsidian-插件设置" class="headerlink" title="Obsidian 插件设置"></a>Obsidian 插件设置</h2><p>目前已有几个插件可以使用，我测试的是这个插件：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/joeytoday/</span>obsidian-mp-publisher<br></code></pre></td></tr></table></figure>
+<p>如果后续仓库里已经有更新版本，也可以根据实际可用版本再往上调整。核心原则只有一个：不要停留在过旧版本上。</p>
+<h3 id="B-基础校验"><a href="#B-基础校验" class="headerlink" title="B. 基础校验"></a>B. 基础校验</h3><p>驱动装完后，先做最基本的确认：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvidia-smi<br></code></pre></td></tr></table></figure>
 
-<p>先说说部署流程，熟悉了一个插件的部署流程后，其他插件的操作流程几乎大同小异。</p>
-<p><img src="/blog/assets/obsidian-wechat-ss3.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>进入网址后，下载对应的插件</p>
-<p><img src="/blog/assets/SCR-20260411-bxte.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>在本地环境解压，然后拷贝到 Obsidian 对应的插件目录中</p>
-<p><img src="/blog/assets/SCR-20260411-caxo.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>在 macOS 系统中，使用 <strong>Shift + Command + .</strong> 打开隐藏文件显示开关，即可看到我们需要的 <strong>plugins</strong> 目录，将下载解压的文件夹复制到这个目录中。</p>
-<h2 id="在-Obsidian-中激活插件"><a href="#在-Obsidian-中激活插件" class="headerlink" title="在 Obsidian 中激活插件"></a>在 Obsidian 中激活插件</h2><p>在 App 中找到设置</p>
-<p><img src="/blog/assets/SCR-20260411-cbzh.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260411-ccmu.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>找到 <strong>第三方插件</strong> 选项，打开开关进行激活。如果没有这个选项，需要先关闭 <strong>安全模式</strong>，然后重新激活开关。</p>
-<p><img src="/blog/assets/SCR-20260411-cdzt.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="参数设置"><a href="#参数设置" class="headerlink" title="参数设置"></a>参数设置</h2><p>将获取的 AppID 和密钥填写到对应的参数中。</p>
-<p><img src="/blog/assets/SCR-20260411-chbj.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="文章发布和预览"><a href="#文章发布和预览" class="headerlink" title="文章发布和预览"></a>文章发布和预览</h2><p>使用 <strong>Command + P</strong> 搜索插件，找到我们安装的插件</p>
-<p><img src="/blog/assets/SCR-20260411-cggv.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260411-cfve.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>编辑页面与插件页面共存的布局。可以看到主要功能包括传统的复制&#x2F;粘贴选项，以及直接发布的选项（草稿）。</p>
-<p>与使用 mdnice 等网站类似，这里也解决了 Markdown 文档与微信 HTML 之间的格式转换，效果是一样的。</p>
-<p>经过测试，直接复制粘贴就能实现平时在其他网站进行的操作。</p>
-<p>第二个选项就是我们所说的自动化发布。</p>
-<p>我测试使用”复制到公众号”功能，没有任何问题。但使用”发布”功能时，会出现图片丢失的问题。</p>
-<p>借助大模型的帮助，可以很好地解决这个技术问题。有需要的可以留言，我会把修改版本同步到 GitHub 博客中。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此为止，使用 Obsidian 进行公众号自动发布的流程就介绍完了。</p>
-<p>这个工作流，可能更符合普通用户的”审美”，更容易操作和上手。</p>
+<p>如果输出能正常显示显卡信息、驱动版本和显存状态，说明图形栈已经基本可用。</p>
+<h3 id="C-双系统共存建议"><a href="#C-双系统共存建议" class="headerlink" title="C. 双系统共存建议"></a>C. 双系统共存建议</h3><p>双系统环境下，建议把下面几件事固定下来：</p>
+<ul>
+<li>Windows 和 Ubuntu 都使用 UEFI 启动</li>
+<li>不要混用传统 Legacy 启动方式</li>
+<li>系统盘尽量保持单一分区风格，不要在安装过程中反复切换启动模式</li>
+<li>每次改 BIOS 后，先确认能否稳定识别 NVMe SSD</li>
+</ul>
+<h2 id="五、安装过程里的实际经验"><a href="#五、安装过程里的实际经验" class="headerlink" title="五、安装过程里的实际经验"></a>五、安装过程里的实际经验</h2><p>这类机器最容易出问题的，不是系统镜像坏了，而是“看起来都对，实际上差一个关键选项”。</p>
+<p>我的建议是按这个顺序排查：</p>
+<ol>
+<li>先确认 <code>CSM</code> 已关闭</li>
+<li>再确认 <code>Above 4G Decoding</code> 和 <code>Re-Size BAR</code> 已开启</li>
+<li>然后把 <code>PTT</code> 和 <code>AHCI</code> 状态检查一遍</li>
+<li>最后再启动安装介质，重新跑 Ubuntu 或 Win11 安装流程</li>
+</ol>
+<p>如果 BIOS 调整正确，安装器通常会明显稳定很多。很多“脚本错误”本质上不是脚本，而是底层资源条件不满足。</p>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>这套组合的结论很简单：老主板不是不能带新显卡，但不能继续沿用老平台默认思路。</p>
+<p>对华硕 Z370-A II + RTX 5060 Ti 这类组合来说，真正决定成败的通常是 BIOS 里的几个开关：</p>
+<ul>
+<li>关闭 <code>CSM</code></li>
+<li>打开 <code>Above 4G Decoding</code></li>
+<li>打开 <code>Re-Size BAR</code></li>
+<li>配好 <code>PTT</code></li>
+<li>保持 <code>AHCI</code></li>
+</ul>
+<p>如果这些都处理好了，Ubuntu 22.04 和 Win11 的双系统安装会顺畅很多，后续再做驱动和工作流配置也会省力得多。</p>
+<p>对我来说，这类折腾最有价值的地方，不是“终于装上了”，而是把新硬件和旧平台之间的边界摸清楚了。</p>
+<h2 id="七、收尾说明"><a href="#七、收尾说明" class="headerlink" title="七、收尾说明"></a>七、收尾说明</h2><p>如果你也在用类似的老平台配新显卡，最值得优先确认的不是系统版本，而是 BIOS 里的启动方式、资源映射和 TPM 状态。</p>
+<p>一旦这三类基础条件稳定下来，后面的 Ubuntu 安装、Win11 安装、显卡驱动和日常使用都会轻松很多。</p>
+<p>这篇文章先不放截图，等你后续补齐 BIOS 页面、安装报错和驱动校验画面后，再插入到对应段落，会更完整。</p>
 
                 
               </div>
@@ -491,7 +515,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" class="category-chain-item">效率工具</a>
+  <a href="/blog/categories/%E8%A3%85%E6%9C%BA%E6%95%99%E7%A8%8B/" class="category-chain-item">装机教程</a>
   
   
 
@@ -506,13 +530,17 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/wechat/" class="print-no-link">#wechat</a>
+        <a href="/blog/tags/%E5%8D%8E%E7%A1%95/" class="print-no-link">#华硕</a>
       
-        <a href="/blog/tags/obsidian/" class="print-no-link">#obsidian</a>
+        <a href="/blog/tags/Z370/" class="print-no-link">#Z370</a>
       
-        <a href="/blog/tags/workflow/" class="print-no-link">#workflow</a>
+        <a href="/blog/tags/5060-Ti/" class="print-no-link">#5060 Ti</a>
       
-        <a href="/blog/tags/%E6%95%88%E7%8E%87/" class="print-no-link">#效率</a>
+        <a href="/blog/tags/Ubuntu/" class="print-no-link">#Ubuntu</a>
+      
+        <a href="/blog/tags/Windows-11/" class="print-no-link">#Windows 11</a>
+      
+        <a href="/blog/tags/BIOS/" class="print-no-link">#BIOS</a>
       
     </div>
   
@@ -524,8 +552,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>用 Obsidian 打通公众号创作工作流</div>
-      <div>https://1241262510.github.io/blog/2026/04/11/obsidian-wechat-workflow/</div>
+      <div>华硕 Z370-A II + RTX 5060 Ti 双系统安装与配置手册</div>
+      <div>https://1241262510.github.io/blog/2026/04/13/华硕 Z370-A II + 5060 Ti 双系统安装与配置手册/</div>
     </div>
     <div class="license-meta">
       
@@ -537,7 +565,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月11日</div>
+          <div>2026年4月13日</div>
         </div>
       
       
@@ -569,18 +597,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/04/13/%E5%8D%8E%E7%A1%95%20Z370-A%20II%20+%205060%20Ti%20%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C/" title="华硕 Z370-A II + RTX 5060 Ti 双系统安装与配置手册">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">华硕 Z370-A II + RTX 5060 Ti 双系统安装与配置手册</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/04/08/gemma4-mac-installation-guide/" title="Gemma4在Mac中的完整安装与体验指南">
-                        <span class="hidden-mobile">Gemma4在Mac中的完整安装与体验指南</span>
+                      <a href="/blog/2026/04/11/obsidian-wechat-workflow/" title="用 Obsidian 打通公众号创作工作流">
+                        <span class="hidden-mobile">用 Obsidian 打通公众号创作工作流</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
