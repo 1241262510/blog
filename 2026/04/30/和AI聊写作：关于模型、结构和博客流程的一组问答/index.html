@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/29/chatgpt-subscription-upgrade-notes/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/30/和AI聊写作：关于模型、结构和博客流程的一组问答/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,26 +21,26 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录一次 ChatGPT 订阅与版本升级的真实踩坑过程，重点总结为什么“首次能订阅”不代表“后续能升级”，以及遇到报错时更有效的排查顺序。">
+    <meta name="description" content="保留对话感的一篇整理稿：从 GPT-5.4 medium 和 Thinking 的区别，到文章结构、技术博客模板，再到 AI 如何参与真实写作流程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ChatGPT 订阅升级踩坑复盘：能订阅，不等于能顺利升级">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/29/chatgpt-subscription-upgrade-notes/index.html">
+<meta property="og:title" content="和 AI 聊写作：关于模型、结构和博客流程的一组问答">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%86%99%E4%BD%9C%EF%BC%9A%E5%85%B3%E4%BA%8E%E6%A8%A1%E5%9E%8B%E3%80%81%E7%BB%93%E6%9E%84%E5%92%8C%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B%E7%9A%84%E4%B8%80%E7%BB%84%E9%97%AE%E7%AD%94/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录一次 ChatGPT 订阅与版本升级的真实踩坑过程，重点总结为什么“首次能订阅”不代表“后续能升级”，以及遇到报错时更有效的排查顺序。">
+<meta property="og:description" content="保留对话感的一篇整理稿：从 GPT-5.4 medium 和 Thinking 的区别，到文章结构、技术博客模板，再到 AI 如何参与真实写作流程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-04-30T00:43:35.000Z">
-<meta property="article:modified_time" content="2026-04-30T00:44:11.063Z">
+<meta property="article:published_time" content="2026-04-30T16:05:00.000Z">
+<meta property="article:modified_time" content="2026-05-01T01:43:08.690Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="ChatGPT">
-<meta property="article:tag" content="Google Pay">
-<meta property="article:tag" content="排错">
-<meta property="article:tag" content="支付">
-<meta property="article:tag" content="订阅">
+<meta property="article:tag" content="AI 写作">
+<meta property="article:tag" content="GPT">
+<meta property="article:tag" content="公众号">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="问答">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>ChatGPT 订阅升级踩坑复盘：能订阅，不等于能顺利升级 - 凌晨两点的书桌</title>
+  <title>和 AI 聊写作：关于模型、结构和博客流程的一组问答 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -328,7 +328,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ChatGPT 订阅升级踩坑复盘：能订阅，不等于能顺利升级"></span>
+            <span id="subtitle" data-typed-text="和 AI 聊写作：关于模型、结构和博客流程的一组问答"></span>
           
         </div>
 
@@ -339,8 +339,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-29 20:43" pubdate>
-          2026年4月29日 晚上
+        <time datetime="2026-04-30 12:05" pubdate>
+          2026年4月30日 中午
         </time>
       </span>
     
@@ -351,7 +351,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          2.6k 字
         
       </span>
     
@@ -362,7 +362,7 @@
         
         
         
-          16 分钟
+          22 分钟
         
       </span>
     
@@ -401,50 +401,182 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ChatGPT 订阅升级踩坑复盘：能订阅，不等于能顺利升级</h1>
+            <h1 id="seo-header">和 AI 聊写作：关于模型、结构和博客流程的一组问答</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这篇文章不是讲某个“万能方案”，而是复盘一次真实的 ChatGPT 订阅与升级过程：为什么有些组合看上去能用，后续却卡在升级环节；为什么支付方式明明可用，版本切换还是会报错；以及遇到问题时，真正应该优先排查的到底是什么。</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近花了不少时间，反复测试 ChatGPT 的订阅和升级流程，也踩了不少坑。</p>
-<p>一开始我以为，只要支付方式能顺利绑定，后面的续费和升级应该都不会太难。真正折腾下来才发现，这件事远不只是“能不能付款”这么简单。很多问题表面像是支付失败，实际却是整套环境的一致性出了问题。</p>
-<p>这篇文章主要想把我从基础版本走到更高版本时遇到的问题和排查思路整理清楚，给同样卡在订阅或升级环节的人一个参考。</p>
-<h2 id="很多旧方案，稳定性已经明显下降"><a href="#很多旧方案，稳定性已经明显下降" class="headerlink" title="很多旧方案，稳定性已经明显下降"></a>很多旧方案，稳定性已经明显下降</h2><p>最开始，我也是照着网上常见的思路去尝试，测试了几种看起来门槛不高的组合方式。结果并不理想，问题主要集中在两个环节：</p>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这篇文章保留了问答的形式。</p>
+<p>最开始只是一个很轻的问题：为什么最近感觉模型响应更快了？但顺着聊下去，话题慢慢落到了几个更实际的点上：</p>
+<ul>
+<li><code>gpt-5.4 medium</code> 和更重推理档到底怎么选</li>
+<li>写文章和博客时，为什么通常建议先用 <code>medium</code></li>
+<li>文章的结构到底是什么</li>
+<li>技术博客有没有一套稳定可复用的模板</li>
+<li>AI 在真实写作流程里，最适合承担什么角色</li>
+</ul>
+<p>我把整段对话重新整理成了下面这组问答。</p>
+<h2 id="问：gpt-5-4-medium、high、xhigh，差别主要在哪里？"><a href="#问：gpt-5-4-medium、high、xhigh，差别主要在哪里？" class="headerlink" title="问：gpt-5.4 medium、high、xhigh，差别主要在哪里？"></a>问：<code>gpt-5.4 medium</code>、<code>high</code>、<code>xhigh</code>，差别主要在哪里？</h2><p>答：最直接的差别还是速度和思考深度。</p>
+<ul>
+<li><code>medium</code> 更快，更适合日常写作、普通问答、一般编程和快速起草。</li>
+<li><code>high</code> 更稳，适合复杂一点的代码修改、较难调试、多步骤方案设计。</li>
+<li><code>xhigh</code> 最重，适合非常复杂的推理、棘手 bug、长链路分析和架构级问题。</li>
+</ul>
+<p>如果只是用一句话概括：</p>
+<p><code>medium</code> 适合大多数日常任务，<code>high</code> 和 <code>xhigh</code> 更适合那些明显复杂、明显容易出错的场景。</p>
+<h2 id="问：那-gpt-5-4-和-gpt-5-5-的实际体感差别呢？"><a href="#问：那-gpt-5-4-和-gpt-5-5-的实际体感差别呢？" class="headerlink" title="问：那 gpt-5.4 和 gpt-5.5 的实际体感差别呢？"></a>问：那 <code>gpt-5.4</code> 和 <code>gpt-5.5</code> 的实际体感差别呢？</h2><p>答：如果只说使用体感，<code>gpt-5.4 medium</code> 更像高性能日用档，<code>gpt-5.5 Thinking</code> 更像难题档。</p>
+<p>前者更轻快，后者更稳。</p>
+<p>简单任务上，你未必会觉得 <code>gpt-5.5</code> 强很多，但大概率会觉得它慢一点。<br>难任务上，它更容易少走弯路，尤其是那些需要长上下文、要分步骤推进、还要兼顾准确性的事情。</p>
+<p>所以我最后给自己的判断标准很简单：</p>
+<ul>
+<li>先求快，用 <code>medium</code></li>
+<li>先求稳，用 <code>Thinking</code></li>
+</ul>
+<h2 id="问：写文章和博客，也建议先用-medium-吗？"><a href="#问：写文章和博客，也建议先用-medium-吗？" class="headerlink" title="问：写文章和博客，也建议先用 medium 吗？"></a>问：写文章和博客，也建议先用 <code>medium</code> 吗？</h2><p>答：是，通常建议先用 <code>medium</code>。</p>
+<p>因为大多数写作阶段，更需要的是：</p>
+<ul>
+<li>起标题</li>
+<li>列提纲</li>
+<li>快速出初稿</li>
+<li>改语气</li>
+<li>扩写或压缩段落</li>
+</ul>
+<p>这些都更看重流畅度和来回迭代的效率。你需要的是一个能协作推进的写作搭子，而不是一上来就进入最重的推理模式。</p>
+<p>但有几种情况，比较适合切到 <code>Thinking</code>：</p>
+<ul>
+<li>文章结构很复杂</li>
+<li>章节之间前后依赖很强</li>
+<li>同时要满足很多约束</li>
+<li>是深度技术博客，要兼顾准确性、逻辑性和可读性</li>
+<li>已经来回改了几轮，还是觉得“顺，但浅”</li>
+</ul>
+<p>最实用的写法是：</p>
 <ol>
-<li>支付方式可以绑定，但通过率不稳定。</li>
-<li>后续支付或验证阶段容易报错中断。</li>
+<li>先用 <code>medium</code> 起题、列提纲、打初稿。</li>
+<li>用 <code>medium</code> 连续改几轮结构和语气。</li>
+<li>如果文章比较重要，再切到 <code>Thinking</code> 做一次深度审稿。</li>
 </ol>
-<p>表面上看，这些问题像是支付工具本身不兼容；但从整体体验来看，更大的影响因素其实是支付地区、账单资料、账号状态和网络环境之间是否保持一致。</p>
-<p>简单说，过去一些流传很广的旧教程，现在已经很难稳定复现。继续照着老路径一步步照搬，往往只是在重复别人当时成功过的过程，但未必还能得到相同结果。</p>
-<h2 id="真正决定成功率的，是环境一致性"><a href="#真正决定成功率的，是环境一致性" class="headerlink" title="真正决定成功率的，是环境一致性"></a>真正决定成功率的，是环境一致性</h2><p>后面逐步摸清楚之后，我最大的感受是：订阅成不成，并不是某一个单独工具就能决定的，而是整套环境是否足够稳定、前后一致。</p>
-<p>这里的一致性，主要体现在几个方面：</p>
+<h2 id="问：那什么叫“文章结构”？"><a href="#问：那什么叫“文章结构”？" class="headerlink" title="问：那什么叫“文章结构”？"></a>问：那什么叫“文章结构”？</h2><p>答：结构不是“写什么”，而是“怎么安排这些内容”。</p>
+<p>也就是：</p>
+<ul>
+<li>开头写什么</li>
+<li>中间分几段</li>
+<li>每段各自承担什么作用</li>
+<li>论点怎么展开</li>
+<li>例子放在哪里</li>
+<li>结尾怎么收</li>
+</ul>
+<p>最短理解就是：</p>
+<ul>
+<li><code>内容</code> 是你讲什么</li>
+<li><code>结构</code> 是你怎么安排这些内容</li>
+</ul>
+<p>很多文章之所以难读，不是因为内容错了，而是因为顺序乱了。该先出现的东西放到了后面，该铺垫的地方没铺垫，读者只能一边看一边自己补逻辑。</p>
+<h2 id="问：能不能用技术博客举个结构的例子？"><a href="#问：能不能用技术博客举个结构的例子？" class="headerlink" title="问：能不能用技术博客举个结构的例子？"></a>问：能不能用技术博客举个结构的例子？</h2><p>答：可以。</p>
+<p>比如主题是：</p>
+<p><code>如何用 Docker 部署一个 Node.js 项目</code></p>
+<p>结构差的版本，往往会这样写：</p>
 <ol>
-<li>支付地区信息尽量统一。</li>
-<li>账单资料保持完整且稳定。</li>
-<li>支付方式不要频繁切换。</li>
-<li>操作过程中的网络环境尽量保持一致。</li>
+<li>一上来就贴 <code>Dockerfile</code></li>
+<li>讲到一半突然去解释镜像</li>
+<li>接着开始说自己踩过的坑</li>
+<li>再贴 <code>docker-compose.yml</code></li>
+<li>最后才说部署前提</li>
 </ol>
-<p>很多人遇到失败，第一反应是马上换卡、换账号、重新注册。但实际情况往往不是某个点单独出错，而是多个细节叠加后触发了额外校验。只盯着一个点，很容易误判；从整体环境去排查，反而更容易找到真正原因。</p>
-<h2 id="能订阅基础版本，不代表能顺利升级"><a href="#能订阅基础版本，不代表能顺利升级" class="headerlink" title="能订阅基础版本，不代表能顺利升级"></a>能订阅基础版本，不代表能顺利升级</h2><p>这次过程中，最容易让人误判的一点，就是“初始订阅成功”并不等于“后续升级一定顺利”。</p>
-<p>我前期已经完成了基础订阅，所以当时默认认为，后面升级只是一次普通的版本切换。结果并不是这样。</p>
-<p>使用一段时间后，原有版本的额度和能力逐渐不够用，于是我开始尝试升级。没想到这一步连续碰到几类典型问题：</p>
+<p>信息都在，但读者会很累。</p>
+<p>结构好的版本，通常会更像这样：</p>
 <ol>
-<li>升级入口显示异常。</li>
-<li>支付流程中断。</li>
-<li>原有支付方式仍可用于现有套餐，但无法完成跨版本升级。</li>
+<li>先说明这篇文章解决什么问题</li>
+<li>交代适用场景和前提</li>
+<li>给出最小可运行示例</li>
+<li>再逐段解释关键配置</li>
+<li>最后补常见坑和进阶建议</li>
 </ol>
-<p>这类情况很容易让人陷入误区。因为直觉上看，既然原来的订阅还能维持，就说明支付方式本身没问题。但实际体验下来，续费和升级并不一定遵循同一套校验逻辑。</p>
-<p>也就是说，能维持现有套餐，并不代表系统一定允许你顺利完成版本切换。</p>
-<h2 id="真正的解决方向：先排查环境，不要急着推倒重来"><a href="#真正的解决方向：先排查环境，不要急着推倒重来" class="headerlink" title="真正的解决方向：先排查环境，不要急着推倒重来"></a>真正的解决方向：先排查环境，不要急着推倒重来</h2><p>后来我把问题重新拆开看，重点不再放在“支付工具还能不能用”上，而是回头检查整个订阅环境是否和之前成功订阅时保持一致。</p>
-<p>最终让我恢复正常升级的关键，不是换支付方式，也不是重开账号，而是重新梳理和调整整体环境。在尽量不改动原有支付资料的前提下，重新检查影响订阅判断的外部条件，再回到订阅页面时，升级入口和支付流程才恢复正常。</p>
-<p>这次经历让我确认了一点：如果你已经能正常维持当前订阅，却在升级时反复报错，优先排查的未必是支付工具本身，而应该先看账号环境和操作环境是否发生了变化。</p>
-<h2 id="这次折腾后，最值得记住的-4-点"><a href="#这次折腾后，最值得记住的-4-点" class="headerlink" title="这次折腾后，最值得记住的 4 点"></a>这次折腾后，最值得记住的 4 点</h2><h3 id="1-稳定性比“偶尔成功一次”更重要"><a href="#1-稳定性比“偶尔成功一次”更重要" class="headerlink" title="1. 稳定性比“偶尔成功一次”更重要"></a>1. 稳定性比“偶尔成功一次”更重要</h3><p>有些方式也许能完成首次订阅，但后面的续费、升级、切换套餐并不稳定。如果只看第一次是否成功，很容易高估一条路线的可用性。</p>
-<h3 id="2-资料前后一致，比频繁折腾更重要"><a href="#2-资料前后一致，比频繁折腾更重要" class="headerlink" title="2. 资料前后一致，比频繁折腾更重要"></a>2. 资料前后一致，比频繁折腾更重要</h3><p>地区、账单信息、支付方式这些内容，一旦前后频繁变化，就更容易触发额外校验。能保持稳定，就尽量不要来回切换。</p>
-<h3 id="3-升级环节通常比首次订阅更敏感"><a href="#3-升级环节通常比首次订阅更敏感" class="headerlink" title="3. 升级环节通常比首次订阅更敏感"></a>3. 升级环节通常比首次订阅更敏感</h3><p>很多人把升级理解成一次普通扣费，但从实际体验来看，版本升级往往会触发更严格的判断。首次能通过，不代表升级也会同样顺利。</p>
-<h3 id="4-报错时先做低成本排查，不要直接重开"><a href="#4-报错时先做低成本排查，不要直接重开" class="headerlink" title="4. 报错时先做低成本排查，不要直接重开"></a>4. 报错时先做低成本排查，不要直接重开</h3><p>如果现有订阅还在，支付方式也没有彻底失效，说明账号未必有根本性问题。优先检查环境一致性，往往比直接换号重来更有效。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次从订阅到升级的完整过程，最大的收获不是“找到了某个万能办法”，而是更清楚地理解了一件事：这类问题的核心，往往不在单一支付工具，而在整体环境是否稳定、统一、可持续。</p>
-<p>真正好用的方案，不只是“能成功一次”，而是后面的续费、升级、切换时也尽量少出问题。把这个逻辑想明白，后面再遇到报错时，排查方向会清晰很多，也能少走很多弯路。</p>
+<p>内容未必更多，但读者更容易顺着走完。</p>
+<h2 id="问：技术博客有没有一套万能结构模板？"><a href="#问：技术博客有没有一套万能结构模板？" class="headerlink" title="问：技术博客有没有一套万能结构模板？"></a>问：技术博客有没有一套万能结构模板？</h2><p>答：有，而且大多数教程文、经验文、踩坑文都能套。</p>
+<p>一个很稳的骨架通常是：</p>
+<ol>
+<li>标题：写清楚主题、对象、结果</li>
+<li>开头：这篇文章解决什么问题，适合谁，读完得到什么</li>
+<li>场景和前提：环境、版本、适用范围</li>
+<li>最小可用方案：先建立全局印象</li>
+<li>分步骤展开：每一步只讲一个核心动作</li>
+<li>关键代码或配置解释：讲清为什么这样写</li>
+<li>常见坑和排查：用“现象、原因、解决”的格式</li>
+<li>方案取舍或进阶建议</li>
+<li>总结：回收全文，给出下一步</li>
+</ol>
+<p>这套模板不炫，但很稳。<br>技术内容天然容易散，模板的意义不是把文章写死，而是防止内容变成一堆没有顺序的知识点。</p>
+<h2 id="问：如果是个人博客，不想写得太像说明书，怎么办？"><a href="#问：如果是个人博客，不想写得太像说明书，怎么办？" class="headerlink" title="问：如果是个人博客，不想写得太像说明书，怎么办？"></a>问：如果是个人博客，不想写得太像说明书，怎么办？</h2><p>答：那就要在模板之外，加一点“作者本人”的东西。</p>
+<p>几个很有效的做法是：</p>
+<ul>
+<li>开头从真实起因切进去，不要直接写成标准摘要</li>
+<li>少一点“定义式表达”，多一点“这是我现在的做法”</li>
+<li>保留一点误判、试错和修正过程</li>
+<li>允许不同段落轻重不一，不必每一节都一样完整</li>
+<li>多一些判断句，少一些纯说明句</li>
+</ul>
+<p>因为个人博客真正好看的地方，往往不是知识点本身，而是作者怎么想、怎么取舍、怎么从经验里得出这些判断。</p>
+<h2 id="问：那-AI-到底适合怎么放进真实写作流程里？"><a href="#问：那-AI-到底适合怎么放进真实写作流程里？" class="headerlink" title="问：那 AI 到底适合怎么放进真实写作流程里？"></a>问：那 AI 到底适合怎么放进真实写作流程里？</h2><p>答：我后来把这个问题理解得越来越简单了。</p>
+<p>AI 最适合做的，不是替我把文章写完，而是降低写作摩擦。</p>
+<p>具体来说，我现在更常把它放在这些环节：</p>
+<h3 id="1-先帮我收窄问题"><a href="#1-先帮我收窄问题" class="headerlink" title="1. 先帮我收窄问题"></a>1. 先帮我收窄问题</h3><p>写之前先问清楚：</p>
+<ul>
+<li>这篇文章到底在回答什么问题</li>
+<li>它写给谁</li>
+<li>读者读完应该带走什么</li>
+</ul>
+<p>题目越具体，后面越容易写。</p>
+<h3 id="2-帮我拆题和列提纲"><a href="#2-帮我拆题和列提纲" class="headerlink" title="2. 帮我拆题和列提纲"></a>2. 帮我拆题和列提纲</h3><p>这是 AI 最适合的阶段之一。</p>
+<p>它很擅长：</p>
+<ul>
+<li>把模糊题目拆成几个子问题</li>
+<li>给出几种文章结构</li>
+<li>区分哪些内容适合放前面，哪些适合放后面</li>
+<li>把零散点子整理成一个可写提纲</li>
+</ul>
+<h3 id="3-帮我起草和改写局部内容"><a href="#3-帮我起草和改写局部内容" class="headerlink" title="3. 帮我起草和改写局部内容"></a>3. 帮我起草和改写局部内容</h3><p>相比一键写全文，我现在更喜欢让 AI 做局部动作：</p>
+<ul>
+<li>把一个要点展开成一段</li>
+<li>把一段改得更口语一点</li>
+<li>把一段压缩得更利落一点</li>
+<li>给某一节换一种表达方式</li>
+</ul>
+<p>这种方式的好处是，方向还在我手里，但推进阻力会小很多。</p>
+<h3 id="4-在我卡住的时候帮我继续"><a href="#4-在我卡住的时候帮我继续" class="headerlink" title="4. 在我卡住的时候帮我继续"></a>4. 在我卡住的时候帮我继续</h3><p>以前写作卡住，我常常会停下来等状态。</p>
+<p>现在更倾向于直接把“卡住”扔给 AI，比如让它：</p>
+<ul>
+<li>想几个过渡段写法</li>
+<li>判断某段是否适合提前</li>
+<li>给出两个不同语气的版本</li>
+<li>解释某段为什么读起来别扭</li>
+</ul>
+<p>很多时候，只要有一个可修改的版本，文章就能继续往前推。</p>
+<h3 id="5-最后自己来收"><a href="#5-最后自己来收" class="headerlink" title="5. 最后自己来收"></a>5. 最后自己来收</h3><p>这是我现在最确定的一点。</p>
+<p>AI 可以帮我起草、改写、整理，但文章最后那层“像不像我写的”，还是得自己来做。</p>
+<p>发布前我通常会重点看：</p>
+<ul>
+<li>标题是不是太空</li>
+<li>开头是不是进入太慢</li>
+<li>小标题顺不顺</li>
+<li>有没有重复表达</li>
+<li>有没有一些句子太像 AI 常见语气</li>
+<li>结尾有没有真正收住</li>
+</ul>
+<p>这一步决定的不是文章能不能读，而是它像不像自己的文章。</p>
+<h2 id="问：那最后，你对“AI-写博客”这件事的结论是什么？"><a href="#问：那最后，你对“AI-写博客”这件事的结论是什么？" class="headerlink" title="问：那最后，你对“AI 写博客”这件事的结论是什么？"></a>问：那最后，你对“AI 写博客”这件事的结论是什么？</h2><p>答：我现在最认同的一句话是：</p>
+<p><code>AI 最有用的地方，不是替我写完文章，而是降低写作摩擦。</code></p>
+<p>它让我更容易开始，更不容易卡死，也更容易把一篇文章先推进到一个可继续修改的状态。</p>
+<p>而真正决定一篇文章最后值不值得发出来的，还是作者自己的判断、取舍和语气。</p>
+<p>所以如果现在让我给一个最短建议，大概就是：</p>
+<ul>
+<li>日常写作用 <code>medium</code></li>
+<li>复杂长文再切 <code>Thinking</code></li>
+<li>用 AI 帮你启动、整理、推进</li>
+<li>但别把最后的判断直接交出去</li>
+</ul>
+<p>这大概是我现在最认可的一种关系。</p>
+<p>它不是“让 AI 代写”，而是“让 AI 陪你把文章写出来”。</p>
 
                 
               </div>
@@ -478,15 +610,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/ChatGPT/" class="print-no-link">#ChatGPT</a>
+        <a href="/blog/tags/AI-%E5%86%99%E4%BD%9C/" class="print-no-link">#AI 写作</a>
       
-        <a href="/blog/tags/%E8%AE%A2%E9%98%85/" class="print-no-link">#订阅</a>
+        <a href="/blog/tags/GPT/" class="print-no-link">#GPT</a>
       
-        <a href="/blog/tags/%E6%94%AF%E4%BB%98/" class="print-no-link">#支付</a>
+        <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
       
-        <a href="/blog/tags/Google-Pay/" class="print-no-link">#Google Pay</a>
+        <a href="/blog/tags/%E9%97%AE%E7%AD%94/" class="print-no-link">#问答</a>
       
-        <a href="/blog/tags/%E6%8E%92%E9%94%99/" class="print-no-link">#排错</a>
+        <a href="/blog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" class="print-no-link">#公众号</a>
       
     </div>
   
@@ -498,8 +630,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ChatGPT 订阅升级踩坑复盘：能订阅，不等于能顺利升级</div>
-      <div>https://1241262510.github.io/blog/2026/04/29/chatgpt-subscription-upgrade-notes/</div>
+      <div>和 AI 聊写作：关于模型、结构和博客流程的一组问答</div>
+      <div>https://1241262510.github.io/blog/2026/04/30/和AI聊写作：关于模型、结构和博客流程的一组问答/</div>
     </div>
     <div class="license-meta">
       
@@ -511,7 +643,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月29日</div>
+          <div>2026年4月30日</div>
         </div>
       
       
@@ -543,18 +675,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%AE%8C%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%88%91%E6%8A%8A%E2%80%9C%E6%80%8E%E4%B9%88%E7%94%A8%20GPT%20%E5%86%99%E5%8D%9A%E5%AE%A2%E2%80%9D%E6%83%B3%E6%B8%85%E6%A5%9A%E4%BA%86/" title="和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/04/22/M%E7%B3%BB%E5%88%97Mac%E5%A4%96%E6%8C%82%E7%A1%AC%E7%9B%98%E5%8D%87%E7%BA%A7%E5%AE%9E%E5%BD%95%EF%BC%9A%E9%81%BF%E5%BC%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9D%91%EF%BC%8C%E8%BF%99%E6%89%8D%E6%98%AF%E6%9C%80%E7%A8%B3%E5%A6%A5%E7%9A%84%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88/" title="M系列Mac外挂硬盘升级实录：避开大模型的坑，这才是最稳妥的迁移方案">
-                        <span class="hidden-mobile">M系列Mac外挂硬盘升级实录：避开大模型的坑，这才是最稳妥的迁移方案</span>
+                      <a href="/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%AE%8C%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%88%91%E6%8A%8A%E2%80%9C%E6%80%8E%E4%B9%88%E7%94%A8%20GPT%20%E5%86%99%E5%8D%9A%E5%AE%A2%E2%80%9D%E6%83%B3%E6%B8%85%E6%A5%9A%E4%BA%86/" title="和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了">
+                        <span class="hidden-mobile">和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
