@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/30/和AI聊写作：关于模型、结构和博客流程的一组问答/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,26 +21,27 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="保留对话感的一篇整理稿：从 GPT-5.4 medium 和 Thinking 的区别，到文章结构、技术博客模板，再到 AI 如何参与真实写作流程。">
+    <meta name="description" content="记录一次从理论走向落地的 LLM Wiki 实践过程，包括目录初始化、资料投喂、人工审计与 GitHub 展示。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="和 AI 聊写作：关于模型、结构和博客流程的一组问答">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%86%99%E4%BD%9C%EF%BC%9A%E5%85%B3%E4%BA%8E%E6%A8%A1%E5%9E%8B%E3%80%81%E7%BB%93%E6%9E%84%E5%92%8C%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B%E7%9A%84%E4%B8%80%E7%BB%84%E9%97%AE%E7%AD%94/index.html">
+<meta property="og:title" content="LLM Wiki 落地实践：从看懂理论到真正跑起来">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="保留对话感的一篇整理稿：从 GPT-5.4 medium 和 Thinking 的区别，到文章结构、技术博客模板，再到 AI 如何参与真实写作流程。">
+<meta property="og:description" content="记录一次从理论走向落地的 LLM Wiki 实践过程，包括目录初始化、资料投喂、人工审计与 GitHub 展示。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-04-30T16:05:00.000Z">
-<meta property="article:modified_time" content="2026-05-01T01:43:08.690Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/llm-wiki-01.png">
+<meta property="article:published_time" content="2026-05-02T04:50:00.000Z">
+<meta property="article:modified_time" content="2026-05-02T04:55:53.889Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="AI 写作">
-<meta property="article:tag" content="GPT">
-<meta property="article:tag" content="公众号">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="问答">
+<meta property="article:tag" content="hermes">
+<meta property="article:tag" content="knowledge-management">
+<meta property="article:tag" content="llm">
+<meta property="article:tag" content="wiki">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/llm-wiki-01.png">
   
   
   
-  <title>和 AI 聊写作：关于模型、结构和博客流程的一组问答 - 凌晨两点的书桌</title>
+  <title>LLM Wiki 落地实践：从看懂理论到真正跑起来 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -328,7 +329,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="和 AI 聊写作：关于模型、结构和博客流程的一组问答"></span>
+            <span id="subtitle" data-typed-text="LLM Wiki 落地实践：从看懂理论到真正跑起来"></span>
           
         </div>
 
@@ -339,8 +340,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-30 12:05" pubdate>
-          2026年4月30日 中午
+        <time datetime="2026-05-02 00:50" pubdate>
+          2026年5月2日 凌晨
         </time>
       </span>
     
@@ -351,7 +352,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.2k 字
         
       </span>
     
@@ -362,7 +363,7 @@
         
         
         
-          22 分钟
+          18 分钟
         
       </span>
     
@@ -401,182 +402,70 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">和 AI 聊写作：关于模型、结构和博客流程的一组问答</h1>
+            <h1 id="seo-header">LLM Wiki 落地实践：从看懂理论到真正跑起来</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这篇文章保留了问答的形式。</p>
-<p>最开始只是一个很轻的问题：为什么最近感觉模型响应更快了？但顺着聊下去，话题慢慢落到了几个更实际的点上：</p>
-<ul>
-<li><code>gpt-5.4 medium</code> 和更重推理档到底怎么选</li>
-<li>写文章和博客时，为什么通常建议先用 <code>medium</code></li>
-<li>文章的结构到底是什么</li>
-<li>技术博客有没有一套稳定可复用的模板</li>
-<li>AI 在真实写作流程里，最适合承担什么角色</li>
-</ul>
-<p>我把整段对话重新整理成了下面这组问答。</p>
-<h2 id="问：gpt-5-4-medium、high、xhigh，差别主要在哪里？"><a href="#问：gpt-5-4-medium、high、xhigh，差别主要在哪里？" class="headerlink" title="问：gpt-5.4 medium、high、xhigh，差别主要在哪里？"></a>问：<code>gpt-5.4 medium</code>、<code>high</code>、<code>xhigh</code>，差别主要在哪里？</h2><p>答：最直接的差别还是速度和思考深度。</p>
-<ul>
-<li><code>medium</code> 更快，更适合日常写作、普通问答、一般编程和快速起草。</li>
-<li><code>high</code> 更稳，适合复杂一点的代码修改、较难调试、多步骤方案设计。</li>
-<li><code>xhigh</code> 最重，适合非常复杂的推理、棘手 bug、长链路分析和架构级问题。</li>
-</ul>
-<p>如果只是用一句话概括：</p>
-<p><code>medium</code> 适合大多数日常任务，<code>high</code> 和 <code>xhigh</code> 更适合那些明显复杂、明显容易出错的场景。</p>
-<h2 id="问：那-gpt-5-4-和-gpt-5-5-的实际体感差别呢？"><a href="#问：那-gpt-5-4-和-gpt-5-5-的实际体感差别呢？" class="headerlink" title="问：那 gpt-5.4 和 gpt-5.5 的实际体感差别呢？"></a>问：那 <code>gpt-5.4</code> 和 <code>gpt-5.5</code> 的实际体感差别呢？</h2><p>答：如果只说使用体感，<code>gpt-5.4 medium</code> 更像高性能日用档，<code>gpt-5.5 Thinking</code> 更像难题档。</p>
-<p>前者更轻快，后者更稳。</p>
-<p>简单任务上，你未必会觉得 <code>gpt-5.5</code> 强很多，但大概率会觉得它慢一点。<br>难任务上，它更容易少走弯路，尤其是那些需要长上下文、要分步骤推进、还要兼顾准确性的事情。</p>
-<p>所以我最后给自己的判断标准很简单：</p>
-<ul>
-<li>先求快，用 <code>medium</code></li>
-<li>先求稳，用 <code>Thinking</code></li>
-</ul>
-<h2 id="问：写文章和博客，也建议先用-medium-吗？"><a href="#问：写文章和博客，也建议先用-medium-吗？" class="headerlink" title="问：写文章和博客，也建议先用 medium 吗？"></a>问：写文章和博客，也建议先用 <code>medium</code> 吗？</h2><p>答：是，通常建议先用 <code>medium</code>。</p>
-<p>因为大多数写作阶段，更需要的是：</p>
-<ul>
-<li>起标题</li>
-<li>列提纲</li>
-<li>快速出初稿</li>
-<li>改语气</li>
-<li>扩写或压缩段落</li>
-</ul>
-<p>这些都更看重流畅度和来回迭代的效率。你需要的是一个能协作推进的写作搭子，而不是一上来就进入最重的推理模式。</p>
-<p>但有几种情况，比较适合切到 <code>Thinking</code>：</p>
-<ul>
-<li>文章结构很复杂</li>
-<li>章节之间前后依赖很强</li>
-<li>同时要满足很多约束</li>
-<li>是深度技术博客，要兼顾准确性、逻辑性和可读性</li>
-<li>已经来回改了几轮，还是觉得“顺，但浅”</li>
-</ul>
-<p>最实用的写法是：</p>
+                <p>之前一直很羡慕别人搭建的 LLM Wiki，但总觉得这件事门槛不低，自己未必能真正落地。折腾了几天之后，我终于把它跑通了。这篇文章不讲太多抽象理论，主要记录一次真实的实践过程，给和我一样刚入门的人一个可参考的起手路径。</p>
+<p>我个人觉得，知识管理是一件很有价值的事。它不只是把文章重新整理一遍，更重要的是帮助我们把零散信息逐步内化成结构化知识。问题在于，很多“大神级”分享往往更偏理论和方法论，真正动手时，还是会卡在“第一步到底怎么做”。</p>
+<p>我这次的实践，最开始也参考过国内一些现成方案，比如有道云推出的 Wiki Skills 技能包。不过兜兜转转之后，我最后还是选择用 Hermes 的 agent 来完成初始化和部署。整体体验下来，这条路线更适合我目前的使用习惯。</p>
+<h2 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h2><p>如果你也想把 LLM Wiki 跑起来，可以先把它理解成三件事：</p>
 <ol>
-<li>先用 <code>medium</code> 起题、列提纲、打初稿。</li>
-<li>用 <code>medium</code> 连续改几轮结构和语气。</li>
-<li>如果文章比较重要，再切到 <code>Thinking</code> 做一次深度审稿。</li>
+<li>先把基础目录结构搭起来。</li>
+<li>再持续投喂原始资料。</li>
+<li>最后让 LLM 帮你整理、链接、审计，再由人工复查。</li>
 </ol>
-<h2 id="问：那什么叫“文章结构”？"><a href="#问：那什么叫“文章结构”？" class="headerlink" title="问：那什么叫“文章结构”？"></a>问：那什么叫“文章结构”？</h2><p>答：结构不是“写什么”，而是“怎么安排这些内容”。</p>
-<p>也就是：</p>
+<p>听起来复杂，实际上拆开之后并不算难。真正难的是第一次起手时，脑子里没有一张清晰的流程图。</p>
+<h2 id="我是怎么开始的"><a href="#我是怎么开始的" class="headerlink" title="我是怎么开始的"></a>我是怎么开始的</h2><p>进入 Hermes 之后，我直接给了一个非常明确的要求：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">使用 llm wiki 大神的理论，进行 bank-wiki 的初始化和部署。<br></code></pre></td></tr></table></figure>
+
+<p>然后 LLM 就开始干活了，自动生成了一批目录和文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tree -L 3<br></code></pre></td></tr></table></figure>
+
+<p><img src="/blog/assets/llm-wiki-01.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/llm-wiki-02.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/llm-wiki-03.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>从结果来看，它生成的结构和我理解中的 Wiki 理论比较接近，核心目录主要包括：</p>
 <ul>
-<li>开头写什么</li>
-<li>中间分几段</li>
-<li>每段各自承担什么作用</li>
-<li>论点怎么展开</li>
-<li>例子放在哪里</li>
-<li>结尾怎么收</li>
+<li><code>raw</code>：原始资料</li>
+<li><code>entities</code>：实体</li>
+<li><code>concepts</code>：概念</li>
 </ul>
-<p>最短理解就是：</p>
-<ul>
-<li><code>内容</code> 是你讲什么</li>
-<li><code>结构</code> 是你怎么安排这些内容</li>
-</ul>
-<p>很多文章之所以难读，不是因为内容错了，而是因为顺序乱了。该先出现的东西放到了后面，该铺垫的地方没铺垫，读者只能一边看一边自己补逻辑。</p>
-<h2 id="问：能不能用技术博客举个结构的例子？"><a href="#问：能不能用技术博客举个结构的例子？" class="headerlink" title="问：能不能用技术博客举个结构的例子？"></a>问：能不能用技术博客举个结构的例子？</h2><p>答：可以。</p>
-<p>比如主题是：</p>
-<p><code>如何用 Docker 部署一个 Node.js 项目</code></p>
-<p>结构差的版本，往往会这样写：</p>
+<p>这几个目录基本构成了整个 Wiki 的骨架。</p>
+<h2 id="这些目录分别是干什么的"><a href="#这些目录分别是干什么的" class="headerlink" title="这些目录分别是干什么的"></a>这些目录分别是干什么的</h2><h3 id="raw：原料仓库"><a href="#raw：原料仓库" class="headerlink" title="raw：原料仓库"></a><code>raw</code>：原料仓库</h3><p><code>raw</code> 可以理解成“投喂区”。你想研究什么主题，就把相关原始资料放进来。比如文章、网页剪藏、PDF、笔记、数据摘录，理论上都可以作为原始输入。</p>
+<p>如果我当前关注的是银行主题，那么 <code>raw</code> 目录里放的就是和银行相关的原始材料。这个目录的原则最好是“只读少改”，尽量保留原始信息，避免在最开始就把资料改得面目全非。</p>
+<p>在 Linux 这类系统里，甚至还可以通过命令做加锁和解锁，进一步保证原料区的稳定性。</p>
+<h3 id="entities：可被命名的对象"><a href="#entities：可被命名的对象" class="headerlink" title="entities：可被命名的对象"></a><code>entities</code>：可被命名的对象</h3><p><code>entities</code> 里放的是那些“能明确叫出名字”的东西，比如银行卡、公司、人名、产品名、机构名等。</p>
+<p>这类内容的特点是边界相对清晰，适合被 LLM 抽取出来，逐步形成词条。</p>
+<h3 id="concepts：抽象概念"><a href="#concepts：抽象概念" class="headerlink" title="concepts：抽象概念"></a><code>concepts</code>：抽象概念</h3><p><code>concepts</code> 对应的是更偏抽象的内容，比如“订阅 GPT”“知识管理”“自动化投喂”“审计机制”这类概念。</p>
+<p>一开始我对 <code>entities</code> 和 <code>concepts</code> 的区别其实有点绕，但实际操作后就明白了：这两个目录下的很多文件，并不需要自己手工一个个创建，LLM 完全可以辅助完成。</p>
+<h2 id="目录搭好之后，下一步就是投喂资料"><a href="#目录搭好之后，下一步就是投喂资料" class="headerlink" title="目录搭好之后，下一步就是投喂资料"></a>目录搭好之后，下一步就是投喂资料</h2><p>当目录结构建立完成后，接下来就是往里持续投喂内容。</p>
+<p>比如我对 N26 银行卡比较感兴趣，就可以先用剪藏工具、笔记工具或者网页采集工具，把相关资料收集起来，再交给 LLM 处理。流程大致是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">将这个文件放入 raw 中进行加工和处理。地址：http://...<br></code></pre></td></tr></table></figure>
+
+<p>LLM 接到任务后，就会开始对资料进行提炼、拆分、归类和链接。</p>
+<p>这一步给我的感受是：它确实能明显减轻手工整理资料的负担，但前提是你给它的输入尽量清楚，任务边界尽量明确。</p>
+<h2 id="LLM-处理完，不代表工作结束"><a href="#LLM-处理完，不代表工作结束" class="headerlink" title="LLM 处理完，不代表工作结束"></a>LLM 处理完，不代表工作结束</h2><p>这是我这次实践里很深的一个体会。</p>
+<p>LLM 处理完资料之后，我们还是要自己检查一遍。因为最终生成的是一堆 Markdown 文件，所以用 <code>cat</code>、<code>vim</code> 之类的工具就能直接查看内容。如果想更直观地观察文件之间的跳转关系，也可以本地起一个服务，再用浏览器查看整个 Wiki 的页面效果。</p>
+<p><img src="/blog/assets/llm-wiki-04.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>Wiki Skills 本身虽然带有审计功能，但我的实际体验是：不能完全依赖它。它可以帮你发现一部分问题，但死链接、错误归类、页面结构不合理这些情况，还是需要人工复查。</p>
+<p>比如我本地跑起来之后，页面整体已经能看了，但首页仍然存在一些死链接，这就需要继续让 LLM 修复，或者自己手动调整。</p>
+<h2 id="本地跑通之后，我又同步到了-GitHub"><a href="#本地跑通之后，我又同步到了-GitHub" class="headerlink" title="本地跑通之后，我又同步到了 GitHub"></a>本地跑通之后，我又同步到了 GitHub</h2><p>和 LLM 进行多轮对话、不断修补之后，我把自己的 Wiki 页面也同步到了 GitHub。这样做有两个好处：</p>
 <ol>
-<li>一上来就贴 <code>Dockerfile</code></li>
-<li>讲到一半突然去解释镜像</li>
-<li>接着开始说自己踩过的坑</li>
-<li>再贴 <code>docker-compose.yml</code></li>
-<li>最后才说部署前提</li>
+<li>可以更直观地查看最终展示效果。</li>
+<li>可以把本地实验结果变成一个可以持续迭代的公开页面。</li>
 </ol>
-<p>信息都在，但读者会很累。</p>
-<p>结构好的版本，通常会更像这样：</p>
-<ol>
-<li>先说明这篇文章解决什么问题</li>
-<li>交代适用场景和前提</li>
-<li>给出最小可运行示例</li>
-<li>再逐段解释关键配置</li>
-<li>最后补常见坑和进阶建议</li>
-</ol>
-<p>内容未必更多，但读者更容易顺着走完。</p>
-<h2 id="问：技术博客有没有一套万能结构模板？"><a href="#问：技术博客有没有一套万能结构模板？" class="headerlink" title="问：技术博客有没有一套万能结构模板？"></a>问：技术博客有没有一套万能结构模板？</h2><p>答：有，而且大多数教程文、经验文、踩坑文都能套。</p>
-<p>一个很稳的骨架通常是：</p>
-<ol>
-<li>标题：写清楚主题、对象、结果</li>
-<li>开头：这篇文章解决什么问题，适合谁，读完得到什么</li>
-<li>场景和前提：环境、版本、适用范围</li>
-<li>最小可用方案：先建立全局印象</li>
-<li>分步骤展开：每一步只讲一个核心动作</li>
-<li>关键代码或配置解释：讲清为什么这样写</li>
-<li>常见坑和排查：用“现象、原因、解决”的格式</li>
-<li>方案取舍或进阶建议</li>
-<li>总结：回收全文，给出下一步</li>
-</ol>
-<p>这套模板不炫，但很稳。<br>技术内容天然容易散，模板的意义不是把文章写死，而是防止内容变成一堆没有顺序的知识点。</p>
-<h2 id="问：如果是个人博客，不想写得太像说明书，怎么办？"><a href="#问：如果是个人博客，不想写得太像说明书，怎么办？" class="headerlink" title="问：如果是个人博客，不想写得太像说明书，怎么办？"></a>问：如果是个人博客，不想写得太像说明书，怎么办？</h2><p>答：那就要在模板之外，加一点“作者本人”的东西。</p>
-<p>几个很有效的做法是：</p>
-<ul>
-<li>开头从真实起因切进去，不要直接写成标准摘要</li>
-<li>少一点“定义式表达”，多一点“这是我现在的做法”</li>
-<li>保留一点误判、试错和修正过程</li>
-<li>允许不同段落轻重不一，不必每一节都一样完整</li>
-<li>多一些判断句，少一些纯说明句</li>
-</ul>
-<p>因为个人博客真正好看的地方，往往不是知识点本身，而是作者怎么想、怎么取舍、怎么从经验里得出这些判断。</p>
-<h2 id="问：那-AI-到底适合怎么放进真实写作流程里？"><a href="#问：那-AI-到底适合怎么放进真实写作流程里？" class="headerlink" title="问：那 AI 到底适合怎么放进真实写作流程里？"></a>问：那 AI 到底适合怎么放进真实写作流程里？</h2><p>答：我后来把这个问题理解得越来越简单了。</p>
-<p>AI 最适合做的，不是替我把文章写完，而是降低写作摩擦。</p>
-<p>具体来说，我现在更常把它放在这些环节：</p>
-<h3 id="1-先帮我收窄问题"><a href="#1-先帮我收窄问题" class="headerlink" title="1. 先帮我收窄问题"></a>1. 先帮我收窄问题</h3><p>写之前先问清楚：</p>
-<ul>
-<li>这篇文章到底在回答什么问题</li>
-<li>它写给谁</li>
-<li>读者读完应该带走什么</li>
-</ul>
-<p>题目越具体，后面越容易写。</p>
-<h3 id="2-帮我拆题和列提纲"><a href="#2-帮我拆题和列提纲" class="headerlink" title="2. 帮我拆题和列提纲"></a>2. 帮我拆题和列提纲</h3><p>这是 AI 最适合的阶段之一。</p>
-<p>它很擅长：</p>
-<ul>
-<li>把模糊题目拆成几个子问题</li>
-<li>给出几种文章结构</li>
-<li>区分哪些内容适合放前面，哪些适合放后面</li>
-<li>把零散点子整理成一个可写提纲</li>
-</ul>
-<h3 id="3-帮我起草和改写局部内容"><a href="#3-帮我起草和改写局部内容" class="headerlink" title="3. 帮我起草和改写局部内容"></a>3. 帮我起草和改写局部内容</h3><p>相比一键写全文，我现在更喜欢让 AI 做局部动作：</p>
-<ul>
-<li>把一个要点展开成一段</li>
-<li>把一段改得更口语一点</li>
-<li>把一段压缩得更利落一点</li>
-<li>给某一节换一种表达方式</li>
-</ul>
-<p>这种方式的好处是，方向还在我手里，但推进阻力会小很多。</p>
-<h3 id="4-在我卡住的时候帮我继续"><a href="#4-在我卡住的时候帮我继续" class="headerlink" title="4. 在我卡住的时候帮我继续"></a>4. 在我卡住的时候帮我继续</h3><p>以前写作卡住，我常常会停下来等状态。</p>
-<p>现在更倾向于直接把“卡住”扔给 AI，比如让它：</p>
-<ul>
-<li>想几个过渡段写法</li>
-<li>判断某段是否适合提前</li>
-<li>给出两个不同语气的版本</li>
-<li>解释某段为什么读起来别扭</li>
-</ul>
-<p>很多时候，只要有一个可修改的版本，文章就能继续往前推。</p>
-<h3 id="5-最后自己来收"><a href="#5-最后自己来收" class="headerlink" title="5. 最后自己来收"></a>5. 最后自己来收</h3><p>这是我现在最确定的一点。</p>
-<p>AI 可以帮我起草、改写、整理，但文章最后那层“像不像我写的”，还是得自己来做。</p>
-<p>发布前我通常会重点看：</p>
-<ul>
-<li>标题是不是太空</li>
-<li>开头是不是进入太慢</li>
-<li>小标题顺不顺</li>
-<li>有没有重复表达</li>
-<li>有没有一些句子太像 AI 常见语气</li>
-<li>结尾有没有真正收住</li>
-</ul>
-<p>这一步决定的不是文章能不能读，而是它像不像自己的文章。</p>
-<h2 id="问：那最后，你对“AI-写博客”这件事的结论是什么？"><a href="#问：那最后，你对“AI-写博客”这件事的结论是什么？" class="headerlink" title="问：那最后，你对“AI 写博客”这件事的结论是什么？"></a>问：那最后，你对“AI 写博客”这件事的结论是什么？</h2><p>答：我现在最认同的一句话是：</p>
-<p><code>AI 最有用的地方，不是替我写完文章，而是降低写作摩擦。</code></p>
-<p>它让我更容易开始，更不容易卡死，也更容易把一篇文章先推进到一个可继续修改的状态。</p>
-<p>而真正决定一篇文章最后值不值得发出来的，还是作者自己的判断、取舍和语气。</p>
-<p>所以如果现在让我给一个最短建议，大概就是：</p>
-<ul>
-<li>日常写作用 <code>medium</code></li>
-<li>复杂长文再切 <code>Thinking</code></li>
-<li>用 AI 帮你启动、整理、推进</li>
-<li>但别把最后的判断直接交出去</li>
-</ul>
-<p>这大概是我现在最认可的一种关系。</p>
-<p>它不是“让 AI 代写”，而是“让 AI 陪你把文章写出来”。</p>
+<p>网站地址如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://1241262510.github.io/bank-wiki/<br></code></pre></td></tr></table></figure>
+
+<p><img src="/blog/assets/llm-wiki-05.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h2 id="这套方法值不值得做"><a href="#这套方法值不值得做" class="headerlink" title="这套方法值不值得做"></a>这套方法值不值得做</h2><p>我目前的判断是：短期内不一定立刻看到特别明显的效果，但长期价值很大。</p>
+<p>我前期已经搜集了一些范例文章和相关资料投喂进去。坦白说，只喂几篇文章，几天之内通常看不出特别大的变化；但如果把时间拉长到几个月、几年，这种知识库的积累效应就会慢慢显现出来。</p>
+<p>它最吸引我的地方，不在于“自动生成了多少内容”，而在于它逐渐把零散资料沉淀成一个可查询、可跳转、可扩展的知识网络。</p>
+<h2 id="最后的感受"><a href="#最后的感受" class="headerlink" title="最后的感受"></a>最后的感受</h2><p>这套 Wiki Skills 的思路，不只是能用在银行主题上，也可以迁移到技术文章、投资研究、工具知识库，甚至个人长期学习体系中。</p>
+<p>对我来说，这次实践最大的收获不是“我终于部署成功了”，而是我开始真正理解：知识管理不是把资料堆起来，而是把资料慢慢组织成一个可以持续生长的系统。</p>
+<p>如果你之前也觉得这类东西只有“大神”才能玩，其实可以先别想太复杂。先搭一个最小结构，投喂一点资料，跑起来看，再一边修一边学。很多事情，真正上手之后就没有那么抽象了。</p>
 
                 
               </div>
@@ -595,7 +484,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  <a href="/blog/categories/AI-%E5%AE%9E%E8%B7%B5/" class="category-chain-item">AI 实践</a>
   
   
 
@@ -610,15 +499,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/AI-%E5%86%99%E4%BD%9C/" class="print-no-link">#AI 写作</a>
+        <a href="/blog/tags/llm/" class="print-no-link">#llm</a>
       
-        <a href="/blog/tags/GPT/" class="print-no-link">#GPT</a>
+        <a href="/blog/tags/wiki/" class="print-no-link">#wiki</a>
       
-        <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
+        <a href="/blog/tags/hermes/" class="print-no-link">#hermes</a>
       
-        <a href="/blog/tags/%E9%97%AE%E7%AD%94/" class="print-no-link">#问答</a>
-      
-        <a href="/blog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" class="print-no-link">#公众号</a>
+        <a href="/blog/tags/knowledge-management/" class="print-no-link">#knowledge-management</a>
       
     </div>
   
@@ -630,8 +517,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>和 AI 聊写作：关于模型、结构和博客流程的一组问答</div>
-      <div>https://1241262510.github.io/blog/2026/04/30/和AI聊写作：关于模型、结构和博客流程的一组问答/</div>
+      <div>LLM Wiki 落地实践：从看懂理论到真正跑起来</div>
+      <div>https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/</div>
     </div>
     <div class="license-meta">
       
@@ -643,7 +530,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月30日</div>
+          <div>2026年5月2日</div>
         </div>
       
       
@@ -675,18 +562,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/05/02/llm-wiki-practical-deployment/" title="LLM Wiki 落地实践：从看懂理论到真正跑起来">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LLM Wiki 落地实践：从看懂理论到真正跑起来</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%AE%8C%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%88%91%E6%8A%8A%E2%80%9C%E6%80%8E%E4%B9%88%E7%94%A8%20GPT%20%E5%86%99%E5%8D%9A%E5%AE%A2%E2%80%9D%E6%83%B3%E6%B8%85%E6%A5%9A%E4%BA%86/" title="和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了">
-                        <span class="hidden-mobile">和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了</span>
+                      <a href="/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%86%99%E4%BD%9C%EF%BC%9A%E5%85%B3%E4%BA%8E%E6%A8%A1%E5%9E%8B%E3%80%81%E7%BB%93%E6%9E%84%E5%92%8C%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B%E7%9A%84%E4%B8%80%E7%BB%84%E9%97%AE%E7%AD%94/" title="和 AI 聊写作：关于模型、结构和博客流程的一组问答">
+                        <span class="hidden-mobile">和 AI 聊写作：关于模型、结构和博客流程的一组问答</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
