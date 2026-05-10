@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, 凌晨两点的书桌</rights>
   <subtitle>凌晨两点的书桌，记录编程、工具使用与学习笔记。</subtitle>
   <title>凌晨两点的书桌</title>
-  <updated>2026-05-02T04:55:53.889Z</updated>
+  <updated>2026-05-10T02:34:14.018Z</updated>
+  <entry>
+    <author>
+      <name>凌晨两点的书桌</name>
+    </author>
+    <category term="AI 工具" scheme="https://1241262510.github.io/blog/categories/AI-%E5%B7%A5%E5%85%B7/"/>
+    <category term="Codex" scheme="https://1241262510.github.io/blog/tags/Codex/"/>
+    <category term="AI 工具" scheme="https://1241262510.github.io/blog/tags/AI-%E5%B7%A5%E5%85%B7/"/>
+    <category term="桌面端" scheme="https://1241262510.github.io/blog/tags/%E6%A1%8C%E9%9D%A2%E7%AB%AF/"/>
+    <content>
+      <![CDATA[<h2 id="开启-Codex-宠物"><a href="#开启-Codex-宠物" class="headerlink" title="开启 Codex 宠物"></a>开启 Codex 宠物</h2><p>一开始我以为这个功能会比较简单，和 Claude Code 在终端里的设置方式类似，直接输入指令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/pet<br></code></pre></td></tr></table></figure><p>应该就可以开启。</p><p>但实际操作之后，发现并不是这么回事。在 Codex 的终端里输入这个指令，没有任何反应。</p><p>看来还是要走更稳妥的路径：</p><ul><li>下载 Codex 桌面端</li><li>在 App 中开启宠物功能</li></ul><p>实操下来，这条路径是可行的。</p><p><img src="/blog/assets/SCR-20260508-qkwh.png"></p><h2 id="桌面端"><a href="#桌面端" class="headerlink" title="桌面端"></a>桌面端</h2><p><img src="/blog/assets/SCR-20260508-qios.png"></p><p>访问 Codex 官网，直接下载桌面端。</p><p>我使用的是 Mac 操作系统，所以选择 macOS 版本下载。</p><p>安装并启动之后，系统会提示是否从 Claude 迁移数据。我这里选择了“是”，迁移了一部分数据。如果你的系统里没有 Claude 相关数据，也可以直接跳过。</p><p><img src="/blog/assets/SCR-20260508-qmdo.png"></p><p>安装完成后的界面比较朴素。</p><h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><p><img src="/blog/assets/SCR-20260508-qmow.png"></p><p>选择“设置”。</p><p><img src="/blog/assets/SCR-20260508-qncp.png"></p><p>进入设置后，选择“外观”。</p><p><img src="/blog/assets/SCR-20260508-qnlz.png"></p><p>在外观设置中，选择“宠物”。</p><p><img src="/blog/assets/SCR-20260508-qnug.png"></p><p>然后领养一个自己喜欢的宠物即可。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>网上有些文章提到，可以通过终端命令开启 Codex 宠物。但我实操下来，直接在终端中输入 <code>/pet</code> 没有效果。</p><p>也许是我没有找到正确的打开方式。至少目前来看，通过 Codex 桌面 App 进入设置，再从外观里开启宠物，是一条可行的路径。</p>]]>
+    </content>
+    <id>https://1241262510.github.io/blog/2026/05/09/codex-pet-enable-guide/</id>
+    <link href="https://1241262510.github.io/blog/2026/05/09/codex-pet-enable-guide/"/>
+    <published>2026-05-10T01:00:00.000Z</published>
+    <summary>记录一次开启 Codex 宠物功能的实操过程：终端输入 /pet 没有效果，最终通过 Codex 桌面 App 的外观设置成功开启。</summary>
+    <title>Codex 宠物开启实操：终端命令不行，桌面端可以</title>
+    <updated>2026-05-10T02:34:14.018Z</updated>
+  </entry>
   <entry>
     <author>
       <name>凌晨两点的书桌</name>
