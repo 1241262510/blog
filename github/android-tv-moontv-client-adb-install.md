@@ -10,6 +10,7 @@ categories:
   - 工具教程
 description: 记录一次在小米电视上安装 MoonTV 电视端客户端的过程：下载 OrionTV APK，开启开发者模式，用 ADB 连接电视并安装。
 index_img: /assets/SCR-20260510-svbo.png
+hide: true
 ---
 
 如果只是用 Web 页面观看 MoonTV，其实已经够用了。
