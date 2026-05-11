@@ -110,7 +110,7 @@ a:hover,
 }
 
 .header-inner {
-  min-height: 78dvh;
+  min-height: 64dvh;
 }
 
 .banner {
@@ -139,7 +139,7 @@ a:hover,
 .banner-text {
   width: min(58vw, 760px);
   margin-left: max(7vw, calc((100vw - 1200px) / 2));
-  padding: 17vh 1rem 0 0;
+  padding: 16vh 1rem 0 0;
   text-align: left !important;
 }
 
@@ -160,10 +160,10 @@ a:hover,
 
 .banner-text .h2,
 .banner-text #subtitle {
-  max-width: 11.2em;
+  max-width: 13em;
   color: #f7fbf4;
   font-family: var(--lab-sans);
-  font-size: clamp(2.35rem, 5.2vw, 4.65rem);
+  font-size: clamp(2.25rem, 4.6vw, 4.1rem);
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1.04;
@@ -189,7 +189,7 @@ main > .container.nopadding-x-md {
 #board {
   position: relative;
   max-width: 1200px;
-  margin: -5.6rem auto 4rem;
+  margin: -3.8rem auto 4rem;
   border: 1px solid rgba(255, 255, 255, 0.62);
   border-radius: 26px;
   background:
@@ -594,7 +594,7 @@ footer {
 
 @media (max-width: 767.98px) {
   .header-inner {
-    min-height: 72dvh;
+    min-height: 58dvh;
   }
 
   .banner {
@@ -614,18 +614,18 @@ footer {
   .banner-text {
     width: auto;
     margin: 0;
-    padding: 18vh 1.25rem 0;
+    padding: 17vh 1.25rem 0;
   }
 
   .banner-text .h2,
   .banner-text #subtitle {
-    max-width: 9.4em;
-    font-size: clamp(2rem, 10.7vw, 3.05rem);
+    max-width: 11em;
+    font-size: clamp(2rem, 9.6vw, 2.8rem);
     line-height: 1.08;
   }
 
   #board {
-    margin: -4.2rem 0 2rem;
+    margin: -2.8rem 0 2rem;
     border-right: 0;
     border-left: 0;
     border-radius: 22px 22px 0 0;
