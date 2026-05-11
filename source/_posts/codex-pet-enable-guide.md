@@ -9,6 +9,7 @@ categories:
   - AI 工具
 description: 记录一次开启 Codex 宠物功能的实操过程：终端输入 /pet 没有效果，最终通过 Codex 桌面 App 的外观设置成功开启。
 index_img: /assets/SCR-20260508-qkwh.png
+hide: true
 ---
 
 ## 开启 Codex 宠物
