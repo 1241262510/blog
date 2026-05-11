@@ -57,9 +57,9 @@
             
             <tag> 博客 </tag>
             
-            <tag> 问答 </tag>
-            
             <tag> 公众号 </tag>
+            
+            <tag> 问答 </tag>
             
         </tags>
       
@@ -90,9 +90,9 @@
             
             <tag> 博客 </tag>
             
-            <tag> 公众号 </tag>
-            
             <tag> 写作流程 </tag>
+            
+            <tag> 公众号 </tag>
             
         </tags>
       
@@ -218,9 +218,9 @@
       
         <tags>
             
-            <tag> wechat </tag>
-            
             <tag> obsidian </tag>
+            
+            <tag> wechat </tag>
             
             <tag> workflow </tag>
             
@@ -249,9 +249,9 @@
       
         <tags>
             
-            <tag> 大模型 </tag>
-            
             <tag> AI </tag>
+            
+            <tag> 大模型 </tag>
             
             <tag> Gemma4 </tag>
             
@@ -507,13 +507,13 @@
       
         <tags>
             
+            <tag> 大模型 </tag>
+            
             <tag> glm </tag>
             
             <tag> agent </tag>
             
             <tag> opencode </tag>
-            
-            <tag> 大模型 </tag>
             
         </tags>
       
