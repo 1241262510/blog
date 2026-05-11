@@ -31,15 +31,12 @@ canonical:
 
 index:
   banner_img: /img/banner-desk.svg
-  banner_img_height: 78
+  banner_img_height: 64
   banner_mask_alpha: 0.18
   slogan:
     enable: true
     text:
-      - "Codex 驱动写作、调试、发布的工程笔记"
-      - "ChatGPT 对话沉淀成可复用的技能包"
-      - "把自动化链路写清楚，把踩坑路径留给下一次"
-      - "从提示词到脚本，从本地实验到稳定发布"
+      - "Codex Skill Lab"
   auto_excerpt:
     enable: true
   post_url_target: _self
@@ -51,7 +48,7 @@ index:
 
 post:
   banner_img: /img/banner-desk.svg
-  banner_img_height: 48
+  banner_img_height: 42
   banner_mask_alpha: 0.22
   default_index_img: /img/banner-desk.svg
   meta:
@@ -66,7 +63,7 @@ post:
 
 archive:
   banner_img: /img/banner-desk.svg
-  banner_img_height: 45
+  banner_img_height: 38
   banner_mask_alpha: 0.22
 
 color:
