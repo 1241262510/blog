@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/09/codex-pet-enable-guide/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/10/android-tv-moontv-client-adb-install/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,26 +21,27 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录一次开启 Codex 宠物功能的实操过程：终端输入 &#x2F;pet 没有效果，最终通过 Codex 桌面 App 的外观设置成功开启。">
+    <meta name="description" content="记录一次在小米电视上安装 MoonTV 电视端客户端的过程：下载 OrionTV APK，开启开发者模式，用 ADB 连接电视并安装。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codex 宠物开启实操：终端命令不行，桌面端可以">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/09/codex-pet-enable-guide/index.html">
+<meta property="og:title" content="安卓电视安装 MoonTV 客户端：用 ADB 几个命令搞定">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/10/android-tv-moontv-client-adb-install/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录一次开启 Codex 宠物功能的实操过程：终端输入 &#x2F;pet 没有效果，最终通过 Codex 桌面 App 的外观设置成功开启。">
+<meta property="og:description" content="记录一次在小米电视上安装 MoonTV 电视端客户端的过程：下载 OrionTV APK，开启开发者模式，用 ADB 连接电视并安装。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/SCR-20260508-qkwh.png">
-<meta property="article:published_time" content="2026-05-10T01:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-10T02:34:14.018Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/SCR-20260510-svbo.png">
+<meta property="article:published_time" content="2026-05-11T02:50:00.000Z">
+<meta property="article:modified_time" content="2026-05-11T03:00:37.297Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="AI 工具">
-<meta property="article:tag" content="Codex">
-<meta property="article:tag" content="桌面端">
+<meta property="article:tag" content="ADB">
+<meta property="article:tag" content="MoonTV">
+<meta property="article:tag" content="安卓电视">
+<meta property="article:tag" content="观影">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/SCR-20260508-qkwh.png">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/SCR-20260510-svbo.png">
   
   
   
-  <title>Codex 宠物开启实操：终端命令不行，桌面端可以 - 凌晨两点的书桌</title>
+  <title>安卓电视安装 MoonTV 客户端：用 ADB 几个命令搞定 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -328,7 +329,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Codex 宠物开启实操：终端命令不行，桌面端可以"></span>
+            <span id="subtitle" data-typed-text="安卓电视安装 MoonTV 客户端：用 ADB 几个命令搞定"></span>
           
         </div>
 
@@ -339,8 +340,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-05-09 21:00" pubdate>
-          2026年5月9日 晚上
+        <time datetime="2026-05-10 22:50" pubdate>
+          2026年5月10日 晚上
         </time>
       </span>
     
@@ -351,7 +352,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          457 字
+          1.7k 字
         
       </span>
     
@@ -362,7 +363,7 @@
         
         
         
-          4 分钟
+          15 分钟
         
       </span>
     
@@ -401,39 +402,73 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Codex 宠物开启实操：终端命令不行，桌面端可以</h1>
+            <h1 id="seo-header">安卓电视安装 MoonTV 客户端：用 ADB 几个命令搞定</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="开启-Codex-宠物"><a href="#开启-Codex-宠物" class="headerlink" title="开启 Codex 宠物"></a>开启 Codex 宠物</h2><p>一开始我以为这个功能会比较简单，和 Claude Code 在终端里的设置方式类似，直接输入指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/pet<br></code></pre></td></tr></table></figure>
+                <p>如果只是用 Web 页面观看 MoonTV，其实已经够用了。</p>
+<p>但如果你想在大电视上看，还是安装一个电视端客户端更舒服。大屏观影的沉浸感明显更好，遥控器操作也比在浏览器里点来点去更自然。</p>
+<p>最近夸克的视频资源受限，相关讨论闹得沸沸扬扬，又一个常用观影渠道被截断。越是这种时候，越能感受到：把观影入口掌握在自己手里，才更安心。</p>
+<p>MoonTV 的搭建，正好可以缓解这种被平台限制的压力。被服务商卡住的感觉，确实不好。</p>
+<p>MoonTV 的 GitHub 指导页面里，也提供了桌面端和电视端相关项目。这里用到的是 OrionTV：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://github.com/orion-lib/OrionTV<br></code></pre></td></tr></table></figure>
 
-<p>应该就可以开启。</p>
-<p>但实际操作之后，发现并不是这么回事。在 Codex 的终端里输入这个指令，没有任何反应。</p>
-<p>看来还是要走更稳妥的路径：</p>
+<p>正常流程是自己编译项目，不过项目页面也提供了 APK 安装包。这样就省掉了编译这个中间步骤，安装起来简单很多。</p>
+<p><img src="/blog/assets/SCR-20260510-svbo.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>下载需要的 APK 安装包：</p>
+<p><img src="/blog/assets/SCR-20260510-svfc.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>下载完成后，需要把 APK 安装到安卓电视里。我家里用的是小米电视。</p>
+<p>一般做法是先在电视上安装一个文件浏览器，再通过 U 盘或者局域网传文件安装。但我家的电视平时主要作为 Apple TV 的显示端使用，再去电视应用商店里搜索、安装一个文件浏览器，过程比较麻烦。再加上电视端各种广告骚扰，我对这种方式不太感冒。</p>
+<p>所以这里采用一个更直接的办法：通过 ADB 安装 APK。</p>
+<p>如果你以前给安卓手机刷过机，应该会很熟悉这个流程。看起来有点极客，但实际操作效率很高，几个命令就能完成安装。这个方法也可以复用，以后安装其他安卓电视应用，也基本是同样的流程。</p>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><p>整体流程分三步：</p>
 <ul>
-<li>下载 Codex 桌面端</li>
-<li>在 App 中开启宠物功能</li>
+<li>在电视端开启开发者模式</li>
+<li>在 Mac 上安装 ADB 工具</li>
+<li>通过 ADB 连接电视并安装 APK</li>
 </ul>
-<p>实操下来，这条路径是可行的。</p>
-<p><img src="/blog/assets/SCR-20260508-qkwh.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="桌面端"><a href="#桌面端" class="headerlink" title="桌面端"></a>桌面端</h2><p><img src="/blog/assets/SCR-20260508-qios.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>访问 Codex 官网，直接下载桌面端。</p>
-<p>我使用的是 Mac 操作系统，所以选择 macOS 版本下载。</p>
-<p>安装并启动之后，系统会提示是否从 Claude 迁移数据。我这里选择了“是”，迁移了一部分数据。如果你的系统里没有 Claude 相关数据，也可以直接跳过。</p>
-<p><img src="/blog/assets/SCR-20260508-qmdo.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>安装完成后的界面比较朴素。</p>
-<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><p><img src="/blog/assets/SCR-20260508-qmow.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>选择“设置”。</p>
-<p><img src="/blog/assets/SCR-20260508-qncp.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>进入设置后，选择“外观”。</p>
-<p><img src="/blog/assets/SCR-20260508-qnlz.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>在外观设置中，选择“宠物”。</p>
-<p><img src="/blog/assets/SCR-20260508-qnug.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>然后领养一个自己喜欢的宠物即可。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>网上有些文章提到，可以通过终端命令开启 Codex 宠物。但我实操下来，直接在终端中输入 <code>/pet</code> 没有效果。</p>
-<p>也许是我没有找到正确的打开方式。至少目前来看，通过 Codex 桌面 App 进入设置，再从外观里开启宠物，是一条可行的路径。</p>
+<p>下面是具体步骤。</p>
+<h3 id="1-电视端开启开发者模式"><a href="#1-电视端开启开发者模式" class="headerlink" title="1. 电视端开启开发者模式"></a>1. 电视端开启开发者模式</h3><p><img src="/blog/assets/SCR-20260510-tbhq.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260510-tgnb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/260511100358035.jpg" srcset="/blog/img/loading.gif" lazyload></p>
+<p>在我的小米电视上，对着图中的选项连续按 7 次，就可以开启“开发者模式”。</p>
+<p>不同品牌电视的入口可能不一样，可以直接搜索对应品牌的“开启开发者模式”方法，或者问 GPT。大体逻辑和安卓手机类似：找到系统版本号或设备信息，连续点击多次，开启开发者选项。</p>
+<h3 id="2-Mac-端安装-ADB"><a href="#2-Mac-端安装-ADB" class="headerlink" title="2. Mac 端安装 ADB"></a>2. Mac 端安装 ADB</h3><p>在 Mac 终端里执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install --cask android-platform-tools<br></code></pre></td></tr></table></figure>
+
+<p>我使用的是 Mac，所以用 Homebrew 安装。如果你使用的是 Windows 或其他系统，可以搜索对应平台的 Android Platform Tools 安装方式。</p>
+<p>安装完成后，可以在终端里执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb version<br></code></pre></td></tr></table></figure>
+
+<p>如果能正常显示版本号，说明 ADB 已经安装成功。</p>
+<h3 id="3-连接电视"><a href="#3-连接电视" class="headerlink" title="3. 连接电视"></a>3. 连接电视</h3><p>先找到电视的 IP 地址。我的电视里位置大致是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">设置 -&gt; 无线网络 -&gt; IPv4 地址<br></code></pre></td></tr></table></figure>
+
+<p>找到电视 IP 后，在 Mac 终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb connect 192.168.31.109<br></code></pre></td></tr></table></figure>
+
+<p>这里的 <code>192.168.31.109</code> 是我家电视的 IP 地址，你需要替换成自己电视的地址。</p>
+<p>如果本机的 ADB 环境没问题，电视端会弹出提示，询问是否允许连接。选择允许即可。</p>
+<h3 id="4-安装-APK"><a href="#4-安装-APK" class="headerlink" title="4. 安装 APK"></a>4. 安装 APK</h3><p>进入 APK 所在目录后，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb install orionTV.1.3.13.apk<br></code></pre></td></tr></table></figure>
+
+<p>这个命令会把安装包传输到电视，并完成安装。它和使用文件浏览器安装 APK 的效果一样，只是一个通过终端操作，一个通过电视端可视化界面操作。</p>
+<p>我自己更喜欢 ADB 这种方式。为了安装一个应用，再去电视上搜索、安装另一个应用，整个过程有点啰嗦。ADB 反而更直接。</p>
+<p>需要注意的是，如果通过无线网络连接，APK 传输可能会比较慢。我这次就等了一会儿，才完成安装。</p>
+<h2 id="安卓-TV-客户端设置"><a href="#安卓-TV-客户端设置" class="headerlink" title="安卓 TV 客户端设置"></a>安卓 TV 客户端设置</h2><p>安装完成后，在电视端打开 OrionTV，并进入设置页面。</p>
+<p><img src="/blog/assets/260511102242416.jpg" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/260511102251396.jpg" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/260511102405382.jpg" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/260511102331534.jpg" srcset="/blog/img/loading.gif" lazyload></p>
+<p>在 API 地址里输入你的 MoonTV 后台地址。例如我这里是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">192.168.2.140:3000<br></code></pre></td></tr></table></figure>
+
+<p>这个地址就是 MoonTV Web 端的访问地址。</p>
+<p>这里的输入方式比较人性化。电视端会提供一个输入页面，可以选择用手机或电脑输入，比直接用遥控器一个字一个字敲舒服很多。</p>
+<p>随后会出现 Web 端的用户名和密码输入界面，按你自己的 MoonTV 设置填写即可。</p>
+<p>到这里，安卓 TV 客户端的设置基本完成。之后就可以在大屏幕上使用 MoonTV 观影了。</p>
+<p>MoonTV 目前最高支持到 1080p，清晰度不算特别高，但它提供了一种更自由的观影方式。至少不用完全绑定到某一个固定服务商，这一点已经很有价值。</p>
 
                 
               </div>
@@ -452,7 +487,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  <a href="/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
   
   
 
@@ -467,11 +502,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/Codex/" class="print-no-link">#Codex</a>
+        <a href="/blog/tags/MoonTV/" class="print-no-link">#MoonTV</a>
       
-        <a href="/blog/tags/AI-%E5%B7%A5%E5%85%B7/" class="print-no-link">#AI 工具</a>
+        <a href="/blog/tags/%E5%AE%89%E5%8D%93%E7%94%B5%E8%A7%86/" class="print-no-link">#安卓电视</a>
       
-        <a href="/blog/tags/%E6%A1%8C%E9%9D%A2%E7%AB%AF/" class="print-no-link">#桌面端</a>
+        <a href="/blog/tags/ADB/" class="print-no-link">#ADB</a>
+      
+        <a href="/blog/tags/%E8%A7%82%E5%BD%B1/" class="print-no-link">#观影</a>
       
     </div>
   
@@ -483,8 +520,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Codex 宠物开启实操：终端命令不行，桌面端可以</div>
-      <div>https://1241262510.github.io/blog/2026/05/09/codex-pet-enable-guide/</div>
+      <div>安卓电视安装 MoonTV 客户端：用 ADB 几个命令搞定</div>
+      <div>https://1241262510.github.io/blog/2026/05/10/android-tv-moontv-client-adb-install/</div>
     </div>
     <div class="license-meta">
       
@@ -496,7 +533,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年5月9日</div>
+          <div>2026年5月10日</div>
         </div>
       
       
@@ -528,18 +565,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/05/10/android-tv-moontv-client-adb-install/" title="安卓电视安装 MoonTV 客户端：用 ADB 几个命令搞定">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">安卓电视安装 MoonTV 客户端：用 ADB 几个命令搞定</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/05/02/llm-wiki-practical-deployment/" title="LLM Wiki 落地实践：从看懂理论到真正跑起来">
-                        <span class="hidden-mobile">LLM Wiki 落地实践：从看懂理论到真正跑起来</span>
+                      <a href="/blog/2026/05/09/codex-pet-enable-guide/" title="Codex 宠物开启实操：终端命令不行，桌面端可以">
+                        <span class="hidden-mobile">Codex 宠物开启实操：终端命令不行，桌面端可以</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
