@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/12/apple-tv-moontv-client-build-install/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,27 +21,28 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录一次从理论走向落地的 LLM Wiki 实践过程，包括目录初始化、资料投喂、人工审计与 GitHub 展示。">
+    <meta name="description" content="记录一次在 Apple TV 上编译、签名、部署 MoonTV tvOS 客户端的完整过程，并总结真机和模拟器调试中的问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LLM Wiki 落地实践：从看懂理论到真正跑起来">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/index.html">
+<meta property="og:title" content="在 Apple TV 上安装 MoonTV 客户端：一次从编译到体验的实操记录">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/12/apple-tv-moontv-client-build-install/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录一次从理论走向落地的 LLM Wiki 实践过程，包括目录初始化、资料投喂、人工审计与 GitHub 展示。">
+<meta property="og:description" content="记录一次在 Apple TV 上编译、签名、部署 MoonTV tvOS 客户端的完整过程，并总结真机和模拟器调试中的问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/llm-wiki-01.png">
-<meta property="article:published_time" content="2026-05-02T04:50:00.000Z">
-<meta property="article:modified_time" content="2026-05-11T04:38:34.184Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/apple-tv-moontv-cover.png">
+<meta property="article:published_time" content="2026-05-13T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-05-13T00:39:35.634Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="hermes">
-<meta property="article:tag" content="knowledge-management">
-<meta property="article:tag" content="llm">
-<meta property="article:tag" content="wiki">
+<meta property="article:tag" content="Apple TV">
+<meta property="article:tag" content="MoonTV">
+<meta property="article:tag" content="Xcode">
+<meta property="article:tag" content="tvOS">
+<meta property="article:tag" content="观影">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/llm-wiki-01.png">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/apple-tv-moontv-cover.png">
   
   
   
-  <title>LLM Wiki 落地实践：从看懂理论到真正跑起来 - 凌晨两点的书桌</title>
+  <title>在 Apple TV 上安装 MoonTV 客户端：一次从编译到体验的实操记录 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +330,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LLM Wiki 落地实践：从看懂理论到真正跑起来"></span>
+            <span id="subtitle" data-typed-text="在 Apple TV 上安装 MoonTV 客户端：一次从编译到体验的实操记录"></span>
           
         </div>
 
@@ -340,8 +341,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-05-02 00:50" pubdate>
-          2026年5月2日 凌晨
+        <time datetime="2026-05-12 22:30" pubdate>
+          2026年5月12日 晚上
         </time>
       </span>
     
@@ -352,7 +353,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.8k 字
         
       </span>
     
@@ -363,7 +364,7 @@
         
         
         
-          18 分钟
+          24 分钟
         
       </span>
     
@@ -402,70 +403,99 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">LLM Wiki 落地实践：从看懂理论到真正跑起来</h1>
+            <h1 id="seo-header">在 Apple TV 上安装 MoonTV 客户端：一次从编译到体验的实操记录</h1>
             
             
               <div class="markdown-body">
                 
-                <p>之前一直很羡慕别人搭建的 LLM Wiki，但总觉得这件事门槛不低，自己未必能真正落地。折腾了几天之后，我终于把它跑通了。这篇文章不讲太多抽象理论，主要记录一次真实的实践过程，给和我一样刚入门的人一个可参考的起手路径。</p>
-<p>我个人觉得，知识管理是一件很有价值的事。它不只是把文章重新整理一遍，更重要的是帮助我们把零散信息逐步内化成结构化知识。问题在于，很多“大神级”分享往往更偏理论和方法论，真正动手时，还是会卡在“第一步到底怎么做”。</p>
-<p>我这次的实践，最开始也参考过国内一些现成方案，比如有道云推出的 Wiki Skills 技能包。不过兜兜转转之后，我最后还是选择用 Hermes 的 agent 来完成初始化和部署。整体体验下来，这条路线更适合我目前的使用习惯。</p>
-<h2 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h2><p>如果你也想把 LLM Wiki 跑起来，可以先把它理解成三件事：</p>
+                <p>之前在安卓电视上安装 MoonTV，整体感觉比较简单：下载 APK、安装、配置，基本就能跑起来。那如果换成 Apple TV，会不会也一样轻松？实际观影体验会不会更好？</p>
+<p>带着这个问题，我完整折腾了一次：从拉取项目、编译 tvOS 客户端，到在 Apple TV 真机和模拟器上运行。流程最终跑通了，但体验和预期有明显差距。这里把过程、踩坑点和结论整理一下，方便以后复盘，也给同样想尝试的人一个参考。</p>
+<p><img src="/blog/assets/apple-tv-moontv-cover.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h2 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h2><p>Apple TV 端可以编译运行，但目前更像是一个可展示的半成品，不适合作为稳定的日常观影客户端。</p>
+<p>主要原因有三点：</p>
 <ol>
-<li>先把基础目录结构搭起来。</li>
-<li>再持续投喂原始资料。</li>
-<li>最后让 LLM 帮你整理、链接、审计，再由人工复查。</li>
+<li>官方重点明显不在 Apple TV，而是在 Android TV。</li>
+<li>Apple TV 端功能完成度较低，基本只能播放和暂停。</li>
+<li>如果没有正式 Apple Developer 账号，只能使用 Xcode 的免费临时签名，通常 7 天后就需要重新部署。</li>
 </ol>
-<p>听起来复杂，实际上拆开之后并不算难。真正难的是第一次起手时，脑子里没有一张清晰的流程图。</p>
-<h2 id="我是怎么开始的"><a href="#我是怎么开始的" class="headerlink" title="我是怎么开始的"></a>我是怎么开始的</h2><p>进入 Hermes 之后，我直接给了一个非常明确的要求：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">使用 llm wiki 大神的理论，进行 bank-wiki 的初始化和部署。<br></code></pre></td></tr></table></figure>
-
-<p>然后 LLM 就开始干活了，自动生成了一批目录和文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tree -L 3<br></code></pre></td></tr></table></figure>
-
-<p><img src="/blog/assets/llm-wiki-01.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/llm-wiki-02.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/llm-wiki-03.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>从结果来看，它生成的结构和我理解中的 Wiki 理论比较接近，核心目录主要包括：</p>
+<p>如果只是想体验一下项目能不能跑，Apple TV 可以尝试；如果想长期、稳定、完整地使用，安卓电视或安卓盒子仍然更合适。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>OrionTV 这个项目本身已经提供了一些安装指引，但主要提供的是 Android 端的 APK 安装包，并没有直接提供 Apple TV 可用的安装包。</p>
+<p>也就是说，Apple TV 这条路不能像安卓电视一样直接安装，需要自己在 Mac 上把 tvOS 客户端编译出来，再通过 Xcode 部署到 Apple TV 或 tvOS 模拟器。</p>
+<p>我手里刚好有一台 Mac mini，可以把整个流程实操一遍。大致需要准备：</p>
 <ul>
-<li><code>raw</code>：原始资料</li>
-<li><code>entities</code>：实体</li>
-<li><code>concepts</code>：概念</li>
+<li>一台 Mac，推荐安装最新版 Xcode。</li>
+<li>一个 Apple ID，用于 Xcode 签名。</li>
+<li>项目源码。</li>
+<li>Apple TV 真机，或者使用 Xcode 自带的 tvOS 模拟器。</li>
+<li>Yarn &#x2F; Node 等项目运行依赖。</li>
 </ul>
-<p>这几个目录基本构成了整个 Wiki 的骨架。</p>
-<h2 id="这些目录分别是干什么的"><a href="#这些目录分别是干什么的" class="headerlink" title="这些目录分别是干什么的"></a>这些目录分别是干什么的</h2><h3 id="raw：原料仓库"><a href="#raw：原料仓库" class="headerlink" title="raw：原料仓库"></a><code>raw</code>：原料仓库</h3><p><code>raw</code> 可以理解成“投喂区”。你想研究什么主题，就把相关原始资料放进来。比如文章、网页剪藏、PDF、笔记、数据摘录，理论上都可以作为原始输入。</p>
-<p>如果我当前关注的是银行主题，那么 <code>raw</code> 目录里放的就是和银行相关的原始材料。这个目录的原则最好是“只读少改”，尽量保留原始信息，避免在最开始就把资料改得面目全非。</p>
-<p>在 Linux 这类系统里，甚至还可以通过命令做加锁和解锁，进一步保证原料区的稳定性。</p>
-<h3 id="entities：可被命名的对象"><a href="#entities：可被命名的对象" class="headerlink" title="entities：可被命名的对象"></a><code>entities</code>：可被命名的对象</h3><p><code>entities</code> 里放的是那些“能明确叫出名字”的东西，比如银行卡、公司、人名、产品名、机构名等。</p>
-<p>这类内容的特点是边界相对清晰，适合被 LLM 抽取出来，逐步形成词条。</p>
-<h3 id="concepts：抽象概念"><a href="#concepts：抽象概念" class="headerlink" title="concepts：抽象概念"></a><code>concepts</code>：抽象概念</h3><p><code>concepts</code> 对应的是更偏抽象的内容，比如“订阅 GPT”“知识管理”“自动化投喂”“审计机制”这类概念。</p>
-<p>一开始我对 <code>entities</code> 和 <code>concepts</code> 的区别其实有点绕，但实际操作后就明白了：这两个目录下的很多文件，并不需要自己手工一个个创建，LLM 完全可以辅助完成。</p>
-<h2 id="目录搭好之后，下一步就是投喂资料"><a href="#目录搭好之后，下一步就是投喂资料" class="headerlink" title="目录搭好之后，下一步就是投喂资料"></a>目录搭好之后，下一步就是投喂资料</h2><p>当目录结构建立完成后，接下来就是往里持续投喂内容。</p>
-<p>比如我对 N26 银行卡比较感兴趣，就可以先用剪藏工具、笔记工具或者网页采集工具，把相关资料收集起来，再交给 LLM 处理。流程大致是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">将这个文件放入 raw 中进行加工和处理。地址：http://...<br></code></pre></td></tr></table></figure>
+<p>项目拉到本地后，可以借助 LLM 先把依赖和脚本梳理清楚。我的入口命令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yarn ios-tv<br></code></pre></td></tr></table></figure>
 
-<p>LLM 接到任务后，就会开始对资料进行提炼、拆分、归类和链接。</p>
-<p>这一步给我的感受是：它确实能明显减轻手工整理资料的负担，但前提是你给它的输入尽量清楚，任务边界尽量明确。</p>
-<h2 id="LLM-处理完，不代表工作结束"><a href="#LLM-处理完，不代表工作结束" class="headerlink" title="LLM 处理完，不代表工作结束"></a>LLM 处理完，不代表工作结束</h2><p>这是我这次实践里很深的一个体会。</p>
-<p>LLM 处理完资料之后，我们还是要自己检查一遍。因为最终生成的是一堆 Markdown 文件，所以用 <code>cat</code>、<code>vim</code> 之类的工具就能直接查看内容。如果想更直观地观察文件之间的跳转关系，也可以本地起一个服务，再用浏览器查看整个 Wiki 的页面效果。</p>
-<p><img src="/blog/assets/llm-wiki-04.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>Wiki Skills 本身虽然带有审计功能，但我的实际体验是：不能完全依赖它。它可以帮你发现一部分问题，但死链接、错误归类、页面结构不合理这些情况，还是需要人工复查。</p>
-<p>比如我本地跑起来之后，页面整体已经能看了，但首页仍然存在一些死链接，这就需要继续让 LLM 修复，或者自己手动调整。</p>
-<h2 id="本地跑通之后，我又同步到了-GitHub"><a href="#本地跑通之后，我又同步到了-GitHub" class="headerlink" title="本地跑通之后，我又同步到了 GitHub"></a>本地跑通之后，我又同步到了 GitHub</h2><p>和 LLM 进行多轮对话、不断修补之后，我把自己的 Wiki 页面也同步到了 GitHub。这样做有两个好处：</p>
+<p>安装依赖之后，项目目录结构大致如下：</p>
+<p><img src="/blog/assets/SCR-20260512-qjvo.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h2 id="使用-Xcode-编译"><a href="#使用-Xcode-编译" class="headerlink" title="使用 Xcode 编译"></a>使用 Xcode 编译</h2><p>Apple TV 客户端的编译主要依赖 Xcode。Xcode 可以直接从 Mac App Store 下载。</p>
+<p><img src="/blog/assets/SCR-20260512-qsbs.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>不过，直接打开 Xcode 编译通常还不够，需要先处理工作区、签名、Bundle ID、编译模式和目标设备几个关键设置。</p>
+<h3 id="打开正确的工作区文件"><a href="#打开正确的工作区文件" class="headerlink" title="打开正确的工作区文件"></a>打开正确的工作区文件</h3><p>打开 Xcode 后，先选择项目工作区。</p>
+<p><img src="/blog/assets/SCR-20260512-qltk.jpeg" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260512-rblb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>这里有一个很容易踩坑的点：要打开 <code>.xcworkspace</code> 工作区文件，而不是 <code>.xcodeproj</code> 项目文件。</p>
+<p><img src="/blog/assets/SCR-20260512-qqsp.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>如果打开错了，后续依赖、编译配置和 CocoaPods 相关内容可能无法正确加载，编译时会出现各种奇怪的问题。</p>
+<h3 id="配置签名"><a href="#配置签名" class="headerlink" title="配置签名"></a>配置签名</h3><p>苹果 App 开发需要签名。如果是正式发布，需要加入 Apple Developer Program，费用是每年 99 美元。</p>
+<p>但如果只是想在自己的设备上测试，可以使用 Xcode 的免费临时签名。它的限制是有效期较短，通常 7 天后需要重新签名和部署。对这次验证来说，临时签名已经够用了。</p>
+<p>在 Xcode 里登录自己的 Apple ID，然后选择对应的 Team，让 Xcode 自动完成签名。</p>
+<p><img src="/blog/assets/SCR-20260512-qved.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>如果签名失败，可以检查下面的 Bundle Identifier。有些项目默认的 Bundle ID 已经被占用，或者不符合当前账号的签名要求，这时需要改成一个属于自己的唯一 ID。</p>
+<p><img src="/blog/assets/SCR-20260512-qwcz.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h3 id="选择-Debug-或-Release"><a href="#选择-Debug-或-Release" class="headerlink" title="选择 Debug 或 Release"></a>选择 Debug 或 Release</h3><p>Xcode 里还可以选择最终编译的配置，比如 Debug 或 Release。</p>
+<p><img src="/blog/assets/SCR-20260512-qwyx.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>如果只是想快速看到 Apple TV 端能不能跑起来，我更建议先选 Release。</p>
+<p>原因是 Debug 模式下，项目会尝试启动本地开发服务，并依赖调试链路加载内容；Release 模式会把依赖打包进去，部署之后更接近独立运行，也能少踩一些环境问题。</p>
+<p><img src="/blog/assets/SCR-20260512-qyhl.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>我这次遇到的情况是：Release 版本可以正常显示界面，而 Debug 版本会提示缺少安装包。为了减少试错时间，先用 Release 跑通是更稳妥的选择。</p>
+<h2 id="选择运行设备"><a href="#选择运行设备" class="headerlink" title="选择运行设备"></a>选择运行设备</h2><p>接下来需要选择运行目标，可以是真实的 Apple TV，也可以是 Xcode 自带的 tvOS 模拟器。</p>
+<p>我自己有 Apple TV 真机，所以优先选择了物理设备。不过从这次体验看，真机上遇到的问题，在模拟器里也能复现。因此，如果手里没有 Apple TV，用模拟器做基础验证也可以。</p>
+<h2 id="Apple-TV-真机设置"><a href="#Apple-TV-真机设置" class="headerlink" title="Apple TV 真机设置"></a>Apple TV 真机设置</h2><p>如果要把 App 部署到 Apple TV 真机，需要先在 Apple TV 和 Mac 之间建立连接。大体流程是在 Apple TV 的设置里开启开发相关选项，并让 Mac 上的 Xcode 识别到这台设备。</p>
+<p><img src="/blog/assets/SCR-20260512-revy.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260512-rexm.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260512-reyx.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260512-rfaj.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260512-rfdm.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260512-rffb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>按照界面提示完成配对后，就可以在 Xcode 的设备列表中选择 Apple TV 作为运行目标。</p>
+<h2 id="调试与运行"><a href="#调试与运行" class="headerlink" title="调试与运行"></a>调试与运行</h2><p>设备和签名都配置好之后，就可以在 Xcode 里点击运行，开始编译和部署。</p>
+<p><img src="/blog/assets/SCR-20260512-rgyp.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p><img src="/blog/assets/SCR-20260512-rivx.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>下面是模拟器里的截图。实际显示效果和 Apple TV 真机基本一致：</p>
+<p><img src="/blog/assets/SCR-20260512-rlba.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>这里也验证了一个判断：这个项目在 Apple TV 端的问题不是单纯的真机兼容问题，而是 tvOS 客户端本身的完成度有限。</p>
+<h2 id="实际体验"><a href="#实际体验" class="headerlink" title="实际体验"></a>实际体验</h2><p>最终 App 确实能在 Apple TV 上跑起来，但整体体验并不算满意。</p>
+<p>最明显的问题是功能不完整。目前看起来只实现了基础的播放和暂停，其他交互几乎不可用。Apple TV 遥控器上的方向、菜单、返回等操作没有形成完整的电视端交互逻辑，很多功能键更像是摆设。</p>
+<p>界面体验也不太像原生 Apple TV 应用，更接近手机端或安卓端界面的简单迁移。焦点移动、遥控器操作、页面层级、菜单逻辑都没有完全适配 tvOS 的使用习惯。</p>
+<p>所以它目前更像是一个“能跑起来的展示版本”，还不是一个可以长期使用的 Apple TV 客户端。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>这次主要遇到的问题集中在几个地方：</p>
 <ol>
-<li>可以更直观地查看最终展示效果。</li>
-<li>可以把本地实验结果变成一个可以持续迭代的公开页面。</li>
+<li><p><strong>没有现成的 Apple TV 安装包</strong></p>
+<p>项目主要提供 Android APK，Apple TV 端需要自己编译。</p>
+</li>
+<li><p><strong>必须使用 Xcode 部署</strong></p>
+<p>Apple TV 不像安卓电视那样可以直接安装 APK，需要通过 Xcode 编译、签名和安装。</p>
+</li>
+<li><p><strong>签名有门槛</strong></p>
+<p>没有正式开发者账号时，只能用免费临时签名。能用，但有效期短，7 天后通常要重新部署。</p>
+</li>
+<li><p><strong>Debug 模式不够顺</strong></p>
+<p>我这次选择 Debug 编译时遇到了缺少安装包的问题，而 Release 可以正常显示界面。建议第一次跑通时优先使用 Release。</p>
+</li>
+<li><p><strong>tvOS 端完成度不足</strong></p>
+<p>能打开、能播放，但交互和功能都不完整，不适合当作正式客户端使用。</p>
+</li>
 </ol>
-<p>网站地址如下：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://1241262510.github.io/bank-wiki/<br></code></pre></td></tr></table></figure>
-
-<p><img src="/blog/assets/llm-wiki-05.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="这套方法值不值得做"><a href="#这套方法值不值得做" class="headerlink" title="这套方法值不值得做"></a>这套方法值不值得做</h2><p>我目前的判断是：短期内不一定立刻看到特别明显的效果，但长期价值很大。</p>
-<p>我前期已经搜集了一些范例文章和相关资料投喂进去。坦白说，只喂几篇文章，几天之内通常看不出特别大的变化；但如果把时间拉长到几个月、几年，这种知识库的积累效应就会慢慢显现出来。</p>
-<p>它最吸引我的地方，不在于“自动生成了多少内容”，而在于它逐渐把零散资料沉淀成一个可查询、可跳转、可扩展的知识网络。</p>
-<h2 id="最后的感受"><a href="#最后的感受" class="headerlink" title="最后的感受"></a>最后的感受</h2><p>这套 Wiki Skills 的思路，不只是能用在银行主题上，也可以迁移到技术文章、投资研究、工具知识库，甚至个人长期学习体系中。</p>
-<p>对我来说，这次实践最大的收获不是“我终于部署成功了”，而是我开始真正理解：知识管理不是把资料堆起来，而是把资料慢慢组织成一个可以持续生长的系统。</p>
-<p>如果你之前也觉得这类东西只有“大神”才能玩，其实可以先别想太复杂。先搭一个最小结构，投喂一点资料，跑起来看，再一边修一边学。很多事情，真正上手之后就没有那么抽象了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次折腾下来，技术流程是跑通了，但使用价值有限。对于 MoonTV 这个项目来说，Apple TV 端并不是主战场。它可以作为一次学习 tvOS 编译和部署流程的练习，但如果目标是稳定观影，还是推荐选择 Android TV 设备。</p>
+<p>从收获角度看，这次也不是完全白折腾。至少熟悉了 Apple TV 应用从源码到真机运行的大致流程，包括 Xcode 工作区选择、签名、Bundle ID、Release 编译、模拟器测试和真机部署。以后再折腾类似的开源 tvOS 项目，成本会低很多。</p>
+<p>另外，也对开源项目有了更实际的认识：项目能跑，不代表每个平台都成熟；有客户端目录，不代表它已经具备完整体验。真正值得长期使用的客户端，还是要看维护重点、功能完成度和目标平台适配程度。</p>
 
                 
               </div>
@@ -484,7 +514,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/AI-%E5%AE%9E%E8%B7%B5/" class="category-chain-item">AI 实践</a>
+  <a href="/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
   
   
 
@@ -499,13 +529,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/llm/" class="print-no-link">#llm</a>
+        <a href="/blog/tags/MoonTV/" class="print-no-link">#MoonTV</a>
       
-        <a href="/blog/tags/wiki/" class="print-no-link">#wiki</a>
+        <a href="/blog/tags/%E8%A7%82%E5%BD%B1/" class="print-no-link">#观影</a>
       
-        <a href="/blog/tags/hermes/" class="print-no-link">#hermes</a>
+        <a href="/blog/tags/Apple-TV/" class="print-no-link">#Apple TV</a>
       
-        <a href="/blog/tags/knowledge-management/" class="print-no-link">#knowledge-management</a>
+        <a href="/blog/tags/tvOS/" class="print-no-link">#tvOS</a>
+      
+        <a href="/blog/tags/Xcode/" class="print-no-link">#Xcode</a>
       
     </div>
   
@@ -517,8 +549,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>LLM Wiki 落地实践：从看懂理论到真正跑起来</div>
-      <div>https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/</div>
+      <div>在 Apple TV 上安装 MoonTV 客户端：一次从编译到体验的实操记录</div>
+      <div>https://1241262510.github.io/blog/2026/05/12/apple-tv-moontv-client-build-install/</div>
     </div>
     <div class="license-meta">
       
@@ -530,7 +562,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年5月2日</div>
+          <div>2026年5月12日</div>
         </div>
       
       
@@ -562,18 +594,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/05/12/apple-tv-moontv-client-build-install/" title="在 Apple TV 上安装 MoonTV 客户端：一次从编译到体验的实操记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">在 Apple TV 上安装 MoonTV 客户端：一次从编译到体验的实操记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%86%99%E4%BD%9C%EF%BC%9A%E5%85%B3%E4%BA%8E%E6%A8%A1%E5%9E%8B%E3%80%81%E7%BB%93%E6%9E%84%E5%92%8C%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B%E7%9A%84%E4%B8%80%E7%BB%84%E9%97%AE%E7%AD%94/" title="和 AI 聊写作：关于模型、结构和博客流程的一组问答">
-                        <span class="hidden-mobile">和 AI 聊写作：关于模型、结构和博客流程的一组问答</span>
+                      <a href="/blog/2026/05/02/llm-wiki-practical-deployment/" title="LLM Wiki 落地实践：从看懂理论到真正跑起来">
+                        <span class="hidden-mobile">LLM Wiki 落地实践：从看懂理论到真正跑起来</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
