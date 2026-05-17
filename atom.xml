@@ -68,7 +68,7 @@
     <published>2026-05-02T04:50:00.000Z</published>
     <summary>记录一次从理论走向落地的 LLM Wiki 实践过程，包括目录初始化、资料投喂、人工审计与 GitHub 展示。</summary>
     <title>LLM Wiki 落地实践：从看懂理论到真正跑起来</title>
-    <updated>2026-05-11T04:38:34.184Z</updated>
+    <updated>2026-05-17T01:23:07.021Z</updated>
   </entry>
   <entry>
     <author>
@@ -188,7 +188,7 @@
     <published>2026-04-11T14:00:00.000Z</published>
     <summary>介绍如何使用 Obsidian 搭建公众号创作和发布的可视化工作流，无需终端操作，普通用户也能轻松上手。</summary>
     <title>用 Obsidian 打通公众号创作工作流</title>
-    <updated>2026-05-11T04:38:34.184Z</updated>
+    <updated>2026-05-17T01:23:07.022Z</updated>
   </entry>
   <entry>
     <author>
@@ -247,7 +247,7 @@
     <published>2026-04-06T02:15:00.000Z</published>
     <summary>从工程视角拆解 wx-art-formatter 的核心思路：为什么内联样式是公众号排版稳定性的关键。</summary>
     <title>wx-art-formatter：一个面向微信公众号场景的排版工程实践</title>
-    <updated>2026-05-11T04:38:34.184Z</updated>
+    <updated>2026-05-17T01:23:07.022Z</updated>
   </entry>
   <entry>
     <author>
