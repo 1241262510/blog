@@ -1,6 +1,5 @@
 :root {
   --blog-bg: #f6f7f8;
-  --blog-surface: #ffffff;
   --blog-text: #2f3437;
   --blog-muted: #6b7280;
   --blog-line: #e5e7eb;
@@ -97,9 +96,9 @@ a:hover,
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4 {
+  color: var(--post-heading-color, #111827);
   letter-spacing: 0;
   line-height: 1.35;
-  color: var(--post-heading-color, #111827);
 }
 
 .post-content h2,

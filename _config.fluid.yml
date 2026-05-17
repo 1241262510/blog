@@ -10,15 +10,19 @@ navbar:
 search:
   enable: true
 
+dark_mode:
+  enable: true
+  default: light
+
 fun_features:
   typing:
-    enable: true
+    enable: false
     typeSpeed: 55
     cursorChar: "_"
     loop: false
 
 custom_css:
-  - /css/custom.css
+  - /css/layout-conservative.css
 
 web_analytics:
   enable: true
@@ -31,8 +35,8 @@ canonical:
 
 index:
   banner_img: /img/banner-desk.svg
-  banner_img_height: 64
-  banner_mask_alpha: 0.18
+  banner_img_height: 42
+  banner_mask_alpha: 0.35
   slogan:
     enable: true
     text:
@@ -48,8 +52,8 @@ index:
 
 post:
   banner_img: /img/banner-desk.svg
-  banner_img_height: 42
-  banner_mask_alpha: 0.22
+  banner_img_height: 30
+  banner_mask_alpha: 0.35
   default_index_img: /img/banner-desk.svg
   meta:
     wordcount:
@@ -63,35 +67,35 @@ post:
 
 archive:
   banner_img: /img/banner-desk.svg
-  banner_img_height: 38
-  banner_mask_alpha: 0.22
+  banner_img_height: 30
+  banner_mask_alpha: 0.35
 
 color:
-  body_bg_color: "#f4f6f1"
-  body_bg_color_dark: "#141817"
-  navbar_bg_color: "#141817"
-  navbar_bg_color_dark: "#101412"
-  navbar_text_color: "#f7fbf4"
-  navbar_text_color_dark: "#edf5ec"
-  subtitle_color: "#f7fbf4"
-  subtitle_color_dark: "#edf5ec"
-  text_color: "#181d1b"
+  body_bg_color: "#f6f7f8"
+  body_bg_color_dark: "#14171a"
+  navbar_bg_color: "#ffffff"
+  navbar_bg_color_dark: "#14171a"
+  navbar_text_color: "#2f3437"
+  navbar_text_color_dark: "#e5e7eb"
+  subtitle_color: "#ffffff"
+  subtitle_color_dark: "#ffffff"
+  text_color: "#2f3437"
   text_color_dark: "#e5ebe4"
-  sec_text_color: "#63706a"
+  sec_text_color: "#6b7280"
   sec_text_color_dark: "#a3afa8"
-  board_color: "#fbfcf7"
-  board_color_dark: "#1d2421"
-  post_text_color: "#2a332f"
+  board_color: "#ffffff"
+  board_color_dark: "#1f2428"
+  post_text_color: "#2f3437"
   post_text_color_dark: "#e5ebe4"
-  post_heading_color: "#181d1b"
+  post_heading_color: "#111827"
   post_heading_color_dark: "#f4faf2"
-  post_link_color: "#246044"
-  post_link_color_dark: "#98d2ad"
-  link_hover_color: "#153d2c"
-  link_hover_color_dark: "#c0e4cb"
-  link_hover_bg_color: "#e8f1ea"
-  link_hover_bg_color_dark: "#263a30"
-  line_color: "#d9e0da"
+  post_link_color: "#2563eb"
+  post_link_color_dark: "#93c5fd"
+  link_hover_color: "#1d4ed8"
+  link_hover_color_dark: "#bfdbfe"
+  link_hover_bg_color: "#eff6ff"
+  link_hover_bg_color_dark: "#1e293b"
+  line_color: "#e5e7eb"
   line_color_dark: "#394842"
   scrollbar_color: "#9aaa9f"
   scrollbar_color_dark: "#607069"
