@@ -10,7 +10,26 @@
   <rights>All rights reserved 2026, 凌晨两点的书桌</rights>
   <subtitle>凌晨两点的书桌，记录编程、工具使用与学习笔记。</subtitle>
   <title>凌晨两点的书桌</title>
-  <updated>2026-05-17T01:11:17.655Z</updated>
+  <updated>2026-05-19T15:23:35.217Z</updated>
+  <entry>
+    <author>
+      <name>凌晨两点的书桌</name>
+    </author>
+    <category term="AI 工具" scheme="https://1241262510.github.io/blog/categories/AI-%E5%B7%A5%E5%85%B7/"/>
+    <category term="ai" scheme="https://1241262510.github.io/blog/tags/ai/"/>
+    <category term="claude-code" scheme="https://1241262510.github.io/blog/tags/claude-code/"/>
+    <category term="kiro" scheme="https://1241262510.github.io/blog/tags/kiro/"/>
+    <category term="教程" scheme="https://1241262510.github.io/blog/tags/%E6%95%99%E7%A8%8B/"/>
+    <content>
+      <![CDATA[<p>通过亚马逊 <code>Kiro</code> 平台，国内用户可以免费体验一个月 <code>Pro</code> 套餐，享受完整的 <code>Claude Code</code> 能力。</p><p>官网地址：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://kiro.dev/<br></code></pre></td></tr></table></figure><h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><ul><li>一个 Google 邮箱，或其他支持的登录方式</li><li>一张可用于国际验证的银行卡，详见下方支付章节</li><li>需要是新注册账号，老账号可能不适用这次试用政策</li></ul><h2 id="注册流程"><a href="#注册流程" class="headerlink" title="注册流程"></a>注册流程</h2><ol><li>访问 <code>https://kiro.dev/</code>，点击 <code>Sign-in</code> 进行注册登录。</li></ol><p><img src="/blog/assets/kiro-signin-home.png"></p><ol start="2"><li>选择登录方式，支持 <code>Google</code> 邮箱等多种方式。</li></ol><p><img src="/blog/assets/kiro-signin-methods.png"></p><ol start="3"><li>我这里选择了 <code>Google</code> 邮箱注册登录。</li></ol><p><img src="/blog/assets/kiro-google-login.png"></p><ol start="4"><li>注册完成后进入对话页面，风格与 <code>Codex</code>、<code>Claude Code</code> 类似，同时也提供了 <code>CLI</code> 命令行交互方式。</li></ol><p><img src="/blog/assets/kiro-chat-ui.png"></p><p><img src="/blog/assets/kiro-cli-ui.png"></p><h2 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h2><p>平台集成了多个主流大模型，可以根据需求灵活切换：</p><ul><li><strong>Auto 模式</strong>：日常开发推荐，费用最低，约为其他模型的一半</li><li><strong>高级模型</strong>：遇到复杂问题时切换使用，效果更好，但消耗更多额度</li></ul><p>建议策略是：日常用 <code>Auto</code> 省额度，关键问题再切高级模型突破。</p><h2 id="支付验证"><a href="#支付验证" class="headerlink" title="支付验证"></a>支付验证</h2><p>注册时需要绑定一张银行卡用于验证。关于国内卡的兼容性，实测结果如下：</p><table><thead><tr><th>卡类型</th><th>结果</th></tr></thead><tbody><tr><td>中信银行单币借记卡</td><td>✅ 通过</td></tr><tr><td>银联卡（页面有银联标识）</td><td>❌ 无法通过</td></tr><tr><td>虚拟代币卡</td><td>❌ 无法通过</td></tr></tbody></table><p>结论是：网页端订阅验证较严格，建议优先使用正规银行发行的 <code>Visa</code> 或 <code>Mastercard</code> 借记卡、信用卡。</p><p>填写信息时，我的经验是：</p><ul><li><strong>姓名</strong>：填拼音，且要和银行卡持卡人一致</li><li><strong>账单地址</strong>：直接填写国内地址，中文即可</li><li><strong>其他信息</strong>：中文即可</li></ul><p>点击订阅后会触发手机短信验证码。由于我申请中信借记卡时预留的是国内手机号，所以验证一次通过。</p><p><img src="/blog/assets/kiro-billing-form.png"></p><p><img src="/blog/assets/kiro-sms-verify.png"></p><h2 id="取消订阅"><a href="#取消订阅" class="headerlink" title="取消订阅"></a>取消订阅</h2><p>如果只是想免费试用一个月，建议注册后立即取消自动续费，不影响当月使用。</p><ol><li>访问账户管理页面：</li></ol><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://app.kiro.dev/account/usage<br></code></pre></td></tr></table></figure><p><img src="/blog/assets/kiro-account-usage.png"></p><ol start="2"><li>点击“管理计划”，选择更改订阅。</li></ol><p><img src="/blog/assets/kiro-manage-plan.png"></p><ol start="3"><li>选择更改为 <code>Free</code> 套餐。逻辑是：当前免费试用的 <code>Pro</code> 套餐在到期后自动降级为 <code>Free</code>，期间 <code>Pro</code> 功能仍然可以正常使用。</li></ol><p><img src="/blog/assets/kiro-change-to-free.png"></p><p><img src="/blog/assets/kiro-plan-confirm.png"></p><ol start="4"><li>按照提示确认更改即可。</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table><thead><tr><th>要点</th><th>说明</th></tr></thead><tbody><tr><td>适用卡种</td><td>国内 Visa&#x2F;Mastercard 信用卡，或单币种外币借记卡</td></tr><tr><td>填写信息</td><td>姓名填拼音，地址等信息可直接填中文</td></tr><tr><td>账号要求</td><td>需要新注册账号，老号可能没有试用资格</td></tr><tr><td>试用时长</td><td>一个月 Pro 套餐，建议注册后立即改为 Free，避免到期自动扣费</td></tr><tr><td>优势</td><td>通过亚马逊 Kiro 中转使用 Claude Code，整体注册和试用流程更顺手</td></tr></tbody></table>]]>
+    </content>
+    <id>https://1241262510.github.io/blog/2026/05/19/%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-claude-code-%E4%B8%80%E4%B8%AA%E6%9C%88-kiro-%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/</id>
+    <link href="https://1241262510.github.io/blog/2026/05/19/%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-claude-code-%E4%B8%80%E4%B8%AA%E6%9C%88-kiro-%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/"/>
+    <published>2026-05-19T14:00:00.000Z</published>
+    <summary>记录如何通过亚马逊 Kiro 平台注册并免费试用一个月 Pro 套餐，以及国内用户支付验证和取消自动续费的操作过程。</summary>
+    <title>免费试用 Claude Code 一个月：Kiro 注册教程</title>
+    <updated>2026-05-19T15:23:35.217Z</updated>
+  </entry>
   <entry>
     <author>
       <name>凌晨两点的书桌</name>
