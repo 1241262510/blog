@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>自定义域名邮箱实操</title>
+      <link href="/blog/2026/05/22/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E5%AE%9E%E6%93%8D/"/>
+      <url>/blog/2026/05/22/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E5%AE%9E%E6%93%8D/</url>
+      
+        <content type="html"><![CDATA[<p>自定义域名有很多玩法。最常见的一种，就是做一个临时邮箱或测试邮箱。很多免费服务、开发者活动，甚至像英伟达部分试用资源的申请，都可能要求使用自定义域名邮箱。</p><p>如果直接购买现成服务，常见方案有 Google Workspace 和 Zoho Mail。它们都很好用，但本质上都是付费服务。那如果只是想低成本测试一下，有没有别的办法？有，可以直接用开源项目配合 Cloudflare，搭一套自己的域名邮箱收件系统。</p><p>这篇文章记录一遍完整实操流程。</p><p>项目地址：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://github.com/maillab/cloud-mail<br></code></pre></td></tr></table></figure><p><img src="/blog/assets/SCR-20260522-bzrd.png"></p><p>建议先把项目 fork 到自己的 GitHub 仓库，方便后续部署和管理。</p><p><img src="/blog/assets/SCR-20260522-cawy.png"></p><h2 id="1-在-Cloudflare-中部署项目"><a href="#1-在-Cloudflare-中部署项目" class="headerlink" title="1. 在 Cloudflare 中部署项目"></a>1. 在 Cloudflare 中部署项目</h2><p>进入 Cloudflare 后，选择 <code>Workers &amp; Pages</code>。</p><p><img src="/blog/assets/SCR-20260522-cbwt.png"></p><p>点击创建应用，选择通过 GitHub 关联仓库。</p><p><img src="/blog/assets/SCR-20260522-ccef.png"></p><p><img src="/blog/assets/SCR-20260522-cctv.png"></p><p>选择刚才 fork 的邮箱项目，开始部署。</p><p><img src="/blog/assets/SCR-20260522-cdjf.png"></p><p><img src="/blog/assets/SCR-20260522-cdta.png"></p><p>在高级设置中，有一个路径配置项，把它改成：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">/mail-worker<br></code></pre></td></tr></table></figure><p>然后点击部署。</p><p><img src="/blog/assets/SCR-20260522-cgdt.png"></p><p>Cloudflare 会开始拉取项目、克隆仓库并自动部署。部署完成后，系统会先给你一个默认域名，后面可以再切换到自己的域名。</p><p>点击“添加域名”进行修改。</p><p><img src="/blog/assets/SCR-20260522-cgdt%201.png"></p><p>比如最终可以改成：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">mail.你的域名.xyz<br></code></pre></td></tr></table></figure><p>例如我这里使用的是 <code>mail.***.xyz</code>。你实际操作时，把它替换成自己已经托管到 Cloudflare 的域名即可。</p><h2 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h2><p>进入项目的 <code>Settings</code> 页面，开始添加环境变量。</p><p><img src="/blog/assets/SCR-20260522-clmf.png"></p><p><img src="/blog/assets/SCR-20260522-cmil.png"></p><p>首先添加 <code>domain</code> 变量：</p><ul><li>类型：<code>JSON</code></li><li>变量名：<code>domain</code></li><li>值：</li></ul><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;你的域名&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure><p>注意这里使用的是英文符号。填写完成后点击部署。</p><p><img src="/blog/assets/SCR-20260522-cpjm.png"></p><p>继续添加 <code>admin</code> 变量：</p><ul><li>类型：<code>Text</code></li><li>变量名：<code>admin</code></li><li>值：</li></ul><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">admin@你的域名<br></code></pre></td></tr></table></figure><p><img src="/blog/assets/SCR-20260522-cqiy.png"></p><p>再继续添加 <code>jwt_secret</code> 变量：</p><ul><li>类型：<code>Text</code></li><li>变量名：<code>jwt_secret</code></li><li>值：自己设置的一串密码</li></ul><p>这个值建议设置得复杂一些，后面登录和初始化会用到。</p><h2 id="3-创建数据库"><a href="#3-创建数据库" class="headerlink" title="3. 创建数据库"></a>3. 创建数据库</h2><h3 id="3-1-创建-D1-数据库"><a href="#3-1-创建-D1-数据库" class="headerlink" title="3.1 创建 D1 数据库"></a>3.1 创建 D1 数据库</h3><p><img src="/blog/assets/SCR-20260522-ctqs.png"></p><p><img src="/blog/assets/SCR-20260522-cupp.png"></p><p>先创建一个 D1 数据库，起一个名字，然后开始创建。</p><p><img src="/blog/assets/SCR-20260522-cvba.png"></p><h3 id="3-2-创建-KV-数据库"><a href="#3-2-创建-KV-数据库" class="headerlink" title="3.2 创建 KV 数据库"></a>3.2 创建 KV 数据库</h3><p>接着进入 <code>Workers KV</code>，继续创建一个 KV 数据库。</p><p>后面需要把这两个数据库都绑定到当前项目中。</p><h2 id="4-绑定-D1-和-KV"><a href="#4-绑定-D1-和-KV" class="headerlink" title="4. 绑定 D1 和 KV"></a>4. 绑定 D1 和 KV</h2><p>回到项目页面，继续进行绑定设置。</p><p><img src="/blog/assets/SCR-20260522-cyaa.png"></p><p><img src="/blog/assets/SCR-20260522-cyob.png"></p><p>点击“绑定”。</p><p><img src="/blog/assets/SCR-20260522-cyxt.png"></p><p>先添加 KV 数据库绑定。</p><p><img src="/blog/assets/SCR-20260522-czhp.png"></p><p><img src="/blog/assets/SCR-20260522-czsd.png"></p><p>按照图中参数填写，并完成 KV 数据库的绑定。</p><p><img src="/blog/assets/SCR-20260522-dame.png"></p><p>然后再绑定 D1 数据库。</p><p><img src="/blog/assets/SCR-20260522-dawi.png"></p><p><img src="/blog/assets/SCR-20260522-dbls.png"></p><p><img src="/blog/assets/SCR-20260522-dbyj.png"></p><h2 id="5-配置邮件路由"><a href="#5-配置邮件路由" class="headerlink" title="5. 配置邮件路由"></a>5. 配置邮件路由</h2><p>回到账户首页，对域名进行邮件路由设置。</p><p>这里的目标是：所有接收到的邮件，都先交给 Worker 处理。</p><p><img src="/blog/assets/SCR-20260522-dgam.png"></p><p><img src="/blog/assets/SCR-20260522-dirq.png"></p><p>添加邮箱相关 DNS 记录时，点击“添加丢失的记录”即可。Cloudflare 一般会自动识别所需记录并保存。</p><h2 id="6-初始化测试"><a href="#6-初始化测试" class="headerlink" title="6. 初始化测试"></a>6. 初始化测试</h2><p>部署完成后，先访问下面这个初始化地址：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://mail.你的域名/api/init/密码<br></code></pre></td></tr></table></figure><p>如果页面返回 <code>success</code>，说明初始化成功。</p><p><img src="/blog/assets/SCR-20260522-dmni.png"></p><p><img src="/blog/assets/SCR-20260522-dnmg.png"></p><p>接着访问登录地址：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://mail.你的域名/login<br></code></pre></td></tr></table></figure><p><img src="/blog/assets/SCR-20260522-dokt.png"></p><p>注册 <code>admin</code> 邮箱后登录，就可以看到后台界面。</p><p><img src="/blog/assets/SCR-20260522-dpzm.png"></p><h2 id="7-当前测试结果"><a href="#7-当前测试结果" class="headerlink" title="7. 当前测试结果"></a>7. 当前测试结果</h2><p>我这里简单测试了一下：</p><ul><li>可以正常收邮件</li><li>暂时还不能发邮件</li></ul><p>如果你的目标只是做一个低成本测试邮箱或者接收型邮箱，到这一步基本已经够用了。后面如果要继续完善发信能力，可以再补 SMTP 或其他外发方案。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 效率工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cloudflare </tag>
+            
+            <tag> 邮箱 </tag>
+            
+            <tag> 自定义域名 </tag>
+            
+            <tag> worker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>免费试用 Claude Code 一个月：Kiro 注册教程</title>
       <link href="/blog/2026/05/19/%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-claude-code-%E4%B8%80%E4%B8%AA%E6%9C%88-kiro-%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/"/>
       <url>/blog/2026/05/19/%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-claude-code-%E4%B8%80%E4%B8%AA%E6%9C%88-kiro-%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/</url>
