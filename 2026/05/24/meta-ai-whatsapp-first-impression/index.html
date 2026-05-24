@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/22/自定义域名邮箱实操/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,27 +21,27 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录如何用 Cloudflare 和开源项目搭建一个低成本的自定义域名邮箱收件系统，包括部署、变量配置、数据库绑定和初始化测试。">
+    <meta name="description" content="记录一次在 WhatsApp 中体验 Meta AI 的真实感受，包括入口出现条件、文字对话表现，以及它和 ChatGPT、Claude、Codex 的定位差异。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义域名邮箱实操">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/22/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E5%AE%9E%E6%93%8D/index.html">
+<meta property="og:title" content="Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录如何用 Cloudflare 和开源项目搭建一个低成本的自定义域名邮箱收件系统，包括部署、变量配置、数据库绑定和初始化测试。">
+<meta property="og:description" content="记录一次在 WhatsApp 中体验 Meta AI 的真实感受，包括入口出现条件、文字对话表现，以及它和 ChatGPT、Claude、Codex 的定位差异。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/SCR-20260522-bzrd.png">
-<meta property="article:published_time" content="2026-05-22T07:15:57.000Z">
-<meta property="article:modified_time" content="2026-05-22T10:36:35.894Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/ig_0246a2c446a70752016a12ad64274c819bad677ba02281c4b3.png">
+<meta property="article:published_time" content="2026-05-24T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-24T08:00:39.488Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="cloudflare">
-<meta property="article:tag" content="worker">
-<meta property="article:tag" content="自定义域名">
-<meta property="article:tag" content="邮箱">
+<meta property="article:tag" content="AI 体验">
+<meta property="article:tag" content="Meta AI">
+<meta property="article:tag" content="WhatsApp">
+<meta property="article:tag" content="海外应用">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/SCR-20260522-bzrd.png">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/ig_0246a2c446a70752016a12ad64274c819bad677ba02281c4b3.png">
   
   
   
-  <title>自定义域名邮箱实操 - 凌晨两点的书桌</title>
+  <title>Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +329,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">自定义域名邮箱实操</span>
+            <span id="subtitle">Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</span>
           
         </div>
 
@@ -340,8 +340,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-05-22 03:15" pubdate>
-          2026年5月22日 凌晨
+        <time datetime="2026-05-24 10:00" pubdate>
+          2026年5月24日 上午
         </time>
       </span>
     
@@ -352,7 +352,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          2.3k 字
         
       </span>
     
@@ -363,7 +363,7 @@
         
         
         
-          11 分钟
+          20 分钟
         
       </span>
     
@@ -402,112 +402,80 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">自定义域名邮箱实操</h1>
+            <h1 id="seo-header">Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</h1>
             
             
               <div class="markdown-body">
                 
-                <p>自定义域名有很多玩法。最常见的一种，就是做一个临时邮箱或测试邮箱。很多免费服务、开发者活动，甚至像英伟达部分试用资源的申请，都可能要求使用自定义域名邮箱。</p>
-<p>如果直接购买现成服务，常见方案有 Google Workspace 和 Zoho Mail。它们都很好用，但本质上都是付费服务。那如果只是想低成本测试一下，有没有别的办法？有，可以直接用开源项目配合 Cloudflare，搭一套自己的域名邮箱收件系统。</p>
-<p>这篇文章记录一遍完整实操流程。</p>
-<p>项目地址：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://github.com/maillab/cloud-mail<br></code></pre></td></tr></table></figure>
-
-<p><img src="/blog/assets/SCR-20260522-bzrd.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>建议先把项目 fork 到自己的 GitHub 仓库，方便后续部署和管理。</p>
-<p><img src="/blog/assets/SCR-20260522-cawy.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="1-在-Cloudflare-中部署项目"><a href="#1-在-Cloudflare-中部署项目" class="headerlink" title="1. 在 Cloudflare 中部署项目"></a>1. 在 Cloudflare 中部署项目</h2><p>进入 Cloudflare 后，选择 <code>Workers &amp; Pages</code>。</p>
-<p><img src="/blog/assets/SCR-20260522-cbwt.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>点击创建应用，选择通过 GitHub 关联仓库。</p>
-<p><img src="/blog/assets/SCR-20260522-ccef.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-cctv.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>选择刚才 fork 的邮箱项目，开始部署。</p>
-<p><img src="/blog/assets/SCR-20260522-cdjf.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-cdta.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>在高级设置中，有一个路径配置项，把它改成：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">/mail-worker<br></code></pre></td></tr></table></figure>
-
-<p>然后点击部署。</p>
-<p><img src="/blog/assets/SCR-20260522-cgdt.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>Cloudflare 会开始拉取项目、克隆仓库并自动部署。部署完成后，系统会先给你一个默认域名，后面可以再切换到自己的域名。</p>
-<p>点击“添加域名”进行修改。</p>
-<p><img src="/blog/assets/SCR-20260522-cgdt%201.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>比如最终可以改成：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">mail.你的域名.xyz<br></code></pre></td></tr></table></figure>
-
-<p>例如我这里使用的是 <code>mail.***.xyz</code>。你实际操作时，把它替换成自己已经托管到 Cloudflare 的域名即可。</p>
-<h2 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h2><p>进入项目的 <code>Settings</code> 页面，开始添加环境变量。</p>
-<p><img src="/blog/assets/SCR-20260522-clmf.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-cmil.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>首先添加 <code>domain</code> 变量：</p>
+                <p>这两年大模型的竞争非常激烈。今天 Claude 很强，明天 Codex 又有新能力，后天 Gemini、DeepSeek、豆包、Kimi 又各自更新一轮。技术进步是真的，但营销声量也越来越大。对普通技术人员来说，很多时候已经很难判断：这些产品到底是实实在在提升效率，还是只是换了一种包装继续制造焦虑。</p>
+<p>除了 OpenAI、Anthropic、Google 这些被反复讨论的大厂之外，Meta 其实也一直在做自己的 AI 产品。只是它的打法和其他公司不太一样。Meta AI 并不是单独做一个强势入口，像 ChatGPT 那样让用户专门打开一个应用来使用，而是把 AI 能力放进自己已有的产品体系里，比如 WhatsApp、Instagram、Facebook、Messenger 等。</p>
+<p>这次我主要体验的是 WhatsApp 里的 Meta AI。</p>
+<p><img src="/blog/assets/ig_0246a2c446a70752016a12ad64274c819bad677ba02281c4b3.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h2 id="为什么会体验到-Meta-AI"><a href="#为什么会体验到-Meta-AI" class="headerlink" title="为什么会体验到 Meta AI"></a>为什么会体验到 Meta AI</h2><p>之前我也用国内手机号注册过 WhatsApp，但当时没有看到 Meta AI 的入口。原因可能和账号地区、手机号归属、App 版本、灰度测试策略有关。Meta 这类产品经常不是一次性全量开放，而是按地区、账号、设备和版本逐步放开。</p>
+<p>后来我购买了一张 Giffgaff 卡，用它注册了 WhatsApp 和 Telegram 等账号。使用这个手机号注册 WhatsApp 后，我发现应用里出现了单独的 Meta AI 入口，于是就顺手体验了几天。</p>
+<p>这也是写这篇文章的原因：不是系统性评测，也不是模型能力排行榜，只是记录一下普通用户在 WhatsApp 里真实使用 Meta AI 的感受。</p>
+<h2 id="使用环境和入口"><a href="#使用环境和入口" class="headerlink" title="使用环境和入口"></a>使用环境和入口</h2><p>我的体验环境大致如下：</p>
 <ul>
-<li>类型：<code>JSON</code></li>
-<li>变量名：<code>domain</code></li>
-<li>值：</li>
+<li>使用 Giffgaff 手机号注册 WhatsApp</li>
+<li>WhatsApp 内出现 Meta AI 入口</li>
+<li>主要体验文字对话功能</li>
+<li>部分功能在直连环境下可用</li>
+<li>图片、语音、音频转文字等能力，可能需要更稳定的网络环境</li>
 </ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;你的域名&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-
-<p>注意这里使用的是英文符号。填写完成后点击部署。</p>
-<p><img src="/blog/assets/SCR-20260522-cpjm.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>继续添加 <code>admin</code> 变量：</p>
+<p>从入口上看，Meta AI 在 WhatsApp 里更像一个联系人或聊天对象。你不需要单独打开一个 AI App，而是直接在聊天软件里和它对话。这种设计很符合 Meta 的产品逻辑：AI 不是独立产品，而是社交产品的一部分。</p>
+<p><img src="/blog/assets/SCR-20260524-dvwb.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h2 id="文字对话体验"><a href="#文字对话体验" class="headerlink" title="文字对话体验"></a>文字对话体验</h2><p>单纯从文字对话来说，Meta AI 的体验比我预期好。</p>
+<p>它的响应速度比较快，交互也比较轻。不是那种很重的“工作台式 AI”，而更像一个随手问问题的聊天助手。用起来有点像国内的豆包：不一定每个问题都追求很深的推理，但日常问答、简单解释、信息整理、写几段文字，都比较顺手。</p>
+<p>我试了几类问题：</p>
 <ul>
-<li>类型：<code>Text</code></li>
-<li>变量名：<code>admin</code></li>
-<li>值：</li>
+<li>普通知识问答</li>
+<li>简单翻译</li>
+<li>文案改写</li>
+<li>技术概念解释</li>
+<li>日常建议类问题</li>
 </ul>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">admin@你的域名<br></code></pre></td></tr></table></figure>
-
-<p><img src="/blog/assets/SCR-20260522-cqiy.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>再继续添加 <code>jwt_secret</code> 变量：</p>
+<p>整体感觉是：如果只是轻量使用，Meta AI 完全够用。它的优势不是“模型一定最强”，而是入口足够自然。你本来就在 WhatsApp 聊天，顺手问它一句，使用成本很低。</p>
+<p><img src="/blog/assets/SCR-20260524-dzkc.png" srcset="/blog/img/loading.gif" lazyload></p>
+<h2 id="和-ChatGPT、Claude、豆包的差异"><a href="#和-ChatGPT、Claude、豆包的差异" class="headerlink" title="和 ChatGPT、Claude、豆包的差异"></a>和 ChatGPT、Claude、豆包的差异</h2><p>如果把 Meta AI 和 ChatGPT、Claude、Codex 这类工具放在一起比较，它的定位其实不太一样。</p>
+<p>ChatGPT 更像一个通用 AI 工作台，适合写作、分析、编程、总结、生成内容。Claude 更偏长文本和严谨表达。Codex 更偏代码和工程任务。豆包这类国内产品更强调日常聊天、内容生成和本土化场景。</p>
+<p>Meta AI 则更像“社交软件里的 AI 助手”。它不一定要取代专业工具，而是降低用户接触 AI 的门槛。尤其是 WhatsApp 这种高频通讯工具，一旦 AI 能力和聊天场景结合，使用频率会很自然地上来。</p>
+<p>换句话说，Meta AI 的竞争点不只是模型能力，而是入口分发能力。</p>
+<h2 id="网络环境和功能限制"><a href="#网络环境和功能限制" class="headerlink" title="网络环境和功能限制"></a>网络环境和功能限制</h2><p>我这次体验到的一个明显感受是：文字对话的门槛比较低，直连环境下也能使用。但如果想体验更完整的功能，比如图片理解、图片生成、语音相关能力、音频转文字等，网络环境可能会影响比较大。</p>
+<p>这也说明 Meta AI 在 WhatsApp 里的使用体验，和账号地区、网络环境、产品灰度状态都有关系。不同用户看到的功能不一定完全一致。</p>
+<p>所以这篇文章里的结论只能代表我当前账号和当前环境下的体验，不一定适用于所有人。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>Meta AI 给我的第一印象有几个优点：</p>
+<ol>
+<li><p>入口自然<br>它直接在 WhatsApp 里，不需要切换应用。</p>
+</li>
+<li><p>响应速度快<br>文字对话比较流畅，没有明显等待感。</p>
+</li>
+<li><p>使用压力小<br>不像一些专业 AI 工具那样有很强的“任务感”，更适合随手问。</p>
+</li>
+<li><p>和社交场景结合紧密<br>如果后续能更好地处理群聊、图片、语音和内容转发，它会很有想象空间。</p>
+</li>
+</ol>
+<h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><p>不足也比较明显：</p>
+<ol>
+<li><p>功能开放不稳定<br>有些账号有入口，有些账号没有入口。</p>
+</li>
+<li><p>地区差异明显<br>国内手机号注册的 WhatsApp 未必能看到 Meta AI。</p>
+</li>
+<li><p>深度任务能力不一定突出<br>如果是复杂写作、工程代码、长文档处理，我还是会优先使用 ChatGPT、Claude 或 Codex。</p>
+</li>
+<li><p>完整功能依赖网络环境<br>文字对话还好，图片和语音相关能力可能需要更稳定的连接。</p>
+</li>
+</ol>
+<h2 id="我的结论"><a href="#我的结论" class="headerlink" title="我的结论"></a>我的结论</h2><p>这次体验下来，我觉得 Meta AI 不是一个“专门用来替代 ChatGPT 的产品”，而是一个更轻、更自然、更贴近社交场景的 AI 助手。</p>
+<p>如果你只是想随手问问题、做简单翻译、改几句话、生成一点内容，它的体验完全可以接受。它最大的价值不是模型参数有多强，而是放在 WhatsApp 这种高频应用里，让 AI 变成聊天流程的一部分。</p>
+<p>对我来说，这类产品的意义在于：AI 不一定只存在于独立应用里，也可以悄悄进入通讯、社交和内容消费场景。Meta 走的正是这条路。</p>
+<p>最后简单总结一下：</p>
 <ul>
-<li>类型：<code>Text</code></li>
-<li>变量名：<code>jwt_secret</code></li>
-<li>值：自己设置的一串密码</li>
+<li>想体验完整 AI 工作流，ChatGPT、Claude、Codex 仍然更合适。</li>
+<li>想在聊天软件里轻量使用 AI，Meta AI 的体验已经不错。</li>
+<li>如果你的 WhatsApp 没有入口，可能和手机号地区、账号灰度、App 版本有关。</li>
+<li>使用 Giffgaff 这类海外手机号注册 WhatsApp，确实更容易看到 Meta AI 入口。</li>
 </ul>
-<p>这个值建议设置得复杂一些，后面登录和初始化会用到。</p>
-<h2 id="3-创建数据库"><a href="#3-创建数据库" class="headerlink" title="3. 创建数据库"></a>3. 创建数据库</h2><h3 id="3-1-创建-D1-数据库"><a href="#3-1-创建-D1-数据库" class="headerlink" title="3.1 创建 D1 数据库"></a>3.1 创建 D1 数据库</h3><p><img src="/blog/assets/SCR-20260522-ctqs.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-cupp.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>先创建一个 D1 数据库，起一个名字，然后开始创建。</p>
-<p><img src="/blog/assets/SCR-20260522-cvba.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h3 id="3-2-创建-KV-数据库"><a href="#3-2-创建-KV-数据库" class="headerlink" title="3.2 创建 KV 数据库"></a>3.2 创建 KV 数据库</h3><p>接着进入 <code>Workers KV</code>，继续创建一个 KV 数据库。</p>
-<p>后面需要把这两个数据库都绑定到当前项目中。</p>
-<h2 id="4-绑定-D1-和-KV"><a href="#4-绑定-D1-和-KV" class="headerlink" title="4. 绑定 D1 和 KV"></a>4. 绑定 D1 和 KV</h2><p>回到项目页面，继续进行绑定设置。</p>
-<p><img src="/blog/assets/SCR-20260522-cyaa.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-cyob.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>点击“绑定”。</p>
-<p><img src="/blog/assets/SCR-20260522-cyxt.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>先添加 KV 数据库绑定。</p>
-<p><img src="/blog/assets/SCR-20260522-czhp.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-czsd.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>按照图中参数填写，并完成 KV 数据库的绑定。</p>
-<p><img src="/blog/assets/SCR-20260522-dame.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>然后再绑定 D1 数据库。</p>
-<p><img src="/blog/assets/SCR-20260522-dawi.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-dbls.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-dbyj.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="5-配置邮件路由"><a href="#5-配置邮件路由" class="headerlink" title="5. 配置邮件路由"></a>5. 配置邮件路由</h2><p>回到账户首页，对域名进行邮件路由设置。</p>
-<p>这里的目标是：所有接收到的邮件，都先交给 Worker 处理。</p>
-<p><img src="/blog/assets/SCR-20260522-dgam.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-dirq.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>添加邮箱相关 DNS 记录时，点击“添加丢失的记录”即可。Cloudflare 一般会自动识别所需记录并保存。</p>
-<h2 id="6-初始化测试"><a href="#6-初始化测试" class="headerlink" title="6. 初始化测试"></a>6. 初始化测试</h2><p>部署完成后，先访问下面这个初始化地址：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://mail.你的域名/api/init/密码<br></code></pre></td></tr></table></figure>
-
-<p>如果页面返回 <code>success</code>，说明初始化成功。</p>
-<p><img src="/blog/assets/SCR-20260522-dmni.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p><img src="/blog/assets/SCR-20260522-dnmg.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>接着访问登录地址：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://mail.你的域名/login<br></code></pre></td></tr></table></figure>
-
-<p><img src="/blog/assets/SCR-20260522-dokt.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>注册 <code>admin</code> 邮箱后登录，就可以看到后台界面。</p>
-<p><img src="/blog/assets/SCR-20260522-dpzm.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="7-当前测试结果"><a href="#7-当前测试结果" class="headerlink" title="7. 当前测试结果"></a>7. 当前测试结果</h2><p>我这里简单测试了一下：</p>
-<ul>
-<li>可以正常收邮件</li>
-<li>暂时还不能发邮件</li>
-</ul>
-<p>如果你的目标只是做一个低成本测试邮箱或者接收型邮箱，到这一步基本已经够用了。后面如果要继续完善发信能力，可以再补 SMTP 或其他外发方案。</p>
+<p>这不是一篇严格评测，只是一次实际体验记录。整体感受是：Meta AI 没有特别高调，但已经能用了，而且用起来比想象中顺手。</p>
 
                 
               </div>
@@ -526,7 +494,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" class="category-chain-item">效率工具</a>
+  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
   
   
 
@@ -541,13 +509,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/cloudflare/" class="print-no-link">#cloudflare</a>
+        <a href="/blog/tags/Meta-AI/" class="print-no-link">#Meta AI</a>
       
-        <a href="/blog/tags/%E9%82%AE%E7%AE%B1/" class="print-no-link">#邮箱</a>
+        <a href="/blog/tags/WhatsApp/" class="print-no-link">#WhatsApp</a>
       
-        <a href="/blog/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D/" class="print-no-link">#自定义域名</a>
+        <a href="/blog/tags/AI-%E4%BD%93%E9%AA%8C/" class="print-no-link">#AI 体验</a>
       
-        <a href="/blog/tags/worker/" class="print-no-link">#worker</a>
+        <a href="/blog/tags/%E6%B5%B7%E5%A4%96%E5%BA%94%E7%94%A8/" class="print-no-link">#海外应用</a>
       
     </div>
   
@@ -559,8 +527,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>自定义域名邮箱实操</div>
-      <div>https://1241262510.github.io/blog/2026/05/22/自定义域名邮箱实操/</div>
+      <div>Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</div>
+      <div>https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/</div>
     </div>
     <div class="license-meta">
       
@@ -572,7 +540,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年5月22日</div>
+          <div>2026年5月24日</div>
         </div>
       
       
@@ -604,18 +572,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/05/24/meta-ai-whatsapp-first-impression/" title="Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/05/19/%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-claude-code-%E4%B8%80%E4%B8%AA%E6%9C%88-kiro-%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" title="免费试用 Claude Code 一个月：Kiro 注册教程">
-                        <span class="hidden-mobile">免费试用 Claude Code 一个月：Kiro 注册教程</span>
+                      <a href="/blog/2026/05/22/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E5%AE%9E%E6%93%8D/" title="自定义域名邮箱实操">
+                        <span class="hidden-mobile">自定义域名邮箱实操</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

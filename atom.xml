@@ -10,7 +10,26 @@
   <rights>All rights reserved 2026, 凌晨两点的书桌</rights>
   <subtitle>凌晨两点的书桌，记录编程、工具使用与学习笔记。</subtitle>
   <title>凌晨两点的书桌</title>
-  <updated>2026-05-22T10:36:35.894Z</updated>
+  <updated>2026-05-24T08:00:39.488Z</updated>
+  <entry>
+    <author>
+      <name>凌晨两点的书桌</name>
+    </author>
+    <category term="AI 工具" scheme="https://1241262510.github.io/blog/categories/AI-%E5%B7%A5%E5%85%B7/"/>
+    <category term="Meta AI" scheme="https://1241262510.github.io/blog/tags/Meta-AI/"/>
+    <category term="WhatsApp" scheme="https://1241262510.github.io/blog/tags/WhatsApp/"/>
+    <category term="AI 体验" scheme="https://1241262510.github.io/blog/tags/AI-%E4%BD%93%E9%AA%8C/"/>
+    <category term="海外应用" scheme="https://1241262510.github.io/blog/tags/%E6%B5%B7%E5%A4%96%E5%BA%94%E7%94%A8/"/>
+    <content>
+      <![CDATA[<p>这两年大模型的竞争非常激烈。今天 Claude 很强，明天 Codex 又有新能力，后天 Gemini、DeepSeek、豆包、Kimi 又各自更新一轮。技术进步是真的，但营销声量也越来越大。对普通技术人员来说，很多时候已经很难判断：这些产品到底是实实在在提升效率，还是只是换了一种包装继续制造焦虑。</p><p>除了 OpenAI、Anthropic、Google 这些被反复讨论的大厂之外，Meta 其实也一直在做自己的 AI 产品。只是它的打法和其他公司不太一样。Meta AI 并不是单独做一个强势入口，像 ChatGPT 那样让用户专门打开一个应用来使用，而是把 AI 能力放进自己已有的产品体系里，比如 WhatsApp、Instagram、Facebook、Messenger 等。</p><p>这次我主要体验的是 WhatsApp 里的 Meta AI。</p><p><img src="/blog/assets/ig_0246a2c446a70752016a12ad64274c819bad677ba02281c4b3.png"></p><h2 id="为什么会体验到-Meta-AI"><a href="#为什么会体验到-Meta-AI" class="headerlink" title="为什么会体验到 Meta AI"></a>为什么会体验到 Meta AI</h2><p>之前我也用国内手机号注册过 WhatsApp，但当时没有看到 Meta AI 的入口。原因可能和账号地区、手机号归属、App 版本、灰度测试策略有关。Meta 这类产品经常不是一次性全量开放，而是按地区、账号、设备和版本逐步放开。</p><p>后来我购买了一张 Giffgaff 卡，用它注册了 WhatsApp 和 Telegram 等账号。使用这个手机号注册 WhatsApp 后，我发现应用里出现了单独的 Meta AI 入口，于是就顺手体验了几天。</p><p>这也是写这篇文章的原因：不是系统性评测，也不是模型能力排行榜，只是记录一下普通用户在 WhatsApp 里真实使用 Meta AI 的感受。</p><h2 id="使用环境和入口"><a href="#使用环境和入口" class="headerlink" title="使用环境和入口"></a>使用环境和入口</h2><p>我的体验环境大致如下：</p><ul><li>使用 Giffgaff 手机号注册 WhatsApp</li><li>WhatsApp 内出现 Meta AI 入口</li><li>主要体验文字对话功能</li><li>部分功能在直连环境下可用</li><li>图片、语音、音频转文字等能力，可能需要更稳定的网络环境</li></ul><p>从入口上看，Meta AI 在 WhatsApp 里更像一个联系人或聊天对象。你不需要单独打开一个 AI App，而是直接在聊天软件里和它对话。这种设计很符合 Meta 的产品逻辑：AI 不是独立产品，而是社交产品的一部分。</p><p><img src="/blog/assets/SCR-20260524-dvwb.png"></p><h2 id="文字对话体验"><a href="#文字对话体验" class="headerlink" title="文字对话体验"></a>文字对话体验</h2><p>单纯从文字对话来说，Meta AI 的体验比我预期好。</p><p>它的响应速度比较快，交互也比较轻。不是那种很重的“工作台式 AI”，而更像一个随手问问题的聊天助手。用起来有点像国内的豆包：不一定每个问题都追求很深的推理，但日常问答、简单解释、信息整理、写几段文字，都比较顺手。</p><p>我试了几类问题：</p><ul><li>普通知识问答</li><li>简单翻译</li><li>文案改写</li><li>技术概念解释</li><li>日常建议类问题</li></ul><p>整体感觉是：如果只是轻量使用，Meta AI 完全够用。它的优势不是“模型一定最强”，而是入口足够自然。你本来就在 WhatsApp 聊天，顺手问它一句，使用成本很低。</p><p><img src="/blog/assets/SCR-20260524-dzkc.png"></p><h2 id="和-ChatGPT、Claude、豆包的差异"><a href="#和-ChatGPT、Claude、豆包的差异" class="headerlink" title="和 ChatGPT、Claude、豆包的差异"></a>和 ChatGPT、Claude、豆包的差异</h2><p>如果把 Meta AI 和 ChatGPT、Claude、Codex 这类工具放在一起比较，它的定位其实不太一样。</p><p>ChatGPT 更像一个通用 AI 工作台，适合写作、分析、编程、总结、生成内容。Claude 更偏长文本和严谨表达。Codex 更偏代码和工程任务。豆包这类国内产品更强调日常聊天、内容生成和本土化场景。</p><p>Meta AI 则更像“社交软件里的 AI 助手”。它不一定要取代专业工具，而是降低用户接触 AI 的门槛。尤其是 WhatsApp 这种高频通讯工具，一旦 AI 能力和聊天场景结合，使用频率会很自然地上来。</p><p>换句话说，Meta AI 的竞争点不只是模型能力，而是入口分发能力。</p><h2 id="网络环境和功能限制"><a href="#网络环境和功能限制" class="headerlink" title="网络环境和功能限制"></a>网络环境和功能限制</h2><p>我这次体验到的一个明显感受是：文字对话的门槛比较低，直连环境下也能使用。但如果想体验更完整的功能，比如图片理解、图片生成、语音相关能力、音频转文字等，网络环境可能会影响比较大。</p><p>这也说明 Meta AI 在 WhatsApp 里的使用体验，和账号地区、网络环境、产品灰度状态都有关系。不同用户看到的功能不一定完全一致。</p><p>所以这篇文章里的结论只能代表我当前账号和当前环境下的体验，不一定适用于所有人。</p><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>Meta AI 给我的第一印象有几个优点：</p><ol><li><p>入口自然<br>它直接在 WhatsApp 里，不需要切换应用。</p></li><li><p>响应速度快<br>文字对话比较流畅，没有明显等待感。</p></li><li><p>使用压力小<br>不像一些专业 AI 工具那样有很强的“任务感”，更适合随手问。</p></li><li><p>和社交场景结合紧密<br>如果后续能更好地处理群聊、图片、语音和内容转发，它会很有想象空间。</p></li></ol><h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><p>不足也比较明显：</p><ol><li><p>功能开放不稳定<br>有些账号有入口，有些账号没有入口。</p></li><li><p>地区差异明显<br>国内手机号注册的 WhatsApp 未必能看到 Meta AI。</p></li><li><p>深度任务能力不一定突出<br>如果是复杂写作、工程代码、长文档处理，我还是会优先使用 ChatGPT、Claude 或 Codex。</p></li><li><p>完整功能依赖网络环境<br>文字对话还好，图片和语音相关能力可能需要更稳定的连接。</p></li></ol><h2 id="我的结论"><a href="#我的结论" class="headerlink" title="我的结论"></a>我的结论</h2><p>这次体验下来，我觉得 Meta AI 不是一个“专门用来替代 ChatGPT 的产品”，而是一个更轻、更自然、更贴近社交场景的 AI 助手。</p><p>如果你只是想随手问问题、做简单翻译、改几句话、生成一点内容，它的体验完全可以接受。它最大的价值不是模型参数有多强，而是放在 WhatsApp 这种高频应用里，让 AI 变成聊天流程的一部分。</p><p>对我来说，这类产品的意义在于：AI 不一定只存在于独立应用里，也可以悄悄进入通讯、社交和内容消费场景。Meta 走的正是这条路。</p><p>最后简单总结一下：</p><ul><li>想体验完整 AI 工作流，ChatGPT、Claude、Codex 仍然更合适。</li><li>想在聊天软件里轻量使用 AI，Meta AI 的体验已经不错。</li><li>如果你的 WhatsApp 没有入口，可能和手机号地区、账号灰度、App 版本有关。</li><li>使用 Giffgaff 这类海外手机号注册 WhatsApp，确实更容易看到 Meta AI 入口。</li></ul><p>这不是一篇严格评测，只是一次实际体验记录。整体感受是：Meta AI 没有特别高调，但已经能用了，而且用起来比想象中顺手。</p>]]>
+    </content>
+    <id>https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/</id>
+    <link href="https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/"/>
+    <published>2026-05-24T14:00:00.000Z</published>
+    <summary>记录一次在 WhatsApp 中体验 Meta AI 的真实感受，包括入口出现条件、文字对话表现，以及它和 ChatGPT、Claude、Codex 的定位差异。</summary>
+    <title>Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</title>
+    <updated>2026-05-24T08:00:39.488Z</updated>
+  </entry>
   <entry>
     <author>
       <name>凌晨两点的书桌</name>
@@ -384,24 +403,5 @@
     <summary>一篇完整的 Markdown 教程，同时介绍 MarkCopy 的排版能力和适合的写作工作流。</summary>
     <title>MarkCopy 使用指南 — 写出排版精美的公众号文章</title>
     <updated>2026-03-29T07:03:44.780Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>凌晨两点的书桌</name>
-    </author>
-    <category term="AI 工具" scheme="https://1241262510.github.io/blog/categories/AI-%E5%B7%A5%E5%85%B7/"/>
-    <category term="大模型" scheme="https://1241262510.github.io/blog/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    <category term="glm" scheme="https://1241262510.github.io/blog/tags/glm/"/>
-    <category term="agent" scheme="https://1241262510.github.io/blog/tags/agent/"/>
-    <category term="opencode" scheme="https://1241262510.github.io/blog/tags/opencode/"/>
-    <content>
-      <![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>GLM 5.1</code> 终于向 <code>Code Plan</code> 订阅者开放了。对一直在等配套服务的人来说，这次补齐本身就值得关注；但真正让我快速建立印象的，不是能力宣传，而是实际使用中非常直接的成本感知。</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="GLM-5-1-来了"><a href="#GLM-5-1-来了" class="headerlink" title="GLM 5.1 来了"></a>GLM 5.1 来了</h3><p>对 <code>Code Plan</code> 订阅者来说，这次更新算是一件实打实的好事。</p><p>之前因为算力或者套餐策略的原因，<code>GLM 5.x</code> 的一些配套能力始终没有完整落到 <code>Code Plan</code> 这条线上。既然同样是付费用户，却总要比别人慢一拍，这种体验说不上公平，也很难让人满意。</p><p>从用户角度看，花钱多少可以影响配额和速度，但如果长期连核心能力都无法及时覆盖，落差感会很明显。</p><p>不过这次情况总算变了。官方终于把对应服务补上，<code>Code Plan</code> 的订阅者也能正式用上 <code>GLM 5.1</code>。</p><p><img src="/blog/assets/glm5-1-01.png"></p><p>这张图对应的是官方侧能力开放后的实际界面信息，对 <code>Code Plan</code> 用户来说，关键点不是“模型发布了”，而是“终于能用了”。</p><h3 id="对主流-Agent-App-的支持也跟上了"><a href="#对主流-Agent-App-的支持也跟上了" class="headerlink" title="对主流 Agent App 的支持也跟上了"></a>对主流 Agent App 的支持也跟上了</h3><p>从现有信息看，<code>GLM 5.1</code> 对主流的 Agent 类应用也已经有了比较完整的支持。</p><p>这类支持的意义并不只是“能不能接入”，而是它决定了模型能不能真正进入日常工作流。只有接进你平时正在使用的工具链里，这类更新才算真正有价值。</p><p>这次我用 <code>OpenCode</code> 做了简单体验。整体接入过程不复杂，至少从“能不能开始用”这个层面来说，门槛已经不高了。</p><p><img src="/blog/assets/glm5-1-02.png"></p><p>先看接入入口，主流 Agent 工具链已经开始给出对应支持。</p><p><img src="/blog/assets/glm5-1-03.png"></p><p>再往下是模型选择和接入配置，整体思路已经比较标准化。</p><p><img src="/blog/assets/glm5-1-04.png"></p><p>这一步更接近日常使用场景：不是单纯“能不能配”，而是“能不能顺手接进现有工作流”。</p><p><img src="/blog/assets/glm5-1-05.png"></p><p>从实际界面来看，官方这次对常见 Agent App 的兼容度已经不像早期那样零散了。</p><p><img src="/blog/assets/glm5-1-06.png"></p><p>至少在演示层面，<code>OpenCode</code> 这类工具已经可以把 <code>GLM 5.1</code> 放进正常使用链路里。</p><h3 id="第一感受：贵，真的贵"><a href="#第一感受：贵，真的贵" class="headerlink" title="第一感受：贵，真的贵"></a>第一感受：贵，真的贵</h3><p>我目前使用时间不长，所以还谈不上对模型能力有多深入的判断。</p><p>但有一点感受非常直接：<code>token</code> 消耗确实让我吃了一惊。</p><p>有些模型在宣传期看起来很强，真正放进 Agent 工作流里跑起来以后，才会意识到什么叫“花钱如流水”。尤其是当上下文变长、调用次数变多、任务开始反复试错时，成本会迅速堆起来。</p><p>这也是为什么很多时候，模型能力不能只看“上限”，还要看它是否适合进入你的日常使用场景。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果只说结论，我现在的看法是：</p><ul><li><code>GLM 5.1</code> 对 <code>Code Plan</code> 用户开放，本身是一个值得欢迎的补齐。</li><li>真正跑起来之后，成本感知比我预期得更强。</li><li>这类模型更适合用在复杂任务、长链路任务和真正需要它能力上限的场景里。</li></ul><p>至于那些非常轻量的需求，比如：</p><ul><li>查天气</li><li>写一点简单脚本</li><li>做基础问答</li><li>处理低复杂度编程任务</li></ul><p>未必需要把最贵的模型顶上去。</p><p>更现实的做法可能还是那句老话：<code>好钢用在刀刃上</code>。</p><p>把高成本模型留给真正复杂、真正有价值的任务，其他场景让更便宜的大模型去接手，整体体验和成本控制都会更合理一些。</p>]]>
-    </content>
-    <id>https://1241262510.github.io/blog/2026/03/29/glm5-1-code-plan/</id>
-    <link href="https://1241262510.github.io/blog/2026/03/29/glm5-1-code-plan/"/>
-    <published>2026-03-29T18:36:15.000Z</published>
-    <summary>记录 GLM 5.1 面向 Code Plan 订阅者开放后的第一感受，以及对成本和使用场景的判断。</summary>
-    <title>GLM 5.1 开放之后，我先注意到的是成本</title>
-    <updated>2026-03-29T07:03:44.770Z</updated>
   </entry>
 </feed>
