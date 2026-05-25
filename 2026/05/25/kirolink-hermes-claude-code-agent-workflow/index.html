@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/25/kirolink-hermes-claude-code-agent-workflow/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,27 +21,28 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录一次在 WhatsApp 中体验 Meta AI 的真实感受，包括入口出现条件、文字对话表现，以及它和 ChatGPT、Claude、Codex 的定位差异。">
+    <meta name="description" content="记录如何用 kirolink 读取 Kiro 的 SSO token，暴露 Anthropic 兼容 API，让 Hermes Agent 和 Claude Code 通过 Kiro 后端运行。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/index.html">
+<meta property="og:title" content="使用 kirolink 打通 Hermes、Kiro 与 Claude Code">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/25/kirolink-hermes-claude-code-agent-workflow/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录一次在 WhatsApp 中体验 Meta AI 的真实感受，包括入口出现条件、文字对话表现，以及它和 ChatGPT、Claude、Codex 的定位差异。">
+<meta property="og:description" content="记录如何用 kirolink 读取 Kiro 的 SSO token，暴露 Anthropic 兼容 API，让 Hermes Agent 和 Claude Code 通过 Kiro 后端运行。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/ig_0246a2c446a70752016a12ad64274c819bad677ba02281c4b3.png">
-<meta property="article:published_time" content="2026-05-24T14:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-24T08:00:39.488Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/kirolink-hermes-claude-code-cover.png">
+<meta property="article:published_time" content="2026-05-25T06:20:00.000Z">
+<meta property="article:modified_time" content="2026-05-25T11:18:23.205Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="AI 体验">
-<meta property="article:tag" content="Meta AI">
-<meta property="article:tag" content="WhatsApp">
-<meta property="article:tag" content="海外应用">
+<meta property="article:tag" content="agent">
+<meta property="article:tag" content="claude-code">
+<meta property="article:tag" content="hermes">
+<meta property="article:tag" content="kiro">
+<meta property="article:tag" content="kirolink">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/ig_0246a2c446a70752016a12ad64274c819bad677ba02281c4b3.png">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/kirolink-hermes-claude-code-cover.png">
   
   
   
-  <title>Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口 - 凌晨两点的书桌</title>
+  <title>使用 kirolink 打通 Hermes、Kiro 与 Claude Code - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +330,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</span>
+            <span id="subtitle">使用 kirolink 打通 Hermes、Kiro 与 Claude Code</span>
           
         </div>
 
@@ -340,8 +341,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-05-24 10:00" pubdate>
-          2026年5月24日 上午
+        <time datetime="2026-05-25 02:20" pubdate>
+          2026年5月25日 凌晨
         </time>
       </span>
     
@@ -352,7 +353,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          3.5k 字
         
       </span>
     
@@ -363,7 +364,7 @@
         
         
         
-          20 分钟
+          30 分钟
         
       </span>
     
@@ -402,80 +403,112 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</h1>
+            <h1 id="seo-header">使用 kirolink 打通 Hermes、Kiro 与 Claude Code</h1>
             
             
               <div class="markdown-body">
                 
-                <p>这两年大模型的竞争非常激烈。今天 Claude 很强，明天 Codex 又有新能力，后天 Gemini、DeepSeek、豆包、Kimi 又各自更新一轮。技术进步是真的，但营销声量也越来越大。对普通技术人员来说，很多时候已经很难判断：这些产品到底是实实在在提升效率，还是只是换了一种包装继续制造焦虑。</p>
-<p>除了 OpenAI、Anthropic、Google 这些被反复讨论的大厂之外，Meta 其实也一直在做自己的 AI 产品。只是它的打法和其他公司不太一样。Meta AI 并不是单独做一个强势入口，像 ChatGPT 那样让用户专门打开一个应用来使用，而是把 AI 能力放进自己已有的产品体系里，比如 WhatsApp、Instagram、Facebook、Messenger 等。</p>
-<p>这次我主要体验的是 WhatsApp 里的 Meta AI。</p>
-<p><img src="/blog/assets/ig_0246a2c446a70752016a12ad64274c819bad677ba02281c4b3.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="为什么会体验到-Meta-AI"><a href="#为什么会体验到-Meta-AI" class="headerlink" title="为什么会体验到 Meta AI"></a>为什么会体验到 Meta AI</h2><p>之前我也用国内手机号注册过 WhatsApp，但当时没有看到 Meta AI 的入口。原因可能和账号地区、手机号归属、App 版本、灰度测试策略有关。Meta 这类产品经常不是一次性全量开放，而是按地区、账号、设备和版本逐步放开。</p>
-<p>后来我购买了一张 Giffgaff 卡，用它注册了 WhatsApp 和 Telegram 等账号。使用这个手机号注册 WhatsApp 后，我发现应用里出现了单独的 Meta AI 入口，于是就顺手体验了几天。</p>
-<p>这也是写这篇文章的原因：不是系统性评测，也不是模型能力排行榜，只是记录一下普通用户在 WhatsApp 里真实使用 Meta AI 的感受。</p>
-<h2 id="使用环境和入口"><a href="#使用环境和入口" class="headerlink" title="使用环境和入口"></a>使用环境和入口</h2><p>我的体验环境大致如下：</p>
-<ul>
-<li>使用 Giffgaff 手机号注册 WhatsApp</li>
-<li>WhatsApp 内出现 Meta AI 入口</li>
-<li>主要体验文字对话功能</li>
-<li>部分功能在直连环境下可用</li>
-<li>图片、语音、音频转文字等能力，可能需要更稳定的网络环境</li>
+                <p><img src="/blog/assets/kirolink-hermes-claude-code-cover.png" srcset="/blog/img/loading.gif" lazyload></p>
+<blockquote>
+<p>让 Hermes Agent 和 Claude Code 通过 Kiro（AWS CodeWhisperer 后端）运行，绕过 Anthropic 原生计费。</p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Kiro CLI</strong></td>
+<td>AWS CodeWhisperer 驱动的 AI 编程助手，通过 AWS SSO 认证</td>
+</tr>
+<tr>
+<td><strong>kirolink</strong></td>
+<td>轻量级 Go 代理，读取 Kiro 的 SSO token，暴露 Anthropic 兼容 API</td>
+</tr>
+<tr>
+<td><strong>Hermes Agent</strong></td>
+<td>Nous Research 的 AI Agent 框架，支持多 provider</td>
+</tr>
+<tr>
+<td><strong>Claude Code</strong></td>
+<td>Anthropic 官方 CLI 编程助手</td>
+</tr>
+</tbody></table>
+<p>架构链路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Hermes / Claude Code -&gt; kirolink (:9090) -&gt; Kiro/AWS SSO -&gt; AWS CodeWhisperer<br></code></pre></td></tr></table></figure>
+
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<li>Linux &#x2F; macOS 系统</li>
+<li>AWS Builder ID 或 IAM Identity Center 账号（用于 Kiro 登录）</li>
+<li>能够访问 <code>codewhisperer.us-east-1.amazonaws.com</code></li>
 </ul>
-<p>从入口上看，Meta AI 在 WhatsApp 里更像一个联系人或聊天对象。你不需要单独打开一个 AI App，而是直接在聊天软件里和它对话。这种设计很符合 Meta 的产品逻辑：AI 不是独立产品，而是社交产品的一部分。</p>
-<p><img src="/blog/assets/SCR-20260524-dvwb.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="文字对话体验"><a href="#文字对话体验" class="headerlink" title="文字对话体验"></a>文字对话体验</h2><p>单纯从文字对话来说，Meta AI 的体验比我预期好。</p>
-<p>它的响应速度比较快，交互也比较轻。不是那种很重的“工作台式 AI”，而更像一个随手问问题的聊天助手。用起来有点像国内的豆包：不一定每个问题都追求很深的推理，但日常问答、简单解释、信息整理、写几段文字，都比较顺手。</p>
-<p>我试了几类问题：</p>
-<ul>
-<li>普通知识问答</li>
-<li>简单翻译</li>
-<li>文案改写</li>
-<li>技术概念解释</li>
-<li>日常建议类问题</li>
-</ul>
-<p>整体感觉是：如果只是轻量使用，Meta AI 完全够用。它的优势不是“模型一定最强”，而是入口足够自然。你本来就在 WhatsApp 聊天，顺手问它一句，使用成本很低。</p>
-<p><img src="/blog/assets/SCR-20260524-dzkc.png" srcset="/blog/img/loading.gif" lazyload></p>
-<h2 id="和-ChatGPT、Claude、豆包的差异"><a href="#和-ChatGPT、Claude、豆包的差异" class="headerlink" title="和 ChatGPT、Claude、豆包的差异"></a>和 ChatGPT、Claude、豆包的差异</h2><p>如果把 Meta AI 和 ChatGPT、Claude、Codex 这类工具放在一起比较，它的定位其实不太一样。</p>
-<p>ChatGPT 更像一个通用 AI 工作台，适合写作、分析、编程、总结、生成内容。Claude 更偏长文本和严谨表达。Codex 更偏代码和工程任务。豆包这类国内产品更强调日常聊天、内容生成和本土化场景。</p>
-<p>Meta AI 则更像“社交软件里的 AI 助手”。它不一定要取代专业工具，而是降低用户接触 AI 的门槛。尤其是 WhatsApp 这种高频通讯工具，一旦 AI 能力和聊天场景结合，使用频率会很自然地上来。</p>
-<p>换句话说，Meta AI 的竞争点不只是模型能力，而是入口分发能力。</p>
-<h2 id="网络环境和功能限制"><a href="#网络环境和功能限制" class="headerlink" title="网络环境和功能限制"></a>网络环境和功能限制</h2><p>我这次体验到的一个明显感受是：文字对话的门槛比较低，直连环境下也能使用。但如果想体验更完整的功能，比如图片理解、图片生成、语音相关能力、音频转文字等，网络环境可能会影响比较大。</p>
-<p>这也说明 Meta AI 在 WhatsApp 里的使用体验，和账号地区、网络环境、产品灰度状态都有关系。不同用户看到的功能不一定完全一致。</p>
-<p>所以这篇文章里的结论只能代表我当前账号和当前环境下的体验，不一定适用于所有人。</p>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>Meta AI 给我的第一印象有几个优点：</p>
-<ol>
-<li><p>入口自然<br>它直接在 WhatsApp 里，不需要切换应用。</p>
-</li>
-<li><p>响应速度快<br>文字对话比较流畅，没有明显等待感。</p>
-</li>
-<li><p>使用压力小<br>不像一些专业 AI 工具那样有很强的“任务感”，更适合随手问。</p>
-</li>
-<li><p>和社交场景结合紧密<br>如果后续能更好地处理群聊、图片、语音和内容转发，它会很有想象空间。</p>
-</li>
-</ol>
-<h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><p>不足也比较明显：</p>
-<ol>
-<li><p>功能开放不稳定<br>有些账号有入口，有些账号没有入口。</p>
-</li>
-<li><p>地区差异明显<br>国内手机号注册的 WhatsApp 未必能看到 Meta AI。</p>
-</li>
-<li><p>深度任务能力不一定突出<br>如果是复杂写作、工程代码、长文档处理，我还是会优先使用 ChatGPT、Claude 或 Codex。</p>
-</li>
-<li><p>完整功能依赖网络环境<br>文字对话还好，图片和语音相关能力可能需要更稳定的连接。</p>
-</li>
-</ol>
-<h2 id="我的结论"><a href="#我的结论" class="headerlink" title="我的结论"></a>我的结论</h2><p>这次体验下来，我觉得 Meta AI 不是一个“专门用来替代 ChatGPT 的产品”，而是一个更轻、更自然、更贴近社交场景的 AI 助手。</p>
-<p>如果你只是想随手问问题、做简单翻译、改几句话、生成一点内容，它的体验完全可以接受。它最大的价值不是模型参数有多强，而是放在 WhatsApp 这种高频应用里，让 AI 变成聊天流程的一部分。</p>
-<p>对我来说，这类产品的意义在于：AI 不一定只存在于独立应用里，也可以悄悄进入通讯、社交和内容消费场景。Meta 走的正是这条路。</p>
-<p>最后简单总结一下：</p>
-<ul>
-<li>想体验完整 AI 工作流，ChatGPT、Claude、Codex 仍然更合适。</li>
-<li>想在聊天软件里轻量使用 AI，Meta AI 的体验已经不错。</li>
-<li>如果你的 WhatsApp 没有入口，可能和手机号地区、账号灰度、App 版本有关。</li>
-<li>使用 Giffgaff 这类海外手机号注册 WhatsApp，确实更容易看到 Meta AI 入口。</li>
-</ul>
-<p>这不是一篇严格评测，只是一次实际体验记录。整体感受是：Meta AI 没有特别高调，但已经能用了，而且用起来比想象中顺手。</p>
+<h2 id="1-安装-Go"><a href="#1-安装-Go" class="headerlink" title="1. 安装 Go"></a>1. 安装 Go</h2><p><code>kirolink</code> 用 Go 编写，需要先安装 Go 来编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://go.dev/dl/go1.23.3.linux-amd64.tar.gz -o /tmp/go.tar.gz<br><span class="hljs-built_in">rm</span> -rf ~/.local/go<br><span class="hljs-built_in">mkdir</span> -p ~/.local<br>tar -C ~/.local -xzf /tmp/go.tar.gz<br><span class="hljs-built_in">rm</span> /tmp/go.tar.gz<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export PATH=$HOME/.local/go/bin:$PATH&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/.local/go/bin:<span class="hljs-variable">$PATH</span><br>go version<br><span class="hljs-comment"># 输出: go version go1.23.3 linux/amd64</span><br></code></pre></td></tr></table></figure>
+
+<p>如果系统有 <code>sudo</code> 权限，也可以安装到 <code>/usr/local</code>。</p>
+<h2 id="2-安装-Kiro-CLI"><a href="#2-安装-Kiro-CLI" class="headerlink" title="2. 安装 Kiro CLI"></a>2. 安装 Kiro CLI</h2><p>使用官方一键安装脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://cli.kiro.dev/install | bash<br></code></pre></td></tr></table></figure>
+
+<p>安装完成后，命令为 <code>kiro-cli</code>，位于 <code>~/.local/bin/</code>。</p>
+<p>验证安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kiro-cli version<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-编译-kirolink"><a href="#3-编译-kirolink" class="headerlink" title="3. 编译 kirolink"></a>3. 编译 kirolink</h2><p>克隆仓库并编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/alexandephilia/kiro-claude-proxy.git /tmp/kiro-claude-proxy<br><span class="hljs-built_in">cd</span> /tmp/kiro-claude-proxy<br>go build -o ~/.local/bin/kirolink kirolink.go<br>kirolink<br><span class="hljs-comment"># 输出帮助信息即编译成功</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="4-登录-Kiro"><a href="#4-登录-Kiro" class="headerlink" title="4. 登录 Kiro"></a>4. 登录 Kiro</h2><p>这一步需要浏览器进行 AWS SSO 认证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kiro-cli login<br></code></pre></td></tr></table></figure>
+
+<p>执行后会在浏览器打开登录页面，使用 AWS Builder ID 或 IAM 账号登录。</p>
+<p>登录成功后 token 文件位于：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.aws/sso/cache/kiro-auth-token-cli.json<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-处理-Token-文件"><a href="#5-处理-Token-文件" class="headerlink" title="5. 处理 Token 文件"></a>5. 处理 Token 文件</h2><p><code>kirolink</code> 默认读取 <code>kiro-auth-token.json</code>，而 Kiro CLI 生成的文件名带 <code>-cli</code> 后缀。创建软链接解决：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -sf ~/.aws/sso/cache/kiro-auth-token-cli.json ~/.aws/sso/cache/kiro-auth-token.json<br></code></pre></td></tr></table></figure>
+
+<p>验证 token 可读：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">kirolink <span class="hljs-built_in">read</span><br><span class="hljs-comment"># 输出 Access Token / Refresh Token / Expires at</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-启动-kirolink-代理"><a href="#6-启动-kirolink-代理" class="headerlink" title="6. 启动 kirolink 代理"></a>6. 启动 kirolink 代理</h2><p>默认端口 8080，如果被占用可指定其他端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kirolink server 9090 &amp;<br></code></pre></td></tr></table></figure>
+
+<p>验证代理运行正常：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -s http://localhost:9090/health<br><span class="hljs-comment"># OK</span><br><br>curl -s http://localhost:9090/v1/models | python3 -m json.tool<br><span class="hljs-comment"># 列出 14 个可用模型</span><br></code></pre></td></tr></table></figure>
+
+<p>测试一次 API 调用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -s -X POST http://localhost:9090/v1/messages \<br>  -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> \<br>  -d <span class="hljs-string">&#x27;&#123;&quot;model&quot;:&quot;claude-sonnet-4-6&quot;,&quot;messages&quot;:[&#123;&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;hi&quot;&#125;],&quot;max_tokens&quot;:50&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>正常响应示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Hey! I&#x27;m Kiro. What are you working on?&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;text&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;model&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;claude-sonnet-4.5&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;assistant&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;stop_reason&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;end_turn&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;usage&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;input_tokens&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">17</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;output_tokens&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">7</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="7-配置-Hermes-Agent"><a href="#7-配置-Hermes-Agent" class="headerlink" title="7. 配置 Hermes Agent"></a>7. 配置 Hermes Agent</h2><blockquote>
+<p>如果你还没有安装 Hermes Agent，参考 <a target="_blank" rel="noopener" href="https://hermes-agent.nousresearch.com/">Hermes Agent 官方文档</a>。</p>
+</blockquote>
+<h3 id="修改-config-yaml"><a href="#修改-config-yaml" class="headerlink" title="修改 config.yaml"></a>修改 config.yaml</h3><p>编辑 <code>~/.hermes/config.yaml</code>，修改 model 配置指向 <code>kirolink</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">model:</span><br>  <span class="hljs-attr">default:</span> <span class="hljs-string">claude-sonnet-4-6</span><br>  <span class="hljs-attr">provider:</span> <span class="hljs-string">anthropic</span><br>  <span class="hljs-attr">base_url:</span> <span class="hljs-string">http://localhost:9090</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="设置-API-Key"><a href="#设置-API-Key" class="headerlink" title="设置 API Key"></a>设置 API Key</h3><p>Hermes 使用 <code>ANTHROPIC_API_KEY</code> 环境变量。获取当前 Kiro token 并写入 <code>.env</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">TOKEN=$(kirolink <span class="hljs-built_in">read</span> | grep <span class="hljs-string">&quot;Access Token:&quot;</span> | <span class="hljs-built_in">cut</span> -d<span class="hljs-string">&#x27; &#x27;</span> -f3)<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ANTHROPIC_API_KEY=<span class="hljs-variable">$TOKEN</span>&quot;</span> &gt;&gt; ~/.hermes/.env<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ANTHROPIC_BASE_URL=http://localhost:9090&quot;</span> &gt;&gt; ~/.hermes/.env<br></code></pre></td></tr></table></figure>
+
+<h3 id="测试-Hermes"><a href="#测试-Hermes" class="headerlink" title="测试 Hermes"></a>测试 Hermes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hermes -z <span class="hljs-string">&quot;say hello in 3 words&quot;</span><br><span class="hljs-comment"># 输出: Hey there, friend.</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="8-配置-Claude-Code"><a href="#8-配置-Claude-Code" class="headerlink" title="8. 配置 Claude Code"></a>8. 配置 Claude Code</h2><blockquote>
+<p>Claude Code 的安装参见<a target="_blank" rel="noopener" href="https://code.claude.com/">官方文档</a>。</p>
+</blockquote>
+<p>通过环境变量指向 <code>kirolink</code> 代理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> ANTHROPIC_BASE_URL=http://localhost:9090<br><span class="hljs-built_in">export</span> ANTHROPIC_API_KEY=$(kirolink <span class="hljs-built_in">read</span> | grep <span class="hljs-string">&quot;Access Token:&quot;</span> | <span class="hljs-built_in">cut</span> -d<span class="hljs-string">&#x27; &#x27;</span> -f3)<br>claude <span class="hljs-string">&quot;介绍一下你自己&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>也可以使用 <code>kirolink</code> 的 <code>claude</code> 命令自动配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">kirolink claude<br><span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(kirolink export)</span>&quot;</span><br>claude<br></code></pre></td></tr></table></figure>
+
+<h2 id="9-Token-刷新"><a href="#9-Token-刷新" class="headerlink" title="9. Token 刷新"></a>9. Token 刷新</h2><p>Kiro 的 token 有过期时间。<code>kirolink</code> 会自动从 Kiro CLI 的 SQLite 数据库同步 token：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kirolink refresh<br></code></pre></td></tr></table></figure>
+
+<p>如果 Hermes 或 Claude Code 遇到 403 错误，重新运行 <code>refresh</code> 并更新环境变量即可。</p>
+<h2 id="10-日常使用"><a href="#10-日常使用" class="headerlink" title="10. 日常使用"></a>10. 日常使用</h2><p>每次新开终端时：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 确保代理在运行</span><br>kirolink server 9090 &amp;<br><br><span class="hljs-comment"># 使用 Hermes</span><br>hermes<br><br><span class="hljs-comment"># 或使用 Claude Code</span><br><span class="hljs-built_in">export</span> ANTHROPIC_BASE_URL=http://localhost:9090<br><span class="hljs-built_in">export</span> ANTHROPIC_API_KEY=$(kirolink <span class="hljs-built_in">read</span> | grep <span class="hljs-string">&quot;Access Token:&quot;</span> | <span class="hljs-built_in">cut</span> -d<span class="hljs-string">&#x27; &#x27;</span> -f3)<br>claude<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -509,13 +542,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/Meta-AI/" class="print-no-link">#Meta AI</a>
+        <a href="/blog/tags/agent/" class="print-no-link">#agent</a>
       
-        <a href="/blog/tags/WhatsApp/" class="print-no-link">#WhatsApp</a>
+        <a href="/blog/tags/hermes/" class="print-no-link">#hermes</a>
       
-        <a href="/blog/tags/AI-%E4%BD%93%E9%AA%8C/" class="print-no-link">#AI 体验</a>
+        <a href="/blog/tags/claude-code/" class="print-no-link">#claude-code</a>
       
-        <a href="/blog/tags/%E6%B5%B7%E5%A4%96%E5%BA%94%E7%94%A8/" class="print-no-link">#海外应用</a>
+        <a href="/blog/tags/kiro/" class="print-no-link">#kiro</a>
+      
+        <a href="/blog/tags/kirolink/" class="print-no-link">#kirolink</a>
       
     </div>
   
@@ -527,8 +562,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</div>
-      <div>https://1241262510.github.io/blog/2026/05/24/meta-ai-whatsapp-first-impression/</div>
+      <div>使用 kirolink 打通 Hermes、Kiro 与 Claude Code</div>
+      <div>https://1241262510.github.io/blog/2026/05/25/kirolink-hermes-claude-code-agent-workflow/</div>
     </div>
     <div class="license-meta">
       
@@ -540,7 +575,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年5月24日</div>
+          <div>2026年5月25日</div>
         </div>
       
       
@@ -572,18 +607,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/05/25/kirolink-hermes-claude-code-agent-workflow/" title="使用 kirolink 打通 Hermes、Kiro 与 Claude Code">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">使用 kirolink 打通 Hermes、Kiro 与 Claude Code</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/05/22/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E5%AE%9E%E6%93%8D/" title="自定义域名邮箱实操">
-                        <span class="hidden-mobile">自定义域名邮箱实操</span>
+                      <a href="/blog/2026/05/24/meta-ai-whatsapp-first-impression/" title="Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口">
+                        <span class="hidden-mobile">Meta AI 初体验：藏在 WhatsApp 里的另一种 AI 入口</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
