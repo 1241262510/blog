@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
+  <link rel="icon" href="/blog/img/fluid.png">
+  
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/05/28/kiro-key-music-web-app/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#ffffff">
+  <meta name="author" content="凌晨两点的书桌">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="记录用 Kiro AI 辅助开发一个按键音乐 Web App 的全过程，从 Spec 工作流、Web Audio 音频引擎，到移动端适配和示范曲合奏。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零到合奏：用 Kiro AI 一小时搭建按键音乐 Web App">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/05/28/kiro-key-music-web-app/index.html">
+<meta property="og:site_name" content="凌晨两点的书桌">
+<meta property="og:description" content="记录用 Kiro AI 辅助开发一个按键音乐 Web App 的全过程，从 Spec 工作流、Web Audio 音频引擎，到移动端适配和示范曲合奏。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-29T01:25:10.944Z">
+<meta property="article:author" content="凌晨两点的书桌">
+<meta property="article:tag" content="AI 编程">
+<meta property="article:tag" content="Kiro">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="TypeScript">
+<meta property="article:tag" content="Web Audio">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>从零到合奏：用 Kiro AI 一小时搭建按键音乐 Web App - 凌晨两点的书桌</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/blog/css/layout-conservative.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1241262510.github.io","root":"/blog/","version":"1.9.9","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/blog/atom.xml" title="凌晨两点的书桌" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>Codex Skill Lab</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/atom.xml" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-rss"></i>
+                  <span>RSS</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/banner-desk.svg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.35)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">从零到合奏：用 Kiro AI 一小时搭建按键音乐 Web App</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-28 10:00" pubdate>
+          2026年5月28日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从零到合奏：用 Kiro AI 一小时搭建按键音乐 Web App</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直想做一个能在浏览器里玩的小乐器，不需要下载安装，打开网页就能按键演奏。今天用 Kiro AI 辅助开发，从一个想法到完整可用的按键音乐 App，整个过程大约一小时。记录一下这个过程，分享给同样对 Web Audio 感兴趣的朋友。</p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>一个纯前端的按键音乐 Web App：</p>
+<ul>
+<li>8 个音垫对应键盘 A S D F J K L ;（Do Re Mi Fa Sol La Si 高音Do）</li>
+<li>三种音色：钢琴、吉他、口琴</li>
+<li>支持键盘、鼠标、触摸三种交互方式</li>
+<li>带简谱标注，方便对照演奏</li>
+<li>12 首示范曲目，部分支持双音色合奏</li>
+<li>音量调节 + localStorage 持久化</li>
+<li>深色乐器风格 UI，手机电脑都能用</li>
+</ul>
+<p>技术栈：React + Vite + TypeScript + Web Audio API，零后端依赖。</p>
+<h2 id="第一步：Spec-驱动开发"><a href="#第一步：Spec-驱动开发" class="headerlink" title="第一步：Spec 驱动开发"></a>第一步：Spec 驱动开发</h2><p>没有直接写代码，而是先用 Kiro 的 Spec 工作流梳理需求：</p>
+<p><strong>需求文档（requirements.md）</strong> 定义了 9 个需求：</p>
+<ol>
+<li>音垫布局与展示</li>
+<li>键盘触发音频播放</li>
+<li>鼠标点击触发</li>
+<li>按键高亮动画</li>
+<li>音色切换</li>
+<li>音量调节</li>
+<li>纯前端运行</li>
+<li>Web Audio API 音频合成</li>
+<li>移动端触摸支持</li>
+</ol>
+<p>每个需求都有明确的验收标准，比如“触发后 50ms 内开始发声”、“高亮 150ms 后恢复”这种可测量的指标。</p>
+<p><strong>设计文档（design.md）</strong> 确定了分层架构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">UI 组件层（Pad、PadGrid、ToneSelector、VolumeControl）<br>↓<br>Hook 逻辑层（useKeyboard、useTouchHandler、usePadState）<br>↓<br>服务层（AudioEngine 单例）<br></code></pre></td></tr></table></figure>
+
+<p><strong>任务列表（tasks.md）</strong> 把实现拆成了 9 个阶段，带依赖关系图，可以并行推进。</p>
+<p>这一步的价值：后面写代码时几乎没有返工，因为架构和接口都想清楚了。</p>
+<h2 id="第二步：搭建项目骨架"><a href="#第二步：搭建项目骨架" class="headerlink" title="第二步：搭建项目骨架"></a>第二步：搭建项目骨架</h2><p>用 Vite 的 react-ts 模板初始化项目，然后创建核心文件结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">src/<br>├── types/index.ts # ToneType、PadConfig 等类型<br>├── constants/notes.ts # 音高映射 C4-C5、音色配置<br>├── services/AudioEngine.ts # Web Audio API 封装<br>├── components/ # React 组件<br>├── hooks/ # 自定义 hooks<br>└── styles/ # CSS<br></code></pre></td></tr></table></figure>
+
+<p>关键设计决策：</p>
+<ul>
+<li>AudioEngine 作为单例，不放在 React 状态里，避免重复创建 AudioContext</li>
+<li>用 <code>useRef</code> 持有当前音色，避免 useCallback 的闭包陷阱</li>
+<li>音高映射用常量数组，方便后续扩展</li>
+</ul>
+<h2 id="第三步：实现-Web-Audio-音频引擎"><a href="#第三步：实现-Web-Audio-音频引擎" class="headerlink" title="第三步：实现 Web Audio 音频引擎"></a>第三步：实现 Web Audio 音频引擎</h2><p>这是整个项目最核心的部分。Web Audio API 的基本思路是构建音频节点图：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">振荡器(OscillatorNode) → 增益(GainNode) → 压缩器 → 混响 → 输出<br></code></pre></td></tr></table></figure>
+
+<h3 id="三种音色的合成策略"><a href="#三种音色的合成策略" class="headerlink" title="三种音色的合成策略"></a>三种音色的合成策略</h3><p><strong>钢琴</strong>：三角波基频 + 正弦波谐波 + 低通滤波：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs typescript">osc1.<span class="hljs-property">type</span> = <span class="hljs-string">&#x27;triangle&#x27;</span>; <span class="hljs-comment">// 基频，柔和</span><br>osc2.<span class="hljs-property">type</span> = <span class="hljs-string">&#x27;sine&#x27;</span>; <span class="hljs-comment">// 2次谐波，温暖</span><br>osc3.<span class="hljs-property">type</span> = <span class="hljs-string">&#x27;sine&#x27;</span>; <span class="hljs-comment">// 4次谐波，亮度</span><br></code></pre></td></tr></table></figure>
+
+<p>配合快速 attack（3ms）+ 指数衰减的包络，模拟击弦效果。</p>
+<p><strong>吉他</strong>：锯齿波 + 多谐波 + 滤波器频率衰减：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 滤波器频率随时间降低，模拟弦振动高频先衰减</span><br>filter.<span class="hljs-property">frequency</span>.<span class="hljs-title function_">exponentialRampToValueAtTime</span>(frequency * <span class="hljs-number">2</span>, now + totalDuration);<br></code></pre></td></tr></table></figure>
+
+<p>这个细节让吉他音色有了“弦在振动中逐渐变暗”的真实感。</p>
+<p><strong>口琴</strong>：方波 + 奇次谐波 + LFO 颤音 + 气息噪声：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 颤音 LFO 模拟手部颤动</span><br>lfo.<span class="hljs-property">frequency</span>.<span class="hljs-property">value</span> = <span class="hljs-number">5.2</span>; <span class="hljs-comment">// 5.2Hz</span><br>lfoGain.<span class="hljs-property">gain</span>.<span class="hljs-property">value</span> = <span class="hljs-number">4</span>; <span class="hljs-comment">// ±4Hz 频率偏移</span><br></code></pre></td></tr></table></figure>
+
+<p>口琴的特征是方波的奇次谐波结构 + 明显的颤音，加上一层极轻的白噪声模拟气息。</p>
+<h3 id="全局音频处理"><a href="#全局音频处理" class="headerlink" title="全局音频处理"></a>全局音频处理</h3><p>为了让整体音质更好，加了两个全局效果：</p>
+<ul>
+<li><strong>动态压缩器</strong>：防止多音同时发声时爆音</li>
+<li><strong>卷积混响</strong>：用算法生成 1.5 秒的脉冲响应，模拟小房间空间感</li>
+</ul>
+<h2 id="第四步：组件和交互"><a href="#第四步：组件和交互" class="headerlink" title="第四步：组件和交互"></a>第四步：组件和交互</h2><p>UI 部分相对直接：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-comment">// Pad 组件 - 显示简谱 + 按键标签</span><br>&lt;button className=&#123;<span class="hljs-string">`pad <span class="hljs-subst">$&#123;isActive ? <span class="hljs-string">&#x27;active&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>&#125;</span>`</span>&#125; data-pad-key=&#123;padKey&#125;&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;pad-notation&quot;</span>&gt;</span>&#123;notation&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span> &#123;<span class="hljs-comment">/* 简谱数字 */</span>&#125;<br>  &lt;span className=<span class="hljs-string">&quot;pad-label&quot;</span>&gt;&#123;keyLabel&#125;&lt;<span class="hljs-regexp">/span&gt; &#123;/</span>* 键盘按键 */&#125;<br>&lt;/button&gt;<br></code></pre></td></tr></table></figure>
+
+<p>高亮动画用 CSS transition + scale 实现，150ms 自动恢复：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.pad</span><span class="hljs-selector-class">.active</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">1.08</span>);<br>  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">145deg</span>, <span class="hljs-number">#6c63ff</span>, <span class="hljs-number">#4a42d4</span>);<br>  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">20px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">108</span>, <span class="hljs-number">99</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.5</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>键盘事件用 <code>useKeyboard</code> hook 封装，维护 <code>pressedKeys</code> Set 防止长按重复触发。</p>
+<h2 id="第五步：移动端适配（踩坑记录）"><a href="#第五步：移动端适配（踩坑记录）" class="headerlink" title="第五步：移动端适配（踩坑记录）"></a>第五步：移动端适配（踩坑记录）</h2><p>移动端遇到了三个坑：</p>
+<h3 id="坑-1：touch-action-none-放错位置"><a href="#坑-1：touch-action-none-放错位置" class="headerlink" title="坑 1：touch-action: none 放错位置"></a>坑 1：touch-action: none 放错位置</h3><p>最初把 <code>touch-action: none</code> 放在整个 <code>.app</code> 容器上，结果所有按钮和滑块在手机上都无法点击。</p>
+<p><strong>解决</strong>：只在 <code>.pad-grid</code> 上设置 <code>touch-action: none</code>，其他区域保持默认。</p>
+<h3 id="坑-2：onClick-onTouchEnd-双重触发"><a href="#坑-2：onClick-onTouchEnd-双重触发" class="headerlink" title="坑 2：onClick + onTouchEnd 双重触发"></a>坑 2：onClick + onTouchEnd 双重触发</h3><p>同时绑定 <code>onClick</code> 和 <code>onTouchEnd</code> 会导致触摸设备上事件冲突：要么触发两次，要么一次都不触发。</p>
+<p><strong>解决</strong>：统一使用 <code>onPointerUp</code> 事件。Pointer Events 是 W3C 的统一输入抽象，触摸和鼠标都只触发一次。</p>
+<h3 id="坑-3：iOS-AudioContext-需要用户手势激活"><a href="#坑-3：iOS-AudioContext-需要用户手势激活" class="headerlink" title="坑 3：iOS AudioContext 需要用户手势激活"></a>坑 3：iOS AudioContext 需要用户手势激活</h3><p>移动端浏览器的 autoplay policy 要求 AudioContext 必须在用户交互事件中 resume。示范播放按钮需要在 <code>handlePlay</code> 里先调 <code>audioEngine.resume()</code>。</p>
+<h2 id="第六步：示范曲目与合奏"><a href="#第六步：示范曲目与合奏" class="headerlink" title="第六步：示范曲目与合奏"></a>第六步：示范曲目与合奏</h2><p>加了 12 首示范曲，按音色分组推荐：</p>
+<ul>
+<li>钢琴：致爱丽丝、梦中的婚礼、欢乐颂、小蜜蜂、两只老虎、粉刷匠</li>
+<li>吉他：童年、同桌的你、兰花草、小星星、生日快乐</li>
+<li>口琴：天空之城、故乡的原风景、世上只有妈妈好、茉莉花</li>
+</ul>
+<h3 id="合奏实现"><a href="#合奏实现" class="headerlink" title="合奏实现"></a>合奏实现</h3><p>单音色播放听起来比较单薄，加了伴奏层后效果明显提升。关键是三个分离手段：</p>
+<ol>
+<li><strong>音域分离</strong>：伴奏频率减半（降一个八度），主旋律在中音区，伴奏在低音区</li>
+<li><strong>音量分离</strong>：伴奏音量为主旋律的 40%</li>
+<li><strong>空间分离</strong>：伴奏声像偏左（pan &#x3D; -0.35），主旋律居中</li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title function_">playAccompaniment</span>(<span class="hljs-attr">frequency</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">tone</span>: <span class="hljs-title class_">ToneType</span>): <span class="hljs-built_in">void</span> &#123;<br>  <span class="hljs-keyword">const</span> lowFreq = frequency / <span class="hljs-number">2</span>; <span class="hljs-comment">// 降八度</span><br>  accompGain.<span class="hljs-property">gain</span>.<span class="hljs-property">value</span> = <span class="hljs-number">0.4</span>; <span class="hljs-comment">// 40% 音量</span><br>  panner.<span class="hljs-property">pan</span>.<span class="hljs-property">value</span> = -<span class="hljs-number">0.35</span>; <span class="hljs-comment">// 偏左声道</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>伴奏轨和主旋律各有独立的定时器，同时推进但互不干扰。</p>
+<h2 id="第七步：音质优化"><a href="#第七步：音质优化" class="headerlink" title="第七步：音质优化"></a>第七步：音质优化</h2><p>最初版本用单个振荡器，听起来很“电子”。优化后每种音色都用 3-4 个振荡器叠加谐波，加上滤波器和包络塑形，质感提升很大。</p>
+<p>几个关键的音质提升技巧：</p>
+<ul>
+<li><strong>指数衰减</strong>比线性衰减自然得多（<code>exponentialRampToValueAtTime</code>）</li>
+<li><strong>低通滤波器</strong>去掉数字合成的刺耳高频</li>
+<li><strong>混响</strong>哪怕只加 25% 的湿信号，空间感就出来了</li>
+<li><strong>压缩器</strong>让多音同时发声时不会爆音</li>
+</ul>
+<h2 id="项目结构总览"><a href="#项目结构总览" class="headerlink" title="项目结构总览"></a>项目结构总览</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs text">kiro-key-music/<br>├── src/<br>│   ├── App.tsx # 主组件，状态管理<br>│   ├── App.css # 深色乐器风格样式<br>│   ├── types/index.ts # TypeScript 类型<br>│   ├── constants/<br>│   │   ├── notes.ts # 音高映射、音色配置<br>│   │   └── demos.ts # 12首示范曲 + 伴奏轨<br>│   ├── services/<br>│   │   └── AudioEngine.ts # Web Audio 引擎（300行核心）<br>│   ├── components/<br>│   │   ├── Pad.tsx # 音垫组件<br>│   │   ├── PadGrid.tsx # 音垫网格<br>│   │   ├── ToneSelector.tsx # 音色选择器<br>│   │   ├── VolumeControl.tsx # 音量控制<br>│   │   └── DemoPlayer.tsx # 示范播放器（含合奏）<br>│   └── hooks/<br>│       ├── useKeyboard.ts # 键盘事件<br>│       ├── useTouchHandler.ts # 触摸事件<br>│       └── usePadState.ts # Pad 状态管理<br>├── vite.config.ts # host: true 支持局域网访问<br>└── package.json<br></code></pre></td></tr></table></figure>
+
+<h2 id="运行方式"><a href="#运行方式" class="headerlink" title="运行方式"></a>运行方式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装依赖</span><br>npm install<br><br><span class="hljs-comment"># 启动开发服务器（局域网可访问）</span><br>npm run dev<br><br><span class="hljs-comment"># 手机访问：http://你的电脑IP:5173</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整个项目从想法到完成大约一小时，Kiro AI 帮助最大的地方：</p>
+<ol>
+<li><strong>Spec 工作流</strong>让我在写代码前就想清楚了架构和接口</li>
+<li><strong>代码生成</strong>处理了大量重复性工作（组件模板、CSS、示范曲数据）</li>
+<li><strong>问题诊断</strong>快速定位移动端兼容性问题的根因</li>
+</ol>
+<p>如果你也想试试 Web Audio，这个项目是个不错的起点。核心就是理解“振荡器 → 滤波器 → 增益 → 输出”这条节点链，然后用包络和谐波叠加来塑造不同音色。</p>
+<hr>
+<p><em>技术栈：React 19 + Vite 8 + TypeScript 6 + Web Audio API</em></p>
+<p><em>代码量：约 1500 行（含示范曲数据）</em></p>
+<p><em>构建产物：约 65KB gzipped</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/Kiro/" class="print-no-link">#Kiro</a>
+      
+        <a href="/blog/tags/AI-%E7%BC%96%E7%A8%8B/" class="print-no-link">#AI 编程</a>
+      
+        <a href="/blog/tags/Web-Audio/" class="print-no-link">#Web Audio</a>
+      
+        <a href="/blog/tags/React/" class="print-no-link">#React</a>
+      
+        <a href="/blog/tags/TypeScript/" class="print-no-link">#TypeScript</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从零到合奏：用 Kiro AI 一小时搭建按键音乐 Web App</div>
+      <div>https://1241262510.github.io/blog/2026/05/28/kiro-key-music-web-app/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>凌晨两点的书桌</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/blog/2026/05/31/apple-creator-studio-subscription-guide/" title="Apple Creator Studio：38 元一个月的 Apple 创作大礼包">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Apple Creator Studio：38 元一个月的 Apple 创作大礼包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2026/05/25/kirolink-hermes-claude-code-agent-workflow/" title="使用 kirolink 打通 Hermes、Kiro 与 Claude Code">
+                        <span class="hidden-mobile">使用 kirolink 打通 Hermes、Kiro 与 Claude Code</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <span>Powered by Hexo & Fluid</span>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
