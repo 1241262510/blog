@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/04/ghostty-dotfile-github-sync-practice/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,26 +21,26 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="解释 Ghostty 在 macOS 不同账号下配置无法共用的原因，并整理复制、共享目录软链接、dotfiles 仓库三种同步方案。">
+    <meta name="description" content="记录把本机 Ghostty 和 tmux 配置迁移到 &#x2F;Users&#x2F;Shared&#x2F;dotfiles，并同步到 GitHub dotfile 仓库的完整过程，方便换 macOS 账号或换机器时复用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/index.html">
+<meta property="og:title" content="Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/04/ghostty-dotfile-github-sync-practice/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="解释 Ghostty 在 macOS 不同账号下配置无法共用的原因，并整理复制、共享目录软链接、dotfiles 仓库三种同步方案。">
+<meta property="og:description" content="记录把本机 Ghostty 和 tmux 配置迁移到 &#x2F;Users&#x2F;Shared&#x2F;dotfiles，并同步到 GitHub dotfile 仓库的完整过程，方便换 macOS 账号或换机器时复用。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-04T05:20:00.000Z">
-<meta property="article:modified_time" content="2026-06-04T05:13:33.870Z">
+<meta property="article:published_time" content="2026-06-04T06:55:00.000Z">
+<meta property="article:modified_time" content="2026-06-04T06:52:00.110Z">
 <meta property="article:author" content="凌晨两点的书桌">
 <meta property="article:tag" content="Dotfiles">
 <meta property="article:tag" content="Ghostty">
-<meta property="article:tag" content="Terminal">
+<meta property="article:tag" content="GitHub">
 <meta property="article:tag" content="Tmux">
 <meta property="article:tag" content="macOS">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题 - 凌晨两点的书桌</title>
+  <title>Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -328,7 +328,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</span>
+            <span id="subtitle">Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</span>
           
         </div>
 
@@ -339,7 +339,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-06-04 01:20" pubdate>
+        <time datetime="2026-06-04 02:55" pubdate>
           2026年6月4日 凌晨
         </time>
       </span>
@@ -351,7 +351,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k 字
+          3.9k 字
         
       </span>
     
@@ -362,7 +362,7 @@
         
         
         
-          30 分钟
+          33 分钟
         
       </span>
     
@@ -401,146 +401,142 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</h1>
+            <h1 id="seo-header">Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>同一台 Mac 上，Ghostty 在一个账号里已经配置好，切换到另一个 macOS 账号后却像全新安装一样。问题不在 Ghostty，而在 macOS 的用户目录隔离：<code>~/.config/ghostty/config</code> 默认属于当前账号。本文整理这个问题的原因，以及如何用复制、共享目录软链接和 dotfiles 仓库复用同一套配置。</p>
-<p>最近我在 Mac 上配置 Ghostty，遇到一个很典型的问题：</p>
-<p>同一台 Mac，Ghostty 明明已经设置好了。<br>但切换到另一个 macOS 账号之后，打开 Ghostty，又像是全新安装一样。</p>
-<p>主题、字体、窗口样式、快捷键、tmux 启动配置，都需要重新来一遍。</p>
-<p>一开始很容易以为是 Ghostty 没有全局配置，或者设置没有保存。<br>其实不是。</p>
-<p>真正的原因是：Ghostty 的配置默认跟着当前 macOS 用户走。</p>
-<h2 id="为什么换账号后配置就没了"><a href="#为什么换账号后配置就没了" class="headerlink" title="为什么换账号后配置就没了"></a>为什么换账号后配置就没了</h2><p>Ghostty 的常用配置文件在这里：</p>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这次做的是一件很小但很实用的事：把本机已经配置好的 Ghostty 和 tmux，从当前 macOS 账号的个人目录里抽出来，放到 <code>/Users/Shared/dotfiles</code>，再同步到 GitHub。</p>
+<p>这样以后有两种使用方式：</p>
+<ul>
+<li>同一台 Mac 换另一个账号，可以直接软链接到 <code>/Users/Shared/dotfiles</code></li>
+<li>换机器或重装系统，可以从 GitHub clone 仓库，再建立软链接</li>
+</ul>
+<p>最终仓库地址是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://github.com/1241262510/dotfile<br></code></pre></td></tr></table></figure>
+
+<h2 id="为什么要这么做"><a href="#为什么要这么做" class="headerlink" title="为什么要这么做"></a>为什么要这么做</h2><p>Ghostty 的默认配置文件在：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>这里最关键的是 <code>~</code>。</p>
-<p>在 macOS 里，<code>~</code> 代表当前登录用户的 Home 目录。</p>
-<p>如果当前账号是 <code>userA</code>，它实际对应的是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/userA/.config/ghostty/config<br></code></pre></td></tr></table></figure>
+<p>tmux 的默认配置文件在：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.tmux.conf<br></code></pre></td></tr></table></figure>
 
-<p>如果切换到另一个账号 <code>userB</code>，它对应的就是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/userB/.config/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>所以你在账号 A 里配置好的 Ghostty，账号 B 默认是看不到的。</p>
-<p>这不是 Ghostty 特有的问题。很多开发工具都是这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.zshrc<br>~/.tmux.conf<br>~/.gitconfig<br>~/.ssh/config<br>~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>它们都默认放在当前用户目录下。</p>
-<p>好处是不同用户互不影响。<br>坏处是如果你希望多个账号使用同一套环境，就需要额外做同步。</p>
-<h2 id="我现在的-Ghostty-配置思路"><a href="#我现在的-Ghostty-配置思路" class="headerlink" title="我现在的 Ghostty 配置思路"></a>我现在的 Ghostty 配置思路</h2><p>我的 Ghostty 配置里，主要做了几件事：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">term = xterm-ghostty<br>theme = <span class="hljs-string">&quot;Gruvbox Dark&quot;</span><br>background-opacity = 0.9<br>background-blur-radius = 20<br>window-show-tab-bar = always<br>macos-titlebar-style = tabs<br>font-family = <span class="hljs-string">&quot;Menlo&quot;</span><br>font-size = 14<br></code></pre></td></tr></table></figure>
-
-<p>另外我让 Ghostty 启动后直接进入一个固定的 tmux session：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">command</span> = <span class="hljs-string">&quot;/bin/zsh -l -c &#x27;/opt/homebrew/bin/tmux attach-session -t default || /opt/homebrew/bin/tmux new-session -s default&#x27;&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>这样每次打开 Ghostty，都会自动回到同一个 tmux 工作区。</p>
-<p>为了避免 Ghostty 自己的分屏快捷键和 tmux 冲突，我还禁用了 Ghostty 的两个默认分屏键：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">keybind = super+d=unbind<br>keybind = super+<span class="hljs-built_in">shift</span>+d=unbind<br></code></pre></td></tr></table></figure>
-
-<p>也就是说：</p>
-<ul>
-<li><code>Cmd + D</code> 不再由 Ghostty 负责分屏</li>
-<li><code>Cmd + Shift + D</code> 也不再由 Ghostty 负责分屏</li>
-<li>分屏交给 tmux 来处理</li>
-</ul>
-<p>tmux 里我再把快捷键改成更直观的方式：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">unbind %<br><span class="hljs-built_in">bind</span> | split-window -h -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br><br>unbind <span class="hljs-string">&#x27;&quot;&#x27;</span><br><span class="hljs-built_in">bind</span> - split-window -v -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>实际使用时就是：</p>
-<ul>
-<li><code>Ctrl + B</code>，再按 <code>|</code>：左右分屏</li>
-<li><code>Ctrl + B</code>，再按 <code>-</code>：上下分屏</li>
-</ul>
-<p>这个组合用久之后，比记 Ghostty 和 tmux 各自一套分屏逻辑要清楚很多。</p>
-<h2 id="怎么让不同账号使用同一套配置"><a href="#怎么让不同账号使用同一套配置" class="headerlink" title="怎么让不同账号使用同一套配置"></a>怎么让不同账号使用同一套配置</h2><p>有三种方式。</p>
-<h3 id="方式一：直接复制配置"><a href="#方式一：直接复制配置" class="headerlink" title="方式一：直接复制配置"></a>方式一：直接复制配置</h3><p>最简单的方法，就是把账号 A 的配置复制到账号 B。</p>
-<p>Ghostty：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">cp</span> /Users/userA/.config/ghostty/config ~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>tmux：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> /Users/userA/.tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>这种方式适合一次性迁移。</p>
-<p>缺点也明显：以后你在账号 A 改了一次配置，账号 B 不会自动更新。<br>两个账号用久之后，很容易变成两套略有差异的配置。</p>
-<p>如果只是临时换账号，这个方法够用。</p>
-<h3 id="方式二：用共享目录加软链接"><a href="#方式二：用共享目录加软链接" class="headerlink" title="方式二：用共享目录加软链接"></a>方式二：用共享目录加软链接</h3><p>更推荐的方式，是把配置放到一个共享目录，然后每个账号都通过软链接指向同一份文件。</p>
-<p>例如把配置统一放在：</p>
+<p>这里的 <code>~</code> 是当前 macOS 登录账号的 Home 目录。也就是说，账号 A 配好的 Ghostty，账号 B 默认看不到。</p>
+<p>如果只是复制一份，短期能用，但后续两个账号很容易改出两套配置。更稳的办法是把配置放到一个共享位置，再让每个账号通过软链接指向同一份文件。</p>
+<h2 id="这次采用的目录结构"><a href="#这次采用的目录结构" class="headerlink" title="这次采用的目录结构"></a>这次采用的目录结构</h2><p>共享目录放在：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/Shared/dotfiles<br></code></pre></td></tr></table></figure>
 
-<p>目录结构可以这样设计：</p>
+<p>目录结构是：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">/Users/Shared/dotfiles/<br>├── ghostty/<br>│   └── config<br>└── tmux.conf<br></code></pre></td></tr></table></figure>
 
-<p>然后在每个 macOS 账号里执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
+<p>当前账号里的配置入口仍然保持在默认位置，只是改成软链接：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">~/.config/ghostty/config -&gt; /Users/Shared/dotfiles/ghostty/config<br>~/.tmux.conf              -&gt; /Users/Shared/dotfiles/tmux.conf<br></code></pre></td></tr></table></figure>
 
-<p>这样不同账号看到的就是同一份配置。</p>
-<p>之后你不管在哪个账号里修改 Ghostty 配置，本质上改的都是：</p>
+<p>这样 Ghostty 和 tmux 不需要改任何启动方式，它们仍然读取默认路径；但默认路径背后实际指向的是共享配置。</p>
+<h2 id="第一步：迁移-Ghostty-配置"><a href="#第一步：迁移-Ghostty-配置" class="headerlink" title="第一步：迁移 Ghostty 配置"></a>第一步：迁移 Ghostty 配置</h2><p>先创建共享目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /Users/Shared/dotfiles/ghostty<br></code></pre></td></tr></table></figure>
+
+<p>把当前账号里的 Ghostty 配置复制进去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> ~/.config/ghostty/config /Users/Shared/dotfiles/ghostty/config<br></code></pre></td></tr></table></figure>
+
+<p>然后删掉原来的普通文件，改成软链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -f ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/ghostty/config ~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
+
+<p>检查链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -la ~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
+
+<p>看到类似结果就对了：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">~/.config/ghostty/config -&gt; /Users/Shared/dotfiles/ghostty/config<br></code></pre></td></tr></table></figure>
+
+<h2 id="第二步：迁移-tmux-配置"><a href="#第二步：迁移-tmux-配置" class="headerlink" title="第二步：迁移 tmux 配置"></a>第二步：迁移 tmux 配置</h2><p>tmux 同样处理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> ~/.tmux.conf /Users/Shared/dotfiles/tmux.conf<br><span class="hljs-built_in">rm</span> -f ~/.tmux.conf<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
+
+<p>检查链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -la ~/.tmux.conf<br></code></pre></td></tr></table></figure>
+
+<p>结果应当类似：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">~/.tmux.conf -&gt; /Users/Shared/dotfiles/tmux.conf<br></code></pre></td></tr></table></figure>
+
+<h2 id="第三步：把共享目录变成-Git-仓库"><a href="#第三步：把共享目录变成-Git-仓库" class="headerlink" title="第三步：把共享目录变成 Git 仓库"></a>第三步：把共享目录变成 Git 仓库</h2><p>进入共享目录初始化仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git init /Users/Shared/dotfiles<br>git -C /Users/Shared/dotfiles branch -M main<br></code></pre></td></tr></table></figure>
+
+<p>加入 Ghostty 和 tmux 配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles add ghostty/config tmux.conf<br></code></pre></td></tr></table></figure>
+
+<p>提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles commit -m <span class="hljs-string">&quot;Add Ghostty and tmux dotfiles&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>这次实际提交生成了一个初始提交：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">6060b87 Add Ghostty and tmux dotfiles<br></code></pre></td></tr></table></figure>
+
+<h2 id="第四步：同步到-GitHub"><a href="#第四步：同步到-GitHub" class="headerlink" title="第四步：同步到 GitHub"></a>第四步：同步到 GitHub</h2><p>GitHub 仓库使用的是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">git@github.com:1241262510/dotfile.git<br></code></pre></td></tr></table></figure>
+
+<p>绑定远端并推送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles remote add origin git@github.com:1241262510/dotfile.git<br>git -C /Users/Shared/dotfiles push -u origin main<br></code></pre></td></tr></table></figure>
+
+<p>推送成功后，检查状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles status --short --branch<br></code></pre></td></tr></table></figure>
+
+<p>结果是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">## main...origin/main<br></code></pre></td></tr></table></figure>
+
+<p>说明本地 <code>main</code> 已经跟踪 GitHub 上的 <code>origin/main</code>，当前没有未提交修改。</p>
+<h2 id="另一个-macOS-账号怎么接入"><a href="#另一个-macOS-账号怎么接入" class="headerlink" title="另一个 macOS 账号怎么接入"></a>另一个 macOS 账号怎么接入</h2><p>如果是同一台 Mac 的另一个账号，最简单，直接链接共享目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -sf /Users/Shared/dotfiles/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -sf /Users/Shared/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
+
+<p>这样两个账号使用的是同一份配置。</p>
+<p>以后任意一个账号修改 Ghostty 配置，本质上都是修改：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/Shared/dotfiles/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>另一个账号下次打开 Ghostty，也会使用最新配置。</p>
-<p>这套方式的核心是软链接。</p>
-<p>你可以把它理解成：<br>每个账号的配置文件位置还在原来的地方，但那个文件只是一个入口，真正的配置放在共享目录里。</p>
-<h3 id="方式三：用-dotfiles-仓库管理"><a href="#方式三：用-dotfiles-仓库管理" class="headerlink" title="方式三：用 dotfiles 仓库管理"></a>方式三：用 dotfiles 仓库管理</h3><p>如果你不只是换 macOS 账号，还经常换机器，那更适合用 dotfiles 仓库。</p>
-<p>做法是把常用配置放进一个 Git 仓库：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">dotfiles/<br>├── ghostty/<br>│   └── config<br>├── tmux.conf<br>├── zshrc<br>└── gitconfig<br></code></pre></td></tr></table></figure>
+<p>修改后记得提交并推送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles status<br>git -C /Users/Shared/dotfiles add ghostty/config tmux.conf<br>git -C /Users/Shared/dotfiles commit -m <span class="hljs-string">&quot;Update terminal dotfiles&quot;</span><br>git -C /Users/Shared/dotfiles push<br></code></pre></td></tr></table></figure>
 
-<p>然后每台机器、每个账号都 clone 这个仓库，再建立软链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -s ~/dotfiles/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -s ~/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
+<h2 id="换机器怎么接入"><a href="#换机器怎么接入" class="headerlink" title="换机器怎么接入"></a>换机器怎么接入</h2><p>如果是新机器，先 clone 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:1241262510/dotfile.git ~/dotfile<br></code></pre></td></tr></table></figure>
 
-<p>这种方式最适合长期维护。</p>
-<p>它的好处是：</p>
+<p>再建立软链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -sf ~/dotfile/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -sf ~/dotfile/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
+
+<p>如果新机器没有配置 GitHub SSH key，可以先用 HTTPS clone：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/1241262510/dotfile.git ~/dotfile<br></code></pre></td></tr></table></figure>
+
+<p>只是后续 push 时，还是建议把 SSH key 配好。</p>
+<h2 id="当前-Ghostty-配置重点"><a href="#当前-Ghostty-配置重点" class="headerlink" title="当前 Ghostty 配置重点"></a>当前 Ghostty 配置重点</h2><p>这次同步进去的 Ghostty 配置核心是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">term = xterm-ghostty<br>theme = <span class="hljs-string">&quot;Gruvbox Dark&quot;</span><br>background-opacity = 0.9<br>background-blur-radius = 20<br>window-show-tab-bar = always<br>macos-titlebar-style = tabs<br>font-family = <span class="hljs-string">&quot;Menlo&quot;</span><br>font-size = 14<br></code></pre></td></tr></table></figure>
+
+<p>另外，Ghostty 启动后会自动进入 tmux 的 <code>default</code> session：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">command</span> = <span class="hljs-string">&quot;/bin/zsh -l -c &#x27;/opt/homebrew/bin/tmux attach-session -t default || /opt/homebrew/bin/tmux new-session -s default&#x27;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>并且禁用了 Ghostty 自带的两个分屏快捷键：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">keybind = super+d=unbind<br>keybind = super+<span class="hljs-built_in">shift</span>+d=unbind<br></code></pre></td></tr></table></figure>
+
+<p>分屏交给 tmux 处理。</p>
+<h2 id="当前-tmux-配置重点"><a href="#当前-tmux-配置重点" class="headerlink" title="当前 tmux 配置重点"></a>当前 tmux 配置重点</h2><p>tmux 里保留了几个关键设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">set</span> -g mouse on<br><span class="hljs-built_in">set</span> -g set-clipboard on<br><span class="hljs-built_in">set</span> -s escape-time 0<br></code></pre></td></tr></table></figure>
+
+<p>分屏快捷键改成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">unbind %<br><span class="hljs-built_in">bind</span> | split-window -h -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br><br>unbind <span class="hljs-string">&#x27;&quot;&#x27;</span><br><span class="hljs-built_in">bind</span> - split-window -v -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>也就是：</p>
 <ul>
-<li>配置可以跨账号复用</li>
-<li>配置可以跨机器复用</li>
-<li>每次修改都有 Git 记录</li>
-<li>新机器初始化环境更快</li>
+<li><code>Ctrl + B</code> 后按 <code>|</code>：左右分屏</li>
+<li><code>Ctrl + B</code> 后按 <code>-</code>：上下分屏</li>
 </ul>
-<p>对开发环境来说，dotfiles 基本就是个人工具箱的说明书。</p>
-<h2 id="需要注意的几个细节"><a href="#需要注意的几个细节" class="headerlink" title="需要注意的几个细节"></a>需要注意的几个细节</h2><p>第一，软链接前先确认原文件是否已经存在。</p>
-<p>如果已经有旧配置，可以先备份：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> ~/.config/ghostty/config ~/.config/ghostty/config.backup<br><span class="hljs-built_in">mv</span> ~/.tmux.conf ~/.tmux.conf.backup<br></code></pre></td></tr></table></figure>
+<p>同时保留 Ghostty 下的真彩色支持：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">set</span> -g default-terminal <span class="hljs-string">&quot;tmux-256color&quot;</span><br><span class="hljs-built_in">set</span> -ga terminal-overrides <span class="hljs-string">&quot;,xterm-ghostty:RGB&quot;</span><br><span class="hljs-built_in">set</span> -ga terminal-overrides <span class="hljs-string">&quot;,xterm-256color:RGB&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>然后再创建软链接。</p>
-<p>第二，共享目录权限要注意。</p>
-<p>如果你放在 <code>/Users/Shared/dotfiles</code>，多个账号都要能读。<br>如果多个账号都要修改，还要保证有写入权限。</p>
-<p>第三，配置里不要写死只属于某个账号的路径。</p>
-<p>比如这类路径：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/userA/some/path<br></code></pre></td></tr></table></figure>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>这次整理完成后，Ghostty 配置已经不再只是当前账号的一份个人文件，而是变成了：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">默认路径入口 + 共享目录实际文件 + GitHub 远端备份<br></code></pre></td></tr></table></figure>
 
-<p>换账号后就可能失效。</p>
-<p>更稳的写法是尽量使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">~<br><span class="hljs-variable">$HOME</span><br></code></pre></td></tr></table></figure>
-
-<p>或者把确实需要固定的工具路径单独确认清楚。</p>
-<p>例如 Homebrew 在 Apple Silicon Mac 上常见路径是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/opt/homebrew/bin<br></code></pre></td></tr></table></figure>
-
-<p>这个路径通常跟账号无关，可以保留。</p>
-<h2 id="我更推荐哪种方案"><a href="#我更推荐哪种方案" class="headerlink" title="我更推荐哪种方案"></a>我更推荐哪种方案</h2><p>如果只是偶尔换一次账号，直接复制配置最快。</p>
-<p>如果是同一台 Mac 上长期使用多个账号，我推荐：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">/Users/Shared/dotfiles + 软链接<br></code></pre></td></tr></table></figure>
-
-<p>如果你还要同步到多台 Mac，我推荐：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Git dotfiles 仓库 + 软链接<br></code></pre></td></tr></table></figure>
-
-<p>我自己更倾向于第二种或第三种。</p>
-<p>因为终端配置不是一次性的东西。<br>主题、字体、快捷键、tmux、shell、git，这些都会随着使用习惯慢慢调整。</p>
-<p>如果每个账号都单独维护一份，后面一定会乱。</p>
-<p>把它们统一起来，才是更长期的做法。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Ghostty 换账号后需要重新设置，并不是 Ghostty 配置失效。<br>本质上是 macOS 的用户目录隔离导致的。</p>
-<p>每个账号都有自己的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>所以看起来像是“换账号就没配置了”。</p>
-<p>解决办法也不复杂：</p>
+<p>这个结构的好处是很直接：</p>
 <ul>
-<li>临时迁移：复制配置</li>
-<li>同机多账号：共享目录加软链接</li>
-<li>多机器同步：dotfiles 仓库加软链接</li>
+<li>当前账号正常使用，不需要改变 Ghostty 或 tmux 的启动习惯</li>
+<li>同一台 Mac 的其他账号可以直接链接共享目录</li>
+<li>换机器可以从 GitHub clone</li>
+<li>后续修改可以用 Git 留痕</li>
 </ul>
-<p>把 Ghostty 和 tmux 放到同一套配置体系里之后，终端环境就不会再跟着账号割裂了。</p>
+<p>对终端配置这种会慢慢调整、但又不希望每次换环境都重来的东西，用 dotfiles 管起来是更长期的做法。</p>
 
                 
               </div>
@@ -578,11 +574,11 @@
       
         <a href="/blog/tags/Tmux/" class="print-no-link">#Tmux</a>
       
-        <a href="/blog/tags/Terminal/" class="print-no-link">#Terminal</a>
-      
         <a href="/blog/tags/macOS/" class="print-no-link">#macOS</a>
       
         <a href="/blog/tags/Dotfiles/" class="print-no-link">#Dotfiles</a>
+      
+        <a href="/blog/tags/GitHub/" class="print-no-link">#GitHub</a>
       
     </div>
   
@@ -594,8 +590,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</div>
-      <div>https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/</div>
+      <div>Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</div>
+      <div>https://1241262510.github.io/blog/2026/06/04/ghostty-dotfile-github-sync-practice/</div>
     </div>
     <div class="license-meta">
       
@@ -639,18 +635,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/06/04/ghostty-dotfile-github-sync-practice/" title="Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/06/02/rime-ice-radical-pinyin-lookup-guide/" title="雾凇拼音：用拆字反查陌生字">
-                        <span class="hidden-mobile">雾凇拼音：用拆字反查陌生字</span>
+                      <a href="/blog/2026/06/04/ghostty-macos-account-sync/" title="Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题">
+                        <span class="hidden-mobile">Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
