@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/02/rime-ice-radical-pinyin-lookup-guide/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,27 +21,26 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录雾凇拼音中用 uU 加部件完整拼音进行拆字反查的方法，以及小鹤双拼用户如何恢复全拼反查。">
+    <meta name="description" content="解释 Ghostty 在 macOS 不同账号下配置无法共用的原因，并整理复制、共享目录软链接、dotfiles 仓库三种同步方案。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雾凇拼音：用拆字反查陌生字">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/02/rime-ice-radical-pinyin-lookup-guide/index.html">
+<meta property="og:title" content="Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录雾凇拼音中用 uU 加部件完整拼音进行拆字反查的方法，以及小鹤双拼用户如何恢复全拼反查。">
+<meta property="og:description" content="解释 Ghostty 在 macOS 不同账号下配置无法共用的原因，并整理复制、共享目录软链接、dotfiles 仓库三种同步方案。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/rime-rime-ice-radical-pinyin-cover.png">
-<meta property="article:published_time" content="2026-06-03T00:06:00.000Z">
-<meta property="article:modified_time" content="2026-06-03T00:07:02.635Z">
+<meta property="article:published_time" content="2026-06-04T05:20:00.000Z">
+<meta property="article:modified_time" content="2026-06-04T05:13:33.870Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="Rime">
-<meta property="article:tag" content="输入法">
-<meta property="article:tag" content="雾凇拼音">
-<meta property="article:tag" content="鼠须管">
+<meta property="article:tag" content="Dotfiles">
+<meta property="article:tag" content="Ghostty">
+<meta property="article:tag" content="Terminal">
+<meta property="article:tag" content="Tmux">
+<meta property="article:tag" content="macOS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/rime-rime-ice-radical-pinyin-cover.png">
   
   
   
-  <title>雾凇拼音：用拆字反查陌生字 - 凌晨两点的书桌</title>
+  <title>Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +328,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">雾凇拼音：用拆字反查陌生字</span>
+            <span id="subtitle">Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</span>
           
         </div>
 
@@ -340,8 +339,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-06-02 20:06" pubdate>
-          2026年6月2日 晚上
+        <time datetime="2026-06-04 01:20" pubdate>
+          2026年6月4日 凌晨
         </time>
       </span>
     
@@ -352,7 +351,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          3.5k 字
         
       </span>
     
@@ -363,7 +362,7 @@
         
         
         
-          12 分钟
+          30 分钟
         
       </span>
     
@@ -402,114 +401,146 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">雾凇拼音：用拆字反查陌生字</h1>
+            <h1 id="seo-header">Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/blog/assets/rime-rime-ice-radical-pinyin-cover.png" srcset="/blog/img/loading.gif" lazyload></p>
-<p>使用 Rime 输入法时，经常会遇到这样的情况：看到一个陌生字，既不知道读音，也不知道应该输入什么编码。</p>
-<p>雾凇拼音内置了“部件拆字反查”功能。只要认识组成这个字的部件，就可以用部件的完整拼音查出目标字。</p>
-<h2 id="一、基本用法"><a href="#一、基本用法" class="headerlink" title="一、基本用法"></a>一、基本用法</h2><p>反查格式为：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uU + 部件的完整拼音<br></code></pre></td></tr></table></figure>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>同一台 Mac 上，Ghostty 在一个账号里已经配置好，切换到另一个 macOS 账号后却像全新安装一样。问题不在 Ghostty，而在 macOS 的用户目录隔离：<code>~/.config/ghostty/config</code> 默认属于当前账号。本文整理这个问题的原因，以及如何用复制、共享目录软链接和 dotfiles 仓库复用同一套配置。</p>
+<p>最近我在 Mac 上配置 Ghostty，遇到一个很典型的问题：</p>
+<p>同一台 Mac，Ghostty 明明已经设置好了。<br>但切换到另一个 macOS 账号之后，打开 Ghostty，又像是全新安装一样。</p>
+<p>主题、字体、窗口样式、快捷键、tmux 启动配置，都需要重新来一遍。</p>
+<p>一开始很容易以为是 Ghostty 没有全局配置，或者设置没有保存。<br>其实不是。</p>
+<p>真正的原因是：Ghostty 的配置默认跟着当前 macOS 用户走。</p>
+<h2 id="为什么换账号后配置就没了"><a href="#为什么换账号后配置就没了" class="headerlink" title="为什么换账号后配置就没了"></a>为什么换账号后配置就没了</h2><p>Ghostty 的常用配置文件在这里：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>注意：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uU<br></code></pre></td></tr></table></figure>
+<p>这里最关键的是 <code>~</code>。</p>
+<p>在 macOS 里，<code>~</code> 代表当前登录用户的 Home 目录。</p>
+<p>如果当前账号是 <code>userA</code>，它实际对应的是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/userA/.config/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>由小写字母 <code>u</code> 和大写字母 <code>U</code> 组成。</p>
-<p>后面的编码使用完整拼音，不使用小鹤双拼，也不是小鹤音形码。</p>
-<h2 id="二、查询示例"><a href="#二、查询示例" class="headerlink" title="二、查询示例"></a>二、查询示例</h2><h3 id="查询“筛”"><a href="#查询“筛”" class="headerlink" title="查询“筛”"></a>查询“筛”</h3><p>“筛”可以拆分为：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">竹 + 师<br></code></pre></td></tr></table></figure>
+<p>如果切换到另一个账号 <code>userB</code>，它对应的就是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/userB/.config/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>因此输入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uUzhushi<br></code></pre></td></tr></table></figure>
+<p>所以你在账号 A 里配置好的 Ghostty，账号 B 默认是看不到的。</p>
+<p>这不是 Ghostty 特有的问题。很多开发工具都是这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.zshrc<br>~/.tmux.conf<br>~/.gitconfig<br>~/.ssh/config<br>~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>候选栏中会出现：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">筛  shai<br></code></pre></td></tr></table></figure>
+<p>它们都默认放在当前用户目录下。</p>
+<p>好处是不同用户互不影响。<br>坏处是如果你希望多个账号使用同一套环境，就需要额外做同步。</p>
+<h2 id="我现在的-Ghostty-配置思路"><a href="#我现在的-Ghostty-配置思路" class="headerlink" title="我现在的 Ghostty 配置思路"></a>我现在的 Ghostty 配置思路</h2><p>我的 Ghostty 配置里，主要做了几件事：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">term = xterm-ghostty<br>theme = <span class="hljs-string">&quot;Gruvbox Dark&quot;</span><br>background-opacity = 0.9<br>background-blur-radius = 20<br>window-show-tab-bar = always<br>macos-titlebar-style = tabs<br>font-family = <span class="hljs-string">&quot;Menlo&quot;</span><br>font-size = 14<br></code></pre></td></tr></table></figure>
 
-<p>查到读音 <code>shai</code> 后，如果平时使用小鹤双拼，可以换算为：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">shai = ud<br></code></pre></td></tr></table></figure>
+<p>另外我让 Ghostty 启动后直接进入一个固定的 tmux session：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">command</span> = <span class="hljs-string">&quot;/bin/zsh -l -c &#x27;/opt/homebrew/bin/tmux attach-session -t default || /opt/homebrew/bin/tmux new-session -s default&#x27;&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>以后直接输入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">ud<br></code></pre></td></tr></table></figure>
+<p>这样每次打开 Ghostty，都会自动回到同一个 tmux 工作区。</p>
+<p>为了避免 Ghostty 自己的分屏快捷键和 tmux 冲突，我还禁用了 Ghostty 的两个默认分屏键：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">keybind = super+d=unbind<br>keybind = super+<span class="hljs-built_in">shift</span>+d=unbind<br></code></pre></td></tr></table></figure>
 
-<p>即可打出“筛”。</p>
-<h3 id="查询“淼”"><a href="#查询“淼”" class="headerlink" title="查询“淼”"></a>查询“淼”</h3><p>“淼”由三个“水”组成：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">水 + 水 + 水<br></code></pre></td></tr></table></figure>
-
-<p>输入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uUshuishuishui<br></code></pre></td></tr></table></figure>
-
-<p>候选栏中会出现：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">淼  miao<br></code></pre></td></tr></table></figure>
-
-<p>小鹤双拼编码为：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">miao = mn<br></code></pre></td></tr></table></figure>
-
-<h3 id="查询“犇”"><a href="#查询“犇”" class="headerlink" title="查询“犇”"></a>查询“犇”</h3><p>“犇”由三个“牛”组成：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">牛 + 牛 + 牛<br></code></pre></td></tr></table></figure>
-
-<p>输入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uUniuniuniu<br></code></pre></td></tr></table></figure>
-
-<p>候选栏中会出现：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">犇  ben<br></code></pre></td></tr></table></figure>
-
-<p>小鹤双拼编码为：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">ben = bf<br></code></pre></td></tr></table></figure>
-
-<h2 id="三、推荐使用流程"><a href="#三、推荐使用流程" class="headerlink" title="三、推荐使用流程"></a>三、推荐使用流程</h2><p>如果平时使用小鹤双拼，可以按照下面的流程查询陌生字：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">看到陌生字<br>↓<br>观察它由哪些部件组成<br>↓<br>输入 uU + 部件完整拼音<br>↓<br>从候选栏中找到目标字<br>↓<br>查看目标字的完整拼音<br>↓<br>换算为小鹤双拼编码<br></code></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">筛<br>↓<br>竹 + 师<br>↓<br>uUzhushi<br>↓<br>shai<br>↓<br>ud<br></code></pre></td></tr></table></figure>
-
-<h2 id="四、为什么使用完整拼音反查"><a href="#四、为什么使用完整拼音反查" class="headerlink" title="四、为什么使用完整拼音反查"></a>四、为什么使用完整拼音反查</h2><p>小鹤双拼适合日常快速输入，但遇到陌生字时，使用双拼反查有一个问题：如果记不住某个部件的双拼编码，仍然无法继续输入。</p>
-<p>使用完整拼音更容易理解，也方便临时查询：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">竹 = zhu<br>师 = shi<br>水 = shui<br>牛 = niu<br></code></pre></td></tr></table></figure>
-
-<p>因此，比较实用的配置方式是：</p>
+<p>也就是说：</p>
 <ul>
-<li>日常输入：使用小鹤双拼。</li>
-<li>查询陌生字：统一使用 <code>uU + 部件完整拼音</code>。</li>
-<li>查到读音后：再换算成小鹤双拼编码。</li>
+<li><code>Cmd + D</code> 不再由 Ghostty 负责分屏</li>
+<li><code>Cmd + Shift + D</code> 也不再由 Ghostty 负责分屏</li>
+<li>分屏交给 tmux 来处理</li>
 </ul>
-<h2 id="五、如何将反查统一改为全拼"><a href="#五、如何将反查统一改为全拼" class="headerlink" title="五、如何将反查统一改为全拼"></a>五、如何将反查统一改为全拼</h2><p>如果此前为小鹤双拼安装过拆字补丁，可能会出现下面的情况：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uUzhushi<br></code></pre></td></tr></table></figure>
+<p>tmux 里我再把快捷键改成更直观的方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">unbind %<br><span class="hljs-built_in">bind</span> | split-window -h -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br><br>unbind <span class="hljs-string">&#x27;&quot;&#x27;</span><br><span class="hljs-built_in">bind</span> - split-window -v -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>无法查询“筛”，反而必须输入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uUvuui<br></code></pre></td></tr></table></figure>
+<p>实际使用时就是：</p>
+<ul>
+<li><code>Ctrl + B</code>，再按 <code>|</code>：左右分屏</li>
+<li><code>Ctrl + B</code>，再按 <code>-</code>：上下分屏</li>
+</ul>
+<p>这个组合用久之后，比记 Ghostty 和 tmux 各自一套分屏逻辑要清楚很多。</p>
+<h2 id="怎么让不同账号使用同一套配置"><a href="#怎么让不同账号使用同一套配置" class="headerlink" title="怎么让不同账号使用同一套配置"></a>怎么让不同账号使用同一套配置</h2><p>有三种方式。</p>
+<h3 id="方式一：直接复制配置"><a href="#方式一：直接复制配置" class="headerlink" title="方式一：直接复制配置"></a>方式一：直接复制配置</h3><p>最简单的方法，就是把账号 A 的配置复制到账号 B。</p>
+<p>Ghostty：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">cp</span> /Users/userA/.config/ghostty/config ~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>这是因为小鹤补丁修改了共享的拆字词典。雾凇全拼和小鹤双拼都引用同一个拆字词典，所以反查编码会一起变成双拼。</p>
-<p>在 macOS 鼠须管中，打开：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">~/Library/Rime<br></code></pre></td></tr></table></figure>
+<p>tmux：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> /Users/userA/.tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
 
-<p>删除：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">radical_pinyin.custom.yaml<br></code></pre></td></tr></table></figure>
+<p>这种方式适合一次性迁移。</p>
+<p>缺点也明显：以后你在账号 A 改了一次配置，账号 B 不会自动更新。<br>两个账号用久之后，很容易变成两套略有差异的配置。</p>
+<p>如果只是临时换账号，这个方法够用。</p>
+<h3 id="方式二：用共享目录加软链接"><a href="#方式二：用共享目录加软链接" class="headerlink" title="方式二：用共享目录加软链接"></a>方式二：用共享目录加软链接</h3><p>更推荐的方式，是把配置放到一个共享目录，然后每个账号都通过软链接指向同一份文件。</p>
+<p>例如把配置统一放在：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/Shared/dotfiles<br></code></pre></td></tr></table></figure>
 
-<p>然后点击菜单栏中的鼠须管图标，选择：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">重新部署<br></code></pre></td></tr></table></figure>
+<p>目录结构可以这样设计：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">/Users/Shared/dotfiles/<br>├── ghostty/<br>│   └── config<br>└── tmux.conf<br></code></pre></td></tr></table></figure>
 
-<p>重新部署后，无论当前使用“雾凇拼音”还是“小鹤双拼”，都可以使用完整拼音反查：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">uUzhushi        → 筛<br>uUshuishuishui  → 淼<br>uUniuniuniu     → 犇<br></code></pre></td></tr></table></figure>
+<p>然后在每个 macOS 账号里执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
 
-<p>删除这个补丁不会影响日常的小鹤双拼输入。</p>
-<h2 id="六、生僻字显示为方框怎么办"><a href="#六、生僻字显示为方框怎么办" class="headerlink" title="六、生僻字显示为方框怎么办"></a>六、生僻字显示为方框怎么办</h2><p>部分生僻字可能显示为方框或问号。这不是反查失败，而是系统字体缺少对应字形。</p>
-<p>可以安装覆盖生僻字较多的“遍黑体”：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">遍黑体 P1<br>遍黑体 P2<br></code></pre></td></tr></table></figure>
+<p>这样不同账号看到的就是同一份配置。</p>
+<p>之后你不管在哪个账号里修改 Ghostty 配置，本质上改的都是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/Shared/dotfiles/ghostty/config<br></code></pre></td></tr></table></figure>
 
-<p>安装后，编辑：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">~/Library/Rime/squirrel.custom.yaml<br></code></pre></td></tr></table></figure>
+<p>另一个账号下次打开 Ghostty，也会使用最新配置。</p>
+<p>这套方式的核心是软链接。</p>
+<p>你可以把它理解成：<br>每个账号的配置文件位置还在原来的地方，但那个文件只是一个入口，真正的配置放在共享目录里。</p>
+<h3 id="方式三：用-dotfiles-仓库管理"><a href="#方式三：用-dotfiles-仓库管理" class="headerlink" title="方式三：用 dotfiles 仓库管理"></a>方式三：用 dotfiles 仓库管理</h3><p>如果你不只是换 macOS 账号，还经常换机器，那更适合用 dotfiles 仓库。</p>
+<p>做法是把常用配置放进一个 Git 仓库：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">dotfiles/<br>├── ghostty/<br>│   └── config<br>├── tmux.conf<br>├── zshrc<br>└── gitconfig<br></code></pre></td></tr></table></figure>
 
-<p>添加：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">patch:</span><br>  <span class="hljs-attr">style/font_face:</span> <span class="hljs-string">&quot;遍黑体 P1, 遍黑体 P2, PingFang SC&quot;</span><br></code></pre></td></tr></table></figure>
+<p>然后每台机器、每个账号都 clone 这个仓库，再建立软链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -s ~/dotfiles/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -s ~/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
 
-<p>重新部署鼠须管即可。</p>
-<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>雾凇拼音的拆字反查并不是 Rime 默认自带的功能，而是雾凇拼音预先集成的 <code>radical_pinyin</code> 部件拆字词典。</p>
-<p>最值得记住的操作只有一条：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">uU + 部件的完整拼音<br></code></pre></td></tr></table></figure>
+<p>这种方式最适合长期维护。</p>
+<p>它的好处是：</p>
+<ul>
+<li>配置可以跨账号复用</li>
+<li>配置可以跨机器复用</li>
+<li>每次修改都有 Git 记录</li>
+<li>新机器初始化环境更快</li>
+</ul>
+<p>对开发环境来说，dotfiles 基本就是个人工具箱的说明书。</p>
+<h2 id="需要注意的几个细节"><a href="#需要注意的几个细节" class="headerlink" title="需要注意的几个细节"></a>需要注意的几个细节</h2><p>第一，软链接前先确认原文件是否已经存在。</p>
+<p>如果已经有旧配置，可以先备份：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> ~/.config/ghostty/config ~/.config/ghostty/config.backup<br><span class="hljs-built_in">mv</span> ~/.tmux.conf ~/.tmux.conf.backup<br></code></pre></td></tr></table></figure>
 
-<p>遇到不认识的字，不需要先知道读音。只要能拆出部件，就可以反查读音，再转换为自己熟悉的小鹤双拼编码。</p>
+<p>然后再创建软链接。</p>
+<p>第二，共享目录权限要注意。</p>
+<p>如果你放在 <code>/Users/Shared/dotfiles</code>，多个账号都要能读。<br>如果多个账号都要修改，还要保证有写入权限。</p>
+<p>第三，配置里不要写死只属于某个账号的路径。</p>
+<p>比如这类路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/userA/some/path<br></code></pre></td></tr></table></figure>
+
+<p>换账号后就可能失效。</p>
+<p>更稳的写法是尽量使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">~<br><span class="hljs-variable">$HOME</span><br></code></pre></td></tr></table></figure>
+
+<p>或者把确实需要固定的工具路径单独确认清楚。</p>
+<p>例如 Homebrew 在 Apple Silicon Mac 上常见路径是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/opt/homebrew/bin<br></code></pre></td></tr></table></figure>
+
+<p>这个路径通常跟账号无关，可以保留。</p>
+<h2 id="我更推荐哪种方案"><a href="#我更推荐哪种方案" class="headerlink" title="我更推荐哪种方案"></a>我更推荐哪种方案</h2><p>如果只是偶尔换一次账号，直接复制配置最快。</p>
+<p>如果是同一台 Mac 上长期使用多个账号，我推荐：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">/Users/Shared/dotfiles + 软链接<br></code></pre></td></tr></table></figure>
+
+<p>如果你还要同步到多台 Mac，我推荐：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Git dotfiles 仓库 + 软链接<br></code></pre></td></tr></table></figure>
+
+<p>我自己更倾向于第二种或第三种。</p>
+<p>因为终端配置不是一次性的东西。<br>主题、字体、快捷键、tmux、shell、git，这些都会随着使用习惯慢慢调整。</p>
+<p>如果每个账号都单独维护一份，后面一定会乱。</p>
+<p>把它们统一起来，才是更长期的做法。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Ghostty 换账号后需要重新设置，并不是 Ghostty 配置失效。<br>本质上是 macOS 的用户目录隔离导致的。</p>
+<p>每个账号都有自己的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
+
+<p>所以看起来像是“换账号就没配置了”。</p>
+<p>解决办法也不复杂：</p>
+<ul>
+<li>临时迁移：复制配置</li>
+<li>同机多账号：共享目录加软链接</li>
+<li>多机器同步：dotfiles 仓库加软链接</li>
+</ul>
+<p>把 Ghostty 和 tmux 放到同一套配置体系里之后，终端环境就不会再跟着账号割裂了。</p>
 
                 
               </div>
@@ -528,7 +559,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
+  <a href="/blog/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" class="category-chain-item">效率工具</a>
   
   
 
@@ -543,13 +574,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/Rime/" class="print-no-link">#Rime</a>
+        <a href="/blog/tags/Ghostty/" class="print-no-link">#Ghostty</a>
       
-        <a href="/blog/tags/%E9%9B%BE%E5%87%87%E6%8B%BC%E9%9F%B3/" class="print-no-link">#雾凇拼音</a>
+        <a href="/blog/tags/Tmux/" class="print-no-link">#Tmux</a>
       
-        <a href="/blog/tags/%E9%BC%A0%E9%A1%BB%E7%AE%A1/" class="print-no-link">#鼠须管</a>
+        <a href="/blog/tags/Terminal/" class="print-no-link">#Terminal</a>
       
-        <a href="/blog/tags/%E8%BE%93%E5%85%A5%E6%B3%95/" class="print-no-link">#输入法</a>
+        <a href="/blog/tags/macOS/" class="print-no-link">#macOS</a>
+      
+        <a href="/blog/tags/Dotfiles/" class="print-no-link">#Dotfiles</a>
       
     </div>
   
@@ -561,8 +594,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>雾凇拼音：用拆字反查陌生字</div>
-      <div>https://1241262510.github.io/blog/2026/06/02/rime-ice-radical-pinyin-lookup-guide/</div>
+      <div>Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</div>
+      <div>https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/</div>
     </div>
     <div class="license-meta">
       
@@ -574,7 +607,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年6月2日</div>
+          <div>2026年6月4日</div>
         </div>
       
       
@@ -606,18 +639,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/06/04/ghostty-macos-account-sync/" title="Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/05/31/apple-creator-studio-subscription-guide/" title="Apple Creator Studio：38 元一个月的 Apple 创作大礼包">
-                        <span class="hidden-mobile">Apple Creator Studio：38 元一个月的 Apple 创作大礼包</span>
+                      <a href="/blog/2026/06/02/rime-ice-radical-pinyin-lookup-guide/" title="雾凇拼音：用拆字反查陌生字">
+                        <span class="hidden-mobile">雾凇拼音：用拆字反查陌生字</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
