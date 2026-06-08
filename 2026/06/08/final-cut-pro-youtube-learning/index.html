@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/04/ghostty-dotfile-github-sync-practice/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/08/final-cut-pro-youtube-learning/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,26 +21,25 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录把本机 Ghostty 和 tmux 配置迁移到 &#x2F;Users&#x2F;Shared&#x2F;dotfiles，并同步到 GitHub dotfile 仓库的完整过程，方便换 macOS 账号或换机器时复用。">
+    <meta name="description" content="面向个人学习者的 Final Cut Pro 入门路线，包含视频教程、书籍推荐、YouTube 长视频工作流与复盘清单。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/04/ghostty-dotfile-github-sync-practice/index.html">
+<meta property="og:title" content="个人学习 Final Cut Pro：YouTube 视频制作路线">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/08/final-cut-pro-youtube-learning/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="记录把本机 Ghostty 和 tmux 配置迁移到 &#x2F;Users&#x2F;Shared&#x2F;dotfiles，并同步到 GitHub dotfile 仓库的完整过程，方便换 macOS 账号或换机器时复用。">
+<meta property="og:description" content="面向个人学习者的 Final Cut Pro 入门路线，包含视频教程、书籍推荐、YouTube 长视频工作流与复盘清单。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-04T06:55:00.000Z">
-<meta property="article:modified_time" content="2026-06-04T06:52:00.110Z">
+<meta property="article:published_time" content="2026-06-08T04:10:00.000Z">
+<meta property="article:modified_time" content="2026-06-08T04:06:25.684Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="Dotfiles">
-<meta property="article:tag" content="Ghostty">
-<meta property="article:tag" content="GitHub">
-<meta property="article:tag" content="Tmux">
-<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="Final Cut Pro">
+<meta property="article:tag" content="YouTube">
+<meta property="article:tag" content="学习路线">
+<meta property="article:tag" content="视频剪辑">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操 - 凌晨两点的书桌</title>
+  <title>个人学习 Final Cut Pro：YouTube 视频制作路线 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -328,7 +327,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</span>
+            <span id="subtitle">个人学习 Final Cut Pro：YouTube 视频制作路线</span>
           
         </div>
 
@@ -339,8 +338,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-06-04 02:55" pubdate>
-          2026年6月4日 凌晨
+        <time datetime="2026-06-08 00:10" pubdate>
+          2026年6月8日 凌晨
         </time>
       </span>
     
@@ -351,7 +350,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k 字
+          2.8k 字
         
       </span>
     
@@ -362,7 +361,7 @@
         
         
         
-          33 分钟
+          24 分钟
         
       </span>
     
@@ -401,142 +400,191 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</h1>
+            <h1 id="seo-header">个人学习 Final Cut Pro：YouTube 视频制作路线</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这次做的是一件很小但很实用的事：把本机已经配置好的 Ghostty 和 tmux，从当前 macOS 账号的个人目录里抽出来，放到 <code>/Users/Shared/dotfiles</code>，再同步到 GitHub。</p>
-<p>这样以后有两种使用方式：</p>
+                <h1 id="Final-Cut-Pro-与-YouTube-视频制作学习路线"><a href="#Final-Cut-Pro-与-YouTube-视频制作学习路线" class="headerlink" title="Final Cut Pro 与 YouTube 视频制作学习路线"></a>Final Cut Pro 与 YouTube 视频制作学习路线</h1><p>适合目标：个人学习 Final Cut Pro，用于 YouTube 长视频、知识类视频、教程类视频或日常视频制作。</p>
+<p>核心原则：</p>
 <ul>
-<li>同一台 Mac 换另一个账号，可以直接软链接到 <code>/Users/Shared/dotfiles</code></li>
-<li>换机器或重装系统，可以从 GitHub clone 仓库，再建立软链接</li>
+<li>先看视频教程，建立操作手感。</li>
+<li>先剪出作品，再补系统课程。</li>
+<li>书籍主要用来提升剪辑思维，不要一开始硬啃。</li>
+<li>YouTube 长视频字幕优先使用 SRT 软字幕，不必在 Final Cut Pro 里死磕硬字幕。</li>
 </ul>
-<p>最终仓库地址是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">https://github.com/1241262510/dotfile<br></code></pre></td></tr></table></figure>
+<h2 id="一、推荐学习顺序"><a href="#一、推荐学习顺序" class="headerlink" title="一、推荐学习顺序"></a>一、推荐学习顺序</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">短视频教程入门 Final Cut Pro<br>→ 做 2-3 条小视频<br>→ 看系统课程补完整工作流<br>→ 开始做 YouTube 长视频<br>→ 读剪辑/拍摄/YouTube 运营类书籍<br>→ 每条视频复盘改进<br></code></pre></td></tr></table></figure>
 
-<h2 id="为什么要这么做"><a href="#为什么要这么做" class="headerlink" title="为什么要这么做"></a>为什么要这么做</h2><p>Ghostty 的默认配置文件在：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>tmux 的默认配置文件在：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>这里的 <code>~</code> 是当前 macOS 登录账号的 Home 目录。也就是说，账号 A 配好的 Ghostty，账号 B 默认看不到。</p>
-<p>如果只是复制一份，短期能用，但后续两个账号很容易改出两套配置。更稳的办法是把配置放到一个共享位置，再让每个账号通过软链接指向同一份文件。</p>
-<h2 id="这次采用的目录结构"><a href="#这次采用的目录结构" class="headerlink" title="这次采用的目录结构"></a>这次采用的目录结构</h2><p>共享目录放在：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/Shared/dotfiles<br></code></pre></td></tr></table></figure>
-
-<p>目录结构是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">/Users/Shared/dotfiles/<br>├── ghostty/<br>│   └── config<br>└── tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>当前账号里的配置入口仍然保持在默认位置，只是改成软链接：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">~/.config/ghostty/config -&gt; /Users/Shared/dotfiles/ghostty/config<br>~/.tmux.conf              -&gt; /Users/Shared/dotfiles/tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>这样 Ghostty 和 tmux 不需要改任何启动方式，它们仍然读取默认路径；但默认路径背后实际指向的是共享配置。</p>
-<h2 id="第一步：迁移-Ghostty-配置"><a href="#第一步：迁移-Ghostty-配置" class="headerlink" title="第一步：迁移 Ghostty 配置"></a>第一步：迁移 Ghostty 配置</h2><p>先创建共享目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /Users/Shared/dotfiles/ghostty<br></code></pre></td></tr></table></figure>
-
-<p>把当前账号里的 Ghostty 配置复制进去：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> ~/.config/ghostty/config /Users/Shared/dotfiles/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>然后删掉原来的普通文件，改成软链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -f ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/ghostty/config ~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>检查链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -la ~/.config/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>看到类似结果就对了：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">~/.config/ghostty/config -&gt; /Users/Shared/dotfiles/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<h2 id="第二步：迁移-tmux-配置"><a href="#第二步：迁移-tmux-配置" class="headerlink" title="第二步：迁移 tmux 配置"></a>第二步：迁移 tmux 配置</h2><p>tmux 同样处理：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> ~/.tmux.conf /Users/Shared/dotfiles/tmux.conf<br><span class="hljs-built_in">rm</span> -f ~/.tmux.conf<br><span class="hljs-built_in">ln</span> -s /Users/Shared/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>检查链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -la ~/.tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>结果应当类似：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">~/.tmux.conf -&gt; /Users/Shared/dotfiles/tmux.conf<br></code></pre></td></tr></table></figure>
-
-<h2 id="第三步：把共享目录变成-Git-仓库"><a href="#第三步：把共享目录变成-Git-仓库" class="headerlink" title="第三步：把共享目录变成 Git 仓库"></a>第三步：把共享目录变成 Git 仓库</h2><p>进入共享目录初始化仓库：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git init /Users/Shared/dotfiles<br>git -C /Users/Shared/dotfiles branch -M main<br></code></pre></td></tr></table></figure>
-
-<p>加入 Ghostty 和 tmux 配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles add ghostty/config tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>提交：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles commit -m <span class="hljs-string">&quot;Add Ghostty and tmux dotfiles&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>这次实际提交生成了一个初始提交：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">6060b87 Add Ghostty and tmux dotfiles<br></code></pre></td></tr></table></figure>
-
-<h2 id="第四步：同步到-GitHub"><a href="#第四步：同步到-GitHub" class="headerlink" title="第四步：同步到 GitHub"></a>第四步：同步到 GitHub</h2><p>GitHub 仓库使用的是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">git@github.com:1241262510/dotfile.git<br></code></pre></td></tr></table></figure>
-
-<p>绑定远端并推送：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles remote add origin git@github.com:1241262510/dotfile.git<br>git -C /Users/Shared/dotfiles push -u origin main<br></code></pre></td></tr></table></figure>
-
-<p>推送成功后，检查状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles status --short --branch<br></code></pre></td></tr></table></figure>
-
-<p>结果是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">## main...origin/main<br></code></pre></td></tr></table></figure>
-
-<p>说明本地 <code>main</code> 已经跟踪 GitHub 上的 <code>origin/main</code>，当前没有未提交修改。</p>
-<h2 id="另一个-macOS-账号怎么接入"><a href="#另一个-macOS-账号怎么接入" class="headerlink" title="另一个 macOS 账号怎么接入"></a>另一个 macOS 账号怎么接入</h2><p>如果是同一台 Mac 的另一个账号，最简单，直接链接共享目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -sf /Users/Shared/dotfiles/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -sf /Users/Shared/dotfiles/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>这样两个账号使用的是同一份配置。</p>
-<p>以后任意一个账号修改 Ghostty 配置，本质上都是修改：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/Users/Shared/dotfiles/ghostty/config<br></code></pre></td></tr></table></figure>
-
-<p>修改后记得提交并推送：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git -C /Users/Shared/dotfiles status<br>git -C /Users/Shared/dotfiles add ghostty/config tmux.conf<br>git -C /Users/Shared/dotfiles commit -m <span class="hljs-string">&quot;Update terminal dotfiles&quot;</span><br>git -C /Users/Shared/dotfiles push<br></code></pre></td></tr></table></figure>
-
-<h2 id="换机器怎么接入"><a href="#换机器怎么接入" class="headerlink" title="换机器怎么接入"></a>换机器怎么接入</h2><p>如果是新机器，先 clone 仓库：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:1241262510/dotfile.git ~/dotfile<br></code></pre></td></tr></table></figure>
-
-<p>再建立软链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/.config/ghostty<br><span class="hljs-built_in">ln</span> -sf ~/dotfile/ghostty/config ~/.config/ghostty/config<br><span class="hljs-built_in">ln</span> -sf ~/dotfile/tmux.conf ~/.tmux.conf<br></code></pre></td></tr></table></figure>
-
-<p>如果新机器没有配置 GitHub SSH key，可以先用 HTTPS clone：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/1241262510/dotfile.git ~/dotfile<br></code></pre></td></tr></table></figure>
-
-<p>只是后续 push 时，还是建议把 SSH key 配好。</p>
-<h2 id="当前-Ghostty-配置重点"><a href="#当前-Ghostty-配置重点" class="headerlink" title="当前 Ghostty 配置重点"></a>当前 Ghostty 配置重点</h2><p>这次同步进去的 Ghostty 配置核心是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">term = xterm-ghostty<br>theme = <span class="hljs-string">&quot;Gruvbox Dark&quot;</span><br>background-opacity = 0.9<br>background-blur-radius = 20<br>window-show-tab-bar = always<br>macos-titlebar-style = tabs<br>font-family = <span class="hljs-string">&quot;Menlo&quot;</span><br>font-size = 14<br></code></pre></td></tr></table></figure>
-
-<p>另外，Ghostty 启动后会自动进入 tmux 的 <code>default</code> session：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">command</span> = <span class="hljs-string">&quot;/bin/zsh -l -c &#x27;/opt/homebrew/bin/tmux attach-session -t default || /opt/homebrew/bin/tmux new-session -s default&#x27;&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>并且禁用了 Ghostty 自带的两个分屏快捷键：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">keybind = super+d=unbind<br>keybind = super+<span class="hljs-built_in">shift</span>+d=unbind<br></code></pre></td></tr></table></figure>
-
-<p>分屏交给 tmux 处理。</p>
-<h2 id="当前-tmux-配置重点"><a href="#当前-tmux-配置重点" class="headerlink" title="当前 tmux 配置重点"></a>当前 tmux 配置重点</h2><p>tmux 里保留了几个关键设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">set</span> -g mouse on<br><span class="hljs-built_in">set</span> -g set-clipboard on<br><span class="hljs-built_in">set</span> -s escape-time 0<br></code></pre></td></tr></table></figure>
-
-<p>分屏快捷键改成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">unbind %<br><span class="hljs-built_in">bind</span> | split-window -h -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br><br>unbind <span class="hljs-string">&#x27;&quot;&#x27;</span><br><span class="hljs-built_in">bind</span> - split-window -v -c <span class="hljs-string">&quot;#&#123;pane_current_path&#125;&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>也就是：</p>
+<h2 id="二、视频教程推荐"><a href="#二、视频教程推荐" class="headerlink" title="二、视频教程推荐"></a>二、视频教程推荐</h2><h3 id="1-Apple-官方-Final-Cut-Pro-用户指南"><a href="#1-Apple-官方-Final-Cut-Pro-用户指南" class="headerlink" title="1. Apple 官方 Final Cut Pro 用户指南"></a>1. Apple 官方 Final Cut Pro 用户指南</h3><p>链接：<a target="_blank" rel="noopener" href="https://support.apple.com/guide/final-cut-pro/welcome/mac">https://support.apple.com/guide/final-cut-pro/welcome/mac</a></p>
+<p>用途：</p>
 <ul>
-<li><code>Ctrl + B</code> 后按 <code>|</code>：左右分屏</li>
-<li><code>Ctrl + B</code> 后按 <code>-</code>：上下分屏</li>
+<li>遇到具体问题时查。</li>
+<li>不建议从头到尾读。</li>
+<li>适合查导入素材、时间线、导出、字幕、音频、调色等功能。</li>
 </ul>
-<p>同时保留 Ghostty 下的真彩色支持：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">set</span> -g default-terminal <span class="hljs-string">&quot;tmux-256color&quot;</span><br><span class="hljs-built_in">set</span> -ga terminal-overrides <span class="hljs-string">&quot;,xterm-ghostty:RGB&quot;</span><br><span class="hljs-built_in">set</span> -ga terminal-overrides <span class="hljs-string">&quot;,xterm-256color:RGB&quot;</span><br></code></pre></td></tr></table></figure>
+<p>建议用法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">遇到问题 → 搜 Apple 官方指南 → 回到 FCP 实操<br></code></pre></td></tr></table></figure>
 
-<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>这次整理完成后，Ghostty 配置已经不再只是当前账号的一份个人文件，而是变成了：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">默认路径入口 + 共享目录实际文件 + GitHub 远端备份<br></code></pre></td></tr></table></figure>
-
-<p>这个结构的好处是很直接：</p>
+<h3 id="2-B站：Final-Cut-Pro-零基础初级教程"><a href="#2-B站：Final-Cut-Pro-零基础初级教程" class="headerlink" title="2. B站：Final Cut Pro 零基础初级教程"></a>2. B站：Final Cut Pro 零基础初级教程</h3><p>链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qD4y1r7mB/">https://www.bilibili.com/video/BV1qD4y1r7mB/</a></p>
+<p>用途：</p>
 <ul>
-<li>当前账号正常使用，不需要改变 Ghostty 或 tmux 的启动习惯</li>
-<li>同一台 Mac 的其他账号可以直接链接共享目录</li>
-<li>换机器可以从 GitHub clone</li>
-<li>后续修改可以用 Git 留痕</li>
+<li>中文入门。</li>
+<li>适合零基础先建立界面和基础操作概念。</li>
+<li>先跟着做一条 1-3 分钟视频。</li>
 </ul>
-<p>对终端配置这种会慢慢调整、但又不希望每次换环境都重来的东西，用 dotfiles 管起来是更长期的做法。</p>
+<p>重点看：</p>
+<ul>
+<li>导入素材</li>
+<li>创建项目</li>
+<li>拖入时间线</li>
+<li>剪切片段</li>
+<li>调整音量</li>
+<li>添加标题</li>
+<li>导出视频</li>
+</ul>
+<h3 id="3-LinkedIn-Learning：Final-Cut-Pro-Essential-Training"><a href="#3-LinkedIn-Learning：Final-Cut-Pro-Essential-Training" class="headerlink" title="3. LinkedIn Learning：Final Cut Pro Essential Training"></a>3. LinkedIn Learning：Final Cut Pro Essential Training</h3><p>链接：<a target="_blank" rel="noopener" href="https://www.linkedin.com/learning/final-cut-pro-essential-training-14866621">https://www.linkedin.com/learning/final-cut-pro-essential-training-14866621</a></p>
+<p>用途：</p>
+<ul>
+<li>系统补课。</li>
+<li>适合已经剪过 2-3 条视频后再看。</li>
+<li>覆盖导入、素材管理、时间线、音频、调色、标题、导出等完整流程。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>不要一开始就看完 8 小时课程。</li>
+<li>先剪视频，卡在哪里就看对应章节。</li>
+</ul>
+<h3 id="4-Ripple-Training：Final-Cut-Pro-Core-Training"><a href="#4-Ripple-Training：Final-Cut-Pro-Core-Training" class="headerlink" title="4. Ripple Training：Final Cut Pro Core Training"></a>4. Ripple Training：Final Cut Pro Core Training</h3><p>链接：<a target="_blank" rel="noopener" href="https://www.rippletraining.com/products/final-cut-pro/final-cut-pro-x-core-training/">https://www.rippletraining.com/products/final-cut-pro/final-cut-pro-x-core-training/</a></p>
+<p>用途：</p>
+<ul>
+<li>付费系统课程。</li>
+<li>FCP 圈里口碑较好。</li>
+<li>如果只买一个系统课，可以优先考虑它。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>先用免费资源剪几条视频。</li>
+<li>确认自己会长期使用 FCP 后，再考虑购买。</li>
+</ul>
+<h2 id="三、书籍推荐"><a href="#三、书籍推荐" class="headerlink" title="三、书籍推荐"></a>三、书籍推荐</h2><h3 id="1-How-to-Shoot-Video-That-Doesn’t-Suck"><a href="#1-How-to-Shoot-Video-That-Doesn’t-Suck" class="headerlink" title="1. How to Shoot Video That Doesn’t Suck"></a>1. How to Shoot Video That Doesn’t Suck</h3><p>作者：Steve Stockman<br>链接：<a target="_blank" rel="noopener" href="https://stevestockman.com/the-book">https://stevestockman.com/the-book</a></p>
+<p>推荐优先级：最高。</p>
+<p>适合阶段：</p>
+<ul>
+<li>入门后马上读。</li>
+<li>适合学习慢、想快速提升视频观感的人。</li>
+</ul>
+<p>这本书解决的问题：</p>
+<ul>
+<li>怎么拍出别人愿意看的视频。</li>
+<li>怎么组织画面和信息。</li>
+<li>怎么避免视频无聊。</li>
+<li>怎么从“拍到东西”变成“表达清楚”。</li>
+</ul>
+<p>建议读法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">每天读 1-2 章<br>→ 立刻用在下一条视频里<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-In-the-Blink-of-an-Eye"><a href="#2-In-the-Blink-of-an-Eye" class="headerlink" title="2. In the Blink of an Eye"></a>2. In the Blink of an Eye</h3><p>作者：Walter Murch<br>介绍：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/In_the_Blink_of_an_Eye_%28Murch_book%29">https://en.wikipedia.org/wiki/In_the_Blink_of_an_Eye_%28Murch_book%29</a></p>
+<p>推荐优先级：中高。</p>
+<p>适合阶段：</p>
+<ul>
+<li>剪完 5 条视频后再读。</li>
+<li>不建议零基础第一本就读。</li>
+</ul>
+<p>这本书解决的问题：</p>
+<ul>
+<li>为什么这里该剪。</li>
+<li>剪辑和情绪、节奏、观众注意力的关系。</li>
+<li>如何理解剪辑不只是技术，而是表达。</li>
+</ul>
+<p>建议读法：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">剪过几条片子后再读<br>→ 一边读一边回看自己以前的视频<br>→ 找哪些剪辑点可以更自然<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-The-YouTube-Formula"><a href="#3-The-YouTube-Formula" class="headerlink" title="3. The YouTube Formula"></a>3. The YouTube Formula</h3><p>作者：Derral Eves<br>链接：<a target="_blank" rel="noopener" href="https://www.wiley-vch.de/en/areas-interest/finance-economics-law/the-youtube-formula-978-1-119-71602-0">https://www.wiley-vch.de/en/areas-interest/finance-economics-law/the-youtube-formula-978-1-119-71602-0</a></p>
+<p>推荐优先级：中。</p>
+<p>适合阶段：</p>
+<ul>
+<li>准备长期做 YouTube 频道时读。</li>
+<li>不适合作为剪辑入门书。</li>
+</ul>
+<p>这本书解决的问题：</p>
+<ul>
+<li>YouTube 观众是谁。</li>
+<li>如何理解选题、标题、缩略图和留存。</li>
+<li>如何围绕频道增长做内容。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>等你至少做了 3-5 条视频后再读。</li>
+<li>先做内容，再理解增长逻辑。</li>
+</ul>
+<h2 id="四、4-周学习计划"><a href="#四、4-周学习计划" class="headerlink" title="四、4 周学习计划"></a>四、4 周学习计划</h2><h3 id="第-1-周：剪出第一条视频"><a href="#第-1-周：剪出第一条视频" class="headerlink" title="第 1 周：剪出第一条视频"></a>第 1 周：剪出第一条视频</h3><p>目标：剪出一条 1 分钟视频。</p>
+<p>只学这些：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">导入素材<br>创建项目<br>拖到时间线<br>剪掉废话<br>调整顺序<br>加一个简单标题<br>调整音量<br>导出视频<br></code></pre></td></tr></table></figure>
+
+<p>常用快捷键：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">A：选择工具<br>B：刀片工具<br>空格：播放/暂停<br>Command + B：在播放头位置切开<br>Command + Z：撤销<br>Delete：删除片段<br></code></pre></td></tr></table></figure>
+
+<h3 id="第-2-周：声音和标题"><a href="#第-2-周：声音和标题" class="headerlink" title="第 2 周：声音和标题"></a>第 2 周：声音和标题</h3><p>目标：做一条 2-3 分钟视频。</p>
+<p>重点学：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">人声音量<br>背景音乐音量<br>淡入淡出<br>简单标题<br>下三分之一标题<br>导出 YouTube 格式<br></code></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li>声音比画面更重要。</li>
+<li>不要过度使用转场。</li>
+</ul>
+<h3 id="第-3-周：补系统工作流"><a href="#第-3-周：补系统工作流" class="headerlink" title="第 3 周：补系统工作流"></a>第 3 周：补系统工作流</h3><p>目标：理解 FCP 的基本结构。</p>
+<p>重点学：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">资源库<br>事件<br>项目<br>素材管理<br>磁性时间线<br>连接片段<br>B-roll<br>基础调色<br></code></pre></td></tr></table></figure>
+
+<p>建议资源：</p>
+<ul>
+<li>Apple 官方指南查问题。</li>
+<li>LinkedIn Learning 或 Ripple Training 补系统课。</li>
+</ul>
+<h3 id="第-4-周：做一条完整-YouTube-视频"><a href="#第-4-周：做一条完整-YouTube-视频" class="headerlink" title="第 4 周：做一条完整 YouTube 视频"></a>第 4 周：做一条完整 YouTube 视频</h3><p>目标：完成一条 5-10 分钟视频。</p>
+<p>流程：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs text">确定主题<br>写简单提纲<br>拍摄或录屏<br>FCP 剪辑<br>调整声音<br>添加标题和必要画面<br>导出无字幕成片<br>Whisper 生成 SRT<br>校对字幕<br>上传 YouTube 视频和 SRT<br></code></pre></td></tr></table></figure>
+
+<h2 id="五、推荐-YouTube-FCP-工作流"><a href="#五、推荐-YouTube-FCP-工作流" class="headerlink" title="五、推荐 YouTube&#x2F;FCP 工作流"></a>五、推荐 YouTube&#x2F;FCP 工作流</h2><h3 id="YouTube-长视频"><a href="#YouTube-长视频" class="headerlink" title="YouTube 长视频"></a>YouTube 长视频</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">拍摄/录屏<br>→ Final Cut Pro 剪辑<br>→ 调色/音频/标题/包装<br>→ 导出无字幕正片<br>→ Whisper 生成 SRT<br>→ 人工校对 SRT<br>→ YouTube 上传视频 + 上传字幕<br></code></pre></td></tr></table></figure>
+
+<p>优点：</p>
+<ul>
+<li>字幕可以开关。</li>
+<li>后期可以修改字幕，不需要重导视频。</li>
+<li>支持多语言字幕。</li>
+<li>更符合 YouTube 长视频常见做法。</li>
+</ul>
+<h3 id="短视频平台"><a href="#短视频平台" class="headerlink" title="短视频平台"></a>短视频平台</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">FCP 导出无字幕成片<br>→ 使用剪映或 ffmpeg 烧字幕<br>→ 发布抖音/视频号/小红书<br></code></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>短视频更适合硬字幕。</li>
+<li>剪映做硬字幕最省事。</li>
+<li>如果不想依赖剪映，可以用 ffmpeg 把 SRT 直接烧进视频。</li>
+</ul>
+<h2 id="六、学习时不要一开始折腾的内容"><a href="#六、学习时不要一开始折腾的内容" class="headerlink" title="六、学习时不要一开始折腾的内容"></a>六、学习时不要一开始折腾的内容</h2><p>前 1 个月先不要重点学：</p>
+<ul>
+<li>复杂调色</li>
+<li>大量转场</li>
+<li>Motion 模板</li>
+<li>插件</li>
+<li>多机位</li>
+<li>复杂字幕工作流</li>
+<li>高级导出格式</li>
+<li>广播级交付</li>
+</ul>
+<p>先把这件事做稳：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">能剪出一条声音清楚、节奏不拖、画面不乱的视频。<br></code></pre></td></tr></table></figure>
+
+<h2 id="七、每条视频的复盘清单"><a href="#七、每条视频的复盘清单" class="headerlink" title="七、每条视频的复盘清单"></a>七、每条视频的复盘清单</h2><p>做完一条视频后，问自己：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">开头 10 秒是否说明了主题？<br>有没有废话可以删？<br>声音是否清楚稳定？<br>画面有没有长时间不变化？<br>标题和字幕是否帮助理解？<br>观众看到一半会不会想退出？<br>导出后画质和声音是否正常？<br></code></pre></td></tr></table></figure>
+
+<h2 id="八、个人建议"><a href="#八、个人建议" class="headerlink" title="八、个人建议"></a>八、个人建议</h2><p>如果你是个人做 YouTube，Final Cut Pro 完全够用。不要因为字幕这一点马上换 Premiere Pro。</p>
+<p>更稳的策略是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">FCP 负责剪辑<br>Whisper 负责生成字幕<br>YouTube 负责 SRT 字幕显示<br>剪映或 ffmpeg 只在需要硬字幕时收尾<br></code></pre></td></tr></table></figure>
+
+<p>先每周做一条小视频，比连续看很多教程更重要。</p>
 
                 
               </div>
@@ -555,7 +603,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" class="category-chain-item">效率工具</a>
+  <a href="/blog/categories/%E8%A7%86%E9%A2%91%E5%88%B6%E4%BD%9C/" class="category-chain-item">视频制作</a>
   
   
 
@@ -570,15 +618,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/Ghostty/" class="print-no-link">#Ghostty</a>
+        <a href="/blog/tags/Final-Cut-Pro/" class="print-no-link">#Final Cut Pro</a>
       
-        <a href="/blog/tags/Tmux/" class="print-no-link">#Tmux</a>
+        <a href="/blog/tags/YouTube/" class="print-no-link">#YouTube</a>
       
-        <a href="/blog/tags/macOS/" class="print-no-link">#macOS</a>
+        <a href="/blog/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/" class="print-no-link">#视频剪辑</a>
       
-        <a href="/blog/tags/Dotfiles/" class="print-no-link">#Dotfiles</a>
-      
-        <a href="/blog/tags/GitHub/" class="print-no-link">#GitHub</a>
+        <a href="/blog/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="print-no-link">#学习路线</a>
       
     </div>
   
@@ -590,8 +636,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</div>
-      <div>https://1241262510.github.io/blog/2026/06/04/ghostty-dotfile-github-sync-practice/</div>
+      <div>个人学习 Final Cut Pro：YouTube 视频制作路线</div>
+      <div>https://1241262510.github.io/blog/2026/06/08/final-cut-pro-youtube-learning/</div>
     </div>
     <div class="license-meta">
       
@@ -603,7 +649,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年6月4日</div>
+          <div>2026年6月8日</div>
         </div>
       
       
@@ -635,18 +681,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/06/08/final-cut-pro-youtube-learning/" title="个人学习 Final Cut Pro：YouTube 视频制作路线">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">个人学习 Final Cut Pro：YouTube 视频制作路线</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/06/04/ghostty-macos-account-sync/" title="Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题">
-                        <span class="hidden-mobile">Mac 换账号后 Ghostty 配置没了？其实是配置路径的问题</span>
+                      <a href="/blog/2026/06/04/ghostty-dotfile-github-sync-practice/" title="Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操">
+                        <span class="hidden-mobile">Ghostty 配置共享到 GitHub：一次 macOS 换账号同步实操</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
