@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://1241262510.github.io/blog/2026/06/20/cpp-template-learning-roadmap-concepts/</loc>
+    
+    <lastmod>2026-06-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://1241262510.github.io/blog/2026/06/20/cpp20-ebo-code-testing-compilation/</loc>
     
     <lastmod>2026-06-20</lastmod>
