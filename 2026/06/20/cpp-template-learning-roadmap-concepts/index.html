@@ -28,14 +28,20 @@
 <meta property="og:site_name" content="凌晨两点的书桌">
 <meta property="og:description" content="从函数模板、类型推导、特化和参数包逐步学到 C++20 Concepts 与模板元编程，并给出练习项目和八周学习计划。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/01-layered-complexity.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/03-reference-deduction.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/04-concepts-gate.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/05-reading-complex-template.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/02-learning-route.png">
 <meta property="article:published_time" content="2026-06-20T06:40:04.000Z">
-<meta property="article:modified_time" content="2026-06-20T06:40:12.328Z">
+<meta property="article:modified_time" content="2026-06-20T08:38:09.269Z">
 <meta property="article:author" content="凌晨两点的书桌">
 <meta property="article:tag" content="C++20">
 <meta property="article:tag" content="Concepts">
 <meta property="article:tag" content="cpp">
 <meta property="article:tag" content="模板">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/01-layered-complexity.png">
   
   
   
@@ -423,6 +429,7 @@
 <li>为什么返回值里也有模板？</li>
 </ul>
 <p>如果这些知识点同时学习，认知负担会很大。正确的方法是把模板学习拆成若干层，每一层只解决一类问题。</p>
+<p><img src="/blog/assets/01-layered-complexity.png" srcset="/blog/img/loading.gif" lazyload></p>
 <h2 id="二、第一阶段：函数模板与类模板"><a href="#二、第一阶段：函数模板与类模板" class="headerlink" title="二、第一阶段：函数模板与类模板"></a>二、第一阶段：函数模板与类模板</h2><p>模板最基础的作用，是让一套代码适用于多种类型。</p>
 <h3 id="1-函数模板"><a href="#1-函数模板" class="headerlink" title="1. 函数模板"></a>1. 函数模板</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">T <span class="hljs-title">maxValue</span><span class="hljs-params">(T a, T b)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> a &gt; b ? a : b;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> a = <span class="hljs-built_in">maxValue</span>(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);<br>    <span class="hljs-type">double</span> b = <span class="hljs-built_in">maxValue</span>(<span class="hljs-number">1.2</span>, <span class="hljs-number">3.4</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -472,6 +479,7 @@
 <li>引用折叠。</li>
 </ol>
 <p>如果引用规则还没有学清楚，不要急着研究完美转发。否则很容易变成背诵固定写法，却不知道为什么需要它。</p>
+<p><img src="/blog/assets/03-reference-deduction.png" srcset="/blog/img/loading.gif" lazyload></p>
 <h2 id="四、第三阶段：非类型参数与模板特化"><a href="#四、第三阶段：非类型参数与模板特化" class="headerlink" title="四、第三阶段：非类型参数与模板特化"></a>四、第三阶段：非类型参数与模板特化</h2><p>模板参数不一定是类型，也可以是编译期值。</p>
 <h3 id="1-非类型模板参数"><a href="#1-非类型模板参数" class="headerlink" title="1. 非类型模板参数"></a>1. 非类型模板参数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstddef&gt;</span></span><br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, std::<span class="hljs-type">size_t</span> N&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">FixedArray</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    T data_[N]&#123;&#125;;<br>&#125;;<br><br>FixedArray&lt;<span class="hljs-type">int</span>, <span class="hljs-number">10</span>&gt; numbers;<br></code></pre></td></tr></table></figure>
 
@@ -527,6 +535,7 @@
 <li>detection idiom。</li>
 </ul>
 <p>学习目标应该是能维护旧代码，而不是在新代码中刻意复现旧式技巧。</p>
+<p><img src="/blog/assets/04-concepts-gate.png" srcset="/blog/img/loading.gif" lazyload></p>
 <h2 id="七、第六阶段：模板元编程"><a href="#七、第六阶段：模板元编程" class="headerlink" title="七、第六阶段：模板元编程"></a>七、第六阶段：模板元编程</h2><p>模板元编程应该放到路线最后。开始时先熟悉标准库提供的类型工具：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::is_same_v&lt;T, U&gt;<br>std::<span class="hljs-type">remove_reference_t</span>&lt;T&gt;<br>std::<span class="hljs-type">remove_cvref_t</span>&lt;T&gt;<br>std::<span class="hljs-type">conditional_t</span>&lt;Condition, A, B&gt;<br>std::integral_constant<br></code></pre></td></tr></table></figure>
 
@@ -563,6 +572,7 @@
 
 <p>可以将它近似理解为：目标类型是 <code>std::string</code>，参数类型是 <code>int</code> 和 <code>char</code>，编译器需要判断 <code>std::string</code> 能否用这两个参数构造。</p>
 <p>这种“先翻译成人话，再代入具体类型”的方法，比背诵模板语法有效得多。</p>
+<p><img src="/blog/assets/05-reading-complex-template.png" srcset="/blog/img/loading.gif" lazyload></p>
 <h2 id="九、推荐的练习项目"><a href="#九、推荐的练习项目" class="headerlink" title="九、推荐的练习项目"></a>九、推荐的练习项目</h2><p>按照难度逐步完成以下项目：</p>
 <ol>
 <li><code>maxValue&lt;T&gt;()</code> 和 <code>swapValue&lt;T&gt;()</code>；</li>
@@ -577,6 +587,7 @@
 <li>阅读一个标准库泛型组件的公开接口。</li>
 </ol>
 <p>每个练习只增加一个新知识点。不要同时实现内存分配、异常安全、并发和复杂模板约束，否则很难判断问题究竟出在哪里。</p>
+<p><img src="/blog/assets/02-learning-route.png" srcset="/blog/img/loading.gif" lazyload></p>
 <h2 id="十、八周学习计划"><a href="#十、八周学习计划" class="headerlink" title="十、八周学习计划"></a>十、八周学习计划</h2><table>
 <thead>
 <tr>
