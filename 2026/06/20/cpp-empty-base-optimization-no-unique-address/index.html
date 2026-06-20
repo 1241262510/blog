@@ -1,0 +1,957 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
+  <link rel="icon" href="/blog/img/fluid.png">
+  
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/20/cpp-empty-base-optimization-no-unique-address/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#ffffff">
+  <meta name="author" content="凌晨两点的书桌">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从普通空成员、空基类优化到 C++20 的 no_unique_address，梳理空类型压缩的原理、限制与工程选择。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 空基类优化：从继承、成员组合到 [[no_unique_address]]">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/20/cpp-empty-base-optimization-no-unique-address/index.html">
+<meta property="og:site_name" content="凌晨两点的书桌">
+<meta property="og:description" content="从普通空成员、空基类优化到 C++20 的 no_unique_address，梳理空类型压缩的原理、限制与工程选择。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/cpp-empty-base-optimization-cover.png">
+<meta property="article:published_time" content="2026-06-20T05:56:37.000Z">
+<meta property="article:modified_time" content="2026-06-20T05:57:00.443Z">
+<meta property="article:author" content="凌晨两点的书桌">
+<meta property="article:tag" content="C++20">
+<meta property="article:tag" content="EBO">
+<meta property="article:tag" content="cpp">
+<meta property="article:tag" content="对象布局">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/cpp-empty-base-optimization-cover.png">
+  
+  
+  
+  <title>C++ 空基类优化：从继承、成员组合到 [[no_unique_address]] - 凌晨两点的书桌</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/blog/css/layout-conservative.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1241262510.github.io","root":"/blog/","version":"1.9.9","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/blog/atom.xml" title="凌晨两点的书桌" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>Codex Skill Lab</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/atom.xml" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-rss"></i>
+                  <span>RSS</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/banner-desk.svg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.35)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">C++ 空基类优化：从继承、成员组合到 [[no_unique_address]]</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-20 01:56" pubdate>
+          2026年6月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++ 空基类优化：从继承、成员组合到 [[no_unique_address]]</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="/blog/assets/cpp-empty-base-optimization-cover.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>在 C++ 中，一个没有非静态数据成员的类通常被称为空类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Empty</span> &#123;&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>它没有需要保存的业务数据，但它的大小并不是 0：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    std::cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(Empty) &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在常见实现中，输出是 <code>1</code>。原因是 C++ 需要让同类型的不同完整对象拥有不同地址。如果空对象完全不占空间，连续创建两个空对象时，就无法满足这一要求。</p>
+<p>但在泛型库中，空类型经常只是一个无状态策略，例如删除器、比较器、分配器或日志策略。如果每个空策略都额外占用空间，就会造成不必要的对象膨胀。</p>
+<p>C++ 为此提供了两条主要路径：传统的空基类优化，以及 C++20 的 <code>[[no_unique_address]]</code>。</p>
+<h2 id="1-普通成员为什么可能增加对象大小"><a href="#1-普通成员为什么可能增加对象大小" class="headerlink" title="1. 普通成员为什么可能增加对象大小"></a>1. 普通成员为什么可能增加对象大小</h2><p>先看最自然的组合写法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Empty</span> &#123;&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">MemberVersion</span> &#123;<br>    Empty policy;<br>    <span class="hljs-type">int</span> value;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>policy</code> 是一个普通成员，通常需要具有自己的地址，因此它仍会占据空间。除此之外，<code>int</code> 还可能要求按 4 字节对齐，于是对象中可能产生填充字节。</p>
+<p>在常见的 64 位环境中，可能观察到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">sizeof(Empty)         == 1<br>sizeof(MemberVersion) == 8<br></code></pre></td></tr></table></figure>
+
+<p>这些数值只是常见结果，不是 C++ 标准对所有平台的保证。真正可靠的结论是：普通空成员可能增加对象大小。</p>
+<h2 id="2-从继承角度理解-EBO"><a href="#2-从继承角度理解-EBO" class="headerlink" title="2. 从继承角度理解 EBO"></a>2. 从继承角度理解 EBO</h2><p>如果将空类型作为基类，编译器通常可以不为它分配额外空间：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Empty</span> &#123;&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">BaseVersion</span> : <span class="hljs-keyword">private</span> Empty &#123;<br>    <span class="hljs-type">int</span> value;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>在常见实现中，<code>BaseVersion</code> 的大小可能与一个 <code>int</code> 相同：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sizeof(BaseVersion) == sizeof(int)<br></code></pre></td></tr></table></figure>
+
+<p>这种优化称为空基类优化（Empty Base Optimization，EBO）。</p>
+<p>这里通常使用私有继承，因为派生类并不一定在概念上“是一个”策略对象。继承只是实现层面的存储手段，私有继承可以避免把这种关系暴露给调用者。</p>
+<p>一个典型的策略类设计如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">LoggingPolicy</span> &#123;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">beforeRun</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-comment">// 记录日志</span><br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">Policy</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Widget</span> : <span class="hljs-keyword">private</span> Policy &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Widget</span><span class="hljs-params">(Policy policy = &#123;&#125;)</span></span><br><span class="hljs-function">        : Policy(std::move(policy)) &#123;</span>&#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-built_in">policy</span>().<span class="hljs-built_in">beforeRun</span>();<br>        <span class="hljs-comment">// 执行主要逻辑</span><br>    &#125;<br><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function">Policy&amp; <span class="hljs-title">policy</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">static_cast</span>&lt;Policy&amp;&gt;(*<span class="hljs-keyword">this</span>);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>当 <code>Policy</code> 是无状态空类时，它通常不会增加 <code>Widget</code> 的大小；当 <code>Policy</code> 包含状态时，这套设计仍然可以正常保存状态。</p>
+<p>EBO 常用于保存以下对象：</p>
+<ul>
+<li>智能指针的删除器；</li>
+<li>容器的分配器；</li>
+<li>比较器和哈希函数；</li>
+<li>无状态函数对象；</li>
+<li>策略类和标签类型。</li>
+</ul>
+<h2 id="3-继承式-EBO-的局限"><a href="#3-继承式-EBO-的局限" class="headerlink" title="3. 继承式 EBO 的局限"></a>3. 继承式 EBO 的局限</h2><p>EBO 并非在任何继承结构中都能生效。</p>
+<p>首先，基类必须是空类型。只要它包含需要存储的非静态数据成员，编译器就必须为这些数据保留空间。</p>
+<p>其次，同类型子对象的地址规则可能阻止重叠。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Empty</span> &#123;&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Derived</span> : Empty &#123;<br>    Empty member;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>Derived</code> 中同时存在一个 <code>Empty</code> 基类子对象和一个 <code>Empty</code> 成员子对象。它们需要能够被区分，因此编译器不能简单地让二者完全占据同一个位置。</p>
+<p>此外，为了压缩成员而使用继承，会引入额外的工程成本：</p>
+<ul>
+<li>继承表达的语义不如组合直接；</li>
+<li>多个策略需要多重继承；</li>
+<li>相同类型的多个策略需要额外的包装类型；</li>
+<li>构造函数、访问函数和类型转换更复杂。</li>
+</ul>
+<p>因此，EBO 是有效的底层实现技巧，但不应无条件替代组合。</p>
+<h2 id="4-compressed-pair：传统库的常见设计"><a href="#4-compressed-pair：传统库的常见设计" class="headerlink" title="4. compressed_pair：传统库的常见设计"></a>4. <code>compressed_pair</code>：传统库的常见设计</h2><p>C++20 之前，库实现经常借助 EBO 构造压缩二元组。它可以用于保存“资源＋无状态策略”，例如“指针＋删除器”。</p>
+<p>下面是一个简化版本：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span><br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">First</span>, <span class="hljs-keyword">class</span> <span class="hljs-title class_">Second</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CompressedPair</span> : <span class="hljs-keyword">private</span> First &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">CompressedPair</span>(First first, Second second)<br>        : <span class="hljs-built_in">First</span>(std::<span class="hljs-built_in">move</span>(first)),<br>          <span class="hljs-built_in">second_</span>(std::<span class="hljs-built_in">move</span>(second)) &#123;&#125;<br><br>    <span class="hljs-function">First&amp; <span class="hljs-title">first</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">static_cast</span>&lt;First&amp;&gt;(*<span class="hljs-keyword">this</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">const</span> First&amp; <span class="hljs-title">first</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">const</span> First&amp;&gt;(*<span class="hljs-keyword">this</span>);<br>    &#125;<br><br>    <span class="hljs-function">Second&amp; <span class="hljs-title">second</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> second_;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">const</span> Second&amp; <span class="hljs-title">second</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> second_;<br>    &#125;<br><br><span class="hljs-keyword">private</span>:<br>    Second second_;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>假设第一个类型是无状态删除器：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">EmptyDeleter</span> &#123;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">int</span>* pointer)</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-keyword">delete</span> pointer;<br>    &#125;<br>&#125;;<br><br>CompressedPair&lt;EmptyDeleter, <span class="hljs-type">int</span>*&gt; storage&#123;<br>    EmptyDeleter&#123;&#125;,<br>    <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>&#123;<span class="hljs-number">42</span>&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>EmptyDeleter</code> 作为空基类，通常不产生额外存储开销。标准库的具体实现并不要求采用这段代码，但这解释了许多泛型库为什么需要类似的压缩存储工具。</p>
+<p>生产级 <code>compressed_pair</code> 还要处理更多问题，例如两个类型都为空、两个类型相同、引用类型、异常规格和完美转发，因此不建议直接将这个教学版本用作通用库组件。</p>
+<h2 id="5-C-20：让成员组合也能被压缩"><a href="#5-C-20：让成员组合也能被压缩" class="headerlink" title="5. C++20：让成员组合也能被压缩"></a>5. C++20：让成员组合也能被压缩</h2><p>C++20 引入了 <code>[[no_unique_address]]</code> 属性。它允许一个非静态数据成员不必占据独立地址，使编译器可以复用其尾部填充或让空成员与其他成员重叠。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Empty</span> &#123;&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ModernVersion</span> &#123;<br>    [[no_unique_address]] Empty policy;<br>    <span class="hljs-type">int</span> value;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>在常见实现中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sizeof(ModernVersion) == sizeof(int)<br></code></pre></td></tr></table></figure>
+
+<p>与私有继承相比，这种方式保留了更清晰的组合语义：<code>ModernVersion</code> 拥有一个策略，而不是继承自策略。</p>
+<p>一个更实际的资源包装器可以写成：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span><br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">Resource</span>, <span class="hljs-keyword">class</span> <span class="hljs-title class_">Deleter</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">UniqueResource</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">UniqueResource</span>(Resource resource, Deleter deleter = &#123;&#125;)<br>        : <span class="hljs-built_in">resource_</span>(std::<span class="hljs-built_in">move</span>(resource)),<br>          <span class="hljs-built_in">deleter_</span>(std::<span class="hljs-built_in">move</span>(deleter)) &#123;&#125;<br><br>    <span class="hljs-built_in">UniqueResource</span>(<span class="hljs-type">const</span> UniqueResource&amp;) = <span class="hljs-keyword">delete</span>;<br>    UniqueResource&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> UniqueResource&amp;) = <span class="hljs-keyword">delete</span>;<br><br>    ~<span class="hljs-built_in">UniqueResource</span>() &#123;<br>        <span class="hljs-built_in">deleter_</span>(resource_);<br>    &#125;<br><br><span class="hljs-keyword">private</span>:<br>    Resource resource_;<br>    [[no_unique_address]] Deleter deleter_;<br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">FileCloser</span> &#123;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">int</span> descriptor)</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-comment">// close(descriptor);</span><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>当 <code>FileCloser</code> 为空时，它通常不会增加包装器的大小；当删除器带有状态时，例如保存统计信息或运行时配置，它仍会像普通成员一样占据必要空间。</p>
+<h2 id="6-no-unique-address-也不是“大小必为零”"><a href="#6-no-unique-address-也不是“大小必为零”" class="headerlink" title="6. [[no_unique_address]] 也不是“大小必为零”"></a>6. <code>[[no_unique_address]]</code> 也不是“大小必为零”</h2><p>这个属性授予编译器优化空间，但不承诺某个成员一定被完全压缩。</p>
+<p>尤其是相同类型的成员，仍需要遵守地址唯一性要求：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Empty</span> &#123;&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Example</span> &#123;<br>    [[no_unique_address]] Empty first;<br>    [[no_unique_address]] Empty second;<br>    <span class="hljs-type">int</span> value;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>first</code> 和 <code>second</code> 是同类型的两个子对象，它们必须能够被区分，因此编译器未必能把二者都压缩到同一地址。</p>
+<p>不同类型的空策略更适合这种布局：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">AllocatorPolicy</span> &#123;&#125;;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">LoggingPolicy</span> &#123;&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Service</span> &#123;<br>    [[no_unique_address]] AllocatorPolicy allocator;<br>    [[no_unique_address]] LoggingPolicy logger;<br>    <span class="hljs-type">int</span> state;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>另外，代码不应依赖空成员与其他成员具有相同地址。对象布局属于实现细节，真正需要验证大小时，应在目标编译器、目标架构和目标编译选项下进行测试。</p>
+<h2 id="7-三种设计方式的比较"><a href="#7-三种设计方式的比较" class="headerlink" title="7. 三种设计方式的比较"></a>7. 三种设计方式的比较</h2><table>
+<thead>
+<tr>
+<th align="left">方式</th>
+<th align="left">语义</th>
+<th align="left">空类型空间优化</th>
+<th align="left">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">普通成员</td>
+<td align="left">清晰的组合关系</td>
+<td align="left">传统实现中通常不能完全压缩</td>
+<td align="left">不关心少量空间，或需要兼容旧标准</td>
+</tr>
+<tr>
+<td align="left">私有继承</td>
+<td align="left">实现层面的继承关系</td>
+<td align="left">通常可以利用 EBO</td>
+<td align="left">C++17 及以前的压缩策略存储</td>
+</tr>
+<tr>
+<td align="left"><code>[[no_unique_address]]</code> 成员</td>
+<td align="left">清晰的组合关系</td>
+<td align="left">允许编译器压缩</td>
+<td align="left">C++20 及以上的首选方案</td>
+</tr>
+</tbody></table>
+<p>三种写法可以简化为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Empty</span> &#123;&#125;;<br><br><span class="hljs-comment">// 普通组合：空成员可能增加对象大小</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> &#123;<br>    Empty policy;<br>    <span class="hljs-type">int</span> value;<br>&#125;;<br><br><span class="hljs-comment">// 传统 EBO：通过私有继承压缩空策略</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">B</span> : <span class="hljs-keyword">private</span> Empty &#123;<br>    <span class="hljs-type">int</span> value;<br>&#125;;<br><br><span class="hljs-comment">// C++20：保留组合语义并允许压缩</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">C</span> &#123;<br>    [[no_unique_address]] Empty policy;<br>    <span class="hljs-type">int</span> value;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="8-工程实践中的选择"><a href="#8-工程实践中的选择" class="headerlink" title="8. 工程实践中的选择"></a>8. 工程实践中的选择</h2><p>如果项目使用 C++20 或更高标准，优先考虑成员组合加 <code>[[no_unique_address]]</code>。它既表达了正确的所有权关系，又允许编译器完成空类型压缩。</p>
+<p>如果项目停留在 C++17 或更早版本，并且对象大小确实重要，可以使用私有继承实现 EBO，或者封装一个经过充分测试的压缩存储组件。</p>
+<p>如果对象数量很少，或者节省几个字节不会影响缓存命中率和总体内存占用，则普通组合往往更值得选择。可读性通常比没有测量依据的微优化更重要。</p>
+<p>判断是否值得使用压缩存储时，可以按以下顺序处理：</p>
+<ol>
+<li>先用清晰的组合方式完成设计；</li>
+<li>测量对象大小和实际内存占用；</li>
+<li>确认对象会被大量创建，或处于缓存敏感的数据结构中；</li>
+<li>再根据语言标准选择 EBO 或 <code>[[no_unique_address]]</code>；</li>
+<li>在所有目标 ABI 上验证布局和性能。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>空类不是零大小对象，因为完整对象通常需要独立地址。传统 C++ 通过空基类优化，让空基类不必增加派生类的大小；这也是删除器、分配器和策略类经常采用私有继承的原因。</p>
+<p>C++20 的 <code>[[no_unique_address]]</code> 将类似的优化能力带到了成员组合中，使代码不必为了空间布局而牺牲设计语义。</p>
+<p>可以记住一句话：</p>
+<blockquote>
+<p>EBO 是借助继承压缩空类型，<code>[[no_unique_address]]</code> 是在组合中允许编译器压缩成员。</p>
+</blockquote>
+<p>二者解决的是对象布局问题，而不是业务建模问题。先选择正确、清晰的类型关系，再通过测量决定是否需要压缩，通常才是更可靠的 C++ 设计方式。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/C/" class="category-chain-item">C++</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/cpp/" class="print-no-link">#cpp</a>
+      
+        <a href="/blog/tags/C-20/" class="print-no-link">#C++20</a>
+      
+        <a href="/blog/tags/EBO/" class="print-no-link">#EBO</a>
+      
+        <a href="/blog/tags/%E5%AF%B9%E8%B1%A1%E5%B8%83%E5%B1%80/" class="print-no-link">#对象布局</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++ 空基类优化：从继承、成员组合到 [[no_unique_address]]</div>
+      <div>https://1241262510.github.io/blog/2026/06/20/cpp-empty-base-optimization-no-unique-address/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>凌晨两点的书桌</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2026/06/18/gcc-docker-macos-cpp-workflow/" title="在 Mac 上用 Docker 跑 GCC：一套干净的 C++ 编译环境">
+                        <span class="hidden-mobile">在 Mac 上用 Docker 跑 GCC：一套干净的 C++ 编译环境</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <span>Powered by Hexo & Fluid</span>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
