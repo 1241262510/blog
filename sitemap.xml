@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://1241262510.github.io/blog/2026/06/22/chatgpt-plus-google-play-subscription-guide/</loc>
+    
+    <lastmod>2026-06-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://1241262510.github.io/blog/2026/06/21/google-translate-realtime-conversation/</loc>
     
     <lastmod>2026-06-21</lastmod>
@@ -319,7 +328,7 @@
 
   <url>
     <loc>https://1241262510.github.io/blog</loc>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
