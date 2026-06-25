@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">C++ cpp-httplib 工具箱</title>
+  <desc id="desc">小黑从单头文件工具箱里拧出路由，同时修补漏水的 JSON 罐。</desc>
+  <rect width="1600" height="900" fill="#fff"/>
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M412 319 C596 286 903 289 1092 324 C1122 416 1118 546 1086 645 C892 687 599 681 416 640 C388 534 389 418 412 319Z"/>
+    <path d="M460 279 C622 236 880 236 1040 276 C1067 292 1083 312 1092 324"/>
+    <path d="M479 287 C621 320 890 320 1030 288"/>
+    <path d="M454 421 C616 447 862 451 1033 424"/>
+    <path d="M852 474 C954 455 1052 470 1136 516"/>
+    <path d="M1141 516 C1204 500 1284 504 1340 534 C1336 585 1311 629 1268 653 C1206 648 1153 614 1141 516Z"/>
+    <path d="M1186 526 C1216 557 1243 585 1276 624"/>
+    <path d="M749 462 C691 430 635 405 585 382"/>
+    <path d="M583 381 C554 396 521 403 491 400"/>
+    <path d="M588 382 C583 347 594 319 615 297"/>
+    <path d="M463 543 C562 524 647 526 734 550"/>
+    <path d="M466 590 C573 610 655 609 734 592"/>
+  </g>
+  <g stroke="#e97821" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M742 463 C819 472 925 489 1002 508"/>
+    <path d="M492 543 C559 526 644 528 717 550"/>
+  </g>
+  <g>
+    <path d="M692 506 C693 447 732 418 781 426 C816 432 837 466 831 512 C823 566 786 599 742 587 C708 578 693 548 692 506Z" fill="#111"/>
+    <circle cx="735" cy="480" r="7" fill="#fff"/>
+    <circle cx="779" cy="481" r="7" fill="#fff"/>
+    <path d="M725 587 C714 622 699 653 684 681" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M785 586 C802 618 820 648 839 677" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M832 491 C885 464 929 437 978 412" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M979 412 L1023 432 L993 457" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M687 502 C633 487 581 472 532 459" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+  </g>
+  <g fill="none" stroke="#d93025" stroke-width="5" stroke-linecap="round">
+    <path d="M1194 573 C1220 558 1253 559 1281 579"/>
+    <path d="M1198 592 C1228 576 1261 581 1288 603"/>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="38" fill="#111">
+    <text x="557" y="280">cpp-httplib</text>
+    <text x="451" y="385">单头文件</text>
+    <text x="470" y="577">链式调用</text>
+    <text x="960" y="400">lambda</text>
+    <text x="1173" y="711">手写 JSON</text>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="32" fill="#2b6cb0">
+    <text x="1001" y="572">很直观</text>
+  </g>
+</svg>

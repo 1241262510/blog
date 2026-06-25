@@ -1,0 +1,969 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
+  <link rel="icon" href="/blog/img/fluid.png">
+  
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/25/blog-http-server-comparison/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#ffffff">
+  <meta name="author" content="凌晨两点的书桌">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="用 C++、Rust、Go 分别实现同一个 HTTP 服务，从代码量、上手难度、编译速度、内存安全、并发模型和部署体验几个维度做一次直观对比。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三种语言实现 HTTP 服务对比：C++ vs Rust vs Go">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/25/blog-http-server-comparison/index.html">
+<meta property="og:site_name" content="凌晨两点的书桌">
+<meta property="og:description" content="用 C++、Rust、Go 分别实现同一个 HTTP 服务，从代码量、上手难度、编译速度、内存安全、并发模型和部署体验几个维度做一次直观对比。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/01-same-http-exam.svg">
+<meta property="article:published_time" content="2026-06-25T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-25T02:42:35.729Z">
+<meta property="article:author" content="凌晨两点的书桌">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="Rust">
+<meta property="article:tag" content="后端开发">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/01-same-http-exam.svg">
+  
+  
+  
+  <title>三种语言实现 HTTP 服务对比：C++ vs Rust vs Go - 凌晨两点的书桌</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/blog/css/layout-conservative.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1241262510.github.io","root":"/blog/","version":"1.9.9","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/blog/atom.xml" title="凌晨两点的书桌" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>Codex Skill Lab</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/atom.xml" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-rss"></i>
+                  <span>RSS</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/banner-desk.svg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.35)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">三种语言实现 HTTP 服务对比：C++ vs Rust vs Go</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-25 10:00" pubdate>
+          2026年6月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">三种语言实现 HTTP 服务对比：C++ vs Rust vs Go</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>最近在做一个 HTTP 服务的小项目，想选一个上手快、性能好、适合落地的语言。于是用 <strong>C++ (cpp-httplib)</strong>、<strong>Rust (tiny_http)</strong>、<strong>Go (net&#x2F;http)</strong> 分别实现了一个功能相同的 HTTP 服务，记录一下体验。</p>
+<h2 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h2><p>三种语言实现相同的四个接口：</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/hi</code></td>
+<td>GET</td>
+<td>返回 “Hello World!”</td>
+</tr>
+<tr>
+<td><code>/json</code></td>
+<td>GET</td>
+<td>返回 JSON <code>{&quot;message&quot;:&quot;...&quot;,&quot;status&quot;:&quot;ok&quot;}</code></td>
+</tr>
+<tr>
+<td><code>/echo?msg=xxx</code></td>
+<td>GET</td>
+<td>返回 query 参数 msg 的值</td>
+</tr>
+<tr>
+<td><code>/post</code></td>
+<td>POST</td>
+<td>接收 body，返回 JSON <code>{&quot;received&quot;:&quot;...&quot;}</code></td>
+</tr>
+<tr>
+<td>其他路径</td>
+<td>任意</td>
+<td>返回 404</td>
+</tr>
+</tbody></table>
+<p><img src="/blog/assets/01-same-http-exam.svg" srcset="/blog/img/loading.gif" lazyload alt="同一组 HTTP 接口需求"></p>
+<h2 id="C-cpp-httplib"><a href="#C-cpp-httplib" class="headerlink" title="C++ (cpp-httplib)"></a>C++ (cpp-httplib)</h2><p><strong>源码位置</strong>: <code>cpp-httplib/example.cc</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;httplib.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    httplib::Server svr;<br><br>    svr.<span class="hljs-built_in">Get</span>(<span class="hljs-string">&quot;/hi&quot;</span>, [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; req, <span class="hljs-keyword">auto</span>&amp; res) &#123;<br>        res.<span class="hljs-built_in">set_content</span>(<span class="hljs-string">&quot;Hello World! From C++&quot;</span>, <span class="hljs-string">&quot;text/plain&quot;</span>);<br>    &#125;);<br><br>    svr.<span class="hljs-built_in">Get</span>(<span class="hljs-string">&quot;/json&quot;</span>, [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; req, <span class="hljs-keyword">auto</span>&amp; res) &#123;<br>        res.<span class="hljs-built_in">set_content</span>(<span class="hljs-string">R&quot;(&#123;&quot;message&quot;:&quot;Hello from C++&quot;,&quot;status&quot;:&quot;ok&quot;&#125;)&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);<br>    &#125;);<br><br>    svr.<span class="hljs-built_in">Get</span>(<span class="hljs-string">&quot;/echo&quot;</span>, [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; req, <span class="hljs-keyword">auto</span>&amp; res) &#123;<br>        <span class="hljs-keyword">auto</span> msg = req.<span class="hljs-built_in">has_param</span>(<span class="hljs-string">&quot;msg&quot;</span>) ? req.<span class="hljs-built_in">get_param_value</span>(<span class="hljs-string">&quot;msg&quot;</span>) : <span class="hljs-string">&quot;no message&quot;</span>;<br>        res.<span class="hljs-built_in">set_content</span>(msg, <span class="hljs-string">&quot;text/plain&quot;</span>);<br>    &#125;);<br><br>    svr.<span class="hljs-built_in">Post</span>(<span class="hljs-string">&quot;/post&quot;</span>, [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; req, <span class="hljs-keyword">auto</span>&amp; res) &#123;<br>        res.<span class="hljs-built_in">set_content</span>(<span class="hljs-string">R&quot;(&#123;&quot;received&quot;:&quot;)&quot;</span> + req.body + <span class="hljs-string">R&quot;(&quot;&#125;)&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);<br>    &#125;);<br><br>    svr.<span class="hljs-built_in">listen</span>(<span class="hljs-string">&quot;0.0.0.0&quot;</span>, <span class="hljs-number">8080</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>特点</strong>:</p>
+<ul>
+<li>代码最简洁，<strong>lambda + 链式调用</strong>，非常直观</li>
+<li>单头文件库，零配置引入</li>
+<li>跨平台，无外部依赖</li>
+<li>需要手动处理 JSON 序列化（没有标准库 json）</li>
+</ul>
+<p><img src="/blog/assets/02-cpp-httplib-toolbox.svg" srcset="/blog/img/loading.gif" lazyload alt="C++ cpp-httplib 工具箱"></p>
+<h2 id="Rust-tiny-http"><a href="#Rust-tiny-http" class="headerlink" title="Rust (tiny_http)"></a>Rust (tiny_http)</h2><p><strong>源码位置</strong>: <code>/tmp/rust-server/src/main.rs</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">use</span> tiny_http::&#123;Header, Method, Response, Server&#125;;<br><br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">server</span> = Server::<span class="hljs-title function_ invoke__">http</span>(<span class="hljs-string">&quot;0.0.0.0:8080&quot;</span>).<span class="hljs-title function_ invoke__">unwrap</span>();<br><br>    <span class="hljs-keyword">for</span> <span class="hljs-title class_">mut</span> request <span class="hljs-keyword">in</span> server.<span class="hljs-title function_ invoke__">incoming_requests</span>() &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">full_url</span> = request.<span class="hljs-title function_ invoke__">url</span>().<span class="hljs-title function_ invoke__">to_string</span>();<br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">path</span> = full_url.<span class="hljs-title function_ invoke__">split</span>(<span class="hljs-string">&#x27;?&#x27;</span>).<span class="hljs-title function_ invoke__">next</span>().<span class="hljs-title function_ invoke__">unwrap</span>().<span class="hljs-title function_ invoke__">to_string</span>();<br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">query</span> = full_url.<span class="hljs-title function_ invoke__">split</span>(<span class="hljs-string">&#x27;?&#x27;</span>).<span class="hljs-title function_ invoke__">nth</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_ invoke__">unwrap_or</span>(<span class="hljs-string">&quot;&quot;</span>);<br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">json_h</span> = <span class="hljs-string">&quot;Content-Type: application/json&quot;</span>.parse::&lt;Header&gt;().<span class="hljs-title function_ invoke__">unwrap</span>();<br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">text_h</span> = <span class="hljs-string">&quot;Content-Type: text/plain; charset=utf-8&quot;</span>.parse::&lt;Header&gt;().<span class="hljs-title function_ invoke__">unwrap</span>();<br><br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">response</span> = <span class="hljs-keyword">match</span> (request.<span class="hljs-title function_ invoke__">method</span>(), path.<span class="hljs-title function_ invoke__">as_str</span>()) &#123;<br>            (&amp;Method::Get, <span class="hljs-string">&quot;/hi&quot;</span>) =&gt;<br>                Response::<span class="hljs-title function_ invoke__">from_string</span>(<span class="hljs-string">&quot;Hello World! From Rust&quot;</span>).<span class="hljs-title function_ invoke__">with_header</span>(text_h),<br><br>            (&amp;Method::Get, <span class="hljs-string">&quot;/json&quot;</span>) =&gt;<br>                Response::<span class="hljs-title function_ invoke__">from_string</span>(<span class="hljs-string">r#&quot;&#123;&quot;message&quot;:&quot;Hello from Rust&quot;,&quot;status&quot;:&quot;ok&quot;&#125;&quot;#</span>)<br>                    .<span class="hljs-title function_ invoke__">with_header</span>(json_h),<br><br>            (&amp;Method::Get, <span class="hljs-string">&quot;/echo&quot;</span>) =&gt; &#123;<br>                <span class="hljs-keyword">let</span> <span class="hljs-variable">msg</span> = query.<span class="hljs-title function_ invoke__">split</span>(<span class="hljs-string">&#x27;&amp;&#x27;</span>)<br>                    .<span class="hljs-title function_ invoke__">find</span>(|p| p.<span class="hljs-title function_ invoke__">starts_with</span>(<span class="hljs-string">&quot;msg=&quot;</span>))<br>                    .<span class="hljs-title function_ invoke__">map</span>(|p| &amp;p[<span class="hljs-number">4</span>..]).<span class="hljs-title function_ invoke__">unwrap_or</span>(<span class="hljs-string">&quot;no message&quot;</span>);<br>                Response::<span class="hljs-title function_ invoke__">from_string</span>(msg).<span class="hljs-title function_ invoke__">with_header</span>(text_h)<br>            &#125;<br><br>            (&amp;Method::Post, <span class="hljs-string">&quot;/post&quot;</span>) =&gt; &#123;<br>                <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">body</span> = <span class="hljs-type">String</span>::<span class="hljs-title function_ invoke__">new</span>();<br>                request.<span class="hljs-title function_ invoke__">as_reader</span>().<span class="hljs-title function_ invoke__">read_to_string</span>(&amp;<span class="hljs-keyword">mut</span> body).<span class="hljs-title function_ invoke__">unwrap</span>();<br>                Response::<span class="hljs-title function_ invoke__">from_string</span>(<span class="hljs-built_in">format!</span>(<span class="hljs-string">r#&quot;&#123;&#123;&quot;received&quot;:&quot;&#123;&#125;&quot;&#125;&#125;&quot;#</span>, body.<span class="hljs-title function_ invoke__">trim</span>()))<br>                    .<span class="hljs-title function_ invoke__">with_status_code</span>(<span class="hljs-number">201</span>).<span class="hljs-title function_ invoke__">with_header</span>(json_h)<br>            &#125;<br><br>            _ =&gt; Response::<span class="hljs-title function_ invoke__">from_string</span>(<span class="hljs-string">r#&quot;&#123;&quot;error&quot;:&quot;Not Found&quot;&#125;&quot;#</span>)<br>                    .<span class="hljs-title function_ invoke__">with_status_code</span>(<span class="hljs-number">404</span>).<span class="hljs-title function_ invoke__">with_header</span>(json_h),<br>        &#125;;<br><br>        request.<span class="hljs-title function_ invoke__">respond</span>(response).<span class="hljs-title function_ invoke__">unwrap</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>特点</strong>:</p>
+<ul>
+<li>类型安全，编译期捕获错误</li>
+<li>需要手动处理 <code>mut</code>、<code>unwrap</code>、query 解析等样板代码</li>
+<li>生态库质量高，但选择成本高</li>
+<li>编译较慢，二进制体积小</li>
+</ul>
+<p><img src="/blog/assets/03-rust-safety-gate.svg" srcset="/blog/img/loading.gif" lazyload alt="Rust tiny_http 安全闸机"></p>
+<h2 id="Go-net-http"><a href="#Go-net-http" class="headerlink" title="Go (net&#x2F;http)"></a>Go (net&#x2F;http)</h2><p><strong>源码位置</strong>: <code>cpp-httplib/my_server_go/main.go</code></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;encoding/json&quot;</span><br>    <span class="hljs-string">&quot;io&quot;</span><br>    <span class="hljs-string">&quot;log&quot;</span><br>    <span class="hljs-string">&quot;net/http&quot;</span><br>    <span class="hljs-string">&quot;strings&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    mux := http.NewServeMux()<br>    mux.HandleFunc(<span class="hljs-string">&quot;/hi&quot;</span>, handleHi)<br>    mux.HandleFunc(<span class="hljs-string">&quot;/json&quot;</span>, handleJSON)<br>    mux.HandleFunc(<span class="hljs-string">&quot;/echo&quot;</span>, handleEcho)<br>    mux.HandleFunc(<span class="hljs-string">&quot;/post&quot;</span>, handlePost)<br>    log.Fatal(http.ListenAndServe(<span class="hljs-string">&quot;:8080&quot;</span>, mux))<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handleHi</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;<br>    w.Header().Set(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;text/plain; charset=utf-8&quot;</span>)<br>    w.Write([]<span class="hljs-type">byte</span>(<span class="hljs-string">&quot;Hello World! From Go&quot;</span>))<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handleJSON</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;<br>    json.NewEncoder(w).Encode(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;<br>        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Go&quot;</span>, <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;ok&quot;</span>,<br>    &#125;)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handleEcho</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;<br>    msg := r.URL.Query().Get(<span class="hljs-string">&quot;msg&quot;</span>)<br>    <span class="hljs-keyword">if</span> msg == <span class="hljs-string">&quot;&quot;</span> &#123; msg = <span class="hljs-string">&quot;no message&quot;</span> &#125;<br>    w.Header().Set(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;text/plain; charset=utf-8&quot;</span>)<br>    w.Write([]<span class="hljs-type">byte</span>(msg))<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handlePost</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;<br>    body, _ := io.ReadAll(r.Body)<br>    json.NewEncoder(w).Encode(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;<br>        <span class="hljs-string">&quot;received&quot;</span>: strings.TrimSpace(<span class="hljs-type">string</span>(body)),<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>特点</strong>:</p>
+<ul>
+<li>标准库即框架，<code>net/http</code> + <code>encoding/json</code> 开箱即用</li>
+<li>语法极简，无泛型&#x2F;宏&#x2F;生命周期负担</li>
+<li>goroutine 实现高并发，性能接近 C++</li>
+<li>编译极快，单二进制部署</li>
+</ul>
+<p><img src="/blog/assets/04-go-standard-workbench.svg" srcset="/blog/img/loading.gif" lazyload alt="Go net&#x2F;http 标准库工作台"></p>
+<h2 id="对比总结"><a href="#对比总结" class="headerlink" title="对比总结"></a>对比总结</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>C++ (cpp-httplib)</th>
+<th>Rust (tiny_http)</th>
+<th>Go (net&#x2F;http)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>代码量</td>
+<td>最少</td>
+<td>最多</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>上手难度</td>
+<td>低（有 C 基础）</td>
+<td>高（所有权&#x2F;借用）</td>
+<td><strong>最低</strong></td>
+</tr>
+<tr>
+<td>编译速度</td>
+<td>快</td>
+<td>慢</td>
+<td><strong>极快</strong></td>
+</tr>
+<tr>
+<td>内存安全</td>
+<td>手动管理</td>
+<td>编译期保证</td>
+<td>GC 保证</td>
+</tr>
+<tr>
+<td>并发模型</td>
+<td>线程池</td>
+<td>async&#x2F;线程</td>
+<td><strong>goroutine</strong></td>
+</tr>
+<tr>
+<td>标准库 HTTP</td>
+<td>无（第三方库）</td>
+<td>无（第三方库）</td>
+<td><strong>内置</strong></td>
+</tr>
+<tr>
+<td>部署</td>
+<td>动态&#x2F;静态链接</td>
+<td>单二进制</td>
+<td><strong>单二进制</strong></td>
+</tr>
+<tr>
+<td>适合场景</td>
+<td>嵌入式&#x2F;存量 C++</td>
+<td>高安全需求</td>
+<td><strong>通用后端</strong></td>
+</tr>
+</tbody></table>
+<h2 id="个人推荐"><a href="#个人推荐" class="headerlink" title="个人推荐"></a>个人推荐</h2><p>如果不用 C++ 或 Rust，<strong>Go 是最平衡的选择</strong>：</p>
+<ul>
+<li>上手速度：几天即可产出</li>
+<li>运行性能：接近 C++，远高于 Python&#x2F;Node</li>
+<li>生产成熟度：Docker&#x2F;K8s&#x2F;Terraform 等顶级项目均用 Go</li>
+<li>开发体验：<code>go fmt</code> &#x2F; <code>go test</code> &#x2F; <code>go build</code> 一站式体验</li>
+</ul>
+<blockquote>
+<p>当然，最终选择取决于团队背景和业务场景。没有银弹，只有最适合的工具。</p>
+</blockquote>
+<p><em>2026.06.25</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" class="category-chain-item">编程实践</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/blog/tags/Rust/" class="print-no-link">#Rust</a>
+      
+        <a href="/blog/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/blog/tags/HTTP/" class="print-no-link">#HTTP</a>
+      
+        <a href="/blog/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="print-no-link">#后端开发</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>三种语言实现 HTTP 服务对比：C++ vs Rust vs Go</div>
+      <div>https://1241262510.github.io/blog/2026/06/25/blog-http-server-comparison/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>凌晨两点的书桌</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2026/06/22/chatgpt-plus-google-play-subscription-guide/" title="不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险">
+                        <span class="hidden-mobile">不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <span>Powered by Hexo & Fluid</span>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

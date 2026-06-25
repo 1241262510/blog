@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Go net/http 标准库工作台</title>
+  <desc id="desc">小黑在标准库工作台上把请求舀进响应碗，旁边放着路由、JSON、goroutine 和构建工具。</desc>
+  <rect width="1600" height="900" fill="#fff"/>
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M404 421 C593 391 995 392 1190 424 C1207 485 1200 564 1173 623 C970 662 612 662 421 622 C394 558 390 482 404 421Z"/>
+    <path d="M476 625 C474 669 463 710 452 753"/>
+    <path d="M1112 625 C1124 669 1136 710 1149 753"/>
+    <path d="M512 471 C581 447 664 451 722 480 C708 531 640 554 557 536 C527 520 512 497 512 471Z"/>
+    <path d="M827 478 C902 449 990 454 1054 489 C1040 545 954 569 874 542 C847 525 831 504 827 478Z"/>
+    <path d="M1004 317 C1060 287 1137 288 1194 320 C1192 382 1131 416 1057 395 C1025 375 1008 350 1004 317Z"/>
+    <path d="M1037 344 C1077 333 1119 336 1155 352"/>
+    <path d="M1174 250 C1218 226 1281 228 1324 255 C1320 302 1271 328 1213 312 C1190 297 1177 275 1174 250Z"/>
+    <path d="M354 331 C307 313 251 317 217 345 C241 381 301 395 358 377"/>
+    <path d="M370 381 C322 365 266 371 233 401 C257 434 316 447 372 428"/>
+  </g>
+  <g stroke="#e97821" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M621 322 C665 354 708 388 752 429"/>
+    <path d="M780 447 C824 464 855 475 886 490"/>
+  </g>
+  <g>
+    <path d="M670 301 C669 248 700 221 747 228 C790 235 814 273 806 325 C797 378 758 403 716 390 C687 381 673 354 670 301Z" fill="#111"/>
+    <circle cx="711" cy="274" r="7" fill="#fff"/>
+    <circle cx="756" cy="275" r="7" fill="#fff"/>
+    <path d="M710 391 C699 424 688 455 675 486" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M765 390 C783 421 800 452 817 485" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M807 309 C863 322 914 332 970 342" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M673 305 C626 317 590 328 548 343" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M550 343 C581 371 614 394 650 421" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+  </g>
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round">
+    <path d="M920 376 C915 348 931 330 955 331 C985 332 996 358 982 384"/>
+    <path d="M918 391 C946 403 978 402 1004 389"/>
+    <path d="M1057 590 C1102 574 1153 580 1184 608"/>
+    <path d="M1081 549 C1128 533 1174 536 1214 563"/>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="36" fill="#111">
+    <text x="505" y="508">ServeMux</text>
+    <text x="880" y="512">JSON</text>
+    <text x="1028" y="344">goroutine</text>
+    <text x="1068" y="622">单二进制</text>
+    <text x="520" y="675">标准库</text>
+    <text x="842" y="675">编译快</text>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="36" fill="#d93025">
+    <text x="1210" y="280">推荐</text>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="30" fill="#2b6cb0">
+    <text x="224" y="317">未选工具</text>
+  </g>
+</svg>
