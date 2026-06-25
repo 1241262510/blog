@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/22/chatgpt-plus-google-play-subscription-guide/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/25/cpp23-cmake-lazyvim-workflow/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,27 +21,25 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过 Android 端 Google Play 订阅 ChatGPT Plus 的准备条件、操作步骤、续费取消方式，以及地区、支付和账号风险说明。">
+    <meta name="description" content="记录一套最小 CMake + C++23 + LazyVim&#x2F;clangd 项目配置流程，让编译参数、编辑器提示和日常练习保持一致。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/22/chatgpt-plus-google-play-subscription-guide/index.html">
+<meta property="og:title" content="CMake + C++23 + LazyVim 的最小配置流程">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/25/cpp23-cmake-lazyvim-workflow/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="通过 Android 端 Google Play 订阅 ChatGPT Plus 的准备条件、操作步骤、续费取消方式，以及地区、支付和账号风险说明。">
+<meta property="og:description" content="记录一套最小 CMake + C++23 + LazyVim&#x2F;clangd 项目配置流程，让编译参数、编辑器提示和日常练习保持一致。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1241262510.github.io/blog/assets/chatgpt-plus-google-play-cover.jpg">
-<meta property="article:published_time" content="2026-06-22T13:45:00.000Z">
-<meta property="article:modified_time" content="2026-06-22T13:40:02.741Z">
+<meta property="article:published_time" content="2026-06-25T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-25T10:26:31.341Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="Android">
-<meta property="article:tag" content="ChatGPT Plus">
-<meta property="article:tag" content="Google Play">
-<meta property="article:tag" content="订阅教程">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="CMake">
+<meta property="article:tag" content="LazyVim">
+<meta property="article:tag" content="clangd">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/chatgpt-plus-google-play-cover.jpg">
   
   
   
-  <title>不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险 - 凌晨两点的书桌</title>
+  <title>CMake + C++23 + LazyVim 的最小配置流程 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +327,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险</span>
+            <span id="subtitle">CMake + C++23 + LazyVim 的最小配置流程</span>
           
         </div>
 
@@ -340,8 +338,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-06-22 09:45" pubdate>
-          2026年6月22日 上午
+        <time datetime="2026-06-25 10:00" pubdate>
+          2026年6月25日 上午
         </time>
       </span>
     
@@ -352,7 +350,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          1.7k 字
         
       </span>
     
@@ -363,7 +361,7 @@
         
         
         
-          27 分钟
+          15 分钟
         
       </span>
     
@@ -402,142 +400,82 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险</h1>
+            <h1 id="seo-header">CMake + C++23 + LazyVim 的最小配置流程</h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/blog/assets/chatgpt-plus-google-play-cover.jpg" srcset="/blog/img/loading.gif" lazyload alt="视频封面"></p>
-<p>不少国内用户想订阅 ChatGPT Plus，却会卡在付款环节：官网无法接受手中的银行卡，代充又存在账号、隐私和售后风险，虚拟卡则可能带来额外费用和不稳定性。</p>
-<p>YouTube 作者“傅云飞飞”分享了一条思路：不把银行卡直接交给 OpenAI，而是通过 Android 端的 Google Play 完成应用内订阅。这样，支付由 Google Play 处理，ChatGPT 账号仍然由自己掌握。</p>
-<p>这篇文章对视频及作者配套图文教程进行了重新整理，同时补充必要的合规和风险说明。</p>
-<blockquote>
-<p>重要说明：本文是对公开视频中个人经验的整理，不代表 OpenAI、Google 或银行的官方承诺。产品价格、支持地区、银行卡受理范围和风控规则都可能变化。请只使用真实资料，并遵守所在地法律以及平台服务条款。</p>
-</blockquote>
-<h2 id="一、这套方法解决什么问题？"><a href="#一、这套方法解决什么问题？" class="headerlink" title="一、这套方法解决什么问题？"></a>一、这套方法解决什么问题？</h2><p>订阅 ChatGPT Plus，通常需要处理三个环节：</p>
-<ol>
-<li>注册并正常使用自己的 ChatGPT 账号；</li>
-<li>在需要时完成账号或相关产品的验证；</li>
-<li>使用平台接受的付款方式完成订阅。</li>
-</ol>
-<p>视频主要解决第三个问题。</p>
-<p>它的核心思路不是“让国内银行卡直接通过 OpenAI 官网”，而是把 Google Play 作为应用商店和支付渠道：用户在 Android 版 ChatGPT 中发起订阅，Google Play 负责扣款，订阅权益再同步到同一个 ChatGPT 账号。</p>
-<p><img src="/blog/assets/chatgpt-plus-google-play-01.png" srcset="/blog/img/loading.gif" lazyload alt="Google Play 作为银行卡与 ChatGPT Plus 之间的支付中转"></p>
-<p>这种方式的主要优点是：</p>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这是一套适合日常学习 C++23 的最小配置：用 <code>CMake</code> 负责真实编译，用 <code>clangd</code> 负责 LazyVim 里的语法检查和代码提示，再用 <code>compile_commands.json</code> 把两边的编译参数统一起来。</p>
+<p>目标不是搭一个复杂工程，而是先把“能写、能提示、能编译、能运行”这条链路打通。</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>一个最小项目可以长这样：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">cpp23-cmake-study/<br>├── CMakeLists.txt<br>├── .clangd<br>├── compile_commands.json<br>├── build/<br>└── src/<br>    └── main.cpp<br></code></pre></td></tr></table></figure>
+
+<p>几个关键文件的作用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">CMakeLists.txt          控制编译，指定 C++23<br>.clangd                 告诉 clangd / LazyVim 按 C++23 检查<br>compile_commands.json   给 clangd 提供真实编译参数<br>src/main.cpp            日常写代码的位置<br>build/                  CMake 生成的构建目录<br></code></pre></td></tr></table></figure>
+
+<h2 id="第一次配置"><a href="#第一次配置" class="headerlink" title="第一次配置"></a>第一次配置</h2><p>先进入项目目录。这里用通用路径举例，实际按自己的目录替换：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/code/cpp23-cmake-study<br></code></pre></td></tr></table></figure>
+
+<p>生成构建目录，并导出 <code>compile_commands.json</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br></code></pre></td></tr></table></figure>
+
+<p>把编译参数文件链接到项目根目录，方便 <code>clangd</code> 读取：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -sf build/compile_commands.json compile_commands.json<br></code></pre></td></tr></table></figure>
+
+<p>编译项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br></code></pre></td></tr></table></figure>
+
+<p>运行程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./build/cpp23_study<br></code></pre></td></tr></table></figure>
+
+<h2 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h2><p>平时打开代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim src/main.cpp<br></code></pre></td></tr></table></figure>
+
+<p>修改代码后，回到终端编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br></code></pre></td></tr></table></figure>
+
+<p>再运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./build/cpp23_study<br></code></pre></td></tr></table></figure>
+
+<p>多数时候，日常循环只需要这两个命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br>./build/cpp23_study<br></code></pre></td></tr></table></figure>
+
+<h2 id="在-LazyVim-里检查-LSP"><a href="#在-LazyVim-里检查-LSP" class="headerlink" title="在 LazyVim 里检查 LSP"></a>在 LazyVim 里检查 LSP</h2><p>打开 <code>src/main.cpp</code> 后执行：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">:LspInfo<br></code></pre></td></tr></table></figure>
+
+<p>如果能看到 <code>clangd</code>，说明 C++ 语法检查和提示已经启动。</p>
+<p>常用快捷键：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">&lt;Space&gt; c d    查看当前行错误<br>&lt;Space&gt; c a    尝试自动修复<br>&lt;Space&gt; c f    格式化代码<br>]d             跳到下一个错误<br>[d             跳到上一个错误<br></code></pre></td></tr></table></figure>
+
+<h2 id="写新练习"><a href="#写新练习" class="headerlink" title="写新练习"></a>写新练习</h2><p>初学阶段可以先直接改：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">src/main.cpp<br></code></pre></td></tr></table></figure>
+
+<p>例如这些内容都可以先放在 <code>main.cpp</code> 里练：</p>
 <ul>
-<li>不需要把 ChatGPT 账号交给代充商家；</li>
-<li>不需要购买来源不明的合租账号；</li>
-<li>不必长期向虚拟卡平台充值；</li>
-<li>订阅、续费和取消都能在自己的 Google Play 账号中管理。</li>
+<li>变量</li>
+<li>函数</li>
+<li><code>vector</code></li>
+<li><code>string</code></li>
+<li><code>class</code></li>
+<li><code>ranges</code></li>
+<li><code>std::println</code></li>
+<li><code>std::expected</code></li>
 </ul>
-<h2 id="二、开始前需要准备什么？"><a href="#二、开始前需要准备什么？" class="headerlink" title="二、开始前需要准备什么？"></a>二、开始前需要准备什么？</h2><p><img src="/blog/assets/chatgpt-plus-google-play-02.png" srcset="/blog/img/loading.gif" lazyload alt="订阅前需要准备自己的账号、Android 与 Google Play，以及支持境外线上支付的银行卡"></p>
-<h3 id="1-自己的-ChatGPT-账号"><a href="#1-自己的-ChatGPT-账号" class="headerlink" title="1. 自己的 ChatGPT 账号"></a>1. 自己的 ChatGPT 账号</h3><p>先在 <a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT 官网</a>注册并确认账号可以正常登录。建议始终使用自己的邮箱、手机号和设备，不要购买共享账号。</p>
-<h3 id="2-Android-手机和-Google-Play"><a href="#2-Android-手机和-Google-Play" class="headerlink" title="2. Android 手机和 Google Play"></a>2. Android 手机和 Google Play</h3><p>这条路径依赖 Google Play 的应用内订阅，因此需要能够正常使用 Google Play，并安装官方 ChatGPT App。下载时应核对开发者信息，避免安装来源不明的 APK。</p>
-<h3 id="3-支持境外线上交易的银行卡"><a href="#3-支持境外线上交易的银行卡" class="headerlink" title="3. 支持境外线上交易的银行卡"></a>3. 支持境外线上交易的银行卡</h3><p>视频作者列举了两类可能可用的银行卡：</p>
-<table>
-<thead>
-<tr>
-<th>卡片类型</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Visa、Mastercard 等单标信用卡</td>
-<td>通常需要申请和审核，是否成功以发卡行和 Google Play 实际受理结果为准</td>
-</tr>
-<tr>
-<td>支持 Mastercard 等国际卡组织的人民币借记卡</td>
-<td>办理门槛可能较低，但需要确认已开通境外线上支付</td>
-</tr>
-</tbody></table>
-<p>普通银联单标卡通常不能直接用于这类境外应用内订阅。即使卡面带有国际卡组织标识，也不代表一定能够付款，最终结果取决于发卡行、Google Play、账单资料和实时风控。</p>
-<p>办理或使用银行卡前，建议向银行确认以下事项：</p>
-<ul>
-<li>是否支持境外线上支付；</li>
-<li>是否需要单独开启“跨境线上支付”或类似功能；</li>
-<li>是否存在单笔或单日限额；</li>
-<li>是否收取货币转换费或其他费用；</li>
-<li>拒付后应该通过什么渠道查询原因。</li>
-</ul>
-<h2 id="三、整体操作流程"><a href="#三、整体操作流程" class="headerlink" title="三、整体操作流程"></a>三、整体操作流程</h2><p><img src="/blog/assets/chatgpt-plus-google-play-03.png" srcset="/blog/img/loading.gif" lazyload alt="从添加付款方式到 Plus 权益同步的订阅路径"></p>
-<h3 id="第一步：确认服务和应用在所在地区可用"><a href="#第一步：确认服务和应用在所在地区可用" class="headerlink" title="第一步：确认服务和应用在所在地区可用"></a>第一步：确认服务和应用在所在地区可用</h3><p>先确认 ChatGPT、Google Play 以及对应订阅服务在你实际所在的国家或地区受到支持。不要把网络节点当成地区合规性的替代品。</p>
-<p>Google Play 的国家或地区设置会影响应用可见性、货币和付款方式。支付资料中的姓名、国家、地址等信息应当真实，并与实际居住地和付款工具相符。使用虚假地址或错误地区资料，可能导致付款失败、资料审核、订阅取消或账号受限。</p>
-<h3 id="第二步：在-Google-Play-中添加付款方式"><a href="#第二步：在-Google-Play-中添加付款方式" class="headerlink" title="第二步：在 Google Play 中添加付款方式"></a>第二步：在 Google Play 中添加付款方式</h3><p>可以在 Google Play 或 <a target="_blank" rel="noopener" href="https://payments.google.com/">Google 付款中心</a>检查付款资料，并添加本人银行卡。</p>
-<p>填写时注意：</p>
-<ul>
-<li>持卡人信息应与银行记录一致；</li>
-<li>账单地址应使用真实、有效的信息；</li>
-<li>银行卡应已开启境外线上支付；</li>
-<li>借记卡需要预留足够余额；</li>
-<li>不要连续多次提交明显错误的信息，以免触发风控。</li>
-</ul>
-<h3 id="第三步：安装官方-ChatGPT-App"><a href="#第三步：安装官方-ChatGPT-App" class="headerlink" title="第三步：安装官方 ChatGPT App"></a>第三步：安装官方 ChatGPT App</h3><p>从 Google Play 安装官方 ChatGPT App，使用与网页端相同的 ChatGPT 账号登录。</p>
-<p>不要在第三方商店下载修改版客户端，也不要向任何人提供账号密码、短信验证码或付款验证码。</p>
-<h3 id="第四步：在-App-内发起-Plus-订阅"><a href="#第四步：在-App-内发起-Plus-订阅" class="headerlink" title="第四步：在 App 内发起 Plus 订阅"></a>第四步：在 App 内发起 Plus 订阅</h3><p>在 ChatGPT App 中进入升级页面，选择 ChatGPT Plus，并通过 Google Play 确认订阅。</p>
-<p>付款前应重点核对：</p>
-<ul>
-<li>页面显示的订阅方案；</li>
-<li>实际结算货币和金额；</li>
-<li>是否包含当地税费；</li>
-<li>自动续费日期；</li>
-<li>当前用于付款的 Google 账号和银行卡。</li>
-</ul>
-<p>视频发布时展示的价格为每月 19.99 美元，但不同地区、税费和应用商店定价可能不同。请以付款确认页和 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus">OpenAI 官方 Plus 说明</a>为准。</p>
-<h3 id="第五步：确认权益是否同步"><a href="#第五步：确认权益是否同步" class="headerlink" title="第五步：确认权益是否同步"></a>第五步：确认权益是否同步</h3><p>订阅成功后，在 ChatGPT App 中确认账号已显示 Plus 权益，再登录网页端检查同一账号的状态。</p>
-<p>如果 App 已扣款但权益没有出现，不要重复购买。先确认登录的是同一个 ChatGPT 账号，再查看 Google Play 订单记录，并通过 Google Play 或 OpenAI 官方支持渠道处理。</p>
-<h2 id="四、续费和取消在哪里操作？"><a href="#四、续费和取消在哪里操作？" class="headerlink" title="四、续费和取消在哪里操作？"></a>四、续费和取消在哪里操作？</h2><p>通过 Google Play 购买的订阅，应当在 Google Play 中管理，而不是只在 ChatGPT 网页端查找取消入口。</p>
-<p>通常可以进入：</p>
-<blockquote>
-<p>Google Play → 个人资料 → 付款和订阅 → 订阅 → ChatGPT</p>
-</blockquote>
-<p>在这里可以查看下一次扣款日期、更新付款方式或取消自动续费。取消后，权益通常会持续到当前计费周期结束，具体以页面提示为准。</p>
-<p>如果使用借记卡，请在续费日前保留足够余额。余额不足、银行拒付或支付资料异常，都可能导致续费失败。</p>
-<h2 id="五、常见失败原因"><a href="#五、常见失败原因" class="headerlink" title="五、常见失败原因"></a>五、常见失败原因</h2><h3 id="1-银行卡无法添加"><a href="#1-银行卡无法添加" class="headerlink" title="1. 银行卡无法添加"></a>1. 银行卡无法添加</h3><p>可能原因包括：</p>
-<ul>
-<li>银行卡不支持境外线上交易；</li>
-<li>跨境支付功能尚未开启；</li>
-<li>卡片类型不被 Google Play 接受；</li>
-<li>持卡人或账单信息不一致；</li>
-<li>银行或平台触发了风控。</li>
-</ul>
-<p>不要只凭“别人同一家银行成功过”判断自己的卡一定可用。同一银行的不同卡种、开户地区和风控状态可能完全不同。</p>
-<h3 id="2-能添加卡，但支付失败"><a href="#2-能添加卡，但支付失败" class="headerlink" title="2. 能添加卡，但支付失败"></a>2. 能添加卡，但支付失败</h3><p>先检查余额、限额、短信或银行 App 中的交易确认，再联系发卡行确认是否拦截了境外线上交易。避免短时间内反复付款。</p>
-<h3 id="3-看不到-ChatGPT-App-或-Plus-入口"><a href="#3-看不到-ChatGPT-App-或-Plus-入口" class="headerlink" title="3. 看不到 ChatGPT App 或 Plus 入口"></a>3. 看不到 ChatGPT App 或 Plus 入口</h3><p>这通常与实际所在地区、Google Play 资料、应用版本、账号资格或服务分批开放有关。不要通过伪造地址等方式强行绕过地区限制，应以平台官方支持范围为准。</p>
-<h3 id="4-已扣款但账号没有升级"><a href="#4-已扣款但账号没有升级" class="headerlink" title="4. 已扣款但账号没有升级"></a>4. 已扣款但账号没有升级</h3><p>依次检查：</p>
-<ol>
-<li>Google Play 是否生成了有效订单；</li>
-<li>ChatGPT App 与网页端是否登录同一个账号；</li>
-<li>App 是否提供“恢复购买”或类似入口；</li>
-<li>仍未解决时，携带订单号联系官方支持。</li>
-</ol>
-<h2 id="六、为什么不建议代充和共享账号？"><a href="#六、为什么不建议代充和共享账号？" class="headerlink" title="六、为什么不建议代充和共享账号？"></a>六、为什么不建议代充和共享账号？</h2><p>代充看似省事，但常见风险包括：</p>
-<ul>
-<li>需要向陌生人交出账号或登录权限；</li>
-<li>付款来源不透明，可能发生撤单或争议；</li>
-<li>出现问题后缺少可靠售后；</li>
-<li>共享账号会暴露聊天记录和文件；</li>
-<li>账号归属、续费和恢复能力不在自己手里。</li>
-</ul>
-<p>无论采用哪种订阅渠道，最重要的原则都是：账号归自己、付款方式归自己、资料真实、订单可追溯。</p>
-<p><img src="/blog/assets/chatgpt-plus-google-play-04.png" srcset="/blog/img/loading.gif" lazyload alt="真实资料与可追溯订单构成订阅路径的安全边界"></p>
-<h2 id="七、这条路径是否值得使用？"><a href="#七、这条路径是否值得使用？" class="headerlink" title="七、这条路径是否值得使用？"></a>七、这条路径是否值得使用？</h2><p>如果你所在的地区受到支持，拥有真实有效的 Google Play 付款资料，并且自己的银行卡能够完成境外线上交易，那么通过官方 App 内购订阅，比代充、合租号和来历不明的虚拟卡更可控。</p>
-<p>但它并不是“任何国内银行卡都能成功”的万能方案，也不能消除地区限制和平台风控。视频中的成功案例只能证明某一时间、某种卡片和某个账号环境下可行，不能作为长期有效的保证。</p>
-<p>建议把判断标准简化为四点：</p>
-<ul>
-<li>是否符合 OpenAI 和 Google 的地区要求；</li>
-<li>是否使用真实、匹配的付款资料；</li>
-<li>是否由自己的银行卡和账号完成付款；</li>
-<li>是否能在官方渠道查询、续费和取消。</li>
-</ul>
-<p>四项都满足，再考虑订阅；任何一项需要伪造或交出账号，都不值得冒险。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=o9GhNogsFuI">原始视频：不用代充、不买虚拟卡！用自己的国内银行卡订上 ChatGPT Plus</a></li>
-<li><a target="_blank" rel="noopener" href="https://feifei.537393.xyz/posts/chatgpt-plus-google-play/">作者配套图文教程：国内银行卡也能订 ChatGPT Plus</a></li>
-<li><a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT 官网</a></li>
-<li><a target="_blank" rel="noopener" href="https://payments.google.com/">Google 付款中心</a></li>
-<li><a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus">OpenAI 官方说明：What is ChatGPT Plus?</a></li>
-</ul>
-<p>本文整理自傅云飞飞于 2026 年 6 月发布的视频及配套文章。操作界面、价格和政策可能随时调整，请以实际付款页面和官方说明为准。</p>
+<p>等练习变多之后，再考虑拆成多个源文件或多个小项目。</p>
+<h2 id="新建另一个练习项目"><a href="#新建另一个练习项目" class="headerlink" title="新建另一个练习项目"></a>新建另一个练习项目</h2><p>如果已经有一个可用模板，可以直接复制一份：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> -R cpp23-cmake-study cpp23-vector-study<br><span class="hljs-built_in">cd</span> cpp23-vector-study<br><span class="hljs-built_in">rm</span> -rf build compile_commands.json<br>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br><span class="hljs-built_in">ln</span> -sf build/compile_commands.json compile_commands.json<br>cmake --build build<br></code></pre></td></tr></table></figure>
+
+<p>然后打开：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim src/main.cpp<br></code></pre></td></tr></table></figure>
+
+<p>这样新项目会重新生成自己的构建目录和编译参数文件，避免复用旧项目里的缓存。</p>
+<h2 id="最重要的顺序"><a href="#最重要的顺序" class="headerlink" title="最重要的顺序"></a>最重要的顺序</h2><p>可以把整个流程记成下面这几步：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">1. cd 到项目目录<br>2. nvim src/main.cpp 写代码<br>3. :LspInfo 确认 clangd 正常<br>4. cmake --build build 编译<br>5. ./build/cpp23_study 运行<br>6. 根据错误提示修改代码<br>7. 重复 4-6<br></code></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这套配置的核心只有一句话：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">CMake 负责真实编译，clangd 负责编辑器提示，compile_commands.json 负责让两者使用同一套编译参数。<br></code></pre></td></tr></table></figure>
+
+<p>只要这三者对齐，LazyVim 里的提示和终端里的真实编译结果就不会各说各话。后面无论是练 C++ 基础，还是逐步学习 C++23 的新特性，都可以从这个最小工程开始。</p>
 
                 
               </div>
@@ -556,7 +494,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  <a href="/blog/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
   
   
 
@@ -571,13 +509,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/ChatGPT-Plus/" class="print-no-link">#ChatGPT Plus</a>
+        <a href="/blog/tags/C/" class="print-no-link">#C++</a>
       
-        <a href="/blog/tags/Google-Play/" class="print-no-link">#Google Play</a>
+        <a href="/blog/tags/CMake/" class="print-no-link">#CMake</a>
       
-        <a href="/blog/tags/Android/" class="print-no-link">#Android</a>
+        <a href="/blog/tags/LazyVim/" class="print-no-link">#LazyVim</a>
       
-        <a href="/blog/tags/%E8%AE%A2%E9%98%85%E6%95%99%E7%A8%8B/" class="print-no-link">#订阅教程</a>
+        <a href="/blog/tags/clangd/" class="print-no-link">#clangd</a>
       
     </div>
   
@@ -589,8 +527,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险</div>
-      <div>https://1241262510.github.io/blog/2026/06/22/chatgpt-plus-google-play-subscription-guide/</div>
+      <div>CMake + C++23 + LazyVim 的最小配置流程</div>
+      <div>https://1241262510.github.io/blog/2026/06/25/cpp23-cmake-lazyvim-workflow/</div>
     </div>
     <div class="license-meta">
       
@@ -602,7 +540,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年6月22日</div>
+          <div>2026年6月25日</div>
         </div>
       
       
@@ -634,9 +572,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/06/25/cpp23-cmake-lazyvim-workflow/" title="CMake + C++23 + LazyVim 的最小配置流程">
+                      <a href="/blog/2026/06/25/blog-http-server-comparison/" title="三种语言实现 HTTP 服务对比：C++ vs Rust vs Go">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CMake + C++23 + LazyVim 的最小配置流程</span>
+                        <span class="hidden-mobile">三种语言实现 HTTP 服务对比：C++ vs Rust vs Go</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -644,8 +582,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/06/21/google-translate-realtime-conversation/" title="Google 翻译升级：打开 App，就能直接进行实时翻译了">
-                        <span class="hidden-mobile">Google 翻译升级：打开 App，就能直接进行实时翻译了</span>
+                      <a href="/blog/2026/06/22/chatgpt-plus-google-play-subscription-guide/" title="不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险">
+                        <span class="hidden-mobile">不找代充、不买虚拟卡：通过 Google Play 订阅 ChatGPT Plus 的方法与风险</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
