@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">同一组 HTTP 接口需求</title>
+  <desc id="desc">小黑把四枚印章按进同一张 HTTP 试卷，旁边有 C++、Rust、Go 三个工具盒。</desc>
+  <rect width="1600" height="900" fill="#fff"/>
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M445 150 C650 126 880 126 1102 152 C1135 346 1126 543 1092 729 C878 764 642 762 455 726 C424 545 421 339 445 150Z"/>
+    <path d="M506 220 C661 206 886 209 1031 225"/>
+    <path d="M524 604 C667 632 883 633 1027 607"/>
+    <path d="M554 315 C636 300 715 304 790 321 C805 367 795 421 779 461 C703 478 621 475 548 459 C535 408 535 359 554 315Z"/>
+    <path d="M827 310 C900 296 982 301 1048 320 C1063 373 1050 425 1036 462 C965 479 890 476 823 459 C809 414 810 355 827 310Z"/>
+    <path d="M552 502 C636 489 716 493 790 511 C803 558 796 605 779 648 C703 665 620 663 549 648 C535 597 536 548 552 502Z"/>
+    <path d="M828 502 C904 489 982 492 1047 512 C1061 560 1050 608 1033 649 C966 664 891 664 824 648 C811 602 811 548 828 502Z"/>
+    <path d="M528 774 C477 809 395 823 333 810"/>
+    <path d="M777 782 C753 826 694 848 629 841"/>
+    <path d="M1052 764 C1111 813 1189 827 1255 809"/>
+    <path d="M303 778 C358 748 425 751 468 785 C452 825 375 842 309 819Z"/>
+    <path d="M588 806 C657 777 732 783 775 817 C748 852 664 862 595 838Z"/>
+    <path d="M1207 778 C1264 750 1339 753 1380 787 C1353 824 1280 839 1212 817Z"/>
+  </g>
+  <g stroke="#e97821" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M472 786 C520 738 565 700 609 650"/>
+    <path d="M764 809 C779 743 789 698 794 648"/>
+    <path d="M1206 786 C1140 740 1089 693 1036 647"/>
+  </g>
+  <g>
+    <path d="M720 407 C716 351 748 327 792 336 C827 344 846 378 838 432 C831 481 790 506 751 488 C729 477 722 452 720 407Z" fill="#111"/>
+    <circle cx="759" cy="386" r="7" fill="#fff"/>
+    <circle cx="802" cy="385" r="7" fill="#fff"/>
+    <path d="M746 492 C737 526 729 553 716 579" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+    <path d="M802 493 C817 526 831 555 844 580" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+    <path d="M707 375 C676 354 653 335 624 315" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+    <path d="M846 376 C882 356 915 336 946 315" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+    <rect x="603" y="278" width="82" height="52" rx="8" fill="#fff" stroke="#111" stroke-width="5"/>
+    <rect x="922" y="278" width="82" height="52" rx="8" fill="#fff" stroke="#111" stroke-width="5"/>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="38" fill="#111">
+    <text x="535" y="201">同一需求</text>
+    <text x="585" y="385">/hi</text>
+    <text x="866" y="386">/json</text>
+    <text x="585" y="575">/echo</text>
+    <text x="872" y="577">/post</text>
+    <text x="330" y="803">C++</text>
+    <text x="645" y="833">Rust</text>
+    <text x="1288" y="806">Go</text>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="34" fill="#d93025">
+    <text x="957" y="694">404 角落</text>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="30" fill="#2b6cb0">
+    <text x="1012" y="206">四个接口</text>
+  </g>
+</svg>

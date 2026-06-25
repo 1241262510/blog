@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Rust tiny_http 安全闸机</title>
+  <desc id="desc">小黑被类型、安全与样板标签卡住，但仍把请求推向响应出口。</desc>
+  <rect width="1600" height="900" fill="#fff"/>
+  <g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M640 204 C731 182 884 183 973 207 C1002 351 1003 551 973 696 C874 725 727 722 635 693 C609 544 612 350 640 204Z"/>
+    <path d="M676 257 C748 237 867 238 936 258"/>
+    <path d="M670 641 C748 665 869 663 940 639"/>
+    <path d="M661 321 C761 338 868 337 952 317"/>
+    <path d="M657 413 C762 392 864 394 956 418"/>
+    <path d="M660 510 C760 532 867 530 954 507"/>
+    <path d="M270 426 C365 393 462 400 536 435 C520 488 442 522 334 502 C303 483 281 463 270 426Z"/>
+    <path d="M1060 440 C1160 410 1269 415 1354 458 C1341 515 1240 549 1132 521 C1099 501 1075 473 1060 440Z"/>
+    <path d="M1131 331 C1177 296 1260 293 1314 326 C1304 382 1243 410 1175 394 C1146 378 1135 356 1131 331Z"/>
+  </g>
+  <g stroke="#e97821" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M532 454 C596 450 642 448 703 448"/>
+    <path d="M889 454 C958 455 1021 457 1079 462"/>
+  </g>
+  <g stroke="#d93025" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M687 321 L721 287"/>
+    <path d="M889 416 L931 383"/>
+    <path d="M706 510 L739 475"/>
+  </g>
+  <g>
+    <path d="M736 420 C732 367 759 340 806 346 C850 351 874 391 866 443 C858 494 821 520 779 508 C750 499 739 473 736 420Z" fill="#111"/>
+    <circle cx="777" cy="391" r="7" fill="#fff"/>
+    <circle cx="823" cy="393" r="7" fill="#fff"/>
+    <path d="M772 510 C761 543 750 578 737 612" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M826 510 C843 543 859 578 874 613" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M733 431 C687 422 647 416 607 409" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M866 432 C910 423 949 418 988 413" stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"/>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="36" fill="#111">
+    <text x="703" y="300">mut</text>
+    <text x="845" y="398">unwrap</text>
+    <text x="696" y="492">Header</text>
+    <text x="825" y="548">query解析</text>
+    <text x="318" y="459">request</text>
+    <text x="1140" y="477">response</text>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="34" fill="#2b6cb0">
+    <text x="1161" y="350">内存安全</text>
+  </g>
+  <g font-family="Kaiti SC, STKaiti, KaiTi, serif" font-size="32" fill="#d93025">
+    <text x="612" y="745">编译慢一点</text>
+  </g>
+</svg>
