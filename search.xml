@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>用 C++ 项目测试 Neovim LazyVim 的代码跳转</title>
+      <link href="/blog/2026/06/26/neovim-lazyvim-cpp-navigation/"/>
+      <url>/blog/2026/06/26/neovim-lazyvim-cpp-navigation/</url>
+      
+        <content type="html"><![CDATA[<p>在学习 Neovim 的过程中，代码跳转是最核心的日常操作之一。光靠文档记快捷键很枯燥，不如动手建一个真实的 C++ 项目来边用边学。</p><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">nav_demo/<br>├── CMakeLists.txt<br>├── compile_commands.json<br>├── animal.hpp / animal.cpp   ← 抽象基类<br>├── dog.hpp / dog.cpp         ← 继承子类<br>├── utils.hpp / utils.cpp     ← 工具函数（命名空间）<br>└── main.cpp                  ← 入口<br></code></pre></td></tr></table></figure><p>三层结构刚好覆盖跳转的几个典型场景：<strong>跨文件跳转</strong>、<strong>虚函数跳转到实现</strong>、<strong>命名空间内的函数引用</strong>。</p><p><img src="/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/01-code-practice-field.png" alt="用小型 C++ 项目练习 LazyVim 代码跳转"></p><h2 id="前置：让-clangd-认识你的项目"><a href="#前置：让-clangd-认识你的项目" class="headerlink" title="前置：让 clangd 认识你的项目"></a>前置：让 clangd 认识你的项目</h2><p>LazyVim 的跳转依赖 <code>clangd</code> LSP，clangd 需要 <code>compile_commands.json</code> 才能理解项目的编译依赖关系。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br><span class="hljs-built_in">cp</span> build/compile_commands.json .<br>cmake --build build &amp;&amp; ./build/nav_demo<br></code></pre></td></tr></table></figure><p>输出：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">Rex (age 3) says: Woof!<br>Buddy (age 7) says: Woof!<br>Max (age 1) says: Woof!<br>Animals older than 2: 2<br></code></pre></td></tr></table></figure><p>把 <code>compile_commands.json</code> 放到项目根目录，clangd 启动时会自动找到它。没有这个文件，跳转功能会大打折扣。</p><p><img src="/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/02-clangd-project-pass.png" alt="compile_commands.json 让 clangd 读懂项目"></p><h2 id="跳转命令实战"><a href="#跳转命令实战" class="headerlink" title="跳转命令实战"></a>跳转命令实战</h2><p><img src="/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/03-lsp-jump-tunnels.png" alt="LazyVim LSP 跳转命令像代码地下通道"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim nav_demo/main.cpp<br></code></pre></td></tr></table></figure><h3 id="gd-跳转到定义"><a href="#gd-跳转到定义" class="headerlink" title="gd - 跳转到定义"></a>gd - 跳转到定义</h3><p><code>main.cpp</code> 里调用了 <code>utils::printAll</code>：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// main.cpp</span><br>utils::<span class="hljs-built_in">printAll</span>(animals);   <span class="hljs-comment">// 光标在 printAll 上，按 gd</span><br></code></pre></td></tr></table></figure><p>按 <code>gd</code> 后跳进 <code>utils.cpp</code>，看到函数体：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// utils.cpp</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printAll</span><span class="hljs-params">(<span class="hljs-type">const</span> std::vector&lt;std::unique_ptr&lt;Animal&gt;&gt;&amp; animals)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; a : animals)<br>        <span class="hljs-built_in">printAnimal</span>(*a);       <span class="hljs-comment">// 再按 gd 可以继续跳进 printAnimal</span><br>&#125;<br></code></pre></td></tr></table></figure><p>光标在 <code>Dog</code> 类名上按 <code>gd</code>，跳到 <code>dog.hpp</code> 的类定义：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// dog.hpp</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> : <span class="hljs-keyword">public</span> Animal &#123;   <span class="hljs-comment">// gd 落点</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Dog</span>(<span class="hljs-type">const</span> std::string&amp; name, <span class="hljs-type">int</span> age, <span class="hljs-type">const</span> std::string&amp; breed);<br>    <span class="hljs-function">std::string <span class="hljs-title">speak</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span></span>;<br>    ...<br>&#125;;<br></code></pre></td></tr></table></figure><h3 id="gD-跳转到声明"><a href="#gD-跳转到声明" class="headerlink" title="gD - 跳转到声明"></a>gD - 跳转到声明</h3><p>在 <code>utils.cpp</code> 里光标放在 <code>printAnimal</code> 上，按 <code>gD</code> 跳回头文件的声明行：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// utils.hpp  gD 落点</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printAnimal</span><span class="hljs-params">(<span class="hljs-type">const</span> Animal&amp; animal)</span></span>;<br></code></pre></td></tr></table></figure><p><code>.cpp</code> ↔ <code>.hpp</code> 来回切换，比手动搜索快得多。</p><h3 id="gr-查找所有引用"><a href="#gr-查找所有引用" class="headerlink" title="gr - 查找所有引用"></a>gr - 查找所有引用</h3><p>光标放在 <code>Animal</code> 类名上，按 <code>gr</code>，弹出列表：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">animal.hpp:4   class Animal &#123;<br>dog.hpp:2      #include &quot;animal.hpp&quot;<br>dog.hpp:4      class Dog : public Animal &#123;<br>utils.hpp:2    #include &quot;animal.hpp&quot;<br>utils.hpp:7    void printAnimal(const Animal&amp; animal);<br>main.cpp:7     std::vector&lt;std::unique_ptr&lt;Animal&gt;&gt; animals;<br></code></pre></td></tr></table></figure><p>这是重构前的必备操作：改名之前先看清楚影响范围。</p><h3 id="gI-跳转到实现"><a href="#gI-跳转到实现" class="headerlink" title="gI - 跳转到实现"></a>gI - 跳转到实现</h3><p><code>animal.hpp</code> 里声明了纯虚函数：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// animal.hpp</span><br><span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">speak</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;   <span class="hljs-comment">// 光标在 speak 上，按 gI</span><br></code></pre></td></tr></table></figure><p>列出所有具体实现：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// dog.cpp  gI 落点</span><br><span class="hljs-function">std::string <span class="hljs-title">Dog::speak</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Woof!&quot;</span>; &#125;<br></code></pre></td></tr></table></figure><p>项目有多个子类时，这个命令能快速找到“到底谁实现了这个接口”。</p><h3 id="gy-跳转到类型定义"><a href="#gy-跳转到类型定义" class="headerlink" title="gy - 跳转到类型定义"></a>gy - 跳转到类型定义</h3><p><code>main.cpp</code> 里光标放在变量 <code>animals</code> 上：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::vector&lt;std::unique_ptr&lt;Animal&gt;&gt; animals;   <span class="hljs-comment">// 光标在 animals 上，按 gy</span><br></code></pre></td></tr></table></figure><p>跳到 <code>Animal</code> 的类型定义，也就是 <code>animal.hpp</code>。遇到不熟悉的类型时最好用。</p><h2 id="符号搜索（Telescope）"><a href="#符号搜索（Telescope）" class="headerlink" title="符号搜索（Telescope）"></a>符号搜索（Telescope）</h2><p>上面的命令都是“从当前光标出发”，下面两个是“主动搜索”：</p><table><thead><tr><th>快捷键</th><th>功能</th></tr></thead><tbody><tr><td><code>&lt;leader&gt;ss</code></td><td>列出当前文件所有符号</td></tr><tr><td><code>&lt;leader&gt;sS</code></td><td>全局搜索符号</td></tr></tbody></table><p><code>&lt;leader&gt;sS</code> 输入 <code>speak</code>，会列出声明和所有实现，基于 LSP 语义，不是文本匹配，比 <code>grep</code> 精准。</p><h2 id="跳转历史：来回穿梭"><a href="#跳转历史：来回穿梭" class="headerlink" title="跳转历史：来回穿梭"></a>跳转历史：来回穿梭</h2><p>连续跳了几层，比如 <code>main → utils.cpp → animal.hpp</code> 之后：</p><ul><li><code>&lt;C-o&gt;</code>：跳回上一个位置</li><li><code>&lt;C-i&gt;</code>：向前跳</li></ul><p>养成习惯：跳过去看完，<code>&lt;C-o&gt;</code> 回来继续，不要迷失在文件里。</p><h2 id="速查表"><a href="#速查表" class="headerlink" title="速查表"></a>速查表</h2><table><thead><tr><th>场景</th><th>命令</th></tr></thead><tbody><tr><td>看函数&#x2F;类的具体实现</td><td><code>gd</code></td></tr><tr><td>从实现跳回声明</td><td><code>gD</code></td></tr><tr><td>找这个符号被谁用了</td><td><code>gr</code></td></tr><tr><td>虚函数找子类实现</td><td><code>gI</code></td></tr><tr><td>不认识这个类型</td><td><code>gy</code></td></tr><tr><td>当前文件有哪些符号</td><td><code>&lt;leader&gt;ss</code></td></tr><tr><td>全局找某个符号</td><td><code>&lt;leader&gt;sS</code></td></tr><tr><td>跳回来</td><td><code>&lt;C-o&gt;</code></td></tr></tbody></table><p><code>gd</code> 和 <code>gr</code> 是最高频的两个，先把这两个练熟就够用了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> LazyVim </tag>
+            
+            <tag> clangd </tag>
+            
+            <tag> Neovim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>三种语言实现 HTTP 服务对比：C++ vs Rust vs Go</title>
       <link href="/blog/2026/06/25/blog-http-server-comparison/"/>
       <url>/blog/2026/06/25/blog-http-server-comparison/</url>
@@ -41,7 +72,7 @@
       <link href="/blog/2026/06/25/cpp23-cmake-lazyvim-workflow/"/>
       <url>/blog/2026/06/25/cpp23-cmake-lazyvim-workflow/</url>
       
-        <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这是一套适合日常学习 C++23 的最小配置：用 <code>CMake</code> 负责真实编译，用 <code>clangd</code> 负责 LazyVim 里的语法检查和代码提示，再用 <code>compile_commands.json</code> 把两边的编译参数统一起来。</p><p>目标不是搭一个复杂工程，而是先把“能写、能提示、能编译、能运行”这条链路打通。</p><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>一个最小项目可以长这样：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">cpp23-cmake-study/<br>├── CMakeLists.txt<br>├── .clangd<br>├── compile_commands.json<br>├── build/<br>└── src/<br>    └── main.cpp<br></code></pre></td></tr></table></figure><p>几个关键文件的作用：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">CMakeLists.txt          控制编译，指定 C++23<br>.clangd                 告诉 clangd / LazyVim 按 C++23 检查<br>compile_commands.json   给 clangd 提供真实编译参数<br>src/main.cpp            日常写代码的位置<br>build/                  CMake 生成的构建目录<br></code></pre></td></tr></table></figure><h2 id="第一次配置"><a href="#第一次配置" class="headerlink" title="第一次配置"></a>第一次配置</h2><p>先进入项目目录。这里用通用路径举例，实际按自己的目录替换：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/code/cpp23-cmake-study<br></code></pre></td></tr></table></figure><p>生成构建目录，并导出 <code>compile_commands.json</code>：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br></code></pre></td></tr></table></figure><p>把编译参数文件链接到项目根目录，方便 <code>clangd</code> 读取：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -sf build/compile_commands.json compile_commands.json<br></code></pre></td></tr></table></figure><p>编译项目：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br></code></pre></td></tr></table></figure><p>运行程序：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./build/cpp23_study<br></code></pre></td></tr></table></figure><h2 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h2><p>平时打开代码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim src/main.cpp<br></code></pre></td></tr></table></figure><p>修改代码后，回到终端编译：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br></code></pre></td></tr></table></figure><p>再运行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./build/cpp23_study<br></code></pre></td></tr></table></figure><p>多数时候，日常循环只需要这两个命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br>./build/cpp23_study<br></code></pre></td></tr></table></figure><h2 id="在-LazyVim-里检查-LSP"><a href="#在-LazyVim-里检查-LSP" class="headerlink" title="在 LazyVim 里检查 LSP"></a>在 LazyVim 里检查 LSP</h2><p>打开 <code>src/main.cpp</code> 后执行：</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">:LspInfo<br></code></pre></td></tr></table></figure><p>如果能看到 <code>clangd</code>，说明 C++ 语法检查和提示已经启动。</p><p>常用快捷键：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">&lt;Space&gt; c d    查看当前行错误<br>&lt;Space&gt; c a    尝试自动修复<br>&lt;Space&gt; c f    格式化代码<br>]d             跳到下一个错误<br>[d             跳到上一个错误<br></code></pre></td></tr></table></figure><h2 id="写新练习"><a href="#写新练习" class="headerlink" title="写新练习"></a>写新练习</h2><p>初学阶段可以先直接改：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">src/main.cpp<br></code></pre></td></tr></table></figure><p>例如这些内容都可以先放在 <code>main.cpp</code> 里练：</p><ul><li>变量</li><li>函数</li><li><code>vector</code></li><li><code>string</code></li><li><code>class</code></li><li><code>ranges</code></li><li><code>std::println</code></li><li><code>std::expected</code></li></ul><p>等练习变多之后，再考虑拆成多个源文件或多个小项目。</p><h2 id="新建另一个练习项目"><a href="#新建另一个练习项目" class="headerlink" title="新建另一个练习项目"></a>新建另一个练习项目</h2><p>如果已经有一个可用模板，可以直接复制一份：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> -R cpp23-cmake-study cpp23-vector-study<br><span class="hljs-built_in">cd</span> cpp23-vector-study<br><span class="hljs-built_in">rm</span> -rf build compile_commands.json<br>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br><span class="hljs-built_in">ln</span> -sf build/compile_commands.json compile_commands.json<br>cmake --build build<br></code></pre></td></tr></table></figure><p>然后打开：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim src/main.cpp<br></code></pre></td></tr></table></figure><p>这样新项目会重新生成自己的构建目录和编译参数文件，避免复用旧项目里的缓存。</p><h2 id="最重要的顺序"><a href="#最重要的顺序" class="headerlink" title="最重要的顺序"></a>最重要的顺序</h2><p>可以把整个流程记成下面这几步：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">1. cd 到项目目录<br>2. nvim src/main.cpp 写代码<br>3. :LspInfo 确认 clangd 正常<br>4. cmake --build build 编译<br>5. ./build/cpp23_study 运行<br>6. 根据错误提示修改代码<br>7. 重复 4-6<br></code></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这套配置的核心只有一句话：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">CMake 负责真实编译，clangd 负责编辑器提示，compile_commands.json 负责让两者使用同一套编译参数。<br></code></pre></td></tr></table></figure><p>只要这三者对齐，LazyVim 里的提示和终端里的真实编译结果就不会各说各话。后面无论是练 C++ 基础，还是逐步学习 C++23 的新特性，都可以从这个最小工程开始。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这是一套适合日常学习 C++23 的最小配置：用 <code>CMake</code> 负责真实编译，用 <code>clangd</code> 负责 LazyVim 里的语法检查和代码提示，再用 <code>compile_commands.json</code> 把两边的编译参数统一起来。</p><p>目标不是搭一个复杂工程，而是先把“能写、能提示、能编译、能运行”这条链路打通。</p><p><img src="/blog/assets/cpp23-cmake-lazyvim-workflow-illustrations/01-compile-params-align.png"></p><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>一个最小项目可以长这样：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">cpp23-cmake-study/<br>├── CMakeLists.txt<br>├── .clangd<br>├── compile_commands.json<br>├── build/<br>└── src/<br>    └── main.cpp<br></code></pre></td></tr></table></figure><p>几个关键文件的作用：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">CMakeLists.txt          控制编译，指定 C++23<br>.clangd                 告诉 clangd / LazyVim 按 C++23 检查<br>compile_commands.json   给 clangd 提供真实编译参数<br>src/main.cpp            日常写代码的位置<br>build/                  CMake 生成的构建目录<br></code></pre></td></tr></table></figure><h2 id="第一次配置"><a href="#第一次配置" class="headerlink" title="第一次配置"></a>第一次配置</h2><p>先进入项目目录。这里用通用路径举例，实际按自己的目录替换：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/code/cpp23-cmake-study<br></code></pre></td></tr></table></figure><p>生成构建目录，并导出 <code>compile_commands.json</code>：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br></code></pre></td></tr></table></figure><p>把编译参数文件链接到项目根目录，方便 <code>clangd</code> 读取：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -sf build/compile_commands.json compile_commands.json<br></code></pre></td></tr></table></figure><p>编译项目：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br></code></pre></td></tr></table></figure><p>运行程序：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./build/cpp23_study<br></code></pre></td></tr></table></figure><h2 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h2><p>平时打开代码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim src/main.cpp<br></code></pre></td></tr></table></figure><p>修改代码后，回到终端编译：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br></code></pre></td></tr></table></figure><p>再运行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./build/cpp23_study<br></code></pre></td></tr></table></figure><p>多数时候，日常循环只需要这两个命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake --build build<br>./build/cpp23_study<br></code></pre></td></tr></table></figure><p><img src="/blog/assets/cpp23-cmake-lazyvim-workflow-illustrations/02-daily-build-loop.png"></p><h2 id="在-LazyVim-里检查-LSP"><a href="#在-LazyVim-里检查-LSP" class="headerlink" title="在 LazyVim 里检查 LSP"></a>在 LazyVim 里检查 LSP</h2><p>打开 <code>src/main.cpp</code> 后执行：</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">:LspInfo<br></code></pre></td></tr></table></figure><p>如果能看到 <code>clangd</code>，说明 C++ 语法检查和提示已经启动。</p><p>常用快捷键：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">&lt;Space&gt; c d    查看当前行错误<br>&lt;Space&gt; c a    尝试自动修复<br>&lt;Space&gt; c f    格式化代码<br>]d             跳到下一个错误<br>[d             跳到上一个错误<br></code></pre></td></tr></table></figure><h2 id="写新练习"><a href="#写新练习" class="headerlink" title="写新练习"></a>写新练习</h2><p>初学阶段可以先直接改：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">src/main.cpp<br></code></pre></td></tr></table></figure><p>例如这些内容都可以先放在 <code>main.cpp</code> 里练：</p><ul><li>变量</li><li>函数</li><li><code>vector</code></li><li><code>string</code></li><li><code>class</code></li><li><code>ranges</code></li><li><code>std::println</code></li><li><code>std::expected</code></li></ul><p>等练习变多之后，再考虑拆成多个源文件或多个小项目。</p><h2 id="新建另一个练习项目"><a href="#新建另一个练习项目" class="headerlink" title="新建另一个练习项目"></a>新建另一个练习项目</h2><p>如果已经有一个可用模板，可以直接复制一份：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> -R cpp23-cmake-study cpp23-vector-study<br><span class="hljs-built_in">cd</span> cpp23-vector-study<br><span class="hljs-built_in">rm</span> -rf build compile_commands.json<br>cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br><span class="hljs-built_in">ln</span> -sf build/compile_commands.json compile_commands.json<br>cmake --build build<br></code></pre></td></tr></table></figure><p>然后打开：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim src/main.cpp<br></code></pre></td></tr></table></figure><p>这样新项目会重新生成自己的构建目录和编译参数文件，避免复用旧项目里的缓存。</p><p><img src="/blog/assets/cpp23-cmake-lazyvim-workflow-illustrations/03-copy-template-clean-cache.png"></p><h2 id="最重要的顺序"><a href="#最重要的顺序" class="headerlink" title="最重要的顺序"></a>最重要的顺序</h2><p>可以把整个流程记成下面这几步：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">1. cd 到项目目录<br>2. nvim src/main.cpp 写代码<br>3. :LspInfo 确认 clangd 正常<br>4. cmake --build build 编译<br>5. ./build/cpp23_study 运行<br>6. 根据错误提示修改代码<br>7. 重复 4-6<br></code></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这套配置的核心只有一句话：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">CMake 负责真实编译，clangd 负责编辑器提示，compile_commands.json 负责让两者使用同一套编译参数。<br></code></pre></td></tr></table></figure><p>只要这三者对齐，LazyVim 里的提示和终端里的真实编译结果就不会各说各话。后面无论是练 C++ 基础，还是逐步学习 C++23 的新特性，都可以从这个最小工程开始。</p>]]></content>
       
       
       <categories>
@@ -239,11 +270,11 @@
       
         <tags>
             
+            <tag> cpp </tag>
+            
             <tag> docker </tag>
             
             <tag> gcc </tag>
-            
-            <tag> cpp </tag>
             
             <tag> macos </tag>
             
@@ -367,9 +398,9 @@
             
             <tag> Ghostty </tag>
             
-            <tag> Tmux </tag>
-            
             <tag> macOS </tag>
+            
+            <tag> Tmux </tag>
             
             <tag> Dotfiles </tag>
             
@@ -400,13 +431,13 @@
             
             <tag> Ghostty </tag>
             
-            <tag> Tmux </tag>
-            
-            <tag> Terminal </tag>
-            
             <tag> macOS </tag>
             
+            <tag> Tmux </tag>
+            
             <tag> Dotfiles </tag>
+            
+            <tag> Terminal </tag>
             
         </tags>
       
@@ -526,7 +557,7 @@
       
         <tags>
             
-            <tag> agent </tag>
+            <tag> kirolink </tag>
             
             <tag> hermes </tag>
             
@@ -534,7 +565,7 @@
             
             <tag> kiro </tag>
             
-            <tag> kirolink </tag>
+            <tag> agent </tag>
             
         </tags>
       
@@ -621,11 +652,11 @@
       
         <tags>
             
-            <tag> ai </tag>
-            
             <tag> claude-code </tag>
             
             <tag> kiro </tag>
+            
+            <tag> ai </tag>
             
             <tag> 教程 </tag>
             
@@ -687,13 +718,13 @@
             
             <tag> MoonTV </tag>
             
-            <tag> 观影 </tag>
-            
             <tag> Apple TV </tag>
             
             <tag> tvOS </tag>
             
             <tag> Xcode </tag>
+            
+            <tag> 观影 </tag>
             
         </tags>
       
@@ -718,11 +749,11 @@
       
         <tags>
             
+            <tag> hermes </tag>
+            
             <tag> llm </tag>
             
             <tag> wiki </tag>
-            
-            <tag> hermes </tag>
             
             <tag> knowledge-management </tag>
             
@@ -755,9 +786,9 @@
             
             <tag> 博客 </tag>
             
-            <tag> 问答 </tag>
-            
             <tag> 公众号 </tag>
+            
+            <tag> 问答 </tag>
             
         </tags>
       
@@ -788,9 +819,9 @@
             
             <tag> 博客 </tag>
             
-            <tag> 公众号 </tag>
-            
             <tag> 写作流程 </tag>
+            
+            <tag> 公众号 </tag>
             
         </tags>
       
@@ -916,9 +947,9 @@
       
         <tags>
             
-            <tag> obsidian </tag>
-            
             <tag> wechat </tag>
+            
+            <tag> obsidian </tag>
             
             <tag> workflow </tag>
             
@@ -1079,9 +1110,9 @@
       
         <tags>
             
-            <tag> 编程 </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> 编程 </tag>
             
             <tag> Delphi </tag>
             
@@ -1207,9 +1238,9 @@
             
             <tag> 大模型 </tag>
             
-            <tag> glm </tag>
-            
             <tag> agent </tag>
+            
+            <tag> glm </tag>
             
             <tag> opencode </tag>
             

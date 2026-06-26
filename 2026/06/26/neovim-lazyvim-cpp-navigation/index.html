@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
   <link rel="icon" href="/blog/img/fluid.png">
   
-    <link rel="canonical" href="https://1241262510.github.io/blog/2026/04/30/和AI聊写作：关于模型、结构和博客流程的一组问答/"/>
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/06/26/neovim-lazyvim-cpp-navigation/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,26 +21,29 @@
   <meta name="author" content="凌晨两点的书桌">
   <meta name="keywords" content="">
   
-    <meta name="description" content="保留对话感的一篇整理稿：从 GPT-5.4 medium 和 Thinking 的区别，到文章结构、技术博客模板，再到 AI 如何参与真实写作流程。">
+    <meta name="description" content="用一个小型 C++ 项目练习 LazyVim 里的 LSP 代码跳转，包括 gd、gD、gr、gI、gy、Telescope 符号搜索和跳转历史。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="和 AI 聊写作：关于模型、结构和博客流程的一组问答">
-<meta property="og:url" content="https://1241262510.github.io/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%86%99%E4%BD%9C%EF%BC%9A%E5%85%B3%E4%BA%8E%E6%A8%A1%E5%9E%8B%E3%80%81%E7%BB%93%E6%9E%84%E5%92%8C%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B%E7%9A%84%E4%B8%80%E7%BB%84%E9%97%AE%E7%AD%94/index.html">
+<meta property="og:title" content="用 C++ 项目测试 Neovim LazyVim 的代码跳转">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/06/26/neovim-lazyvim-cpp-navigation/index.html">
 <meta property="og:site_name" content="凌晨两点的书桌">
-<meta property="og:description" content="保留对话感的一篇整理稿：从 GPT-5.4 medium 和 Thinking 的区别，到文章结构、技术博客模板，再到 AI 如何参与真实写作流程。">
+<meta property="og:description" content="用一个小型 C++ 项目练习 LazyVim 里的 LSP 代码跳转，包括 gd、gD、gr、gI、gy、Telescope 符号搜索和跳转历史。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-04-30T16:05:00.000Z">
-<meta property="article:modified_time" content="2026-05-01T01:43:08.690Z">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/01-code-practice-field.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/02-clangd-project-pass.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/03-lsp-jump-tunnels.png">
+<meta property="article:published_time" content="2026-06-26T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-26T02:25:52.615Z">
 <meta property="article:author" content="凌晨两点的书桌">
-<meta property="article:tag" content="AI 写作">
-<meta property="article:tag" content="GPT">
-<meta property="article:tag" content="公众号">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="问答">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="LazyVim">
+<meta property="article:tag" content="Neovim">
+<meta property="article:tag" content="clangd">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/01-code-practice-field.png">
   
   
   
-  <title>和 AI 聊写作：关于模型、结构和博客流程的一组问答 - 凌晨两点的书桌</title>
+  <title>用 C++ 项目测试 Neovim LazyVim 的代码跳转 - 凌晨两点的书桌</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -328,7 +331,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">和 AI 聊写作：关于模型、结构和博客流程的一组问答</span>
+            <span id="subtitle">用 C++ 项目测试 Neovim LazyVim 的代码跳转</span>
           
         </div>
 
@@ -339,8 +342,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-30 12:05" pubdate>
-          2026年4月30日 中午
+        <time datetime="2026-06-26 10:00" pubdate>
+          2026年6月26日 上午
         </time>
       </span>
     
@@ -351,7 +354,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.4k 字
         
       </span>
     
@@ -362,7 +365,7 @@
         
         
         
-          22 分钟
+          20 分钟
         
       </span>
     
@@ -401,182 +404,120 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">和 AI 聊写作：关于模型、结构和博客流程的一组问答</h1>
+            <h1 id="seo-header">用 C++ 项目测试 Neovim LazyVim 的代码跳转</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这篇文章保留了问答的形式。</p>
-<p>最开始只是一个很轻的问题：为什么最近感觉模型响应更快了？但顺着聊下去，话题慢慢落到了几个更实际的点上：</p>
+                <p>在学习 Neovim 的过程中，代码跳转是最核心的日常操作之一。光靠文档记快捷键很枯燥，不如动手建一个真实的 C++ 项目来边用边学。</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">nav_demo/<br>├── CMakeLists.txt<br>├── compile_commands.json<br>├── animal.hpp / animal.cpp   ← 抽象基类<br>├── dog.hpp / dog.cpp         ← 继承子类<br>├── utils.hpp / utils.cpp     ← 工具函数（命名空间）<br>└── main.cpp                  ← 入口<br></code></pre></td></tr></table></figure>
+
+<p>三层结构刚好覆盖跳转的几个典型场景：<strong>跨文件跳转</strong>、<strong>虚函数跳转到实现</strong>、<strong>命名空间内的函数引用</strong>。</p>
+<p><img src="/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/01-code-practice-field.png" srcset="/blog/img/loading.gif" lazyload alt="用小型 C++ 项目练习 LazyVim 代码跳转"></p>
+<h2 id="前置：让-clangd-认识你的项目"><a href="#前置：让-clangd-认识你的项目" class="headerlink" title="前置：让 clangd 认识你的项目"></a>前置：让 clangd 认识你的项目</h2><p>LazyVim 的跳转依赖 <code>clangd</code> LSP，clangd 需要 <code>compile_commands.json</code> 才能理解项目的编译依赖关系。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON<br><span class="hljs-built_in">cp</span> build/compile_commands.json .<br>cmake --build build &amp;&amp; ./build/nav_demo<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">Rex (age 3) says: Woof!<br>Buddy (age 7) says: Woof!<br>Max (age 1) says: Woof!<br>Animals older than 2: 2<br></code></pre></td></tr></table></figure>
+
+<p>把 <code>compile_commands.json</code> 放到项目根目录，clangd 启动时会自动找到它。没有这个文件，跳转功能会大打折扣。</p>
+<p><img src="/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/02-clangd-project-pass.png" srcset="/blog/img/loading.gif" lazyload alt="compile_commands.json 让 clangd 读懂项目"></p>
+<h2 id="跳转命令实战"><a href="#跳转命令实战" class="headerlink" title="跳转命令实战"></a>跳转命令实战</h2><p><img src="/blog/assets/neovim-lazyvim-cpp-navigation-illustrations/03-lsp-jump-tunnels.png" srcset="/blog/img/loading.gif" lazyload alt="LazyVim LSP 跳转命令像代码地下通道"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim nav_demo/main.cpp<br></code></pre></td></tr></table></figure>
+
+<h3 id="gd-跳转到定义"><a href="#gd-跳转到定义" class="headerlink" title="gd - 跳转到定义"></a>gd - 跳转到定义</h3><p><code>main.cpp</code> 里调用了 <code>utils::printAll</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// main.cpp</span><br>utils::<span class="hljs-built_in">printAll</span>(animals);   <span class="hljs-comment">// 光标在 printAll 上，按 gd</span><br></code></pre></td></tr></table></figure>
+
+<p>按 <code>gd</code> 后跳进 <code>utils.cpp</code>，看到函数体：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// utils.cpp</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printAll</span><span class="hljs-params">(<span class="hljs-type">const</span> std::vector&lt;std::unique_ptr&lt;Animal&gt;&gt;&amp; animals)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; a : animals)<br>        <span class="hljs-built_in">printAnimal</span>(*a);       <span class="hljs-comment">// 再按 gd 可以继续跳进 printAnimal</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>光标在 <code>Dog</code> 类名上按 <code>gd</code>，跳到 <code>dog.hpp</code> 的类定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// dog.hpp</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> : <span class="hljs-keyword">public</span> Animal &#123;   <span class="hljs-comment">// gd 落点</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Dog</span>(<span class="hljs-type">const</span> std::string&amp; name, <span class="hljs-type">int</span> age, <span class="hljs-type">const</span> std::string&amp; breed);<br>    <span class="hljs-function">std::string <span class="hljs-title">speak</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span></span>;<br>    ...<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="gD-跳转到声明"><a href="#gD-跳转到声明" class="headerlink" title="gD - 跳转到声明"></a>gD - 跳转到声明</h3><p>在 <code>utils.cpp</code> 里光标放在 <code>printAnimal</code> 上，按 <code>gD</code> 跳回头文件的声明行：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// utils.hpp  gD 落点</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printAnimal</span><span class="hljs-params">(<span class="hljs-type">const</span> Animal&amp; animal)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><code>.cpp</code> ↔ <code>.hpp</code> 来回切换，比手动搜索快得多。</p>
+<h3 id="gr-查找所有引用"><a href="#gr-查找所有引用" class="headerlink" title="gr - 查找所有引用"></a>gr - 查找所有引用</h3><p>光标放在 <code>Animal</code> 类名上，按 <code>gr</code>，弹出列表：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">animal.hpp:4   class Animal &#123;<br>dog.hpp:2      #include &quot;animal.hpp&quot;<br>dog.hpp:4      class Dog : public Animal &#123;<br>utils.hpp:2    #include &quot;animal.hpp&quot;<br>utils.hpp:7    void printAnimal(const Animal&amp; animal);<br>main.cpp:7     std::vector&lt;std::unique_ptr&lt;Animal&gt;&gt; animals;<br></code></pre></td></tr></table></figure>
+
+<p>这是重构前的必备操作：改名之前先看清楚影响范围。</p>
+<h3 id="gI-跳转到实现"><a href="#gI-跳转到实现" class="headerlink" title="gI - 跳转到实现"></a>gI - 跳转到实现</h3><p><code>animal.hpp</code> 里声明了纯虚函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// animal.hpp</span><br><span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">speak</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;   <span class="hljs-comment">// 光标在 speak 上，按 gI</span><br></code></pre></td></tr></table></figure>
+
+<p>列出所有具体实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// dog.cpp  gI 落点</span><br><span class="hljs-function">std::string <span class="hljs-title">Dog::speak</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Woof!&quot;</span>; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>项目有多个子类时，这个命令能快速找到“到底谁实现了这个接口”。</p>
+<h3 id="gy-跳转到类型定义"><a href="#gy-跳转到类型定义" class="headerlink" title="gy - 跳转到类型定义"></a>gy - 跳转到类型定义</h3><p><code>main.cpp</code> 里光标放在变量 <code>animals</code> 上：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::vector&lt;std::unique_ptr&lt;Animal&gt;&gt; animals;   <span class="hljs-comment">// 光标在 animals 上，按 gy</span><br></code></pre></td></tr></table></figure>
+
+<p>跳到 <code>Animal</code> 的类型定义，也就是 <code>animal.hpp</code>。遇到不熟悉的类型时最好用。</p>
+<h2 id="符号搜索（Telescope）"><a href="#符号搜索（Telescope）" class="headerlink" title="符号搜索（Telescope）"></a>符号搜索（Telescope）</h2><p>上面的命令都是“从当前光标出发”，下面两个是“主动搜索”：</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;leader&gt;ss</code></td>
+<td>列出当前文件所有符号</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;sS</code></td>
+<td>全局搜索符号</td>
+</tr>
+</tbody></table>
+<p><code>&lt;leader&gt;sS</code> 输入 <code>speak</code>，会列出声明和所有实现，基于 LSP 语义，不是文本匹配，比 <code>grep</code> 精准。</p>
+<h2 id="跳转历史：来回穿梭"><a href="#跳转历史：来回穿梭" class="headerlink" title="跳转历史：来回穿梭"></a>跳转历史：来回穿梭</h2><p>连续跳了几层，比如 <code>main → utils.cpp → animal.hpp</code> 之后：</p>
 <ul>
-<li><code>gpt-5.4 medium</code> 和更重推理档到底怎么选</li>
-<li>写文章和博客时，为什么通常建议先用 <code>medium</code></li>
-<li>文章的结构到底是什么</li>
-<li>技术博客有没有一套稳定可复用的模板</li>
-<li>AI 在真实写作流程里，最适合承担什么角色</li>
+<li><code>&lt;C-o&gt;</code>：跳回上一个位置</li>
+<li><code>&lt;C-i&gt;</code>：向前跳</li>
 </ul>
-<p>我把整段对话重新整理成了下面这组问答。</p>
-<h2 id="问：gpt-5-4-medium、high、xhigh，差别主要在哪里？"><a href="#问：gpt-5-4-medium、high、xhigh，差别主要在哪里？" class="headerlink" title="问：gpt-5.4 medium、high、xhigh，差别主要在哪里？"></a>问：<code>gpt-5.4 medium</code>、<code>high</code>、<code>xhigh</code>，差别主要在哪里？</h2><p>答：最直接的差别还是速度和思考深度。</p>
-<ul>
-<li><code>medium</code> 更快，更适合日常写作、普通问答、一般编程和快速起草。</li>
-<li><code>high</code> 更稳，适合复杂一点的代码修改、较难调试、多步骤方案设计。</li>
-<li><code>xhigh</code> 最重，适合非常复杂的推理、棘手 bug、长链路分析和架构级问题。</li>
-</ul>
-<p>如果只是用一句话概括：</p>
-<p><code>medium</code> 适合大多数日常任务，<code>high</code> 和 <code>xhigh</code> 更适合那些明显复杂、明显容易出错的场景。</p>
-<h2 id="问：那-gpt-5-4-和-gpt-5-5-的实际体感差别呢？"><a href="#问：那-gpt-5-4-和-gpt-5-5-的实际体感差别呢？" class="headerlink" title="问：那 gpt-5.4 和 gpt-5.5 的实际体感差别呢？"></a>问：那 <code>gpt-5.4</code> 和 <code>gpt-5.5</code> 的实际体感差别呢？</h2><p>答：如果只说使用体感，<code>gpt-5.4 medium</code> 更像高性能日用档，<code>gpt-5.5 Thinking</code> 更像难题档。</p>
-<p>前者更轻快，后者更稳。</p>
-<p>简单任务上，你未必会觉得 <code>gpt-5.5</code> 强很多，但大概率会觉得它慢一点。<br>难任务上，它更容易少走弯路，尤其是那些需要长上下文、要分步骤推进、还要兼顾准确性的事情。</p>
-<p>所以我最后给自己的判断标准很简单：</p>
-<ul>
-<li>先求快，用 <code>medium</code></li>
-<li>先求稳，用 <code>Thinking</code></li>
-</ul>
-<h2 id="问：写文章和博客，也建议先用-medium-吗？"><a href="#问：写文章和博客，也建议先用-medium-吗？" class="headerlink" title="问：写文章和博客，也建议先用 medium 吗？"></a>问：写文章和博客，也建议先用 <code>medium</code> 吗？</h2><p>答：是，通常建议先用 <code>medium</code>。</p>
-<p>因为大多数写作阶段，更需要的是：</p>
-<ul>
-<li>起标题</li>
-<li>列提纲</li>
-<li>快速出初稿</li>
-<li>改语气</li>
-<li>扩写或压缩段落</li>
-</ul>
-<p>这些都更看重流畅度和来回迭代的效率。你需要的是一个能协作推进的写作搭子，而不是一上来就进入最重的推理模式。</p>
-<p>但有几种情况，比较适合切到 <code>Thinking</code>：</p>
-<ul>
-<li>文章结构很复杂</li>
-<li>章节之间前后依赖很强</li>
-<li>同时要满足很多约束</li>
-<li>是深度技术博客，要兼顾准确性、逻辑性和可读性</li>
-<li>已经来回改了几轮，还是觉得“顺，但浅”</li>
-</ul>
-<p>最实用的写法是：</p>
-<ol>
-<li>先用 <code>medium</code> 起题、列提纲、打初稿。</li>
-<li>用 <code>medium</code> 连续改几轮结构和语气。</li>
-<li>如果文章比较重要，再切到 <code>Thinking</code> 做一次深度审稿。</li>
-</ol>
-<h2 id="问：那什么叫“文章结构”？"><a href="#问：那什么叫“文章结构”？" class="headerlink" title="问：那什么叫“文章结构”？"></a>问：那什么叫“文章结构”？</h2><p>答：结构不是“写什么”，而是“怎么安排这些内容”。</p>
-<p>也就是：</p>
-<ul>
-<li>开头写什么</li>
-<li>中间分几段</li>
-<li>每段各自承担什么作用</li>
-<li>论点怎么展开</li>
-<li>例子放在哪里</li>
-<li>结尾怎么收</li>
-</ul>
-<p>最短理解就是：</p>
-<ul>
-<li><code>内容</code> 是你讲什么</li>
-<li><code>结构</code> 是你怎么安排这些内容</li>
-</ul>
-<p>很多文章之所以难读，不是因为内容错了，而是因为顺序乱了。该先出现的东西放到了后面，该铺垫的地方没铺垫，读者只能一边看一边自己补逻辑。</p>
-<h2 id="问：能不能用技术博客举个结构的例子？"><a href="#问：能不能用技术博客举个结构的例子？" class="headerlink" title="问：能不能用技术博客举个结构的例子？"></a>问：能不能用技术博客举个结构的例子？</h2><p>答：可以。</p>
-<p>比如主题是：</p>
-<p><code>如何用 Docker 部署一个 Node.js 项目</code></p>
-<p>结构差的版本，往往会这样写：</p>
-<ol>
-<li>一上来就贴 <code>Dockerfile</code></li>
-<li>讲到一半突然去解释镜像</li>
-<li>接着开始说自己踩过的坑</li>
-<li>再贴 <code>docker-compose.yml</code></li>
-<li>最后才说部署前提</li>
-</ol>
-<p>信息都在，但读者会很累。</p>
-<p>结构好的版本，通常会更像这样：</p>
-<ol>
-<li>先说明这篇文章解决什么问题</li>
-<li>交代适用场景和前提</li>
-<li>给出最小可运行示例</li>
-<li>再逐段解释关键配置</li>
-<li>最后补常见坑和进阶建议</li>
-</ol>
-<p>内容未必更多，但读者更容易顺着走完。</p>
-<h2 id="问：技术博客有没有一套万能结构模板？"><a href="#问：技术博客有没有一套万能结构模板？" class="headerlink" title="问：技术博客有没有一套万能结构模板？"></a>问：技术博客有没有一套万能结构模板？</h2><p>答：有，而且大多数教程文、经验文、踩坑文都能套。</p>
-<p>一个很稳的骨架通常是：</p>
-<ol>
-<li>标题：写清楚主题、对象、结果</li>
-<li>开头：这篇文章解决什么问题，适合谁，读完得到什么</li>
-<li>场景和前提：环境、版本、适用范围</li>
-<li>最小可用方案：先建立全局印象</li>
-<li>分步骤展开：每一步只讲一个核心动作</li>
-<li>关键代码或配置解释：讲清为什么这样写</li>
-<li>常见坑和排查：用“现象、原因、解决”的格式</li>
-<li>方案取舍或进阶建议</li>
-<li>总结：回收全文，给出下一步</li>
-</ol>
-<p>这套模板不炫，但很稳。<br>技术内容天然容易散，模板的意义不是把文章写死，而是防止内容变成一堆没有顺序的知识点。</p>
-<h2 id="问：如果是个人博客，不想写得太像说明书，怎么办？"><a href="#问：如果是个人博客，不想写得太像说明书，怎么办？" class="headerlink" title="问：如果是个人博客，不想写得太像说明书，怎么办？"></a>问：如果是个人博客，不想写得太像说明书，怎么办？</h2><p>答：那就要在模板之外，加一点“作者本人”的东西。</p>
-<p>几个很有效的做法是：</p>
-<ul>
-<li>开头从真实起因切进去，不要直接写成标准摘要</li>
-<li>少一点“定义式表达”，多一点“这是我现在的做法”</li>
-<li>保留一点误判、试错和修正过程</li>
-<li>允许不同段落轻重不一，不必每一节都一样完整</li>
-<li>多一些判断句，少一些纯说明句</li>
-</ul>
-<p>因为个人博客真正好看的地方，往往不是知识点本身，而是作者怎么想、怎么取舍、怎么从经验里得出这些判断。</p>
-<h2 id="问：那-AI-到底适合怎么放进真实写作流程里？"><a href="#问：那-AI-到底适合怎么放进真实写作流程里？" class="headerlink" title="问：那 AI 到底适合怎么放进真实写作流程里？"></a>问：那 AI 到底适合怎么放进真实写作流程里？</h2><p>答：我后来把这个问题理解得越来越简单了。</p>
-<p>AI 最适合做的，不是替我把文章写完，而是降低写作摩擦。</p>
-<p>具体来说，我现在更常把它放在这些环节：</p>
-<h3 id="1-先帮我收窄问题"><a href="#1-先帮我收窄问题" class="headerlink" title="1. 先帮我收窄问题"></a>1. 先帮我收窄问题</h3><p>写之前先问清楚：</p>
-<ul>
-<li>这篇文章到底在回答什么问题</li>
-<li>它写给谁</li>
-<li>读者读完应该带走什么</li>
-</ul>
-<p>题目越具体，后面越容易写。</p>
-<h3 id="2-帮我拆题和列提纲"><a href="#2-帮我拆题和列提纲" class="headerlink" title="2. 帮我拆题和列提纲"></a>2. 帮我拆题和列提纲</h3><p>这是 AI 最适合的阶段之一。</p>
-<p>它很擅长：</p>
-<ul>
-<li>把模糊题目拆成几个子问题</li>
-<li>给出几种文章结构</li>
-<li>区分哪些内容适合放前面，哪些适合放后面</li>
-<li>把零散点子整理成一个可写提纲</li>
-</ul>
-<h3 id="3-帮我起草和改写局部内容"><a href="#3-帮我起草和改写局部内容" class="headerlink" title="3. 帮我起草和改写局部内容"></a>3. 帮我起草和改写局部内容</h3><p>相比一键写全文，我现在更喜欢让 AI 做局部动作：</p>
-<ul>
-<li>把一个要点展开成一段</li>
-<li>把一段改得更口语一点</li>
-<li>把一段压缩得更利落一点</li>
-<li>给某一节换一种表达方式</li>
-</ul>
-<p>这种方式的好处是，方向还在我手里，但推进阻力会小很多。</p>
-<h3 id="4-在我卡住的时候帮我继续"><a href="#4-在我卡住的时候帮我继续" class="headerlink" title="4. 在我卡住的时候帮我继续"></a>4. 在我卡住的时候帮我继续</h3><p>以前写作卡住，我常常会停下来等状态。</p>
-<p>现在更倾向于直接把“卡住”扔给 AI，比如让它：</p>
-<ul>
-<li>想几个过渡段写法</li>
-<li>判断某段是否适合提前</li>
-<li>给出两个不同语气的版本</li>
-<li>解释某段为什么读起来别扭</li>
-</ul>
-<p>很多时候，只要有一个可修改的版本，文章就能继续往前推。</p>
-<h3 id="5-最后自己来收"><a href="#5-最后自己来收" class="headerlink" title="5. 最后自己来收"></a>5. 最后自己来收</h3><p>这是我现在最确定的一点。</p>
-<p>AI 可以帮我起草、改写、整理，但文章最后那层“像不像我写的”，还是得自己来做。</p>
-<p>发布前我通常会重点看：</p>
-<ul>
-<li>标题是不是太空</li>
-<li>开头是不是进入太慢</li>
-<li>小标题顺不顺</li>
-<li>有没有重复表达</li>
-<li>有没有一些句子太像 AI 常见语气</li>
-<li>结尾有没有真正收住</li>
-</ul>
-<p>这一步决定的不是文章能不能读，而是它像不像自己的文章。</p>
-<h2 id="问：那最后，你对“AI-写博客”这件事的结论是什么？"><a href="#问：那最后，你对“AI-写博客”这件事的结论是什么？" class="headerlink" title="问：那最后，你对“AI 写博客”这件事的结论是什么？"></a>问：那最后，你对“AI 写博客”这件事的结论是什么？</h2><p>答：我现在最认同的一句话是：</p>
-<p><code>AI 最有用的地方，不是替我写完文章，而是降低写作摩擦。</code></p>
-<p>它让我更容易开始，更不容易卡死，也更容易把一篇文章先推进到一个可继续修改的状态。</p>
-<p>而真正决定一篇文章最后值不值得发出来的，还是作者自己的判断、取舍和语气。</p>
-<p>所以如果现在让我给一个最短建议，大概就是：</p>
-<ul>
-<li>日常写作用 <code>medium</code></li>
-<li>复杂长文再切 <code>Thinking</code></li>
-<li>用 AI 帮你启动、整理、推进</li>
-<li>但别把最后的判断直接交出去</li>
-</ul>
-<p>这大概是我现在最认可的一种关系。</p>
-<p>它不是“让 AI 代写”，而是“让 AI 陪你把文章写出来”。</p>
+<p>养成习惯：跳过去看完，<code>&lt;C-o&gt;</code> 回来继续，不要迷失在文件里。</p>
+<h2 id="速查表"><a href="#速查表" class="headerlink" title="速查表"></a>速查表</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>看函数&#x2F;类的具体实现</td>
+<td><code>gd</code></td>
+</tr>
+<tr>
+<td>从实现跳回声明</td>
+<td><code>gD</code></td>
+</tr>
+<tr>
+<td>找这个符号被谁用了</td>
+<td><code>gr</code></td>
+</tr>
+<tr>
+<td>虚函数找子类实现</td>
+<td><code>gI</code></td>
+</tr>
+<tr>
+<td>不认识这个类型</td>
+<td><code>gy</code></td>
+</tr>
+<tr>
+<td>当前文件有哪些符号</td>
+<td><code>&lt;leader&gt;ss</code></td>
+</tr>
+<tr>
+<td>全局找某个符号</td>
+<td><code>&lt;leader&gt;sS</code></td>
+</tr>
+<tr>
+<td>跳回来</td>
+<td><code>&lt;C-o&gt;</code></td>
+</tr>
+</tbody></table>
+<p><code>gd</code> 和 <code>gr</code> 是最高频的两个，先把这两个练熟就够用了。</p>
 
                 
               </div>
@@ -595,7 +536,7 @@
     
       <span class="category-chain">
         
-  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  <a href="/blog/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
   
   
 
@@ -610,15 +551,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog/tags/AI-%E5%86%99%E4%BD%9C/" class="print-no-link">#AI 写作</a>
+        <a href="/blog/tags/C/" class="print-no-link">#C++</a>
       
-        <a href="/blog/tags/GPT/" class="print-no-link">#GPT</a>
+        <a href="/blog/tags/LazyVim/" class="print-no-link">#LazyVim</a>
       
-        <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
+        <a href="/blog/tags/clangd/" class="print-no-link">#clangd</a>
       
-        <a href="/blog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" class="print-no-link">#公众号</a>
-      
-        <a href="/blog/tags/%E9%97%AE%E7%AD%94/" class="print-no-link">#问答</a>
+        <a href="/blog/tags/Neovim/" class="print-no-link">#Neovim</a>
       
     </div>
   
@@ -630,8 +569,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>和 AI 聊写作：关于模型、结构和博客流程的一组问答</div>
-      <div>https://1241262510.github.io/blog/2026/04/30/和AI聊写作：关于模型、结构和博客流程的一组问答/</div>
+      <div>用 C++ 项目测试 Neovim LazyVim 的代码跳转</div>
+      <div>https://1241262510.github.io/blog/2026/06/26/neovim-lazyvim-cpp-navigation/</div>
     </div>
     <div class="license-meta">
       
@@ -643,7 +582,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月30日</div>
+          <div>2026年6月26日</div>
         </div>
       
       
@@ -675,18 +614,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog/2026/05/02/llm-wiki-practical-deployment/" title="LLM Wiki 落地实践：从看懂理论到真正跑起来">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LLM Wiki 落地实践：从看懂理论到真正跑起来</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog/2026/04/30/%E5%92%8CAI%E8%81%8A%E5%AE%8C%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%88%91%E6%8A%8A%E2%80%9C%E6%80%8E%E4%B9%88%E7%94%A8%20GPT%20%E5%86%99%E5%8D%9A%E5%AE%A2%E2%80%9D%E6%83%B3%E6%B8%85%E6%A5%9A%E4%BA%86/" title="和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了">
-                        <span class="hidden-mobile">和 AI 聊完之后，我把“怎么用 GPT 写博客”想清楚了</span>
+                      <a href="/blog/2026/06/25/blog-http-server-comparison/" title="三种语言实现 HTTP 服务对比：C++ vs Rust vs Go">
+                        <span class="hidden-mobile">三种语言实现 HTTP 服务对比：C++ vs Rust vs Go</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

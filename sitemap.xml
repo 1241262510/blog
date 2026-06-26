@@ -4,7 +4,61 @@
   <url>
     <loc>https://1241262510.github.io/blog/2026/06/25/cpp23-cmake-lazyvim-workflow/</loc>
     
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/2026/04/05/wx-art-formatter-github-version/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/2026/05/19/%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-claude-code-%E4%B8%80%E4%B8%AA%E6%9C%88-kiro-%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/2026/06/26/neovim-lazyvim-cpp-navigation/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://1241262510.github.io/blog/2026/04/11/obsidian-wechat-workflow/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -110,15 +164,6 @@
   </url>
   
   <url>
-    <loc>https://1241262510.github.io/blog/2026/06/04/ghostty-macos-account-sync/</loc>
-    
-    <lastmod>2026-06-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://1241262510.github.io/blog/2026/06/02/rime-ice-radical-pinyin-lookup-guide/</loc>
     
     <lastmod>2026-06-03</lastmod>
@@ -167,42 +212,6 @@
     <loc>https://1241262510.github.io/blog/2026/05/22/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E5%AE%9E%E6%93%8D/</loc>
     
     <lastmod>2026-05-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/2026/05/19/%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-claude-code-%E4%B8%80%E4%B8%AA%E6%9C%88-kiro-%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/</loc>
-    
-    <lastmod>2026-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/2026/05/02/llm-wiki-practical-deployment/</loc>
-    
-    <lastmod>2026-05-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/2026/04/11/obsidian-wechat-workflow/</loc>
-    
-    <lastmod>2026-05-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://1241262510.github.io/blog/2026/04/05/wx-art-formatter-github-version/</loc>
-    
-    <lastmod>2026-05-17</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -346,7 +355,7 @@
 
   <url>
     <loc>https://1241262510.github.io/blog</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
