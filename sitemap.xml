@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://1241262510.github.io/blog/2026/07/11/gpt-5-6-chatgpt-codex-unified-entry/</loc>
+    
+    <lastmod>2026-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://1241262510.github.io/blog/2026/07/03/cpp26-docker-gcc-clang-reflection-test-env/</loc>
     
     <lastmod>2026-07-04</lastmod>
@@ -382,7 +391,7 @@
 
   <url>
     <loc>https://1241262510.github.io/blog</loc>
-    <lastmod>2026-07-04</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

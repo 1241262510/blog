@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
+  <link rel="icon" href="/blog/img/fluid.png">
+  
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/07/11/gpt-5-6-chatgpt-codex-unified-entry/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#ffffff">
+  <meta name="author" content="凌晨两点的书桌">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从 GPT-5.6 更新出发，聊聊 ChatGPT 与 Codex 入口合并、多代理能力，以及 ChatGPT 从聊天工具走向统一工作入口的趋势。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPT-5.6 更新：ChatGPT 和 Codex 的入口正在合并">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/07/11/gpt-5-6-chatgpt-codex-unified-entry/index.html">
+<meta property="og:site_name" content="凌晨两点的书桌">
+<meta property="og:description" content="从 GPT-5.6 更新出发，聊聊 ChatGPT 与 Codex 入口合并、多代理能力，以及 ChatGPT 从聊天工具走向统一工作入口的趋势。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/gpt-5-6-update-illustrations/01-one-entry.png">
+<meta property="article:published_time" content="2026-07-11T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-12T02:18:17.527Z">
+<meta property="article:author" content="凌晨两点的书桌">
+<meta property="article:tag" content="AI 工具">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="Codex">
+<meta property="article:tag" content="GPT-5.6">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/gpt-5-6-update-illustrations/01-one-entry.png">
+  
+  
+  
+  <title>GPT-5.6 更新：ChatGPT 和 Codex 的入口正在合并 - 凌晨两点的书桌</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/blog/css/layout-conservative.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1241262510.github.io","root":"/blog/","version":"1.9.9","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/blog/atom.xml" title="凌晨两点的书桌" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>Codex Skill Lab</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/atom.xml" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-rss"></i>
+                  <span>RSS</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/banner-desk.svg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.35)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">GPT-5.6 更新：ChatGPT 和 Codex 的入口正在合并</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-11 10:00" pubdate>
+          2026年7月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GPT-5.6 更新：ChatGPT 和 Codex 的入口正在合并</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这次 GPT-5.6 更新之后，最直观的变化是：Plus 用户已经可以在 ChatGPT 里直接调用 GPT-5.6。也就是说，日常写作、代码分析、资料整理、长文本处理这些任务，不再需要额外切换到别的工具，直接在 ChatGPT 里就能完成。</p>
+<p>但这次更新真正值得关注的，不只是模型能力又提升了一点，而是 OpenAI 正在把几个原本分散的入口重新收拢到 ChatGPT 里。</p>
+<p>以前的使用路径大概是这样的：</p>
+<ul>
+<li>想聊天、写文章、做资料整理，打开 ChatGPT。</li>
+<li>想改代码、跑项目、处理本地仓库，打开 Codex。</li>
+<li>想让多个代理同时跑任务，需要进入更高级的 Codex 或工作区能力。</li>
+</ul>
+<p>现在这个边界开始变模糊了。新的 ChatGPT 不再只是一个聊天窗口，而是逐渐变成一个统一的工作入口。Codex 也不再像之前那样只是一个独立的开发者工具，而更像是 ChatGPT 里面的一条专门面向代码、文件和项目执行的分支能力。</p>
+<p><img src="/blog/assets/gpt-5-6-update-illustrations/01-one-entry.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>三个入口被卷进同一扇门里，这就是这次更新最直观的产品信号。</p>
+<h2 id="Codex-桌面版的变化"><a href="#Codex-桌面版的变化" class="headerlink" title="Codex 桌面版的变化"></a>Codex 桌面版的变化</h2><p>我这次感受最明显的一点是：Codex 的桌面版本，在最新更新中被取消了独立入口。</p>
+<p>这不是说 Codex 这个能力消失了，而是它的位置变了。它不再作为一个单独 App 被强调，而是被集中到了新的 ChatGPT 里面。换句话说，新的 Codex 更像是 ChatGPT 的一个专业工作模式，而不是一个和 ChatGPT 平行存在的产品。</p>
+<p>这个变化其实很符合 OpenAI 最近的产品方向：减少入口，统一体验，把不同能力都收进 ChatGPT 这个主界面里。</p>
+<p>对普通用户来说，这样的好处是很明显的。以前你需要知道“这个任务应该去 ChatGPT 还是 Codex”，现在只需要打开 ChatGPT，再根据任务类型选择合适的能力。写文章、整理笔记、分析文件、修改代码、生成脚本、处理项目，都可以从同一个地方开始。</p>
+<p>对开发者来说，这个变化更关键。Codex 原来偏向“开发工具”，现在它更像“在 ChatGPT 里运行的代码代理”。它可以继续处理代码仓库、分析文件、执行命令、跑测试，但入口和任务组织方式会更靠近 ChatGPT 的对话和项目体系。</p>
+<p><img src="/blog/assets/gpt-5-6-update-illustrations/02-codex-drawer.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>Codex 没有消失，只是从单独的盒子，被搬进了 ChatGPT 的专业抽屉里。</p>
+<h2 id="多代理能力会成为分水岭"><a href="#多代理能力会成为分水岭" class="headerlink" title="多代理能力会成为分水岭"></a>多代理能力会成为分水岭</h2><p>这次还有一个更强的版本，可以多代理运行任务。简单说，就是你可以让多个 agent 同时处理不同的工作，而不是一个任务做完再做下一个。</p>
+<p>比如：</p>
+<ul>
+<li>一个代理负责阅读项目结构。</li>
+<li>一个代理负责定位 bug。</li>
+<li>一个代理负责写修复代码。</li>
+<li>一个代理负责跑测试和整理结果。</li>
+</ul>
+<p>这类能力对复杂任务很有价值，尤其是代码项目、长文档处理、资料研究和工作流自动化。但它显然也更消耗资源，所以目前想使用这类更强的多代理能力，需要更高的订阅版本。</p>
+<p><img src="/blog/assets/gpt-5-6-update-illustrations/03-parallel-agents.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>多代理的价值，不只是“更快”，而是把一个复杂任务拆成几个可以同时运转的工位。</p>
+<p>这也意味着，未来 ChatGPT 的订阅差异可能不只是“哪个模型更强”，而是“你能同时调动多少个智能体、能不能让它们长期运行、能不能接入更多工具和文件系统”。</p>
+<h2 id="ChatGPT-的定位正在变化"><a href="#ChatGPT-的定位正在变化" class="headerlink" title="ChatGPT 的定位正在变化"></a>ChatGPT 的定位正在变化</h2><p>以前 ChatGPT 更像一个回答问题的助手。你问，它答；你给材料，它总结；你给需求，它生成内容。</p>
+<p>现在它正在变成一个工作台。这个工作台里面有不同的能力分支：</p>
+<ul>
+<li>普通对话，适合写作、问答、解释概念。</li>
+<li>深度研究，适合查资料、整理信息、生成报告。</li>
+<li>文件分析，适合处理 PDF、表格、文档和截图。</li>
+<li>Codex，适合代码、项目、脚本、自动化和软件工程任务。</li>
+<li>多代理任务，适合把复杂任务拆开并行推进。</li>
+</ul>
+<p>所以这次 GPT-5.6 更新，表面上是模型更新，实际上传递的是一个产品信号：ChatGPT 正在从“聊天工具”变成“统一工作入口”。</p>
+<h2 id="对我自己的使用影响"><a href="#对我自己的使用影响" class="headerlink" title="对我自己的使用影响"></a>对我自己的使用影响</h2><p>如果以后所有入口都集中到 ChatGPT，我的使用方式也会跟着改变。</p>
+<p>第一，写作和代码之间的切换会更自然。比如我正在写一篇文章，突然需要整理配图、分析网页、生成脚本、处理 Markdown 文件，就不需要跳出当前环境。</p>
+<p>第二，任务会更适合按项目组织。以前一件事可能散落在 ChatGPT 对话、Codex 任务、本地终端和笔记软件里。现在如果 ChatGPT 能把这些都串起来，一个项目就可以从构思、资料、执行、验证到发布都放在同一个上下文里。</p>
+<p>第三，Codex 的使用门槛会降低。原来很多非程序员看到 Codex 会觉得“这是写代码的人用的”。但当它被放进 ChatGPT 之后，它就可能变成一个更通用的执行工具。用户不一定要懂代码，只要能描述清楚目标，就可以让 Codex 去处理文件、生成脚本、搭建小工具，或者自动完成一些重复任务。</p>
+<h2 id="需要注意的地方"><a href="#需要注意的地方" class="headerlink" title="需要注意的地方"></a>需要注意的地方</h2><p>不过，这种入口合并也不全是好事。</p>
+<p>一方面，功能集中之后，界面会更复杂。ChatGPT 里面如果同时有模型选择、项目、文件、工具、Codex、多代理、浏览器和各种连接器，新用户可能反而不知道该从哪里开始。</p>
+<p>另一方面，能力越强，对权限和安全的要求就越高。尤其是 Codex 这类可以读写文件、执行命令、改代码的工具，不能只看“它能不能做”，还要看“它有没有在正确的边界里做”。本地文件、Git 仓库、云端账号、浏览器权限，这些都需要明确授权和可追踪记录。</p>
+<p><img src="/blog/assets/gpt-5-6-update-illustrations/04-permission-gate.png" srcset="/blog/img/loading.gif" lazyload></p>
+<p>真正有用的执行能力，必须同时有清楚的授权、边界和记录。</p>
+<p>还有一个问题是成本。多代理并行、长任务运行、深度文件处理，这些都会消耗更多计算资源。未来不同订阅之间的差距，可能会越来越体现在“可执行任务的规模”上，而不是单纯体现在模型名称上。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次 GPT-5.6 更新，我觉得最重要的不是“模型又强了多少”，而是 OpenAI 正在重构 ChatGPT 和 Codex 的关系。</p>
+<p>ChatGPT 变成主入口，Codex 变成其中面向代码和执行任务的专业能力。独立的 Codex 桌面入口被弱化甚至取消，说明 OpenAI 希望用户以后不要在多个工具之间来回切换，而是在 ChatGPT 里完成从思考到执行的完整流程。</p>
+<p>对我来说，这个方向是合理的。日常写作、知识整理、代码修改、自动化脚本、项目执行，本来就不是完全分开的事情。它们都属于同一个工作流。</p>
+<p>如果 ChatGPT 能把这些能力真正整合好，那它就不只是一个聊天机器人，而会变成一个可以持续协作的个人工作系统。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/Codex/" class="print-no-link">#Codex</a>
+      
+        <a href="/blog/tags/AI-%E5%B7%A5%E5%85%B7/" class="print-no-link">#AI 工具</a>
+      
+        <a href="/blog/tags/ChatGPT/" class="print-no-link">#ChatGPT</a>
+      
+        <a href="/blog/tags/GPT-5-6/" class="print-no-link">#GPT-5.6</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GPT-5.6 更新：ChatGPT 和 Codex 的入口正在合并</div>
+      <div>https://1241262510.github.io/blog/2026/07/11/gpt-5-6-chatgpt-codex-unified-entry/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>凌晨两点的书桌</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2026/07/03/cpp26-docker-gcc-clang-reflection-test-env/" title="C++26 测试环境搭建：用 Docker 跑 GCC 16 和 Clang-p2996">
+                        <span class="hidden-mobile">C++26 测试环境搭建：用 Docker 跑 GCC 16 和 Clang-p2996</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <span>Powered by Hexo & Fluid</span>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
