@@ -10,7 +10,26 @@
   <rights>All rights reserved 2026, 凌晨两点的书桌</rights>
   <subtitle>凌晨两点的书桌，记录编程、工具使用与学习笔记。</subtitle>
   <title>凌晨两点的书桌</title>
-  <updated>2026-07-12T02:18:17.527Z</updated>
+  <updated>2026-07-16T02:36:08.370Z</updated>
+  <entry>
+    <author>
+      <name>凌晨两点的书桌</name>
+    </author>
+    <category term="AI 工具" scheme="https://1241262510.github.io/blog/categories/AI-%E5%B7%A5%E5%85%B7/"/>
+    <category term="AI" scheme="https://1241262510.github.io/blog/tags/AI/"/>
+    <category term="Cursor" scheme="https://1241262510.github.io/blog/tags/Cursor/"/>
+    <category term="Agent" scheme="https://1241262510.github.io/blog/tags/Agent/"/>
+    <category term="Blog" scheme="https://1241262510.github.io/blog/tags/Blog/"/>
+    <content>
+      <![CDATA[<p><img src="/blog/assets/cursor-auto-blog-cover.png"></p><p>很久以前，我安装并体验过 Cursor。那时整个过程很简单，下载、安装、登录，几分钟后就能开始使用。</p><p>最近我重新安装了一遍，发现注册流程与以前相比多了一道手机验证。我的英国 giffgaff 手机卡可以正常接收验证码，最终顺利完成了验证。需要说明的是，手机验证似乎并非所有账号都会遇到，更像是系统根据账号、网络环境等情况触发的额外验证。</p><p>完成注册后，我想测试一个很直接的问题：<strong>不购买 Cursor Pro，只使用免费版，能不能靠一句话生成一个像样的个人博客？</strong></p><h2 id="免费版还能不能用？"><a href="#免费版还能不能用？" class="headerlink" title="免费版还能不能用？"></a>免费版还能不能用？</h2><p>答案是：能用，但选择会受到限制。</p><p>免费账号仍然可以使用 Cursor 的 Agent 和 Auto 模式，让它读取项目、创建文件并修改代码。不过，在免费额度和模型权限下，通常不能像付费用户那样自由选择 Claude、GPT 等热门模型。这里容易混淆的一点是，Claude Code 是 Anthropic 的命令行编程工具，并不是一个模型名称；Cursor 中实际选择的是 Claude、GPT、Gemini 等模型或 Auto 自动路由。</p><p>Auto 模式的好处是不用纠结具体选哪个模型。Cursor 会根据任务和当前可用资源自动处理请求。代价也很明显：模型选择过程不透明，输出效果不够稳定，也很难判断某一次任务究竟由哪个模型完成。</p><h2 id="一句话生成一个博客"><a href="#一句话生成一个博客" class="headerlink" title="一句话生成一个博客"></a>一句话生成一个博客</h2><p>这次测试没有写复杂的需求文档，也没有提前设计页面。我只给了 Cursor 一个大致目标，让它生成一个可以在本地运行的个人 Blog。</p><p>Cursor 随后自动创建了项目结构、页面样式和基础内容。整个过程不需要我逐个新建文件，也不需要从零手写页面。对于不熟悉前端开发的人来说，这种体验确实很有吸引力：一句话描述想法，很快就能看到一个可以运行的成品。</p><p>最终生成的页面能够正常打开，基本布局也完整，包括标题、正文区域以及页脚：</p><blockquote><p>© 2026 随笔 · 运行在本地</p></blockquote><p>从“有没有做出来”这个角度看，Auto 模型完成了任务。它不是只给出一段示例代码，而是搭出了一个真正能够运行的博客页面。</p><h2 id="成品体验：像一套“框架房”"><a href="#成品体验：像一套“框架房”" class="headerlink" title="成品体验：像一套“框架房”"></a>成品体验：像一套“框架房”</h2><p>如果只看第一眼，生成结果还算不错：页面干净，结构清楚，没有明显的错位，作为演示项目完全够用。</p><p>但从设计与功能的角度仔细体验，它与成熟博客还有明显距离。和我之前用 Grok 生成的 Blog 相比，这次 Cursor 生成的版本更像一个基础框架，完成度没有那么高。</p><p>主要问题体现在几个方面：</p><ul><li>页面视觉层次比较单一，字体、留白和配色缺少细致打磨；</li><li>博客只有基础展示能力，缺少文章列表、分类、标签和搜索等常用功能；</li><li>没有针对手机端进行充分优化；</li><li>缺少深色模式、代码高亮、文章目录和阅读进度等体验细节；</li><li>示例内容较少，看起来更像 Demo，而不是可以长期维护的网站。</li></ul><p>我愿意把它形容成一套“框架房”：主体结构已经搭好，水电也能用，确实可以住人，但谈不上舒适。想把它变成一个真正好用的博客，还需要继续装修。</p><h2 id="一句话生成，不等于一句话交付"><a href="#一句话生成，不等于一句话交付" class="headerlink" title="一句话生成，不等于一句话交付"></a>一句话生成，不等于一句话交付</h2><p>这次体验也让我更明确地感受到：AI 很擅长把项目从 0 推到 1，却很难只靠一句模糊的要求，就把产品从 1 打磨到 100。</p><p>如果继续使用 Cursor 完善这个博客，下一步至少还需要提出更具体的要求，例如：</p><ol><li>统一字体、颜色、卡片和间距，建立完整的视觉风格；</li><li>增加文章列表、分类、标签、搜索和归档页面；</li><li>加入响应式布局，分别检查电脑和手机端效果；</li><li>完善 Markdown 渲染、代码高亮、目录与上一篇&#x2F;下一篇导航；</li><li>增加深色模式、SEO 信息、RSS 和站点地图；</li><li>准备真实文章，再根据内容长度调整版式。</li></ol><p>换句话说，第一句提示词负责“把房子盖起来”，后续的一轮轮交流才是在“装修房子”。提示词越具体，验收标准越清晰，AI 生成的结果通常也越接近预期。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Cursor 免费版目前依然有体验价值。即使不能自由调用热门模型，Auto 模式也足以完成简单页面、原型项目和基础博客的搭建。对于想快速验证创意，或者刚开始接触 AI 编程的人，它能够显著降低从想法到成品的门槛。</p><p>不过，如果目标是做一个设计成熟、功能完整、可以长期使用的 Blog，一句话远远不够。Auto 模型可以替你搭好框架，但审美判断、功能取舍和最后的细节打磨，仍然需要人来完成。</p><p>这次测试给我的结论是：<strong>Cursor 一句话确实能生成 Blog，但生成的是起点，不是终点。</strong></p>]]>
+    </content>
+    <id>https://1241262510.github.io/blog/2026/07/15/cursor-one-prompt-auto-blog/</id>
+    <link href="https://1241262510.github.io/blog/2026/07/15/cursor-one-prompt-auto-blog/"/>
+    <published>2026-07-16T02:35:34.000Z</published>
+    <summary>实测 Cursor 免费版的 Agent 与 Auto 模式，看看只用一句话能否生成一个可运行的个人博客，以及成品距离成熟网站还有多远。</summary>
+    <title>Cursor 一句话生成 Blog：免费 Auto 模型能做到什么程度？</title>
+    <updated>2026-07-16T02:36:08.370Z</updated>
+  </entry>
   <entry>
     <author>
       <name>凌晨两点的书桌</name>
@@ -376,24 +395,5 @@
     <summary>记录雾凇拼音中用 uU 加部件完整拼音进行拆字反查的方法，以及小鹤双拼用户如何恢复全拼反查。</summary>
     <title>雾凇拼音：用拆字反查陌生字</title>
     <updated>2026-06-03T00:07:02.635Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>凌晨两点的书桌</name>
-    </author>
-    <category term="工具体验" scheme="https://1241262510.github.io/blog/categories/%E5%B7%A5%E5%85%B7%E4%BD%93%E9%AA%8C/"/>
-    <category term="Apple" scheme="https://1241262510.github.io/blog/tags/Apple/"/>
-    <category term="Final Cut Pro" scheme="https://1241262510.github.io/blog/tags/Final-Cut-Pro/"/>
-    <category term="Apple Creator Studio" scheme="https://1241262510.github.io/blog/tags/Apple-Creator-Studio/"/>
-    <category term="创作工具" scheme="https://1241262510.github.io/blog/tags/%E5%88%9B%E4%BD%9C%E5%B7%A5%E5%85%B7/"/>
-    <content>
-      <![CDATA[<p><img src="/blog/assets/apple-creator-studio-cover.png"></p><p>最近在学习 Final Cut Pro。</p><p>最开始，我只是想体验一下这款软件到底有没有传说中那么好用，所以在某宝上购买了一个版本。随着学习逐渐深入，我发现自己安装的 Final Cut Pro 和网上教程里的版本不太一样：教程已经更新到了 Final Cut Pro 12，而我手里的还是 11。部分新功能无法体验，想继续学习就只能升级。</p><p>问题在于，这类来源的软件往往经不起更新。一旦升级，原有的授权就可能失效。为了避免继续在安装、升级和授权上浪费时间，我开始寻找更省心的官方方案。</p><h2 id="Apple-的创作软件大礼包"><a href="#Apple-的创作软件大礼包" class="headerlink" title="Apple 的创作软件大礼包"></a>Apple 的创作软件大礼包</h2><p>Apple 在 2026 年推出了一个新的订阅服务：<strong>Apple Creator Studio</strong>。</p><p>简单来说，它把 Apple 的多款专业创作工具打包到了一起。一次订阅，就可以使用下面这些 App：</p><table><thead><tr><th>使用场景</th><th>包含的 App</th></tr></thead><tbody><tr><td>视频剪辑与后期</td><td>Final Cut Pro、Motion、Compressor</td></tr><tr><td>音乐制作与现场演出</td><td>Logic Pro、MainStage</td></tr><tr><td>图像处理与设计</td><td>Pixelmator Pro</td></tr><tr><td>办公与内容创作</td><td>Keynote 讲演、Pages 文稿、Numbers 表格、无边记中的高级内容和智能功能</td></tr></tbody></table><p>其中，Final Cut Pro、Logic Pro 和 Pixelmator Pro 同时覆盖 Mac 和 iPad；Motion、Compressor 和 MainStage 则是 Mac 版工具。</p><p><img src="/blog/assets/apple-creator-studio-apps.png"></p><p><img src="/blog/assets/apple-creator-studio-details.png"></p><h2 id="国区价格很有吸引力"><a href="#国区价格很有吸引力" class="headerlink" title="国区价格很有吸引力"></a>国区价格很有吸引力</h2><p>Apple Creator Studio 在中国大陆地区提供一个月免费试用。试用结束后，普通用户的价格是：</p><ul><li>每月 38 元</li><li>每年 380 元</li></ul><p>如果是高校学生或教职员工，价格更低：</p><ul><li>每月 18 元</li><li>每年 180 元</li></ul><p>另外，购买符合条件的新 Mac 或 iPad，还可以免费试用三个月。</p><p>作为对比，美区的普通订阅价格是每月 12.99 美元或每年 129 美元，学生和教育工作者的价格是每月 2.99 美元或每年 29.99 美元。不同地区的定价差异比较明显，国区价格确实很有吸引力。</p><h2 id="怎么开通"><a href="#怎么开通" class="headerlink" title="怎么开通"></a>怎么开通</h2><p>我找回了自己的国区 Apple 账户，直接选择订阅。</p><p>开通方式并不复杂：在 App Store 获取 Final Cut Pro，进入 App 后选择免费试用或订阅即可。订阅的并不只是 Final Cut Pro，而是整个 Apple Creator Studio 套装。其他包含在套装内的 App，可以按需从 App Store 下载。</p><p>这里需要注意：免费试用结束后，普通用户的月费是 <strong>38 元</strong>，不是 30 元。如果确定会长期使用，按年订阅更划算，相当于每年少付两个月的费用。</p><h2 id="订阅还是一次性购买"><a href="#订阅还是一次性购买" class="headerlink" title="订阅还是一次性购买"></a>订阅还是一次性购买</h2><p>Apple 并没有取消买断制。Mac 版 Final Cut Pro 仍然可以在 App Store 一次性购买，国区价格为 1998 元。Logic Pro、Pixelmator Pro、Motion、Compressor 和 MainStage 也保留了单独购买的选项。</p><p>怎么选，取决于自己的使用方式：</p><ul><li>只是想学习 Final Cut Pro，或者希望同时体验多款创作工具，订阅更合适。</li><li>确定长期只使用某一款 Mac 软件，也不需要订阅专属的高级内容，可以考虑一次性购买。</li><li>需要在 Mac 和 iPad 上使用，或者想随时获得套装内的新功能，Apple Creator Studio 更省心。</li></ul><p>对我来说，现阶段最重要的是能够稳定地跟着新教程学习，不再把时间浪费在软件授权和版本问题上。每月 38 元，换来 Final Cut Pro 和一整套 Apple 创作工具，已经足够划算。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://www.apple.com.cn/apple-creator-studio/">Apple Creator Studio 官方页面</a></li><li><a href="https://www.apple.com.cn/final-cut-pro/workflows/">Final Cut Pro 官方页面</a></li><li><a href="https://www.apple.com.cn/newsroom/2026/01/introducing-apple-creator-studio-an-inspiring-collection-of-creative-apps/">Apple Creator Studio 发布新闻稿</a></li></ul>]]>
-    </content>
-    <id>https://1241262510.github.io/blog/2026/05/31/apple-creator-studio-subscription-guide/</id>
-    <link href="https://1241262510.github.io/blog/2026/05/31/apple-creator-studio-subscription-guide/"/>
-    <published>2026-06-01T01:25:00.000Z</published>
-    <summary>Apple Creator Studio 把 Final Cut Pro、Logic Pro、Pixelmator Pro 等创作工具打包成订阅服务，国区普通用户每月 38 元。</summary>
-    <title>Apple Creator Studio：38 元一个月的 Apple 创作大礼包</title>
-    <updated>2026-06-01T01:25:29.472Z</updated>
   </entry>
 </feed>
