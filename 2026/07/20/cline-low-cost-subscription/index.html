@@ -1,0 +1,927 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/fluid.png">
+  <link rel="icon" href="/blog/img/fluid.png">
+  
+    <link rel="canonical" href="https://1241262510.github.io/blog/2026/07/20/cline-low-cost-subscription/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#ffffff">
+  <meta name="author" content="凌晨两点的书桌">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="说明 ClinePass 与 Claude Pro&#x2F;Max 的额度区别，介绍如何在 Cline 中复用 Claude Code 订阅，并给出不同使用场景的选择建议。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cline 的低成本订阅：该不该买？如何和 Claude Code 搭配">
+<meta property="og:url" content="https://1241262510.github.io/blog/2026/07/20/cline-low-cost-subscription/index.html">
+<meta property="og:site_name" content="凌晨两点的书桌">
+<meta property="og:description" content="说明 ClinePass 与 Claude Pro&#x2F;Max 的额度区别，介绍如何在 Cline 中复用 Claude Code 订阅，并给出不同使用场景的选择建议。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/cline-low-cost-subscription-xiaohei.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/cline-cli-login.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/cline-provider-settings.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/clinepass-subscription.png">
+<meta property="og:image" content="https://1241262510.github.io/blog/assets/clinepass-models.png">
+<meta property="article:published_time" content="2026-07-20T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-20T06:51:01.805Z">
+<meta property="article:author" content="凌晨两点的书桌">
+<meta property="article:tag" content="AI 编程">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="Cline">
+<meta property="article:tag" content="订阅">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1241262510.github.io/blog/assets/cline-low-cost-subscription-xiaohei.png">
+  
+  
+  
+  <title>Cline 的低成本订阅：该不该买？如何和 Claude Code 搭配 - 凌晨两点的书桌</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/blog/css/layout-conservative.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1241262510.github.io","root":"/blog/","version":"1.9.9","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/blog/atom.xml" title="凌晨两点的书桌" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>Codex Skill Lab</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/categories/" target="_self">
+                
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/blog/atom.xml" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-rss"></i>
+                  <span>RSS</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/banner-desk.svg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.35)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Cline 的低成本订阅：该不该买？如何和 Claude Code 搭配</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-20 00:00" pubdate>
+          2026年7月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Cline 的低成本订阅：该不该买？如何和 Claude Code 搭配</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="/blog/assets/cline-low-cost-subscription-xiaohei.png" srcset="/blog/img/loading.gif" lazyload alt="Cline 的低成本订阅示意图"></p>
+<h2 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h2><p><strong>ClinePass 是一张“开源模型月票”，不是 Claude 或 ChatGPT 的通票。</strong></p>
+<p>如果已经有 <strong>Claude Pro 或 Claude Max</strong>，并且日常主要使用 Claude Code，那么通常<strong>不需要再买 ClinePass</strong>：在 Cline 中选择 <code>Claude Code</code> 作为 Provider，就可以复用 Claude 订阅的额度。</p>
+<p>如果想用较低成本在 Cline 里做代码任务，或想集中体验 DeepSeek、Kimi、GLM、Qwen 等模型，ClinePass 值得作为补充。</p>
+<blockquote>
+<p>**关键区别：**不同 Provider 的额度彼此独立。购买 ClinePass 不会增加 Claude Code 的额度；Claude Pro&#x2F;Max 也不会解锁 ClinePass 的开源模型月票。</p>
+</blockquote>
+<h2 id="终端安装与启动"><a href="#终端安装与启动" class="headerlink" title="终端安装与启动"></a>终端安装与启动</h2><p>官网提供 Cline CLI，也可以在 VS Code &#x2F; Cursor 内安装扩展。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i -g cline<br></code></pre></td></tr></table></figure>
+
+<p>启动交互式会话：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cline<br></code></pre></td></tr></table></figure>
+
+<p>首次运行一般需要在浏览器中完成登录或授权。若使用 VS Code，则安装 Cline 扩展，打开其侧边栏后在设置中选择模型 Provider。</p>
+<p><img src="/blog/assets/cline-cli-login.png" srcset="/blog/img/loading.gif" lazyload alt="Cline CLI 登录界面"></p>
+<p><img src="/blog/assets/cline-provider-settings.png" srcset="/blog/img/loading.gif" lazyload alt="Cline Provider 设置"></p>
+<h2 id="ClinePass：低价，但模型范围很明确"><a href="#ClinePass：低价，但模型范围很明确" class="headerlink" title="ClinePass：低价，但模型范围很明确"></a>ClinePass：低价，但模型范围很明确</h2><p><img src="/blog/assets/clinepass-subscription.png" srcset="/blog/img/loading.gif" lazyload alt="ClinePass 订阅页面"></p>
+<p>首月有优惠，后续为按月订阅。它面向的是一组开源权重模型，常见选择包括：</p>
+<ul>
+<li>GLM</li>
+<li>Kimi</li>
+<li>DeepSeek</li>
+<li>MiniMax</li>
+<li>MiMo</li>
+<li>Qwen</li>
+</ul>
+<p>这些模型适合在 Cline 的“读代码—修改—运行命令—验证”工作流里完成日常开发任务。它的优势是<strong>省掉多家 API 账户、密钥与账单管理</strong>，而不是用月费替代所有闭源大模型。</p>
+<p><img src="/blog/assets/clinepass-models.png" srcset="/blog/img/loading.gif" lazyload alt="ClinePass 可选模型"></p>
+<h2 id="已经使用-Claude-Code，怎样接入-Cline？"><a href="#已经使用-Claude-Code，怎样接入-Cline？" class="headerlink" title="已经使用 Claude Code，怎样接入 Cline？"></a>已经使用 Claude Code，怎样接入 Cline？</h2><p>你不必购买 ClinePass。前提是你拥有 <strong>Claude Pro 或 Claude Max</strong>，并且本机的 Claude Code CLI 已经安装、登录。</p>
+<p>在 Cline 中按下面操作：</p>
+<ol>
+<li><p>打开 Cline 侧边栏，进入设置。</p>
+</li>
+<li><p>在 <strong>API Provider</strong> 中选择 <strong>Claude Code</strong>，不要选 <code>Anthropic</code>。</p>
+</li>
+<li><p>填写 Claude CLI 路径；通常直接填 <code>claude</code> 即可。</p>
+</li>
+<li><p>若 Cline 找不到命令，在终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">which</span> claude<br></code></pre></td></tr></table></figure>
+
+<p>将输出的完整路径填回 Cline。</p>
+</li>
+<li><p>保存设置，发一条测试任务。</p>
+</li>
+</ol>
+<p>此模式会消耗你的 Claude Pro&#x2F;Max 订阅额度，而不是 Anthropic API token 费用。限制是：部分图片上传、提示词缓存能力可能受限，回复也可能不是逐 token 流式出现。</p>
+<h2 id="三种方案，怎么选？"><a href="#三种方案，怎么选？" class="headerlink" title="三种方案，怎么选？"></a>三种方案，怎么选？</h2><table>
+<thead>
+<tr>
+<th>你的情况</th>
+<th>推荐方案</th>
+<th>是否需要 ClinePass</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>已有 Claude Pro&#x2F;Max，主力用 Claude Code</td>
+<td>在 Cline 中选 <code>Claude Code</code> Provider</td>
+<td><strong>不需要</strong></td>
+</tr>
+<tr>
+<td>希望低成本使用多种开源模型</td>
+<td>订阅 ClinePass</td>
+<td><strong>需要</strong></td>
+</tr>
+<tr>
+<td>偶尔用 Claude &#x2F; GPT，按量付费可接受</td>
+<td>Cline Provider、Anthropic API 或 OpenAI API</td>
+<td><strong>不需要</strong></td>
+</tr>
+<tr>
+<td>同时需要 Claude Code 与开源模型</td>
+<td>Claude Code 作为主力，ClinePass 作补充</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<h2 id="支付提醒：国内卡能不能用？"><a href="#支付提醒：国内卡能不能用？" class="headerlink" title="支付提醒：国内卡能不能用？"></a>支付提醒：国内卡能不能用？</h2><p>支付页会显示 Visa、Mastercard、American Express 和银联标识，因此国内银行卡并非一定不能用。但订阅扣款能否成功仍取决于发卡行：</p>
+<ul>
+<li>优先使用带 Visa &#x2F; Mastercard &#x2F; UnionPay 标识的信用卡或双币卡；</li>
+<li>确认已开通线上支付、跨境支付与自动续费；</li>
+<li>账单姓名按卡面英文名填写；美元扣款可能产生换汇或跨境手续费；</li>
+<li>纯银联卡若失败，通常是发卡行限制跨境或订阅扣款，而不是 Cline 页面本身不支持该卡种。</li>
+</ul>
+<h2 id="一句话建议"><a href="#一句话建议" class="headerlink" title="一句话建议"></a>一句话建议</h2><p><strong>Claude Code 用户：先接入已有订阅，别为用 Claude 重复付费。</strong></p>
+<p><strong>想低成本多模型开发：把 ClinePass 当作开源模型补充，而不是 Claude&#x2F;GPT 替代品。</strong></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://cline.bot/aie-event">ClinePass 模型与价格说明</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.cline.bot/provider-config/anthropic">Cline：Anthropic &#x2F; Claude Code 配置</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.cline.bot/getting-started/authorizing-with-cline">Cline Provider 与模型选择</a></li>
+<li><a target="_blank" rel="noopener" href="https://cline.bot/tos">Cline 官方支付条款</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/blog/categories/AI-%E5%B7%A5%E5%85%B7/" class="category-chain-item">AI 工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/%E8%AE%A2%E9%98%85/" class="print-no-link">#订阅</a>
+      
+        <a href="/blog/tags/Claude-Code/" class="print-no-link">#Claude Code</a>
+      
+        <a href="/blog/tags/Cline/" class="print-no-link">#Cline</a>
+      
+        <a href="/blog/tags/AI-%E7%BC%96%E7%A8%8B/" class="print-no-link">#AI 编程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Cline 的低成本订阅：该不该买？如何和 Claude Code 搭配</div>
+      <div>https://1241262510.github.io/blog/2026/07/20/cline-low-cost-subscription/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>凌晨两点的书桌</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/blog/2026/07/20/cpp23-cmake-lazyvim-workflow/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/2026/07/15/cursor-one-prompt-auto-blog/" title="Cursor 一句话生成 Blog：免费 Auto 模型能做到什么程度？">
+                        <span class="hidden-mobile">Cursor 一句话生成 Blog：免费 Auto 模型能做到什么程度？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <span>Powered by Hexo & Fluid</span>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
